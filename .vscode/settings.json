@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "iostream": "cpp"
+    },
+    "cmake.buildDirectory": "${workspaceFolder}/buildcache",
+    "cmake.sourceDirectory": "${workspaceFolder}",
+    "cmake.generator": "MinGW Makefiles"
+}

@@ -1,0 +1,21 @@
+project(LeetCode)
+cmake_minimum_required(VERSION 3.14)
+
+include(${CMAKE_SOURCE_DIR}/cmake/compiler_config.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/third_lib_config.cmake)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_C_STANDARD 99)
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug CACHE STRING "CMAKE_BUILD_TYPE Debug" FORCE)
+endif()
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -O0")
+set(TARGET_NAME LeetCodePractice)
+enable_testing()
+
+
+add_executable(${TARGET_NAME})
+add_subdirectory(src)
+target_include_directories(${TARGET_NAME} PRIVATE ${GOOGLE_TEST_INCLUDE_PATH})
+target_link_directories(${TARGET_NAME} PRIVATE ${GOOGLE_TEST_LIBRARY_PATH})
+target_link_libraries(${TARGET_NAME} gtest pthread)
