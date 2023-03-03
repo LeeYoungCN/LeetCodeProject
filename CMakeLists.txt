@@ -12,9 +12,14 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -O0")
 set(TARGET_NAME LeetCodePractice)
 enable_testing()
 
-
 add_executable(${TARGET_NAME})
 add_subdirectory(src)
-target_include_directories(${TARGET_NAME} PRIVATE ${GOOGLE_TEST_INCLUDE_PATH})
-target_link_directories(${TARGET_NAME} PRIVATE ${GOOGLE_TEST_LIBRARY_PATH})
-target_link_libraries(${TARGET_NAME} gtest pthread)
+target_include_directories(${TARGET_NAME} PRIVATE
+    ${GOOGLE_TEST_INCLUDE_PATH}
+    ${MOCKCPP_INCLUDE_PATH}
+)
+target_link_directories(${TARGET_NAME} PRIVATE
+    ${GOOGLE_TEST_LIBRARY_PATH}
+    ${MOCKCPP_LIBRARY_PATH}
+)
+target_link_libraries(${TARGET_NAME} gtest mockcpp pthread)
