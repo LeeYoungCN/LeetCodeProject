@@ -51,6 +51,5 @@
         "variant": "cpp"
     },
     "cmake.buildDirectory": "${workspaceFolder}/buildcache",
-    "cmake.sourceDirectory": "${workspaceFolder}",
-    "cmake.generator": "MinGW Makefiles"
+    "cmake.sourceDirectory": "${workspaceFolder}"
 }

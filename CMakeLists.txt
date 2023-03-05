@@ -1,6 +1,5 @@
 project(LeetCode)
 cmake_minimum_required(VERSION 3.14)
-
 include(${CMAKE_SOURCE_DIR}/cmake/third_lib_config.cmake)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 99)
