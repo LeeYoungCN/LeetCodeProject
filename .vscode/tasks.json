@@ -10,7 +10,7 @@
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
-            "command": "./build.sh",
+            "command": "sh ./build.sh",
             "args": [],
             "detail": "根据makefile生成可执行文件和库文件",
             "problemMatcher": [
