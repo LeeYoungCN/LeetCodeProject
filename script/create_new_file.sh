@@ -62,17 +62,15 @@ function create_new_file_by_template()
     local template_file="$1"
     local new_file="$2"
 
-    echo ${new_file}
+    echo "create [${new_file}]"
 
     if [ ! -e ${template_file} ]; then
         echo "template file not exist!"
-        echo "${template_file}"
         exit 1
     fi
 
     if [ -e ${new_file} ]; then
         echo "new file already exist!"
-        echo "${new_file}"
         exit 1
     fi
 
