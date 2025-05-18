@@ -16,7 +16,7 @@ protected:
     }
 };
 
-TEST_F(Test_Lc0055, Case1)
+TEST_F(Test_Lc0055, case1)
 {
     vector<int> nums = {2, 3, 1, 1, 4};
     RunTest(nums, true);

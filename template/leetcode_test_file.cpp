@@ -16,7 +16,7 @@ void TEST_CLASSNAME::RunTest(vector<int>& nums, int expectResult)
     EXPECT_EQ(expectResult, m_test.LeetCodeFunction(nums));
 }
 
-TEST_F(TEST_CLASSNAME, Case1)
+TEST_F(TEST_CLASSNAME, case1)
 {
     vector<int> nums = {1, 2, 3, 4};
     RunTest(nums, 0);
