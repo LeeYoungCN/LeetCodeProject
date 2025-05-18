@@ -6,7 +6,7 @@ LEETCODE_INC_DIR="${root_path}/leetcode/include"
 LEETCODE_SRC_DIR="${root_path}/leetcode/src"
 TEST_DIR="${root_path}/test"
 
-TEMPLATE_FILE_DIR="${root_path}/template"
+TEMPLATE_FILE_DIR="${root_path}/script/template"
 TEMPLATE_HEAD_FILE="${TEMPLATE_FILE_DIR}/leetcode_head_file.h"
 TEMPLATE_SRC_FILE="${TEMPLATE_FILE_DIR}/leetcode_src_file.cpp"
 TEMPLATE_TEST_FILE="${TEMPLATE_FILE_DIR}/leetcode_test_file.cpp"
