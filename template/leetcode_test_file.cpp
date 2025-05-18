@@ -13,7 +13,7 @@ class TEST_CLASSNAME : public testing::Test {
     
 void TEST_CLASSNAME::RunTest(vector<int>& nums, int expectResult)
 {
-    EXPECT_EQ(expectResult, m_test.LeetCodeFunction(nums));
+    EXPECT_EQ(expectResult, m_test.CLASS_FUNC);
 }
 
 TEST_F(TEST_CLASSNAME, case1)

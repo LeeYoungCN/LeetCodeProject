@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int CLASS_NAME::LeetCodeFunction(std::vector<int> x)
+FUNC_RET_TYPE CLASS_NAME::CLASS_FUNC
 {
     return 0;
 }

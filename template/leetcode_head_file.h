@@ -5,7 +5,7 @@
 
 class CLASS_NAME {
     public:
-        int LeetCodeFunction(std::vector<int> x);
+        FUNC_RET_TYPE CLASS_FUNC;
 };
 
 #endif // DEF_STR
