@@ -4,6 +4,7 @@
 #include "lc1931_painting_a_grid_with_three_different_colors.h"
 
 using namespace std;
+using namespace f2;
 
 class Test_Lc1931 : public testing::Test {
     protected:
