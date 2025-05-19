@@ -1,4 +1,8 @@
-// URL_STR
+/*
+ * Time : TIME_STR
+ * URL  : URL_STR
+ */
+
 #include <vector>
 #include "gtest/gtest.h"
 #include "HEAD_FILE_NAME"

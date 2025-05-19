@@ -27,6 +27,8 @@ lc_func=""
 func_name="LeetCodeFunction(std::vector<int> x)"
 func_ret_type="int"
 
+time_str="$(date "+%Y-%m-%d %H:%M:%S")"
+
 ARGS=$(getopt -o p:u:f: --long prefix:,url:,func: -n "$0" -- "$@")
 
 if [ $? != 0 ]; then
@@ -88,6 +90,7 @@ create_new_file_by_template() {
     replace_text "TEST_CLASSNAME"   "${test_class_name}"        "${new_file}"
     replace_text "FUNC_RET_TYPE"    "${func_ret_type}"          "${new_file}"
     replace_text "CLASS_FUNC"       "${func_name}"              "${new_file}"
+    replace_text "TIME_STR"         "${time_str}"               "${new_file}"
 }
 
 main() {

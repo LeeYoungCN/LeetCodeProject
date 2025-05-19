@@ -1,4 +1,8 @@
-// URL_STR
+/*
+ * Time : TIME_STR
+ * URL  : URL_STR
+ */
+
 #ifndef DEF_STR
 #define DEF_STR
 #include <vector>
