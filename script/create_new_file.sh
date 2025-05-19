@@ -1,15 +1,15 @@
 #!/bin/bash
-file_path=$(cd $(dirname $0); pwd)
-root_path=$(cd ${file_path}/..; pwd)
+file_path="$(cd $(dirname $0); pwd)"
+root_path="$(cd ${file_path}/..; pwd)"
 
 LEETCODE_INC_DIR="${root_path}/leetcode/include"
 LEETCODE_SRC_DIR="${root_path}/leetcode/src"
 TEST_DIR="${root_path}/test"
 
 TEMPLATE_FILE_DIR="${root_path}/script/template"
-TEMPLATE_HEAD_FILE="${TEMPLATE_FILE_DIR}/leetcode_head_file.h"
-TEMPLATE_SRC_FILE="${TEMPLATE_FILE_DIR}/leetcode_src_file.cpp"
-TEMPLATE_TEST_FILE="${TEMPLATE_FILE_DIR}/leetcode_test_file.cpp"
+TEMPLATE_HEAD_FILE="${TEMPLATE_FILE_DIR}/leetcode_head_file.template"
+TEMPLATE_SRC_FILE="${TEMPLATE_FILE_DIR}/leetcode_src_file.template"
+TEMPLATE_TEST_FILE="${TEMPLATE_FILE_DIR}/leetcode_test_file.template"
 
 leetcode_file_name=""
 leetcode_class_name=""
@@ -46,7 +46,7 @@ while true; do
     esac
 done
 
-if [ -z "$prefix" ] || [ -z "$url" ]; then
+if [ -z "${prefix}" ] || [ -z "${url}" ]; then
     echo "error"
 fi
 
@@ -57,16 +57,14 @@ if [ -n "${lc_func}" ]; then
     echo "func   [${lc_func}]"
 fi
 
-function replace_text()
-{
+replace_text() {
     local old_str="$1"
     local new_str="$2"
     local file_path="$3"
-    sed -i "s#${old_str}#${new_str}#g" ${file_path}
+    sed -i "s#${old_str}#${new_str}#g" "${file_path}"
 }
 
-function create_new_file_by_template()
-{
+create_new_file_by_template() {
     local template_file="$1"
     local new_file="$2"
 
@@ -88,15 +86,16 @@ function create_new_file_by_template()
     replace_text "DEF_STR"          "${def_str}"                "${new_file}"
     replace_text "HEAD_FILE_NAME"   "${leetcode_file_name}.h"   "${new_file}"
     replace_text "TEST_CLASSNAME"   "${test_class_name}"        "${new_file}"
-    replace_text "FUNC_RET_TYPE"        "${func_ret_type}"  "${new_file}"
-    replace_text "CLASS_FUNC"           "${func_name}"      "${new_file}"
+    replace_text "FUNC_RET_TYPE"    "${func_ret_type}"          "${new_file}"
+    replace_text "CLASS_FUNC"       "${func_name}"              "${new_file}"
 }
 
-function main()
-{
+main() {
     if [ -n "${lc_func}" ]; then
         func_name="${lc_func#* }"
+        echo "func_name=[${func_name}]"
         func_ret_type="${lc_func%% *}"
+        echo "func_ret_type=[${func_ret_type}]"
     fi
 
     # "https://leetcode.cn/problems/"
@@ -114,7 +113,7 @@ function main()
     head_file_path="${LEETCODE_INC_DIR}/${leetcode_file_name}.h"
     src_file_path="${LEETCODE_SRC_DIR}/${leetcode_file_name}.cpp"
     test_file_path="${TEST_DIR}/test_${leetcode_file_name}.cpp"
-    def_str="${leetcode_file_name^^}_H"
+    def_str="$(echo ${leetcode_file_name} | tr 'a-z' 'A-Z')_H"
 
     create_new_file_by_template "${TEMPLATE_HEAD_FILE}" "${head_file_path}"
     create_new_file_by_template "${TEMPLATE_SRC_FILE}"  "${src_file_path}"
