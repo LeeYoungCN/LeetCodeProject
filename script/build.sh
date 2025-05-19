@@ -30,7 +30,7 @@ done
 os=$(uname -s)
 generator="Unix Makefiles"
 
-if [[ ${os} =~ "MINGW" ]]; then
+if echo "${os}" | grep -q "MINGW" ; then
     os="MINGW"
     generator="MinGW Makefiles"
 fi
@@ -52,15 +52,14 @@ fi
 
 # cd "${root_path}" || exit 1
 if [ -z "${target}" ]; then
-    cmake --build "${buildcache_path}"
+    cmake --build "${buildcache_path}" -j
 else
-    cmake --build "${buildcache_path}" --target "${target}"
+    cmake --build "${buildcache_path}" --target "${target}" -j
 fi
+
 cmake --install "${buildcache_path}"
 
 cd "${bin_path}" || exit 1
-if [ -z "${test_case}" ]; then
-    ./${target_name}*
-else
+if [ -n "${test_case}" ]; then
     ./${target_name}* --gtest_filter=${test_case}
 fi
