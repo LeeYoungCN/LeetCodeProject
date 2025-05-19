@@ -16,27 +16,27 @@ void Test_Lc1931::RunTest(int m, int n, int result)
     EXPECT_EQ(result, m_test.colorTheGrid(m, n));
 }
 
-TEST_F(Test_Lc1931, case1)
+TEST_F(Test_Lc1931, 1X2)
 {
     RunTest(1, 2, 6);
 }
 
-TEST_F(Test_Lc1931, case2)
+TEST_F(Test_Lc1931, 1X1)
 {
     RunTest(1, 1, 3);
 }
 
-TEST_F(Test_Lc1931, case3)
+TEST_F(Test_Lc1931, 5X5)
 {
     RunTest(5, 5, 580986);
 }
 
-TEST_F(Test_Lc1931, case4)
+TEST_F(Test_Lc1931, 2X2)
 {
     RunTest(2, 2, 18);
 }
 
-TEST_F(Test_Lc1931, case5)
+TEST_F(Test_Lc1931, 3X3)
 {
     RunTest(3, 3, 246);
 }
