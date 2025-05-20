@@ -52,9 +52,9 @@ fi
 
 # cd "${root_path}" || exit 1
 if [ -z "${target}" ]; then
-    cmake --build "${buildcache_path}" -j
+    cmake --build "${buildcache_path}"
 else
-    cmake --build "${buildcache_path}" --target "${target}" -j
+    cmake --build "${buildcache_path}" --target "${target}"
 fi
 
 cmake --install "${buildcache_path}"

@@ -96,16 +96,14 @@ create_new_file_by_template() {
 main() {
     if [ -n "${lc_func}" ]; then
         func_name="${lc_func#* }"
-        echo "func_name=[${func_name}]"
         func_ret_type="${lc_func%% *}"
-        echo "func_ret_type=[${func_ret_type}]"
     fi
 
     # "https://leetcode.cn/problems/"
     local problem_name=$(echo ${url} | awk -F / '{print $5}')
     problem_name=$(echo ${problem_name} | sed  's/-/_/g')
 
-    local prefix_fmt=$(echo ${prefix} | | tr 'a-z' 'A-Z')
+    local prefix_fmt=$(echo ${prefix} | tr 'a-z' 'A-Z')
     local problem_fmt=$(echo ${problem_name} | sed -r 's/(^|_)(\w)/\U\2/g')
 
     leetcode_file_name="${prefix}_${problem_name}"
