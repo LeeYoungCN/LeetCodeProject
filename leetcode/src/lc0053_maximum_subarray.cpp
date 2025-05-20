@@ -1,12 +1,19 @@
-// https://leetcode.cn/problems/maximum-subarray/
+/*
+ * Time : 2025-05-20 01:28:53
+ * URL  : https://leetcode.cn/problems/maximum-subarray/description/
+ */
 #include <cstdint>
 #include <cmath>
+#include <algorithm>
 #include <vector>
+#include <set>
+#include <map>
 #include "lc0053_maximum_subarray.h"
 
 using namespace std;
 
-int Lc0053Solution::maxSubArray(vector<int>& nums) {
+int Lc0053_MaximumSubarray::maxSubArray(vector<int>& nums)
+{
     int ret = INT32_MIN;
     const uint32_t length = nums.size();
     // dp[i] 表示包含nums[i]时的从左到右最大子数组的大小

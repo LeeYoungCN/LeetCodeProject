@@ -1,4 +1,8 @@
-// https://leetcode.cn/problems/maximum-subarray/
+/*
+ * Time : 2025-05-20 01:28:53
+ * URL  : https://leetcode.cn/problems/maximum-subarray/description/
+ */
+
 #include <vector>
 #include "gtest/gtest.h"
 #include "lc0053_maximum_subarray.h"
@@ -7,7 +11,7 @@ using namespace std;
 
 class Test_Lc0053 : public testing::Test {
     protected:
-        Lc0053Solution m_test;
+        Lc0053_MaximumSubarray m_test;
         void RunTest(vector<int>& nums, int expectResult);
 };
     
