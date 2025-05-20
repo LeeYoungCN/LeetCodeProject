@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-class Lc0012_IntegerToRoman {
+class LC0012_IntegerToRoman {
     public:
         std::string intToRoman(int num);
 };

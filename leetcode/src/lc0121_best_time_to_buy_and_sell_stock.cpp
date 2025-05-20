@@ -16,7 +16,7 @@
 
 using namespace std;
 
-int Lc0121_BestTimeToBuyAndSellStock::maxProfit(vector<int>& prices)
+int LC0121_BestTimeToBuyAndSellStock::maxProfit(vector<int>& prices)
 {
     int32_t ret = INT32_MIN;
     int32_t minPrice = __INT32_MAX__;

@@ -6,9 +6,9 @@
 using namespace std;
 
 
-class Test_Lc0055 : public testing::Test {
+class TEST_LC0055 : public testing::Test {
 protected:
-    Lc0055Solution m_test;
+    LC0055Solution m_test;
     void RunTest(vector<int> &nums, bool expectResult)
     {
         bool result = m_test.canJump(nums);
@@ -16,7 +16,7 @@ protected:
     }
 };
 
-TEST_F(Test_Lc0055, case1)
+TEST_F(TEST_LC0055, case1)
 {
     vector<int> nums = {2, 3, 1, 1, 4};
     RunTest(nums, true);

@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace f1 {
-    class Lc1931_PaintingAGridWithThreeDifferentColors {
+    class LC1931_PaintingAGridWithThreeDifferentColors {
         public:
             int colorTheGrid(int m, int n);
         private:
@@ -16,7 +16,7 @@ namespace f1 {
 }
 
 namespace f2 {
-    class Lc1931_PaintingAGridWithThreeDifferentColors {
+    class LC1931_PaintingAGridWithThreeDifferentColors {
         public:
             int colorTheGrid(int m, int n);
         private:

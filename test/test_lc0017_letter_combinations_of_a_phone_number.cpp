@@ -9,13 +9,13 @@
 
 using namespace std;
 
-class Test_Lc0017 : public testing::Test {
+class TEST_LC0017 : public testing::Test {
     protected:
-        Lc0017_LetterCombinationsOfAPhoneNumber m_test;
+        LC0017_LetterCombinationsOfAPhoneNumber m_test;
         void RunTest(string &digits, const set<string> &expect);
 };
     
-void Test_Lc0017::RunTest(string &digits, const set<string> &expect)
+void TEST_LC0017::RunTest(string &digits, const set<string> &expect)
 {
     vector<string> result = m_test.letterCombinations(digits);
     ASSERT_EQ(expect.size(), result.size());
@@ -29,21 +29,21 @@ void Test_Lc0017::RunTest(string &digits, const set<string> &expect)
     }
 }
 
-TEST_F(Test_Lc0017, case1)
+TEST_F(TEST_LC0017, case1)
 {
     string digits = "23";
     set<string> expect = {"ad","ae","af","bd","be","bf","cd","ce","cf"};
     RunTest(digits, expect);
 }
 
-TEST_F(Test_Lc0017, case2)
+TEST_F(TEST_LC0017, case2)
 {
     string digits = "";
     set<string> expect = {};
     RunTest(digits, expect);
 }
 
-TEST_F(Test_Lc0017, case3)
+TEST_F(TEST_LC0017, case3)
 {
     string digits = "2";
     set<string> expect = {"a", "b", "c"};

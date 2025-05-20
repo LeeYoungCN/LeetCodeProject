@@ -8,7 +8,7 @@
 
 using namespace std;
 
-string Lc0012_IntegerToRoman::intToRoman(int num)
+string LC0012_IntegerToRoman::intToRoman(int num)
 {
     vector<vector<const char*>> table {
         {"", "M", "MM", "MMM", "",   "",  "",   "",    "",     ""},

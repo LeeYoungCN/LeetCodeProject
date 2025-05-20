@@ -3,7 +3,7 @@
 #define LC0918_MAXIMUM_SUM_CIRCULAR_SUBARRAY_H
 #include <vector>
 
-class Lc0918Solution {
+class LC0918Solution {
     public:
         int maxSubarraySumCircular(std::vector<int>& nums);
 };

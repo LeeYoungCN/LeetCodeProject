@@ -7,7 +7,7 @@
 #include <vector>
 #include <string>
 
-class Lc0017_LetterCombinationsOfAPhoneNumber {
+class LC0017_LetterCombinationsOfAPhoneNumber {
     public:
         std::vector<std::string> letterCombinations(std::string digits);
     private:

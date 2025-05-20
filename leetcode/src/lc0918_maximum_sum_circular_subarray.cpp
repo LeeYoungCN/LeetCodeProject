@@ -7,7 +7,7 @@
 using namespace std;
 
 
-int Lc0918Solution::maxSubarraySumCircular(vector<int>& nums) {
+int LC0918Solution::maxSubarraySumCircular(vector<int>& nums) {
     const uint32_t numCnt = nums.size();
     int sum = 0;
     vector<int> maxSubArray = vector<int>(numCnt);

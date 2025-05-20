@@ -3,7 +3,7 @@
 #define LC0075_SORT_COLORS_H
 #include <vector>
 
-class Lc0075_SortColors {
+class LC0075_SortColors {
     public:
         void sortColors(std::vector<int>& nums);
     private:

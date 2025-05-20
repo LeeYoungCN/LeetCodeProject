@@ -13,7 +13,7 @@
 
 using namespace std;
 namespace method1 {
-void Lc0022_GenerateParentheses::num2Str(uint32_t num, uint32_t strLen, string &current)
+void LC0022_GenerateParentheses::num2Str(uint32_t num, uint32_t strLen, string &current)
 {
     for (uint32_t i = 0; i < strLen; ++i) {
         if (num % 2 == 0) {
@@ -25,7 +25,7 @@ void Lc0022_GenerateParentheses::num2Str(uint32_t num, uint32_t strLen, string &
     }
 }
 
-bool Lc0022_GenerateParentheses::isValidStr(const string &str)
+bool LC0022_GenerateParentheses::isValidStr(const string &str)
 {
     int32_t n = 0;
     for (const char c : str) {
@@ -41,7 +41,7 @@ bool Lc0022_GenerateParentheses::isValidStr(const string &str)
     return (n == 0);
 }
 
-void Lc0022_GenerateParentheses::generateStrByLoop(uint32_t strLen,
+void LC0022_GenerateParentheses::generateStrByLoop(uint32_t strLen,
                                                    vector<string> &result)
 {
     uint32_t total = pow(2, strLen);
@@ -55,7 +55,7 @@ void Lc0022_GenerateParentheses::generateStrByLoop(uint32_t strLen,
     }
 }
 
-vector<string> Lc0022_GenerateParentheses::generateParenthesis(int n)
+vector<string> LC0022_GenerateParentheses::generateParenthesis(int n)
 {
     uint32_t strLen = 2 * n;
     vector<string> result;
@@ -64,14 +64,14 @@ vector<string> Lc0022_GenerateParentheses::generateParenthesis(int n)
     return result;
 }
 
-void Lc0022_GenerateParentheses::generateStrByItr(uint32_t strLen, vector<string> &result)
+void LC0022_GenerateParentheses::generateStrByItr(uint32_t strLen, vector<string> &result)
 {
     string curr = "";
     curr.reserve(strLen);
     iter2Str(curr, strLen, result);
 }
 
-void Lc0022_GenerateParentheses::iter2Str(string &curr, uint32_t strLen,
+void LC0022_GenerateParentheses::iter2Str(string &curr, uint32_t strLen,
                                           vector<string> &result)
 {
     if (curr.size() >= strLen) {
@@ -110,7 +110,7 @@ void generateStrByItr(string &curr, vector<string> &result, uint32_t leftNum, ui
     }
 }
 
-vector<string> Lc0022_GenerateParentheses::generateParenthesis(int n)
+vector<string> LC0022_GenerateParentheses::generateParenthesis(int n)
 {
     string curr = "";
     curr.reserve(2 * n);

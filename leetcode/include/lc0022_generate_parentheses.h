@@ -9,7 +9,7 @@
 #include <string>
 
 namespace method1 {
-class Lc0022_GenerateParentheses {
+class LC0022_GenerateParentheses {
     public:
         std::vector<std::string> generateParenthesis(int n);
     private:
@@ -24,7 +24,7 @@ class Lc0022_GenerateParentheses {
 }
 
 namespace method2 {
-class Lc0022_GenerateParentheses {
+class LC0022_GenerateParentheses {
     public:
         std::vector<std::string> generateParenthesis(int n);
 };

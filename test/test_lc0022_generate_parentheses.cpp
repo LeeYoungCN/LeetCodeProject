@@ -12,14 +12,14 @@
 
 using namespace std;
 
-class Test_Lc0022 : public testing::Test
+class TEST_LC0022 : public testing::Test
 {
 protected:
-    method2::Lc0022_GenerateParentheses m_test;
+    method2::LC0022_GenerateParentheses m_test;
     void RunTest(int n, const set<string> &expect);
 };
 
-void Test_Lc0022::RunTest(int n, const set<string> &expect)
+void TEST_LC0022::RunTest(int n, const set<string> &expect)
 {
     vector<string> result = m_test.generateParenthesis(n);
     ASSERT_EQ(expect.size(), result.size());
@@ -32,25 +32,25 @@ void Test_Lc0022::RunTest(int n, const set<string> &expect)
     }
 }
 
-TEST_F(Test_Lc0022, case1)
+TEST_F(TEST_LC0022, case1)
 {
     const set<string> expect = {"()"};
     RunTest(1, expect);
 }
 
-TEST_F(Test_Lc0022, case2)
+TEST_F(TEST_LC0022, case2)
 {
     const set<string> expect = {"()()", "(())"};
     RunTest(2, expect);
 }
 
-TEST_F(Test_Lc0022, case3)
+TEST_F(TEST_LC0022, case3)
 {
     const set<string> expect = {"(()())", "((()))", "()()()", "()(())", "(())()"};
     RunTest(3, expect);
 }
 
-TEST_F(Test_Lc0022, case4)
+TEST_F(TEST_LC0022, case4)
 {
     const set<string> expect = {
         "(((())))", "((()()))", "((())())", "((()))()",

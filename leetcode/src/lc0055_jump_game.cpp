@@ -6,7 +6,7 @@
 using namespace std;
 
 
-bool Lc0055Solution::canJump(vector<int>& nums) {
+bool LC0055Solution::canJump(vector<int>& nums) {
     const int size = nums.size();
     vector<int> maxDistance = vector<int>(size);
     for (int i = 0; i < size; ++i) {

@@ -7,7 +7,7 @@
 #define LC3355_ZERO_ARRAY_TRANSFORMATION_I_H
 #include <vector>
 
-class Lc3355_ZeroArrayTransformationI {
+class LC3355_ZeroArrayTransformationI {
     public:
         bool isZeroArray(std::vector<int>& nums, std::vector<std::vector<int>>& queries);
 };

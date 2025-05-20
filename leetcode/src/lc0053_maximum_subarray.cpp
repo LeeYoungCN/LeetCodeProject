@@ -12,7 +12,7 @@
 
 using namespace std;
 
-int Lc0053_MaximumSubarray::maxSubArray(vector<int>& nums)
+int LC0053_MaximumSubarray::maxSubArray(vector<int>& nums)
 {
     int ret = INT32_MIN;
     const uint32_t length = nums.size();

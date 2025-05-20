@@ -105,13 +105,13 @@ main() {
     local problem_name=$(echo ${url} | awk -F / '{print $5}')
     problem_name=$(echo ${problem_name} | sed  's/-/_/g')
 
-    local prefix_fmt=$(echo ${prefix} | sed -r 's/(^|_)(\w)/\U\2/g')
+    local prefix_fmt=$(echo ${prefix} | | tr 'a-z' 'A-Z')
     local problem_fmt=$(echo ${problem_name} | sed -r 's/(^|_)(\w)/\U\2/g')
 
     leetcode_file_name="${prefix}_${problem_name}"
     leetcode_class_name="${prefix_fmt}_${problem_fmt}"
 
-    test_class_name="Test_${prefix_fmt}"
+    test_class_name="TEST_${prefix_fmt}"
 
     head_file_path="${LEETCODE_INC_DIR}/${leetcode_file_name}.h"
     src_file_path="${LEETCODE_SRC_DIR}/${leetcode_file_name}.cpp"

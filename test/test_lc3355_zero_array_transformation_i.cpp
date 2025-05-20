@@ -9,19 +9,19 @@
 
 using namespace std;
 
-class Test_Lc3355 : public testing::Test {
+class TEST_LC3355 : public testing::Test {
     protected:
-        Lc3355_ZeroArrayTransformationI m_test;
+        LC3355_ZeroArrayTransformationI m_test;
 };
 
-TEST_F(Test_Lc3355, case1)
+TEST_F(TEST_LC3355, case1)
 {
     vector<int> nums = {1, 0, 1};
     vector<vector<int>> queries = {{0, 2}};
     EXPECT_TRUE(m_test.isZeroArray(nums, queries));
 }
 
-TEST_F(Test_Lc3355, case2)
+TEST_F(TEST_LC3355, case2)
 {
     vector<int> nums = {4, 3, 2, 1};
     vector<vector<int>> queries = {{1, 3}, {0, 2}};

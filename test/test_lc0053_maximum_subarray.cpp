@@ -9,30 +9,30 @@
 
 using namespace std;
 
-class Test_Lc0053 : public testing::Test {
+class TEST_LC0053 : public testing::Test {
     protected:
-        Lc0053_MaximumSubarray m_test;
+        LC0053_MaximumSubarray m_test;
         void RunTest(vector<int>& nums, int expectResult);
 };
     
-void Test_Lc0053::RunTest(vector<int>& nums, int expectResult)
+void TEST_LC0053::RunTest(vector<int>& nums, int expectResult)
 {
     EXPECT_EQ(expectResult, m_test.maxSubArray(nums));
 }
 
-TEST_F(Test_Lc0053, case1)
+TEST_F(TEST_LC0053, case1)
 {
     vector<int> nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
     RunTest(nums, 6);
 }
 
-TEST_F(Test_Lc0053, case2)
+TEST_F(TEST_LC0053, case2)
 {
     vector<int> nums = {1};
     RunTest(nums, 1);
 }
 
-TEST_F(Test_Lc0053, case3)
+TEST_F(TEST_LC0053, case3)
 {
     vector<int> nums = {5, 4, -1, 7, 8};
     RunTest(nums, 23);

@@ -7,7 +7,7 @@
 #define LC0121_BEST_TIME_TO_BUY_AND_SELL_STOCK_H
 #include <vector>
 
-class Lc0121_BestTimeToBuyAndSellStock {
+class LC0121_BestTimeToBuyAndSellStock {
     public:
         int maxProfit(std::vector<int>& prices);
 };

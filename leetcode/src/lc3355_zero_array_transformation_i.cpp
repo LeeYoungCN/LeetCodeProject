@@ -13,7 +13,7 @@
 
 using namespace std;
 
-bool Lc3355_ZeroArrayTransformationI::isZeroArray(vector<int>& nums, vector<vector<int>>& queries)
+bool LC3355_ZeroArrayTransformationI::isZeroArray(vector<int>& nums, vector<vector<int>>& queries)
 {
     vector<int32_t> deltaArray(nums.size() + 1, 0);
     for (const vector<int> &query : queries) {

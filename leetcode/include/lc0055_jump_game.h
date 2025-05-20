@@ -4,7 +4,7 @@
 
 #include <vector>
 
-class Lc0055Solution {
+class LC0055Solution {
 public:
     bool canJump(std::vector<int>& nums);
 };

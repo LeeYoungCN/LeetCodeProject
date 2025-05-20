@@ -23,7 +23,7 @@ vector<string> NUM_TO_STR = {
     "wxyz"
 };
 
-void Lc0017_LetterCombinationsOfAPhoneNumber::getResultByItr(uint32_t layer, string &curr, vector<string> &result)
+void LC0017_LetterCombinationsOfAPhoneNumber::getResultByItr(uint32_t layer, string &curr, vector<string> &result)
 {
     if (layer >= m_digits.size()) {
         if (!curr.empty()) {
@@ -40,7 +40,7 @@ void Lc0017_LetterCombinationsOfAPhoneNumber::getResultByItr(uint32_t layer, str
     }
 }
 
-vector<string> Lc0017_LetterCombinationsOfAPhoneNumber::letterCombinations(string digits)
+vector<string> LC0017_LetterCombinationsOfAPhoneNumber::letterCombinations(string digits)
 {
     m_digits = digits;
     vector<string> result;

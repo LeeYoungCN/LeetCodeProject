@@ -13,7 +13,7 @@ const uint32_t COLOR_CNT = 3;
 const uint32_t MOD = 1000000007;
 
 namespace f1 {
-    bool Lc1931_PaintingAGridWithThreeDifferentColors::isValidColor(uint32_t color, vector<uint32_t> &colorGrid)
+    bool LC1931_PaintingAGridWithThreeDifferentColors::isValidColor(uint32_t color, vector<uint32_t> &colorGrid)
     {
         for (uint32_t i = 0; i < m_colCnt && color > 0; i++) {
             colorGrid[i] = color % COLOR_CNT;
@@ -27,7 +27,7 @@ namespace f1 {
         return isValid;
     }
 
-    int Lc1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
+    int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
     {
         m_colCnt = m;
         m_rowCnt = n;
@@ -84,7 +84,7 @@ namespace f1 {
 }
 
 namespace f2 {
-bool Lc1931_PaintingAGridWithThreeDifferentColors::isValidColor(uint32_t color)
+bool LC1931_PaintingAGridWithThreeDifferentColors::isValidColor(uint32_t color)
 {
     if (m_colCnt == 1) {
         return true;
@@ -106,7 +106,7 @@ bool Lc1931_PaintingAGridWithThreeDifferentColors::isValidColor(uint32_t color)
     return isValid;
 }
 
-bool Lc1931_PaintingAGridWithThreeDifferentColors::isAdjColor(uint32_t color1, uint32_t color2)
+bool LC1931_PaintingAGridWithThreeDifferentColors::isAdjColor(uint32_t color1, uint32_t color2)
 {
     bool isAdj = true;
     for (uint32_t i = 0; i < m_colCnt && isAdj; ++i) {
@@ -117,7 +117,7 @@ bool Lc1931_PaintingAGridWithThreeDifferentColors::isAdjColor(uint32_t color1, u
     return isAdj;
 }
 
-int Lc1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
+int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
 {
     
     m_colCnt = m;

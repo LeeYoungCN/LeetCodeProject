@@ -6,13 +6,13 @@
 
 using namespace std;
 
-void Lc0075_SortColors::sortColors(vector<int>& nums)
+void LC0075_SortColors::sortColors(vector<int>& nums)
 {
     sort(nums, 0, nums.size());
 }
 
 
-void Lc0075_SortColors::sort(vector<int> &nums, uint32_t start, uint32_t length)
+void LC0075_SortColors::sort(vector<int> &nums, uint32_t start, uint32_t length)
 {
     if (length <= 1) {
         return;
@@ -28,7 +28,7 @@ void Lc0075_SortColors::sort(vector<int> &nums, uint32_t start, uint32_t length)
     merge(nums, lStart, lLength, rStart, rLength);
 }
 
-void Lc0075_SortColors::merge(vector<int> &nums,
+void LC0075_SortColors::merge(vector<int> &nums,
                               uint32_t lStart, uint32_t lLen,
                               uint32_t rStart, uint32_t rLen)
 {

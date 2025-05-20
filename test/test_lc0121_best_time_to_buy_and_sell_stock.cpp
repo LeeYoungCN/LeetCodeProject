@@ -9,24 +9,24 @@
 
 using namespace std;
 
-class Test_Lc0121 : public testing::Test {
+class TEST_LC0121 : public testing::Test {
     protected:
-        Lc0121_BestTimeToBuyAndSellStock m_test;
+        LC0121_BestTimeToBuyAndSellStock m_test;
         void RunTest(vector<int>& nums, int expectResult);
 };
     
-void Test_Lc0121::RunTest(vector<int>& nums, int expectResult)
+void TEST_LC0121::RunTest(vector<int>& nums, int expectResult)
 {
     EXPECT_EQ(expectResult, m_test.maxProfit(nums));
 }
 
-TEST_F(Test_Lc0121, case1)
+TEST_F(TEST_LC0121, case1)
 {
     vector<int> nums = {7, 1, 5, 3, 6, 4};
     RunTest(nums, 5);
 }
 
-TEST_F(Test_Lc0121, case2)
+TEST_F(TEST_LC0121, case2)
 {
     vector<int> nums = {7,6,4,3,1};
     RunTest(nums, 0);

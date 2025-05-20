@@ -15,7 +15,7 @@ typedef struct {
 } TriLineArr;
 
 
-string Lc3024_TypeOfTriangle::triangleType(vector<int>& nums)
+string LC3024_TypeOfTriangle::triangleType(vector<int>& nums)
 {
     string ans[] = {
         "scalene", "isosceles", "isosceles", "equilateral"

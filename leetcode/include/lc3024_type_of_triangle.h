@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-class Lc3024_TypeOfTriangle {
+class LC3024_TypeOfTriangle {
     public:
         std::string triangleType(std::vector<int>& nums);
 };

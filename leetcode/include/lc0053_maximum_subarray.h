@@ -6,7 +6,7 @@
 #define LC0053_MAXIMUM_SUBARRAY_H
 #include <vector>
 
-class Lc0053_MaximumSubarray {
+class LC0053_MaximumSubarray {
     public:
         int maxSubArray(std::vector<int>& nums);
 };
