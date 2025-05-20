@@ -79,7 +79,7 @@ create_new_file_by_template() {
 
     if [ -e ${new_file} ]; then
         echo "new file already exist!"
-        exit 1
+        return 0
     fi
 
     cp "${template_file}" "${new_file}" || exit 1

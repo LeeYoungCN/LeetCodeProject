@@ -2,7 +2,7 @@
 
 file_path=$(cd $(dirname $0); pwd)
 root_path=$(cd ${file_path}/..; pwd)
-buildcache_path="${root_path}/buildcache"
+buildcache_path="${root_path}/build"
 install_path="${root_path}/install"
 bin_path="${buildcache_path}/bin"
 target=""
@@ -29,10 +29,11 @@ done
 
 os=$(uname -s)
 generator="Unix Makefiles"
+toolchain_file="${root_path}/cmake/Linux_clang.cmake"
 
 if echo "${os}" | grep -q "MINGW" ; then
     os="MINGW"
-    generator="MinGW Makefiles"
+    toolchain_file="${root_path}/cmake/MINGW_gnu.cmake"
 fi
 
 if [ ${enable_clean} -eq 0 ]; then
@@ -47,12 +48,12 @@ fi
 
 if [ ! -d "${buildcache_path}" ]; then
     mkdir -p "${buildcache_path}"
-    cmake -S "${root_path}" -B "${buildcache_path}" -G "${generator}"
+    cmake -S "${root_path}" -B "${buildcache_path}" -DCMAKE_TOOLCHAIN_FILE="${toolchain_file}"
 fi
 
 # cd "${root_path}" || exit 1
 if [ -z "${target}" ]; then
-    cmake --build "${buildcache_path}"
+    cmake --build "${buildcache_path}" 
 else
     cmake --build "${buildcache_path}" --target "${target}"
 fi

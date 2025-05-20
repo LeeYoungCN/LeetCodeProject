@@ -8,7 +8,7 @@
             "name": "Windows",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/buildcache/bin/leetcode_test.exe",
+            "program": "${workspaceFolder}/build/bin/leetcode_test.exe",
             "args": [],
             "cwd": "${workspaceFolder}",
             "environment": [],

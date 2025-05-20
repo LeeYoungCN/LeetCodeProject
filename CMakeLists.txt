@@ -3,7 +3,6 @@ project(LeetCode)
 message(STATUS CMAKE_SYSTEM_NAME:${CMAKE_SYSTEM_NAME})
 
 include(${CMAKE_SOURCE_DIR}/cmake/third_lib_config.cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/compiler_${CMAKE_SYSTEM_NAME}.cmake)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 99)
