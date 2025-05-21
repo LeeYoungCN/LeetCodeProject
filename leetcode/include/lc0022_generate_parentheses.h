@@ -17,7 +17,6 @@ class LC0022_GenerateParentheses {
         bool isValidStr(const std::string &str);
 };
 
-
 class LC0022_GenerateParentheses_Num : public LC0022_GenerateParentheses {
     public:
         std::vector<std::string> generateParenthesis(int n) override;
@@ -30,7 +29,6 @@ class LC0022_GenerateParentheses_Itr1 : public LC0022_GenerateParentheses {
     public:
         std::vector<std::string> generateParenthesis(int n);
     private:
-        // void generateStrByItr(uint32_t strLen, std::vector<std::string> &result);
         void iter2Str(std::string &curr, uint32_t strLen, std::vector<std::string> &result);
 };
 
