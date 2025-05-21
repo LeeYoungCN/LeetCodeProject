@@ -11,13 +11,32 @@ using namespace std;
 
 class TEST_LC0053 : public testing::Test {
     protected:
-        LC0053_MaximumSubarray m_test;
+        vector<LC0053_MaximumSubarray *> m_testArray;
+        LC0053_MaximumSubarray_dp m_test;
         void RunTest(vector<int>& nums, int expectResult);
+        void SetUp() override;
+        void TearDown() override;
 };
-    
+
+void TEST_LC0053::SetUp()
+{
+    m_testArray.push_back(new LC0053_MaximumSubarray_dp());
+    m_testArray.push_back(new LC0053_MaximumSubarray_stack);
+}
+
+void TEST_LC0053::TearDown()
+{
+    for (LC0053_MaximumSubarray *inst : m_testArray) {
+        delete inst;
+    }
+}
+
+
 void TEST_LC0053::RunTest(vector<int>& nums, int expectResult)
 {
-    EXPECT_EQ(expectResult, m_test.maxSubArray(nums));
+    for (LC0053_MaximumSubarray *inst : m_testArray) {
+        EXPECT_EQ(expectResult, inst->maxSubArray(nums));
+    }
 }
 
 TEST_F(TEST_LC0053, case1)
