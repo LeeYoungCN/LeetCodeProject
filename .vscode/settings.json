@@ -16,5 +16,6 @@
     "editor.wordWrapColumn": 120,
     "editor.rulers": [100, 120],
     "editor.renderWhitespace": "all",
-    "clang-format.executable": "clang-format"
+    "clang-format.executable": "clang-format",
+    "files.autoSave": "afterDelay"
 }
