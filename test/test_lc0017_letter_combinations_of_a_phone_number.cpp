@@ -14,7 +14,7 @@ class TEST_LC0017 : public testing::Test {
         LC0017_LetterCombinationsOfAPhoneNumber m_test;
         void RunTest(string &digits, const set<string> &expect);
 };
-    
+
 void TEST_LC0017::RunTest(string &digits, const set<string> &expect)
 {
     vector<string> result = m_test.letterCombinations(digits);
