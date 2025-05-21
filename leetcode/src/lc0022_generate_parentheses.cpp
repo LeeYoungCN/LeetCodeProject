@@ -12,18 +12,6 @@
 #include "lc0022_generate_parentheses.h"
 
 using namespace std;
-namespace method1 {
-void LC0022_GenerateParentheses::num2Str(uint32_t num, uint32_t strLen, string &current)
-{
-    for (uint32_t i = 0; i < strLen; ++i) {
-        if (num % 2 == 0) {
-            current += '(';
-        } else {
-            current += ')';
-        }
-        num /= 2;
-    }
-}
 
 bool LC0022_GenerateParentheses::isValidStr(const string &str)
 {
@@ -41,8 +29,20 @@ bool LC0022_GenerateParentheses::isValidStr(const string &str)
     return (n == 0);
 }
 
-void LC0022_GenerateParentheses::generateStrByLoop(uint32_t strLen,
-                                                   vector<string> &result)
+void LC0022_GenerateParentheses_Num::num2Str(uint32_t num, uint32_t strLen, string &current)
+{
+    for (uint32_t i = 0; i < strLen; ++i) {
+        if (num % 2 == 0) {
+            current += '(';
+        } else {
+            current += ')';
+        }
+        num /= 2;
+    }
+}
+
+void LC0022_GenerateParentheses_Num::generateStrByLoop(uint32_t strLen,
+                                                       vector<string> &result)
 {
     uint32_t total = pow(2, strLen);
     for (uint32_t i = 0; i < total; ++i) {
@@ -55,24 +55,28 @@ void LC0022_GenerateParentheses::generateStrByLoop(uint32_t strLen,
     }
 }
 
-vector<string> LC0022_GenerateParentheses::generateParenthesis(int n)
+vector<string> LC0022_GenerateParentheses_Num::generateParenthesis(int n)
 {
     uint32_t strLen = 2 * n;
     vector<string> result;
-
-    generateStrByItr(strLen, result);
+    generateStrByLoop(strLen, result);
     return result;
 }
 
-void LC0022_GenerateParentheses::generateStrByItr(uint32_t strLen, vector<string> &result)
+vector<string> LC0022_GenerateParentheses_Itr1::generateParenthesis(int n)
 {
+    uint32_t strLen = 2 * n;
+    vector<string> result;
     string curr = "";
     curr.reserve(strLen);
+
     iter2Str(curr, strLen, result);
+
+    return result;
 }
 
-void LC0022_GenerateParentheses::iter2Str(string &curr, uint32_t strLen,
-                                          vector<string> &result)
+void LC0022_GenerateParentheses_Itr1::iter2Str(string &curr, uint32_t strLen,
+                                               vector<string> &result)
 {
     if (curr.size() >= strLen) {
         if (isValidStr(curr)) {
@@ -87,11 +91,8 @@ void LC0022_GenerateParentheses::iter2Str(string &curr, uint32_t strLen,
     iter2Str(curr, strLen, result);
     curr.pop_back();
 }
-}
 
-
-namespace method2 {
-void generateStrByItr(string &curr, vector<string> &result, uint32_t leftNum, uint32_t rightNum, uint32_t maxCnt)
+void LC0022_GenerateParentheses_Itr2::generateStrByItr(string &curr, vector<string> &result, uint32_t leftNum, uint32_t rightNum, uint32_t maxCnt)
 {
     if (curr.size() == maxCnt * 2) {
         result.push_back(curr);
@@ -110,13 +111,11 @@ void generateStrByItr(string &curr, vector<string> &result, uint32_t leftNum, ui
     }
 }
 
-vector<string> LC0022_GenerateParentheses::generateParenthesis(int n)
+vector<string> LC0022_GenerateParentheses_Itr2::generateParenthesis(int n)
 {
     string curr = "";
     curr.reserve(2 * n);
     vector<string> result;
     generateStrByItr(curr, result, 0, 0, n);
     return result;
-}
-
 }

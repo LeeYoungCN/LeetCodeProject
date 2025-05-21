@@ -15,20 +15,39 @@ using namespace std;
 class TEST_LC0022 : public testing::Test
 {
 protected:
-    method2::LC0022_GenerateParentheses m_test;
+    vector<LC0022_GenerateParentheses *> m_testArray;
     void RunTest(int n, const set<string> &expect);
+    void SetUp() override;
+    void TearDown() override;
 };
+
+void TEST_LC0022::SetUp()
+{
+    m_testArray.push_back(new LC0022_GenerateParentheses_Num());
+    m_testArray.push_back(new LC0022_GenerateParentheses_Itr1());
+    m_testArray.push_back(new LC0022_GenerateParentheses_Itr2());
+}
+
+void TEST_LC0022::TearDown()
+{
+    for (LC0022_GenerateParentheses *inst : m_testArray) {
+        delete inst;
+    }
+}
 
 void TEST_LC0022::RunTest(int n, const set<string> &expect)
 {
-    vector<string> result = m_test.generateParenthesis(n);
-    ASSERT_EQ(expect.size(), result.size());
-
-    for (const string &str : result)
-    {
-        std::set<string>::iterator it = expect.find(str);
-        ASSERT_TRUE(expect.end() != it);
-        EXPECT_STREQ(it->c_str(), str.c_str());
+    for (LC0022_GenerateParentheses *inst : m_testArray) {
+        ASSERT_NE(inst, nullptr);
+        vector<string> result = inst->generateParenthesis(n);
+        ASSERT_EQ(expect.size(), result.size());
+    
+        for (const string &str : result)
+        {
+            std::set<string>::iterator it = expect.find(str);
+            ASSERT_TRUE(expect.end() != it);
+            EXPECT_STREQ(it->c_str(), str.c_str());
+        }
     }
 }
 
