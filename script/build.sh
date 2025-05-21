@@ -29,7 +29,7 @@ done
 
 os=$(uname -s)
 generator="Unix Makefiles"
-toolchain_file="${root_path}/cmake/Linux_clang.cmake"
+toolchain_file="${root_path}/cmake/Linux_gnu.cmake"
 
 if echo "${os}" | grep -q "MINGW" ; then
     os="MINGW"
