@@ -11,13 +11,34 @@ using namespace std;
 
 class TEST_CLASSNAME : public testing::Test {
     protected:
-        CLASS_NAME m_test;
+        static void SetUpTestSuite() {};
+        static void TearDownTestSuite() {};
+        void SetUp() override;
+        void TearDown() override;
+
+        vector<CLASS_NAME *> m_testArray;
         void RunTest(vector<int>& nums, int expectResult);
 };
-    
+
+void TEST_CLASSNAME::SetUp()
+{
+    m_testArray.push_back(new CLASS_NAME());
+}
+
+void TEST_CLASSNAME::TearDown()
+{
+    for (CLASS_NAME *inst : m_testArray) {
+        delete inst;
+    }
+}
+
+
 void TEST_CLASSNAME::RunTest(vector<int>& nums, int expectResult)
 {
-    EXPECT_EQ(expectResult, m_test.CLASS_FUNC);
+    for (CLASS_NAME *inst : m_testArray) {
+        EXPECT_EQ(expectResult, inst->CLASS_FUNC);
+    }
+    
 }
 
 TEST_F(TEST_CLASSNAME, case1)
