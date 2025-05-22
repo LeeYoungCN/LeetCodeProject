@@ -59,9 +59,9 @@ if [ ! -d "${buildcache_path}" ]; then
 fi
 
 if [ -z "${target}" ]; then
-    cmake --build "${buildcache_path}" 
+    cmake --build "${buildcache_path}"  -j4
 else
-    cmake --build "${buildcache_path}" --target "${target}"
+    cmake --build "${buildcache_path}" --target "${target}" -j4
 fi
 
 if [ $? -ne 0 ]; then
