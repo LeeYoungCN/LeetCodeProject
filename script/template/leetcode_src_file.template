@@ -2,7 +2,6 @@
  * Time : TIME_STR
  * URL  : URL_STR
  */
-
 #include <cstdint>
 #include <cstdio>
 #include <cmath>
