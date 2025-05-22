@@ -1,4 +1,6 @@
 #!/bin/bash
+source common_func.sh
+
 file_path="$(cd $(dirname $0); pwd)"
 root_path="$(cd ${file_path}/..; pwd)"
 
@@ -49,7 +51,7 @@ while true; do
 done
 
 if [ -z "${prefix}" ] || [ -z "${url}" ]; then
-    echo "error"
+    print_log "error"
 fi
 
 echo "prefix [${prefix}]"
@@ -70,15 +72,15 @@ create_new_file_by_template() {
     local template_file="$1"
     local new_file="$2"
 
-    echo "create [${new_file}]"
+    print_log "create [${new_file}]"
 
     if [ ! -e ${template_file} ]; then
-        echo "template file not exist!"
+        print_log "template file not exist!"
         exit 1
     fi
 
     if [ -e ${new_file} ]; then
-        echo "new file already exist!"
+        print_log "new file already exist!"
         return 0
     fi
 

@@ -1,4 +1,5 @@
 #!/bin/bash
+source common_func.sh
 
 file_path=$(cd $(dirname $0); pwd)
 root_path=$(cd ${file_path}/..; pwd)
@@ -23,7 +24,7 @@ while true; do
         -c|--clean) enable_clean=0; shift 1;;
         -t|--test)  test_case="$2"; shift 2;;
         --) shift 1; break;;
-        *) echo "Internal error!";  exit 1;;
+        *) print_log "Internal error!";  exit 1;;
     esac
 done
 
@@ -52,17 +53,23 @@ if [ ! -d "${buildcache_path}" ]; then
     cmake -S "${root_path}" -B "${buildcache_path}" -DCMAKE_TOOLCHAIN_FILE="${toolchain_file}" -G "${generator}"
 
     if [ $? -ne 0 ]; then
-        echo "CMake configuration failed."
+        print_log "CMake configuration failed."
         exit 1
     fi
 fi
 
-# cd "${root_path}" || exit 1
 if [ -z "${target}" ]; then
     cmake --build "${buildcache_path}" 
 else
     cmake --build "${buildcache_path}" --target "${target}"
 fi
+
+if [ $? -ne 0 ]; then
+    print_log "CMake build failed."
+    exit 1
+fi
+
+print_log "CMake build OK."
 
 cmake --install "${buildcache_path}"
 
