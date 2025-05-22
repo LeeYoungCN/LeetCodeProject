@@ -34,6 +34,7 @@ toolchain_file="${root_path}/cmake/Linux_gnu.cmake"
 if echo "${os}" | grep -q "MINGW" ; then
     os="MINGW"
     toolchain_file="${root_path}/cmake/MINGW_gnu.cmake"
+    generator="MinGW Makefiles"
 fi
 
 if [ ${enable_clean} -eq 0 ]; then
@@ -48,7 +49,12 @@ fi
 
 if [ ! -d "${buildcache_path}" ]; then
     mkdir -p "${buildcache_path}"
-    cmake -S "${root_path}" -B "${buildcache_path}" -DCMAKE_TOOLCHAIN_FILE="${toolchain_file}"
+    cmake -S "${root_path}" -B "${buildcache_path}" -DCMAKE_TOOLCHAIN_FILE="${toolchain_file}" -G "${generator}"
+
+    if [ $? -ne 0 ]; then
+        echo "CMake configuration failed."
+        exit 1
+    fi
 fi
 
 # cd "${root_path}" || exit 1
