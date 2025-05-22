@@ -16,29 +16,27 @@ class TEST_CLASSNAME : public testing::Test {
         void SetUp() override;
         void TearDown() override;
 
-        vector<CLASS_NAME *> m_testArray;
+        vector<CLASS_NAME *> m_testList;
         void RunTest(vector<int>& nums, int expectResult);
 };
 
 void TEST_CLASSNAME::SetUp()
 {
-    m_testArray.push_back(new CLASS_NAME());
+    m_testList.push_back(new CLASS_NAME());
 }
 
 void TEST_CLASSNAME::TearDown()
 {
-    for (CLASS_NAME *inst : m_testArray) {
+    for (CLASS_NAME *inst : m_testList) {
         delete inst;
     }
 }
 
-
 void TEST_CLASSNAME::RunTest(vector<int>& nums, int expectResult)
 {
-    for (CLASS_NAME *inst : m_testArray) {
+    for (CLASS_NAME *inst : m_testList) {
         EXPECT_EQ(expectResult, inst->CLASS_FUNC);
     }
-    
 }
 
 TEST_F(TEST_CLASSNAME, case1)

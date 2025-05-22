@@ -13,8 +13,8 @@
 
 class CLASS_NAME {
     public:
-        CLASS_NAME() {};
-        virtual ~CLASS_NAME() {};
+        CLASS_NAME() = default;
+        virtual ~CLASS_NAME() = default;
         FUNC_RET_TYPE CLASS_FUNC;
 };
 
