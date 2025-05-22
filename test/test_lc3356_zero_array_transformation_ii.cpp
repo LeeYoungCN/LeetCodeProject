@@ -22,6 +22,7 @@ class TEST_LC3356 : public testing::Test {
 void TEST_LC3356::SetUp()
 {
     m_testList.push_back(new LC3356_ZeroArrayTransformationII_Array());
+    m_testList.push_back(new LC3356_ZeroArrayTransformationII_Greedy());
 }
 
 void TEST_LC3356::TearDown()
