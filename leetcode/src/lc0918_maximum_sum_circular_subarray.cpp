@@ -9,6 +9,7 @@
 #include <vector>
 #include <set>
 #include <map>
+#include <deque>
 #include "lc0918_maximum_sum_circular_subarray.h"
 #include <cstdio>
 
@@ -32,3 +33,35 @@ int LC0918_MaximumSumCircularSubarray_DP::maxSubarraySumCircular(std::vector<int
     return (maxSum < 0 ? maxSum : max(maxSum, total - minSum));
 }
 
+typedef struct {
+    uint32_t index;
+    int32_t  sum;
+} PreSumSt;
+
+int LC0918_MaximumSumCircularSubarray_Stack::maxSubarraySumCircular(std::vector<int>& nums)
+{
+    const uint32_t length = nums.size();
+    PreSumSt preSum = {0, 0};
+    deque<PreSumSt> sumStack;
+
+    int32_t ret = nums[0];
+    for (uint32_t i = 0; i < 2 * length; i++) {
+        while (!sumStack.empty() && i - sumStack.front().index > length) {
+            sumStack.pop_front();
+        }
+        preSum.index = i;
+        preSum.sum += nums[i % length];
+
+        if (sumStack.empty()) {
+            ret = max(ret, preSum.sum);
+        } else {
+            ret = max(ret, preSum.sum - sumStack.front().sum);
+        }
+        
+        while(!sumStack.empty() && sumStack.back().sum >= preSum.sum) {
+            sumStack.pop_back();
+        }
+        sumStack.push_back(preSum);
+    }
+    return ret;
+}

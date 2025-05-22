@@ -11,8 +11,8 @@ using namespace std;
 
 class TEST_LC0918 : public testing::Test {
     protected:
-        static SetUpTestCase() {}
-        static TearDownTestCase() {}
+        static void SetUpTestCase() {}
+        static void TearDownTestCase() {}
 
         void SetUp() override;
         void TearDown() override;
@@ -24,7 +24,7 @@ class TEST_LC0918 : public testing::Test {
 void TEST_LC0918::SetUp()
 {
     m_testList.push_back(new LC0918_MaximumSumCircularSubarray_DP());
-    // m_testList.push_back(new LC0053_MaximumSubarray_stack);
+    m_testList.push_back(new LC0918_MaximumSumCircularSubarray_Stack());
 }
 
 void TEST_LC0918::TearDown()
