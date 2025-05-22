@@ -7,11 +7,21 @@
 #define LC0918_MAXIMUM_SUM_CIRCULAR_SUBARRAY_H
 #include <vector>
 
-namespace method1 {
-    class LC0918_MaximumSumCircularSubarray {
-        public:
-            int maxSubarraySumCircular(std::vector<int>& nums);
-    };
-}
+
+class LC0918_MaximumSumCircularSubarray {
+    public:
+        LC0918_MaximumSumCircularSubarray() = default;
+        virtual ~LC0918_MaximumSumCircularSubarray() = default;
+        virtual int maxSubarraySumCircular(std::vector<int>& nums) = 0;
+};
+
+
+
+class LC0918_MaximumSumCircularSubarray_DP : public LC0918_MaximumSumCircularSubarray {
+    public:
+        int maxSubarraySumCircular(std::vector<int>& nums) override;
+
+};
+
 
 #endif // LC0918_MAXIMUM_SUM_CIRCULAR_SUBARRAY_H

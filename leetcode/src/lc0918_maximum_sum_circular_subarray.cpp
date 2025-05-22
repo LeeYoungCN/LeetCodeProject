@@ -14,8 +14,7 @@
 
 using namespace std;
 
-namespace method1 {
-int LC0918_MaximumSumCircularSubarray::maxSubarraySumCircular(std::vector<int>& nums)
+int LC0918_MaximumSumCircularSubarray_DP::maxSubarraySumCircular(std::vector<int>& nums)
 {
     int32_t maxSum = nums[0];
     int32_t minSum = nums[0];
@@ -32,4 +31,4 @@ int LC0918_MaximumSumCircularSubarray::maxSubarraySumCircular(std::vector<int>& 
     }
     return (maxSum < 0 ? maxSum : max(maxSum, total - minSum));
 }
-}
+

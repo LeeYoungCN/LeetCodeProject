@@ -11,13 +11,34 @@ using namespace std;
 
 class TEST_LC0918 : public testing::Test {
     protected:
-        method1::LC0918_MaximumSumCircularSubarray m_test;
+        static SetUpTestCase() {}
+        static TearDownTestCase() {}
+
+        void SetUp() override;
+        void TearDown() override;
+
+        vector<LC0918_MaximumSumCircularSubarray*> m_testList;
         void RunTest(vector<int> &nums, int expectResult);
 };
 
+void TEST_LC0918::SetUp()
+{
+    m_testList.push_back(new LC0918_MaximumSumCircularSubarray_DP());
+    // m_testList.push_back(new LC0053_MaximumSubarray_stack);
+}
+
+void TEST_LC0918::TearDown()
+{
+    for (LC0918_MaximumSumCircularSubarray *inst : m_testList) {
+        delete inst;
+    }
+}
+
 void TEST_LC0918::RunTest(vector<int>& nums, int expectResult)
 {
-    EXPECT_EQ(expectResult, m_test.maxSubarraySumCircular(nums));
+    for (LC0918_MaximumSumCircularSubarray *inst : m_testList) {
+        EXPECT_EQ(expectResult, inst->maxSubarraySumCircular(nums));
+    }
 }
 
 TEST_F(TEST_LC0918, case1)
