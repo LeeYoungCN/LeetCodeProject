@@ -23,6 +23,7 @@ class TEST_LC0918 : public testing::Test {
 
 void TEST_LC0918::SetUp()
 {
+    m_testList.push_back(new LC0918_MaximumSumCircularSubarray_Reverse());
     m_testList.push_back(new LC0918_MaximumSumCircularSubarray_DP());
     m_testList.push_back(new LC0918_MaximumSumCircularSubarray_Stack());
 }
@@ -37,7 +38,7 @@ void TEST_LC0918::TearDown()
 void TEST_LC0918::RunTest(vector<int>& nums, int expectResult)
 {
     for (LC0918_MaximumSumCircularSubarray *inst : m_testList) {
-        EXPECT_EQ(expectResult, inst->maxSubarraySumCircular(nums));
+        EXPECT_EQ(expectResult, inst->maxSubarraySumCircular(nums)) <<  typeid(*inst).name();
     }
 }
 

@@ -14,7 +14,7 @@ class LC0918_MaximumSumCircularSubarray {
         virtual int maxSubarraySumCircular(std::vector<int>& nums) = 0;
 };
 
-class LC0918_MaximumSumCircularSubarray_DP : public LC0918_MaximumSumCircularSubarray {
+class LC0918_MaximumSumCircularSubarray_Reverse : public LC0918_MaximumSumCircularSubarray {
     public:
         int maxSubarraySumCircular(std::vector<int>& nums) override;
 };
@@ -23,5 +23,11 @@ class LC0918_MaximumSumCircularSubarray_Stack : public LC0918_MaximumSumCircular
     public:
         int maxSubarraySumCircular(std::vector<int>& nums) override;
 };
+
+class LC0918_MaximumSumCircularSubarray_DP : public LC0918_MaximumSumCircularSubarray {
+    public:
+        int maxSubarraySumCircular(std::vector<int>& nums) override;
+};
+
 
 #endif // LC0918_MAXIMUM_SUM_CIRCULAR_SUBARRAY_H
