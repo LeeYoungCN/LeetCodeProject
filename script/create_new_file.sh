@@ -1,8 +1,8 @@
 #!/bin/bash
-source common_func.sh
-
 file_path="$(cd $(dirname $0); pwd)"
 root_path="$(cd ${file_path}/..; pwd)"
+
+source "${root_path}/script/common_func.sh"
 
 LEETCODE_INC_DIR="${root_path}/leetcode/include"
 LEETCODE_SRC_DIR="${root_path}/leetcode/src"

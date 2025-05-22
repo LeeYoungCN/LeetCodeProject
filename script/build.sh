@@ -1,8 +1,9 @@
 #!/bin/bash
-source common_func.sh
-
 file_path=$(cd $(dirname $0); pwd)
 root_path=$(cd ${file_path}/..; pwd)
+
+source "${root_path}/script/common_func.sh"
+
 buildcache_path="${root_path}/build"
 install_path="${root_path}/install"
 bin_path="${buildcache_path}/bin"
