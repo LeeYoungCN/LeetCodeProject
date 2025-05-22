@@ -11,8 +11,6 @@
 #include <set>
 #include <map>
 
-
-
 class LC3356_ZeroArrayTransformationII {
     public:
         static const uint32_t START_IDX = 0;
