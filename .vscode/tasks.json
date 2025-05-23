@@ -6,11 +6,35 @@
     },
     "tasks": [
         {
-            "label": "Build & Run",
+            "label": "Build",
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
-            "command": "sh ./build.sh",
+            "command": "bash ./build.sh -c",
+            "args": [],
+            "detail": "根据makefile生成可执行文件和库文件",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Rebuild",
+            "options": {
+                "cwd": "${workspaceFolder}/script/"
+            },
+            "command": "bash ./build.sh",
+            "args": [],
+            "detail": "根据makefile生成可执行文件和库文件",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Rebuild & Run",
+            "options": {
+                "cwd": "${workspaceFolder}/script/"
+            },
+            "command": "bash ./build.sh -t *",
             "args": [],
             "detail": "根据makefile生成可执行文件和库文件",
             "problemMatcher": [
