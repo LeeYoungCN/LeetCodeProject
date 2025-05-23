@@ -72,7 +72,7 @@ int LC3356_ZeroArrayTransformationII_Greedy::minZeroArray(std::vector<int>& nums
     int32_t operation = 0;
 
     vector<int32_t> deltaArray(length + 1, 0);
-    for (uint32_t i = 0; i < length; ++i) {
+    for (int32_t i = 0; i < length; ++i) {
         int32_t n = nums[i];
         operation += deltaArray[i];
 
