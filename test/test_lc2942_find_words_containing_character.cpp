@@ -23,7 +23,10 @@ class TEST_LC2942 : public testing::Test {
         void RunTest(vector<string>& words, char x, const vector<int32_t>& expect);
 };
 
-void TEST_LC2942::SetUp() { m_testList.push_back(new LC2942_FindWordsContainingCharacter()); }
+void TEST_LC2942::SetUp()
+{
+    m_testList.push_back(new LC2942_FindWordsContainingCharacter());
+}
 
 void TEST_LC2942::TearDown()
 {
