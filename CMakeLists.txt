@@ -12,6 +12,11 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -O0")
+set(CMAKE_C_FLAGS_DEBUG "-g -Wall -O0")
+
+set(CMAKE_CXX_FLAGS_RELEASE "-Wall -O3")
+set(CMAKE_C_FLAGS_RELEASE "-Wall -O3")
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS   TRUE)
 set(CMAKE_VERBOSE_MAKEFILE          OFF)
 
@@ -24,8 +29,6 @@ set(LIB_NAME leetcode)
 set(LIB_INCLUDE_PATH ${CMAKE_SOURCE_DIR}/leetcode/include)
 
 set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install)
-
-enable_testing()
 
 add_subdirectory(leetcode)
 add_subdirectory(test)
