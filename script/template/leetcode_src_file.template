@@ -8,9 +8,14 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <queue>
 #include <deque>
 #include <set>
+#include <stack>
+#include <unordered_set>
 #include <map>
+#include <unordered_map>
+#include <functional>
 #include "HEAD_FILE_NAME"
 
 using namespace std;
