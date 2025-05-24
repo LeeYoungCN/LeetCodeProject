@@ -2,8 +2,9 @@
  * Time : 2025-05-19 21:27:40
  * URL  : https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/
  */
-#include <vector>
 #include <string>
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc0017_letter_combinations_of_a_phone_number.h"
 
@@ -32,7 +33,7 @@ void TEST_LC0017::RunTest(string &digits, const set<string> &expect)
 TEST_F(TEST_LC0017, case1)
 {
     string digits = "23";
-    set<string> expect = {"ad","ae","af","bd","be","bf","cd","ce","cf"};
+    set<string> expect = {"ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"};
     RunTest(digits, expect);
 }
 
