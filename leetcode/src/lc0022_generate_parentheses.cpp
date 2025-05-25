@@ -7,8 +7,6 @@
 #include <cmath>
 #include <vector>
 #include <string>
-#include <set>
-#include <algorithm>
 #include "lc0022_generate_parentheses.h"
 
 using namespace std;
