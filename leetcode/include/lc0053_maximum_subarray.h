@@ -8,8 +8,8 @@
 
 class LC0053_MaximumSubarray {
     public:
-        LC0053_MaximumSubarray() {};
-        virtual ~LC0053_MaximumSubarray() {};
+        LC0053_MaximumSubarray() = default;
+        virtual ~LC0053_MaximumSubarray() = default;
         virtual int maxSubArray(std::vector<int>& nums) = 0;
 };
 

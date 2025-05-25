@@ -12,13 +12,13 @@ using namespace std;
 
 class TEST_LC2131 : public testing::Test {
 protected:
-    static void SetUpTestSuite() {};
-    static void TearDownTestSuite() {};
+    static void SetUpTestSuite() {}
+    static void TearDownTestSuite() {}
     void SetUp() override;
     void TearDown() override;
 
     vector<LC2131_LongestPalindromeByConcatenatingTwoLetterWords *> m_testList;
-    void RunTest(std::vector<std::string> &words, int expect);
+    void RunTest(std::vector<std::string> &words, int expect)const;
 };
 
 void TEST_LC2131::SetUp()
@@ -33,7 +33,7 @@ void TEST_LC2131::TearDown()
     }
 }
 
-void TEST_LC2131::RunTest(std::vector<std::string> &words, int expect)
+void TEST_LC2131::RunTest(std::vector<std::string> &words, int expect)const
 {
     string caseStr;
     for (const string &word : words) {

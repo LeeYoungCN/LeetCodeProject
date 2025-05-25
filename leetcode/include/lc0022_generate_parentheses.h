@@ -11,8 +11,8 @@
 class LC0022_GenerateParentheses {
     public:
         virtual std::vector<std::string> generateParenthesis(int n) = 0;
-        LC0022_GenerateParentheses() {};
-        virtual ~LC0022_GenerateParentheses() {};
+        LC0022_GenerateParentheses() = default;
+        virtual ~LC0022_GenerateParentheses() = default;
     protected:
         bool isValidStr(const std::string &str);
 };

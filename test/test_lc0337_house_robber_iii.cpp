@@ -13,8 +13,8 @@ using namespace std;
 
 class TEST_LC0337 : public testing::Test {
     protected:
-        static void SetUpTestSuite() {};
-        static void TearDownTestSuite() {};
+        static void SetUpTestSuite() {}
+        static void TearDownTestSuite() {}
         void SetUp() override;
         void TearDown() override;
 
