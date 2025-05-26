@@ -24,6 +24,7 @@ protected:
 void TEST_LC1847::SetUp()
 {
     m_testList.push_back(new LC1847_LargestColorValueInADirectedGraph_DFS());
+    m_testList.push_back(new LC1847_LargestColorValueInADirectedGraph_BFS());
 }
 
 void TEST_LC1847::TearDown()

@@ -9,8 +9,6 @@
 #include <string>
 #include <vector>
 
-enum VisitStatus { UNUSED = 0, USING, FINISH };
-
 class LC1847_LargestColorValueInADirectedGraph {
 public:
     LC1847_LargestColorValueInADirectedGraph() = default;
@@ -25,10 +23,20 @@ public:
     int largestPathValue(std::string colors, std::vector<std::vector<int>> &edges) override;
 
 private:
+    enum class VisitStatus { UNUSED = 0, USING, FINISH };
     bool dfs(int32_t curr, std::vector<VisitStatus> &visitor, std::vector<std::vector<int32_t>> &dp,
              const std::vector<std::vector<int32_t>> &grid);
+
+private:
     std::string m_colors;
     std::vector<std::vector<int>> m_edges;
+};
+
+class LC1847_LargestColorValueInADirectedGraph_BFS : public LC1847_LargestColorValueInADirectedGraph {
+public:
+    LC1847_LargestColorValueInADirectedGraph_BFS() = default;
+    ~LC1847_LargestColorValueInADirectedGraph_BFS() override = default;
+    int largestPathValue(std::string colors, std::vector<std::vector<int>> &edges) override;
 };
 
 #endif  // LC1847_LARGEST_COLOR_VALUE_IN_A_DIRECTED_GRAPH_H
