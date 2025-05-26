@@ -28,6 +28,7 @@ url=""
 lc_func=""
 func_name="LeetCodeFunction(std::vector<int> x)"
 func_ret_type="int"
+func_param="std::vector<int> x"
 
 time_str="$(date "+%Y-%m-%d %H:%M:%S")"
 
@@ -91,14 +92,19 @@ create_new_file_by_template() {
     replace_text "HEAD_FILE_NAME"   "${leetcode_file_name}.h"   "${new_file}"
     replace_text "TEST_CLASSNAME"   "${test_class_name}"        "${new_file}"
     replace_text "FUNC_RET_TYPE"    "${func_ret_type}"          "${new_file}"
+    replace_text "FUNC_PARAM"       "${func_param}"             "${new_file}"
     replace_text "CLASS_FUNC"       "${func_name}"              "${new_file}"
     replace_text "TIME_STR"         "${time_str}"               "${new_file}"
 }
 
 main() {
     if [ -n "${lc_func}" ]; then
-        func_name="${lc_func#* }"
-        func_ret_type="${lc_func%% *}"
+        func_name="${lc_func%(*}"
+        func_ret_type="${func_name% *}"
+        func_name="${func_name##* }"
+
+        func_param="${lc_func##*(}"
+        func_param="${func_param%)}"
     fi
 
     # "https://leetcode.cn/problems/"

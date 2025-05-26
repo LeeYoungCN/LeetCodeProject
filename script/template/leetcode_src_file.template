@@ -20,7 +20,7 @@
 
 using namespace std;
 
-FUNC_RET_TYPE CLASS_NAME::CLASS_FUNC
+FUNC_RET_TYPE CLASS_NAME::CLASS_FUNC(FUNC_PARAM)
 {
     return 0;
 }

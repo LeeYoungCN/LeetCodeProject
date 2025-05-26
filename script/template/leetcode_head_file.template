@@ -15,7 +15,7 @@ class CLASS_NAME {
     public:
         CLASS_NAME() = default;
         virtual ~CLASS_NAME() = default;
-        FUNC_RET_TYPE CLASS_FUNC;
+        FUNC_RET_TYPE CLASS_FUNC(FUNC_PARAM);
 };
 
 #endif // DEF_STR

@@ -16,7 +16,7 @@ class TEST_CLASSNAME : public testing::Test {
         void TearDown() override;
 
         vector<CLASS_NAME *> m_testList;
-        void RunTest(vector<int>& nums, int expectResult);
+        void RunTest(FUNC_PARAM, FUNC_RET_TYPE expect);
 };
 
 void TEST_CLASSNAME::SetUp()
@@ -31,10 +31,10 @@ void TEST_CLASSNAME::TearDown()
     }
 }
 
-void TEST_CLASSNAME::RunTest(vector<int>& nums, int expectResult)
+void TEST_CLASSNAME::RunTest(FUNC_PARAM, FUNC_RET_TYPE expect)
 {
     for (CLASS_NAME *inst : m_testList) {
-        EXPECT_EQ(expectResult, inst->CLASS_FUNC);
+        EXPECT_EQ(expect, inst->CLASS_FUNC(FUNC_PARAM));
     }
 }
 
