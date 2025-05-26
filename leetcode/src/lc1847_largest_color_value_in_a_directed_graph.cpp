@@ -6,19 +6,8 @@
 #include "lc1847_largest_color_value_in_a_directed_graph.h"
 
 #include <algorithm>
-#include <cmath>
 #include <cstdint>
-#include <cstdio>
-#include <deque>
-#include <functional>
-#include <map>
-#include <queue>
-#include <set>
-#include <stack>
 #include <string>
-#include <type_traits>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 using namespace std;

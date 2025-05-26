@@ -6,9 +6,6 @@
 #ifndef LC1847_LARGEST_COLOR_VALUE_IN_A_DIRECTED_GRAPH_H
 #define LC1847_LARGEST_COLOR_VALUE_IN_A_DIRECTED_GRAPH_H
 
-#include <deque>
-#include <map>
-#include <set>
 #include <string>
 #include <vector>
 
