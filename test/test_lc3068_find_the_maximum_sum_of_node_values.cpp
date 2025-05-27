@@ -25,6 +25,7 @@ void TEST_LC3068::SetUp()
 {
     m_testList.push_back(new LC3068_FindTheMaximumSumOfNodeValues_Greedy());
     m_testList.push_back(new LC3068_FindTheMaximumSumOfNodeValues_DFS());
+    m_testList.push_back(new LC3068_FindTheMaximumSumOfNodeValues_DP());
 }
 
 void TEST_LC3068::TearDown()
@@ -63,4 +64,12 @@ TEST_F(TEST_LC3068, case3)
     int k = 3;
     vector<vector<int>> edges = {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}};
     RunTest(nums, k, edges, 42);
+}
+
+TEST_F(TEST_LC3068, case4)
+{
+    vector<int> nums = {4, 4, 4, 4, 4};
+    int k = 3;
+    vector<vector<int>> edges = {{0, 1}, {0, 2}, {0, 3}, {0, 4}};
+    RunTest(nums, k, edges, 32);
 }

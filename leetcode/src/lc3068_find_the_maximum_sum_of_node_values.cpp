@@ -99,3 +99,26 @@ long long LC3068_FindTheMaximumSumOfNodeValues_DFS::maximumValueSum(std::vector<
     dfs(0, -1);
     return dp[NOT_FLIP_IDX][0];
 }
+
+long long LC3068_FindTheMaximumSumOfNodeValues_DP::maximumValueSum(std::vector<int> &nums, int k,
+                                                                   std::vector<std::vector<int>> &edges)
+{
+    uint32_t total = nums.size();
+
+    uint32_t EVE_IDX = 0;
+    uint32_t ODD_IDX = 1;
+
+    vector<vector<int64_t>> dp = {vector<int64_t>(total), vector<int64_t>(total)};
+
+    for (uint32_t i = 0; i < total; i++) {
+        int32_t n = nums[i];
+        if (i == 0) {
+            dp[EVE_IDX][i] = n;
+            dp[ODD_IDX][i] = (n ^ k);
+        } else {
+            dp[EVE_IDX][i] = max(dp[EVE_IDX][i - 1] + n, dp[ODD_IDX][i - 1] + (n ^ k));
+            dp[ODD_IDX][i] = max(dp[ODD_IDX][i - 1] + n, dp[EVE_IDX][i - 1] + (n ^ k));
+        }
+    }
+    return dp[EVE_IDX][total - 1];
+}
