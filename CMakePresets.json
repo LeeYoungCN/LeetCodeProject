@@ -1,0 +1,43 @@
+﻿{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "project-base",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/install/${presetName}",
+            "description": "项目基础设置"
+        },
+        {
+            "name": "mingw-base",
+            "hidden": true,
+            "generator": "MinGW Makefiles",
+            "inherits": "project-base",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc.exe",
+                "CMAKE_CXX_COMPILER": "g++.exe"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "mingw-debug",
+            "displayName": "Mingw Debug",
+            "inherits": "mingw-base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "mingw-release",
+            "displayName": "Mingw Release",
+            "inherits": "mingw-base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ]
+}
