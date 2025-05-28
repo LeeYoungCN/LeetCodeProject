@@ -22,6 +22,7 @@
     "C_Cpp.intelliSenseEngineFallback": "disabled",
     "clangd.serverCompletionRanking": true, // 借助网上的信息排序建议
     "clangd.arguments": [
+        "--compile-commands-dir=${workspaceFolder}/build",
         "--pretty", // 输出的 JSON 文件更美观
         "--clang-tidy", // 启用 Clang-Tidy 以提供「静态检查」
         "--clang-tidy-checks=performance-*, bugprone-*, misc-*, google-*, modernize-*, readability-*, portability-*",

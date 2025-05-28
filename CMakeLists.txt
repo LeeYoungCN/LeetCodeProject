@@ -18,6 +18,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-Wall -O3")
 set(CMAKE_C_FLAGS_RELEASE "-Wall -O3")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS   TRUE)
+set(CMAKE_EXPORT_COMPILE_COMMANDS_FILE "${CMAKE_SOURCE_DIR}/build/compile_commands.json")
 set(CMAKE_VERBOSE_MAKEFILE          OFF)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -28,7 +29,7 @@ set(RUNTIME_NAME leetcode_test)
 set(LIB_NAME leetcode)
 set(LIB_INCLUDE_PATH ${CMAKE_SOURCE_DIR}/leetcode/include)
 
-set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install)
+set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install/${CMAKE_BUILD_TYPE})
 
 add_subdirectory(leetcode)
 add_subdirectory(test)
