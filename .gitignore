@@ -3,3 +3,4 @@ install
 build
 .cache
 .idea
+out
