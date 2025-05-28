@@ -4,14 +4,17 @@ root_path=$(cd ${file_path}/..; pwd)
 
 source "${root_path}/script/common_func.sh"
 
-buildcache_path="${root_path}/build"
-install_path="${root_path}/install"
-bin_path="${buildcache_path}/bin"
+buildcache_root_dir="${root_path}/out/build"
+install_root_dir="${root_path}/out/install"
+toolchain_file_dir="${root_path}/cmake"
+build_type="Debug"
+
 target=""
 test_case=""
 enable_clean=1
+preset="Linux_gnu_debug"
 
-ARGS=$(getopt -o c,t: --long clean,test: -n "$0" -- "$@")
+ARGS=$(getopt -o c,t:p: --long clean,test:,pre_set: -n "$0" -- "$@")
 
 if [ $? != 0 ]; then
     echo "Terminating..." >&2 ;
@@ -24,34 +27,61 @@ while true; do
     case "$1" in
         -c|--clean) enable_clean=0; shift 1;;
         -t|--test)  test_case="$2"; shift 2;;
+        -p|--pre_set) preset="$2"; shift 2;;
         --) shift 1; break;;
         *) print_log "Internal error!";  exit 1;;
     esac
 done
 
 os=$(uname -s)
-generator="Unix Makefiles"
-toolchain_file="${root_path}/cmake/Linux_clang.cmake"
 
 if echo "${os}" | grep -q "MINGW" ; then
     os="MINGW"
-    toolchain_file="${root_path}/cmake/MINGW_gnu.cmake"
-    generator="MinGW Makefiles"
+    preset="mingw_debug"
 fi
+
+case "$preset" in
+    linux_gnu_debug)
+        toolchain_file=${toolchain_file_dir}/linux_gnu.cmake
+        generator="Unix Makefiles"
+        build_type="Debug"
+    ;;
+    linux_gnu_release)
+        toolchain_file=${toolchain_file_dir}/linux_gnu.cmake
+        generator="Unix Makefiles"
+        build_type="Release"
+    ;;
+    mingw_debug)
+        toolchain_file=${toolchain_file_dir}/mingw.cmake
+        generator="MinGW Makefiles"
+        build_type="Debug"
+    ;;
+    mingw_release)
+        toolchain_file=${toolchain_file_dir}/mingw.cmake
+        generator="MinGW Makefiles"
+        build_type="Release"
+    ;;
+    *) print_log "Pre set error!";  exit 1;;
+esac
+
+
+buildcache_dir="${buildcache_root_dir}"
+install_dir="${install_root_dir}/${preset}"
+bin_dir="${buildcache_dir}/bin"
 
 if [ ${enable_clean} -eq 0 ]; then
-    if [ -d "${buildcache_path}" ]; then
-        rm -rf "${buildcache_path}"
+    if [ -d "${buildcache_dir}" ]; then
+        rm -rf "${buildcache_dir}"
     fi
 
-    if [ -d "${install_path}" ]; then
-        rm -rf "${install_path}"
+    if [ -d "${install_dir}" ]; then
+        rm -rf "${install_dir}"
     fi
 fi
 
-if [ ! -d "${buildcache_path}" ]; then
-    mkdir -p "${buildcache_path}"
-    cmake -S "${root_path}" -B "${buildcache_path}" -DCMAKE_TOOLCHAIN_FILE="${toolchain_file}" -G "${generator}"
+if [ ! -d "${buildcache_dir}" ]; then
+    mkdir -p "${buildcache_dir}"
+    cmake -S "${root_path}" -B "${buildcache_dir}" -DCMAKE_BUILD_TYPE="${build_type}" -DCMAKE_INSTALL_PREFIX="${install_dir}" -DCMAKE_TOOLCHAIN_FILE="${toolchain_file}" -G "${generator}"
 
     if [ $? -ne 0 ]; then
         print_log "CMake configuration failed."
@@ -60,9 +90,9 @@ if [ ! -d "${buildcache_path}" ]; then
 fi
 
 if [ -z "${target}" ]; then
-    cmake --build "${buildcache_path}"  -j4
+    cmake --build "${buildcache_dir}"  -j4
 else
-    cmake --build "${buildcache_path}" --target "${target}" -j4
+    cmake --build "${buildcache_dir}" --target "${target}" -j4
 fi
 
 if [ $? -ne 0 ]; then
@@ -72,9 +102,9 @@ fi
 
 print_log "CMake build OK."
 
-cmake --install "${buildcache_path}"
+cmake --install "${buildcache_dir}"
 
-cd "${bin_path}" || exit 1
+cd "${bin_dir}" || exit 1
 if [ -n "${test_case}" ]; then
     ./${target_name}* --gtest_filter=${test_case}
 fi

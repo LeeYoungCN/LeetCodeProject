@@ -4,8 +4,8 @@
         {
             "name": "project-base",
             "hidden": true,
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "installDir": "${sourceDir}/install/${presetName}",
+            "binaryDir": "${sourceDir}/out/build/",
+            "installDir": "${sourceDir}/out/install/${presetName}",
             "description": "项目基础设置"
         },
         {
@@ -24,7 +24,7 @@
             }
         },
         {
-            "name": "mingw-debug",
+            "name": "mingw_debug",
             "displayName": "Mingw Debug",
             "inherits": "mingw-base",
             "cacheVariables": {
@@ -32,7 +32,7 @@
             }
         },
         {
-            "name": "mingw-release",
+            "name": "mingw_release",
             "displayName": "Mingw Release",
             "inherits": "mingw-base",
             "cacheVariables": {
