@@ -12,7 +12,7 @@ build_type="Debug"
 target=""
 test_case=""
 enable_clean=1
-preset="Linux_gnu_debug"
+preset="linux_gnu_debug"
 
 ARGS=$(getopt -o c,t:p: --long clean,test:,pre_set: -n "$0" -- "$@")
 
@@ -48,6 +48,16 @@ case "$preset" in
     ;;
     linux_gnu_release)
         toolchain_file=${toolchain_file_dir}/linux_gnu.cmake
+        generator="Unix Makefiles"
+        build_type="Release"
+    ;;
+    linux_clang_debug)
+        toolchain_file=${toolchain_file_dir}/linux_clang.cmake
+        generator="Unix Makefiles"
+        build_type="Debug"
+    ;;
+    linux_clang_release)
+        toolchain_file=${toolchain_file_dir}/linux_clang.cmake
         generator="Unix Makefiles"
         build_type="Release"
     ;;
