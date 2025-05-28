@@ -24,8 +24,8 @@ public:
 
 private:
     enum class VisitStatus { UNUSED = 0, USING, FINISH };
-    bool dfs(int32_t curr, std::vector<VisitStatus> &visitor, std::vector<std::vector<int32_t>> &dp,
-             const std::vector<std::vector<int32_t>> &grid);
+    bool dfs(int curr, std::vector<VisitStatus> &visitor, std::vector<std::vector<int>> &dp,
+             const std::vector<std::vector<int>> &grid);
 
 private:
     std::string m_colors;
