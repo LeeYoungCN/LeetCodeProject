@@ -4,17 +4,18 @@
  */
 
 #include <vector>
+
 #include "gtest/gtest.h"
 #include "lc0152_maximum_product_subarray.h"
 
 using namespace std;
 
 class TEST_LC0152 : public testing::Test {
-    protected:
-        LC00152_MaximumProductSubarray m_test;
-        void RunTest(vector<int>& nums, int expectResult);
+protected:
+    LC00152_MaximumProductSubarray m_test;
+    void RunTest(vector<int>& nums, int expectResult);
 };
-    
+
 void TEST_LC0152::RunTest(vector<int>& nums, int expectResult)
 {
     EXPECT_EQ(expectResult, m_test.maxProduct(nums));

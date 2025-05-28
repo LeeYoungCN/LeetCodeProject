@@ -8,10 +8,10 @@
 #include <vector>
 
 class LC2925_MaximumScoreAfterApplyingOperationsOnATree {
-    public:
-        LC2925_MaximumScoreAfterApplyingOperationsOnATree() = default;
-        virtual ~LC2925_MaximumScoreAfterApplyingOperationsOnATree() = default;
-        long long maximumScoreAfterOperations(std::vector<std::vector<int>>& edges, std::vector<int>& values);
+public:
+    LC2925_MaximumScoreAfterApplyingOperationsOnATree() = default;
+    virtual ~LC2925_MaximumScoreAfterApplyingOperationsOnATree() = default;
+    long long maximumScoreAfterOperations(std::vector<std::vector<int>>& edges, std::vector<int>& values);
 };
 
 #endif  // LC2925_MAXIMUM_SCORE_AFTER_APPLYING_OPERATIONS_ON_A_TREE_H

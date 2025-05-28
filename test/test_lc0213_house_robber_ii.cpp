@@ -10,14 +10,14 @@
 using namespace std;
 
 class TEST_LC0213 : public testing::Test {
-    protected:
-        static void SetUpTestSuite() {}
-        static void TearDownTestSuite() {}
-        void SetUp() override;
-        void TearDown() override;
+protected:
+    static void SetUpTestSuite() {}
+    static void TearDownTestSuite() {}
+    void SetUp() override;
+    void TearDown() override;
 
-        vector<LC0213_HouseRobberII *> m_testList;
-        void RunTest(vector<int> &nums, int expectResult);
+    vector<LC0213_HouseRobberII *> m_testList;
+    void RunTest(vector<int> &nums, int expectResult);
 };
 
 void TEST_LC0213::SetUp()
@@ -41,18 +41,18 @@ void TEST_LC0213::RunTest(vector<int> &nums, int expectResult)
 
 TEST_F(TEST_LC0213, case1)
 {
-    vector<int> nums = {2,3,2};
+    vector<int> nums = {2, 3, 2};
     RunTest(nums, 3);
 }
 
 TEST_F(TEST_LC0213, case2)
 {
-    vector<int> nums = {1,2,3,1};
+    vector<int> nums = {1, 2, 3, 1};
     RunTest(nums, 4);
 }
 
 TEST_F(TEST_LC0213, case3)
 {
-    vector<int> nums = {1,2,3};
+    vector<int> nums = {1, 2, 3};
     RunTest(nums, 3);
 }

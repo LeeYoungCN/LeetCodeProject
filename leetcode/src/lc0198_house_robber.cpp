@@ -5,9 +5,7 @@
 #include "lc0198_house_robber.h"
 
 #include <algorithm>
-#include <cmath>
 #include <cstdint>
-#include <cstdio>
 #include <vector>
 
 using namespace std;

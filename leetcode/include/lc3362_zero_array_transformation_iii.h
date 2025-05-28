@@ -5,17 +5,13 @@
 #ifndef LC3362_ZERO_ARRAY_TRANSFORMATION_III_H
 #define LC3362_ZERO_ARRAY_TRANSFORMATION_III_H
 
-#include <string>
 #include <vector>
-#include <deque>
-#include <set>
-#include <map>
 
 class LC3362_ZeroArrayTransformationIII {
-    public:
-        LC3362_ZeroArrayTransformationIII() = default;
-        virtual ~LC3362_ZeroArrayTransformationIII() = default;
-        int maxRemoval(std::vector<int>& nums, std::vector<std::vector<int>>& queries);
+public:
+    LC3362_ZeroArrayTransformationIII() = default;
+    virtual ~LC3362_ZeroArrayTransformationIII() = default;
+    int maxRemoval(std::vector<int>& nums, std::vector<std::vector<int>>& queries);
 };
 
-#endif // LC3362_ZERO_ARRAY_TRANSFORMATION_III_H
+#endif  // LC3362_ZERO_ARRAY_TRANSFORMATION_III_H

@@ -1,25 +1,24 @@
 // https://leetcode.cn/problems/sort-colors/description/?envType=daily-question&envId=2025-05-17
-#include <cstdio>
+#include "lc0075_sort_colors.h"
+
 #include <cstdint>
 #include <vector>
-#include "lc0075_sort_colors.h"
 
 using namespace std;
 
-void LC0075_SortColors::sortColors(vector<int>& nums)
+void LC0075_SortColors::sortColors(vector<int> &nums)
 {
     sort(nums, 0, nums.size());
 }
-
 
 void LC0075_SortColors::sort(vector<int> &nums, uint32_t start, uint32_t length)
 {
     if (length <= 1) {
         return;
     }
-    uint32_t lStart  = start;
+    uint32_t lStart = start;
     uint32_t lLength = length / 2;
-    uint32_t rStart  = lStart + lLength;
+    uint32_t rStart = lStart + lLength;
     uint32_t rLength = length - lLength;
 
     sort(nums, lStart, lLength);
@@ -28,9 +27,7 @@ void LC0075_SortColors::sort(vector<int> &nums, uint32_t start, uint32_t length)
     merge(nums, lStart, lLength, rStart, rLength);
 }
 
-void LC0075_SortColors::merge(vector<int> &nums,
-                              uint32_t lStart, uint32_t lLen,
-                              uint32_t rStart, uint32_t rLen)
+void LC0075_SortColors::merge(vector<int> &nums, uint32_t lStart, uint32_t lLen, uint32_t rStart, uint32_t rLen)
 {
     const uint32_t length = lLen + rLen;
     vector<int> temp(length);
@@ -54,5 +51,3 @@ void LC0075_SortColors::merge(vector<int> &nums,
         nums[lStart + i] = temp[i];
     }
 }
-
-

@@ -4,16 +4,15 @@
  */
 
 #include <set>
-#include <vector>
 #include <string>
-#include <set>
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc0022_generate_parentheses.h"
 
 using namespace std;
 
-class TEST_LC0022 : public testing::Test
-{
+class TEST_LC0022 : public testing::Test {
 protected:
     vector<LC0022_GenerateParentheses *> m_testArray;
     void RunTest(int n, const set<string> &expect);
@@ -41,9 +40,8 @@ void TEST_LC0022::RunTest(int n, const set<string> &expect)
         ASSERT_NE(inst, nullptr);
         vector<string> result = inst->generateParenthesis(n);
         ASSERT_EQ(expect.size(), result.size());
-    
-        for (const string &str : result)
-        {
+
+        for (const string &str : result) {
             std::set<string>::iterator it = expect.find(str);
             ASSERT_TRUE(expect.end() != it);
             EXPECT_STREQ(it->c_str(), str.c_str());
@@ -71,11 +69,19 @@ TEST_F(TEST_LC0022, case3)
 
 TEST_F(TEST_LC0022, case4)
 {
-    const set<string> expect = {
-        "(((())))", "((()()))", "((())())", "((()))()",
-        "(()(()))", "(()()())", "(()())()", "(())(())",
-        "(())()()", "()((()))", "()(()())", "()(())()",
-        "()()(())", "()()()()"
-    };
+    const set<string> expect = {"(((())))",
+                                "((()()))",
+                                "((())())",
+                                "((()))()",
+                                "(()(()))",
+                                "(()()())",
+                                "(()())()",
+                                "(())(())",
+                                "(())()()",
+                                "()((()))",
+                                "()(()())",
+                                "()(())()",
+                                "()()(())",
+                                "()()()()"};
     RunTest(4, expect);
 }

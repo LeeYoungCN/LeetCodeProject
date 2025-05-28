@@ -8,10 +8,10 @@
 #include <vector>
 
 class LC0198_HouseRobber {
-    public:
-        LC0198_HouseRobber() = default;
-        virtual ~LC0198_HouseRobber() = default;
-        int rob(std::vector<int>& nums);
+public:
+    LC0198_HouseRobber() = default;
+    virtual ~LC0198_HouseRobber() = default;
+    int rob(std::vector<int>& nums);
 };
 
 #endif  // LC0198_HOUSE_ROBBER_H

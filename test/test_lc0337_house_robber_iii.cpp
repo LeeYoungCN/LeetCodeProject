@@ -12,16 +12,16 @@
 using namespace std;
 
 class TEST_LC0337 : public testing::Test {
-    protected:
-        static void SetUpTestSuite() {}
-        static void TearDownTestSuite() {}
-        void SetUp() override;
-        void TearDown() override;
+protected:
+    static void SetUpTestSuite() {}
+    static void TearDownTestSuite() {}
+    void SetUp() override;
+    void TearDown() override;
 
-        vector<LC0337_HouseRobberIII *> m_testList;
-        void RunTest(const vector<string> &nodeVal, int32_t expect);
-        TreeNode *ValList2TreeNode(const vector<string> &nodeValList, uint32_t index = 0);
-        void FreeTreeNode(TreeNode *root);
+    vector<LC0337_HouseRobberIII *> m_testList;
+    void RunTest(const vector<string> &nodeVal, int32_t expect);
+    TreeNode *ValList2TreeNode(const vector<string> &nodeValList, uint32_t index = 0);
+    void FreeTreeNode(TreeNode *root);
 };
 
 void TEST_LC0337::SetUp()

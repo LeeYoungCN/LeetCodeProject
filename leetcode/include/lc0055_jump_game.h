@@ -5,11 +5,12 @@
 
 #ifndef LC0055_JUMP_GAME_H
 #define LC0055_JUMP_GAME_H
+
 #include <vector>
 
 class LC0055_JumpGame {
-    public:
-        bool canJump(std::vector<int>& nums);
+public:
+    bool canJump(std::vector<int>& nums);
 };
 
-#endif // LC0055_JUMP_GAME_H
+#endif  // LC0055_JUMP_GAME_H

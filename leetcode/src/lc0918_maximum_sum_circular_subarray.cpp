@@ -3,15 +3,12 @@
  * URL  : https://leetcode.cn/problems/maximum-sum-circular-subarray/description/
  */
 
-#include <cstdint>
-#include <cmath>
-#include <algorithm>
-#include <vector>
-#include <set>
-#include <map>
-#include <deque>
 #include "lc0918_maximum_sum_circular_subarray.h"
-#include <cstdio>
+
+#include <algorithm>
+#include <cstdint>
+#include <deque>
+#include <vector>
 
 using namespace std;
 
@@ -28,14 +25,14 @@ int LC0918_MaximumSumCircularSubarray_Reverse::maxSubarraySumCircular(std::vecto
         preMin = min(preMin + n, n);
         maxSum = max(preMax, maxSum);
         minSum = min(preMin, minSum);
-        total += n; 
+        total += n;
     }
     return (maxSum < 0 ? maxSum : max(maxSum, total - minSum));
 }
 
 typedef struct {
     uint32_t index;
-    int32_t  sum;
+    int32_t sum;
 } PreSumSt;
 
 int LC0918_MaximumSumCircularSubarray_Stack::maxSubarraySumCircular(std::vector<int>& nums)
@@ -57,8 +54,8 @@ int LC0918_MaximumSumCircularSubarray_Stack::maxSubarraySumCircular(std::vector<
         } else {
             ret = max(ret, preSum.sum - sumStack.front().sum);
         }
-        
-        while(!sumStack.empty() && sumStack.back().sum >= preSum.sum) {
+
+        while (!sumStack.empty() && sumStack.back().sum >= preSum.sum) {
             sumStack.pop_back();
         }
         sumStack.push_back(preSum);

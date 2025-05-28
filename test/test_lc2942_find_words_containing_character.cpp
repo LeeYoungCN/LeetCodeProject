@@ -13,14 +13,14 @@
 using namespace std;
 
 class TEST_LC2942 : public testing::Test {
-    protected:
-        static void SetUpTestSuite() {}
-        static void TearDownTestSuite() {}
-        void SetUp() override;
-        void TearDown() override;
+protected:
+    static void SetUpTestSuite() {}
+    static void TearDownTestSuite() {}
+    void SetUp() override;
+    void TearDown() override;
 
-        vector<LC2942_FindWordsContainingCharacter*> m_testList;
-        void RunTest(vector<string>& words, char x, const vector<int32_t>& expect);
+    vector<LC2942_FindWordsContainingCharacter*> m_testList;
+    void RunTest(vector<string>& words, char x, const vector<int32_t>& expect);
 };
 
 void TEST_LC2942::SetUp()

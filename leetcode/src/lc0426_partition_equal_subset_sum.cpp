@@ -5,19 +5,8 @@
 #include "lc0426_partition_equal_subset_sum.h"
 
 #include <algorithm>
-#include <cmath>
 #include <cstdint>
-#include <cstdio>
-#include <deque>
-#include <functional>
-#include <map>
 #include <numeric>
-#include <queue>
-#include <set>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 using namespace std;

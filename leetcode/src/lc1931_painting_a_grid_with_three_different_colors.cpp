@@ -1,11 +1,10 @@
 // https://leetcode.cn/problems/painting-a-grid-with-three-different-colors/description/?envType=daily-questionURL_STRenvId=2025-05-18
-#include <cstdint>
-#include <cmath>
-#include <algorithm>
-#include <cstdio>
-#include <vector>
-#include <map>
 #include "lc1931_painting_a_grid_with_three_different_colors.h"
+
+#include <cmath>
+#include <cstdint>
+#include <map>
+#include <vector>
 
 using namespace std;
 
@@ -13,75 +12,75 @@ const uint32_t COLOR_CNT = 3;
 const uint32_t MOD = 1000000007;
 
 namespace f1 {
-    bool LC1931_PaintingAGridWithThreeDifferentColors::isValidColor(uint32_t color, vector<uint32_t> &colorGrid)
-    {
-        for (uint32_t i = 0; i < m_colCnt && color > 0; i++) {
-            colorGrid[i] = color % COLOR_CNT;
-            color = color / COLOR_CNT;
+bool LC1931_PaintingAGridWithThreeDifferentColors::isValidColor(uint32_t color, vector<uint32_t> &colorGrid)
+{
+    for (uint32_t i = 0; i < m_colCnt && color > 0; i++) {
+        colorGrid[i] = color % COLOR_CNT;
+        color = color / COLOR_CNT;
+    }
+    // check color group is valid.
+    bool isValid = true;
+    for (uint32_t i = 1; i < m_colCnt && isValid; i++) {
+        isValid = (colorGrid[i - 1] != colorGrid[i]);
+    }
+    return isValid;
+}
+
+int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
+{
+    m_colCnt = m;
+    m_rowCnt = n;
+    std::map<uint32_t, std::vector<uint32_t>> validColorMap;
+    const uint32_t maxColorCnt = pow(COLOR_CNT, m_colCnt);
+
+    for (uint32_t color = 0; color < maxColorCnt; color++) {
+        vector<uint32_t> colorGrid(m_colCnt, 0);
+
+        if (isValidColor(color, colorGrid)) {
+            validColorMap.emplace(color, colorGrid);
         }
-        // check color group is valid.
-        bool isValid = true;
-        for (uint32_t i = 1; i < m_colCnt && isValid; i++) {
-            isValid = (colorGrid[i-1] != colorGrid[i]);
-        }
-        return isValid;
     }
 
-    int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
-    {
-        m_colCnt = m;
-        m_rowCnt = n;
-        std::map<uint32_t, std::vector<uint32_t>> validColorMap;
-        const uint32_t maxColorCnt = pow(COLOR_CNT, m_colCnt);
-    
-        for (uint32_t color = 0; color < maxColorCnt; color++) {
-            vector<uint32_t> colorGrid(m_colCnt, 0);
-  
-            if (isValidColor(color, colorGrid)) {
-                validColorMap.emplace(color, colorGrid);
+    map<uint32_t, vector<uint32_t>> adjColorMap;
+    for (const auto &[color1, colorGrid1] : validColorMap) {
+        for (const auto &[color2, colorGrid2] : validColorMap) {
+            bool isAdj = true;
+            for (uint32_t i = 0; i < m_colCnt && isAdj; i++) {
+                isAdj = (colorGrid1[i] != colorGrid2[i]);
+            }
+            if (isAdj) {
+                adjColorMap[color1].push_back(color2);
             }
         }
-    
-        map<uint32_t, vector<uint32_t>> adjColorMap;
-        for (const auto &[color1, colorGrid1] : validColorMap) {
-            for (const auto &[color2, colorGrid2] : validColorMap) {
-                bool isAdj = true;
-                for (uint32_t i = 0; i < m_colCnt && isAdj; i++) {
-                    isAdj = (colorGrid1[i] != colorGrid2[i]);
-                }
-                if (isAdj) {
-                    adjColorMap[color1].push_back(color2);
-                }
-            }
-        }
-    
-        vector<vector<uint32_t>> dp(m_rowCnt, vector<uint32_t>(maxColorCnt, 0));
-    
-        for (const auto &[color, _] : validColorMap) {
-            dp[0][color] = 1;
-        }
-    
-        for (uint32_t i = 1; i < m_rowCnt; i++) {
-            for (const auto &[color1, _] : validColorMap) {
-                for (const auto color2 : adjColorMap[color1]) {
-                    dp[i][color1] += dp[i - 1][color2];
-                    if (dp[i][color1] >= MOD) {
-                        dp[i][color1] -= MOD;
-                    }
-                }
-            }
-        }
-    
-        uint32_t result = 0;
-        for (uint32_t i = 0; i < maxColorCnt; i++) {
-            result += dp[m_rowCnt - 1][i];
-            if (result >= MOD) {
-                result -= MOD;
-            }
-        }
-        return result;
     }
+
+    vector<vector<uint32_t>> dp(m_rowCnt, vector<uint32_t>(maxColorCnt, 0));
+
+    for (const auto &[color, _] : validColorMap) {
+        dp[0][color] = 1;
+    }
+
+    for (uint32_t i = 1; i < m_rowCnt; i++) {
+        for (const auto &[color1, _] : validColorMap) {
+            for (const auto color2 : adjColorMap[color1]) {
+                dp[i][color1] += dp[i - 1][color2];
+                if (dp[i][color1] >= MOD) {
+                    dp[i][color1] -= MOD;
+                }
+            }
+        }
+    }
+
+    uint32_t result = 0;
+    for (uint32_t i = 0; i < maxColorCnt; i++) {
+        result += dp[m_rowCnt - 1][i];
+        if (result >= MOD) {
+            result -= MOD;
+        }
+    }
+    return result;
 }
+}  // namespace f1
 
 namespace f2 {
 bool LC1931_PaintingAGridWithThreeDifferentColors::isValidColor(uint32_t color)
@@ -119,7 +118,6 @@ bool LC1931_PaintingAGridWithThreeDifferentColors::isAdjColor(uint32_t color1, u
 
 int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
 {
-    
     m_colCnt = m;
     m_rowCnt = n;
     const uint32_t maxColorCnt = pow(COLOR_CNT, m_colCnt);
@@ -169,4 +167,4 @@ int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
     }
     return result;
 }
-}
+}  // namespace f2

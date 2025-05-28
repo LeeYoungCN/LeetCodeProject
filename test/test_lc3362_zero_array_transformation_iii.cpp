@@ -3,20 +3,21 @@
  * URL  : https://leetcode.cn/problems/zero-array-transformation-iii/?envType=daily-questionURL_STRenvId=2025-05-22
  */
 #include <vector>
+
 #include "gtest/gtest.h"
 #include "lc3362_zero_array_transformation_iii.h"
 
 using namespace std;
 
 class TEST_LC3362 : public testing::Test {
-    protected:
-        static void SetUpTestSuite() {}
-        static void TearDownTestSuite() {}
-        void SetUp() override;
-        void TearDown() override;
+protected:
+    static void SetUpTestSuite() {}
+    static void TearDownTestSuite() {}
+    void SetUp() override;
+    void TearDown() override;
 
-        vector<LC3362_ZeroArrayTransformationIII *> m_testList;
-        void RunTest(vector<int>& nums, vector<vector<int>>& queries, int expectResult);
+    vector<LC3362_ZeroArrayTransformationIII*> m_testList;
+    void RunTest(vector<int>& nums, vector<vector<int>>& queries, int expectResult);
 };
 
 void TEST_LC3362::SetUp()
@@ -26,14 +27,14 @@ void TEST_LC3362::SetUp()
 
 void TEST_LC3362::TearDown()
 {
-    for (LC3362_ZeroArrayTransformationIII *inst : m_testList) {
+    for (LC3362_ZeroArrayTransformationIII* inst : m_testList) {
         delete inst;
     }
 }
 
 void TEST_LC3362::RunTest(vector<int>& nums, vector<vector<int>>& queries, int expectResult)
 {
-    for (LC3362_ZeroArrayTransformationIII *inst : m_testList) {
+    for (LC3362_ZeroArrayTransformationIII* inst : m_testList) {
         EXPECT_EQ(expectResult, inst->maxRemoval(nums, queries));
     }
 }

@@ -1,5 +1,5 @@
 // https://leetcode.cn/problems/painting-a-grid-with-three-different-colors/description/?envType=daily-questionURL_STRenvId=2025-05-18
-#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc1931_painting_a_grid_with_three_different_colors.h"
 
@@ -7,9 +7,9 @@ using namespace std;
 using namespace f2;
 
 class TEST_LC1931 : public testing::Test {
-    protected:
-        LC1931_PaintingAGridWithThreeDifferentColors m_test;
-        void RunTest(int m, int n, int result);
+protected:
+    LC1931_PaintingAGridWithThreeDifferentColors m_test;
+    void RunTest(int m, int n, int result);
 };
 
 void TEST_LC1931::RunTest(int m, int n, int result)

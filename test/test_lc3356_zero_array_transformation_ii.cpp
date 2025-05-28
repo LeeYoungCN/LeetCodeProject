@@ -3,20 +3,21 @@
  * URL  : https://leetcode.cn/problems/zero-array-transformation-ii/description/
  */
 #include <vector>
+
 #include "gtest/gtest.h"
 #include "lc3356_zero_array_transformation_ii.h"
 
 using namespace std;
 
 class TEST_LC3356 : public testing::Test {
-    protected:
-        static void SetUpTestSuite() {}
-        static void TearDownTestSuite() {}
-        void SetUp() override;
-        void TearDown() override;
+protected:
+    static void SetUpTestSuite() {}
+    static void TearDownTestSuite() {}
+    void SetUp() override;
+    void TearDown() override;
 
-        vector<LC3356_ZeroArrayTransformationII *> m_testList;
-        void RunTest(vector<int>& nums, vector<vector<int>>& queries, int expectResult);
+    vector<LC3356_ZeroArrayTransformationII*> m_testList;
+    void RunTest(vector<int>& nums, vector<vector<int>>& queries, int expectResult);
 };
 
 void TEST_LC3356::SetUp()
@@ -27,14 +28,14 @@ void TEST_LC3356::SetUp()
 
 void TEST_LC3356::TearDown()
 {
-    for (LC3356_ZeroArrayTransformationII *inst : m_testList) {
+    for (LC3356_ZeroArrayTransformationII* inst : m_testList) {
         delete inst;
     }
 }
 
 void TEST_LC3356::RunTest(vector<int>& nums, vector<vector<int>>& queries, int expectResult)
 {
-    for (LC3356_ZeroArrayTransformationII *inst : m_testList) {
+    for (LC3356_ZeroArrayTransformationII* inst : m_testList) {
         EXPECT_EQ(expectResult, inst->minZeroArray(nums, queries));
     }
 }

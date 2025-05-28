@@ -1,17 +1,19 @@
 /*
  * Time : 2025-05-20 00:24:41
- * URL  : https://leetcode.cn/problems/zero-array-transformation-i/description/?envType=daily-questionURL_STRenvId=2025-05-20
+ * URL  :
+ * https://leetcode.cn/problems/zero-array-transformation-i/description/?envType=daily-questionURL_STRenvId=2025-05-20
  */
 
 #include <vector>
+
 #include "gtest/gtest.h"
 #include "lc3355_zero_array_transformation_i.h"
 
 using namespace std;
 
 class TEST_LC3355 : public testing::Test {
-    protected:
-        LC3355_ZeroArrayTransformationI m_test;
+protected:
+    LC3355_ZeroArrayTransformationI m_test;
 };
 
 TEST_F(TEST_LC3355, case1)

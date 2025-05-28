@@ -10,10 +10,10 @@
 #include <vector>
 
 class LC2942_FindWordsContainingCharacter {
-    public:
-        LC2942_FindWordsContainingCharacter() = default;
-        virtual ~LC2942_FindWordsContainingCharacter() = default;
-        std::vector<int> findWordsContaining(std::vector<std::string>& words, char x);
+public:
+    LC2942_FindWordsContainingCharacter() = default;
+    virtual ~LC2942_FindWordsContainingCharacter() = default;
+    std::vector<int> findWordsContaining(std::vector<std::string>& words, char x);
 };
 
 #endif  // LC2942_FIND_WORDS_CONTAINING_CHARACTER_H

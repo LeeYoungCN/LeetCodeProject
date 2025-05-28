@@ -5,15 +5,13 @@
 #include "lc0337_house_robber_iii.h"
 
 #include <algorithm>
-#include <cmath>
 #include <cstdint>
-#include <cstdio>
 
 using namespace std;
 
 struct TreeVal {
-        int32_t selectVal = 0;
-        int32_t notSelectVal = 0;
+    int32_t selectVal = 0;
+    int32_t notSelectVal = 0;
 };
 
 void GetMaxVal(const TreeNode *node, TreeVal &maxVal)
@@ -31,8 +29,7 @@ void GetMaxVal(const TreeNode *node, TreeVal &maxVal)
     GetMaxVal(node->right, rightVal);
 
     maxVal.selectVal = node->val + leftVal.notSelectVal + rightVal.notSelectVal;
-    maxVal.notSelectVal = max(leftVal.selectVal, leftVal.notSelectVal) +
-                          max(rightVal.selectVal, rightVal.notSelectVal);
+    maxVal.notSelectVal = max(leftVal.selectVal, leftVal.notSelectVal) + max(rightVal.selectVal, rightVal.notSelectVal);
 }
 
 int LC0337_HouseRobberIII::rob(TreeNode *root)

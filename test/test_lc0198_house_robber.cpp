@@ -10,14 +10,14 @@
 using namespace std;
 
 class TEST_LC0198 : public testing::Test {
-    protected:
-        static void SetUpTestSuite() {}
-        static void TearDownTestSuite() {}
-        void SetUp() override;
-        void TearDown() override;
+protected:
+    static void SetUpTestSuite() {}
+    static void TearDownTestSuite() {}
+    void SetUp() override;
+    void TearDown() override;
 
-        vector<LC0198_HouseRobber *> m_testList;
-        void RunTest(vector<int> &nums, int expectResult);
+    vector<LC0198_HouseRobber *> m_testList;
+    void RunTest(vector<int> &nums, int expectResult);
 };
 
 void TEST_LC0198::SetUp()

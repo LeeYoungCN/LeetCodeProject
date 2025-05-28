@@ -12,10 +12,7 @@
 #include "lc3068_find_the_maximum_sum_of_node_values.h"
 
 #include <algorithm>
-#include <cctype>
-#include <cmath>
 #include <cstdint>
-#include <cstdio>
 #include <functional>
 #include <vector>
 

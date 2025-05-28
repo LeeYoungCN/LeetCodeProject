@@ -2,33 +2,26 @@
  * Time : 2025-05-22 15:45:08
  * URL  : https://leetcode.cn/problems/zero-array-transformation-iii/?envType=daily-questionURL_STRenvId=2025-05-22
  */
-#include <cstdint>
-#include <cstdio>
-#include <cmath>
-#include <algorithm>
-#include <string>
-#include <vector>
-#include <deque>
-#include <set>
-#include <map>
-#include <queue>
 #include "lc3362_zero_array_transformation_iii.h"
+
+#include <algorithm>
+#include <cstdint>
+#include <queue>
+#include <vector>
 
 using namespace std;
 
 struct QuerySt {
     int32_t start;
     int32_t end;
-    bool operator< (const QuerySt &other) const {
-        return this->end < other.end;
-    }
+    bool operator<(const QuerySt &other) const { return this->end < other.end; }
 };
 
-int LC3362_ZeroArrayTransformationIII::maxRemoval(std::vector<int>& nums, std::vector<std::vector<int>>& queries)
+int LC3362_ZeroArrayTransformationIII::maxRemoval(std::vector<int> &nums, std::vector<std::vector<int>> &queries)
 {
-    auto compareQuertVec = [](const vector<int32_t> &a, const vector<int32_t> &b) {return a[0] < b[0];};
+    auto compareQuertVec = [](const vector<int32_t> &a, const vector<int32_t> &b) { return a[0] < b[0]; };
     sort(queries.begin(), queries.end(), compareQuertVec);
-    
+
     const uint32_t START = 0;
     const uint32_t END = 1;
 
@@ -59,4 +52,3 @@ int LC3362_ZeroArrayTransformationIII::maxRemoval(std::vector<int>& nums, std::v
 
     return maxHeap.size();
 }
-

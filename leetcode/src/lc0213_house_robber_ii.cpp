@@ -4,9 +4,7 @@
  */
 #include "lc0213_house_robber_ii.h"
 
-#include <cmath>
 #include <cstdint>
-#include <cstdio>
 #include <vector>
 
 using namespace std;

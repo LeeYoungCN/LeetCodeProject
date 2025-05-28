@@ -81,7 +81,13 @@ fi
 
 if [ ! -d "${buildcache_dir}" ]; then
     mkdir -p "${buildcache_dir}"
-    cmake -S "${root_path}" -B "${buildcache_dir}" -DCMAKE_BUILD_TYPE="${build_type}" -DCMAKE_INSTALL_PREFIX="${install_dir}" -DCMAKE_TOOLCHAIN_FILE="${toolchain_file}" -G "${generator}"
+
+    cmake -S "${root_path}" \
+          -B "${buildcache_dir}" \
+          -DCMAKE_BUILD_TYPE="${build_type}" \
+          -DCMAKE_INSTALL_PREFIX="${install_dir}" \
+          -DCMAKE_TOOLCHAIN_FILE="${toolchain_file}" \
+          -G "${generator}"
 
     if [ $? -ne 0 ]; then
         print_log "CMake configuration failed."

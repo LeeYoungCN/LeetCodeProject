@@ -18,7 +18,7 @@ protected:
     void TearDown() override;
 
     vector<LC2131_LongestPalindromeByConcatenatingTwoLetterWords *> m_testList;
-    void RunTest(std::vector<std::string> &words, int expect)const;
+    void RunTest(std::vector<std::string> &words, int expect) const;
 };
 
 void TEST_LC2131::SetUp()
@@ -33,7 +33,7 @@ void TEST_LC2131::TearDown()
     }
 }
 
-void TEST_LC2131::RunTest(std::vector<std::string> &words, int expect)const
+void TEST_LC2131::RunTest(std::vector<std::string> &words, int expect) const
 {
     string caseStr;
     for (const string &word : words) {

@@ -4,7 +4,6 @@
  */
 #include "lc0017_letter_combinations_of_a_phone_number.h"
 
-#include <cmath>
 #include <cstdint>
 #include <vector>
 

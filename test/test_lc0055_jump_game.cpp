@@ -3,6 +3,7 @@
  * URL  : https://leetcode.cn/problems/jump-game/
  */
 #include <vector>
+
 #include "gtest/gtest.h"
 #include "lc0055_jump_game.h"
 
@@ -29,4 +30,3 @@ TEST_F(TEST_LC0055, case2)
     vector<int> nums = {3, 2, 1, 0, 4};
     RunTest(nums, false);
 }
-

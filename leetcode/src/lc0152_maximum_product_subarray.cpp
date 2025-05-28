@@ -1,16 +1,14 @@
 /*
  * Time    : 2025-05-20 15:14:30
  * URL     : https://leetcode.cn/problems/maximum-product-subarray/
- * Problem : 给你一个整数数组 nums ，请你找出数组中乘积最大的非空连续 子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。
- *           测试用例的答案是一个 32-位 整数。
+ * Problem : 给你一个整数数组 nums ，请你找出数组中乘积最大的非空连续
+ * 子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。 测试用例的答案是一个 32-位 整数。
  */
-#include <cstdint>
-#include <cmath>
-#include <algorithm>
-#include <vector>
-#include <set>
-#include <map>
 #include "lc0152_maximum_product_subarray.h"
+
+#include <algorithm>
+#include <cstdint>
+#include <vector>
 
 using namespace std;
 
@@ -33,4 +31,3 @@ int LC00152_MaximumProductSubarray::maxProduct(vector<int>& nums)
     }
     return ret;
 }
-

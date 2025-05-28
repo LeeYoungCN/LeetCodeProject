@@ -1,18 +1,19 @@
 // https://leetcode.cn/problems/type-of-triangle/?envType=daily-questionURL_STRenvId=2025-05-19
-#include <vector>
 #include <string>
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc3024_type_of_triangle.h"
 
 using namespace std;
 
 class TEST_LC3024 : public testing::Test {
-    protected:
-        LC3024_TypeOfTriangle m_test;
-        void RunTest(vector<int>& nums, const char *expectResult);
+protected:
+    LC3024_TypeOfTriangle m_test;
+    void RunTest(vector<int> &nums, const char *expectResult);
 };
-    
-void TEST_LC3024::RunTest(vector<int>& nums, const char *expectResult)
+
+void TEST_LC3024::RunTest(vector<int> &nums, const char *expectResult)
 {
     string result = m_test.triangleType(nums);
     EXPECT_STREQ(expectResult, result.c_str());

@@ -5,9 +5,7 @@
  */
 #include "lc2942_find_words_containing_character.h"
 
-#include <cmath>
 #include <cstdint>
-#include <cstdio>
 #include <string>
 #include <vector>
 

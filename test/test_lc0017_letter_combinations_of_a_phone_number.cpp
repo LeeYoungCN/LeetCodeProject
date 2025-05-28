@@ -11,9 +11,9 @@
 using namespace std;
 
 class TEST_LC0017 : public testing::Test {
-    protected:
-        LC0017_LetterCombinationsOfAPhoneNumber m_test;
-        void RunTest(string &digits, const set<string> &expect);
+protected:
+    LC0017_LetterCombinationsOfAPhoneNumber m_test;
+    void RunTest(string &digits, const set<string> &expect);
 };
 
 void TEST_LC0017::RunTest(string &digits, const set<string> &expect)

@@ -5,35 +5,31 @@
 #ifndef LC3356_ZERO_ARRAY_TRANSFORMATION_II_H
 #define LC3356_ZERO_ARRAY_TRANSFORMATION_II_H
 
-#include <string>
 #include <vector>
-#include <deque>
-#include <set>
-#include <map>
 
 class LC3356_ZeroArrayTransformationII {
-    public:
-        static const uint32_t START_IDX = 0;
-        static const uint32_t END_IDX   = 1;
-        static const uint32_t DELTA_IDX = 2;
-    public:
-        LC3356_ZeroArrayTransformationII() = default;
-        virtual ~LC3356_ZeroArrayTransformationII() = default;
-        virtual int minZeroArray(std::vector<int>& nums, std::vector<std::vector<int>>& queries) = 0;
+public:
+    static const unsigned int START_IDX = 0;
+    static const unsigned int END_IDX = 1;
+    static const unsigned int DELTA_IDX = 2;
+
+public:
+    LC3356_ZeroArrayTransformationII() = default;
+    virtual ~LC3356_ZeroArrayTransformationII() = default;
+    virtual int minZeroArray(std::vector<int>& nums, std::vector<std::vector<int>>& queries) = 0;
 };
 
 class LC3356_ZeroArrayTransformationII_Array : public LC3356_ZeroArrayTransformationII {
-    public:
-        int minZeroArray(std::vector<int>& nums, std::vector<std::vector<int>>& queries);
-    private:
-        bool isZeroArray(const std::vector<int32_t>& nums, const std::vector<std::vector<int32_t>>& queries,
-                         uint32_t step);
+public:
+    int minZeroArray(std::vector<int>& nums, std::vector<std::vector<int>>& queries);
+
+private:
+    bool isZeroArray(const std::vector<int>& nums, const std::vector<std::vector<int>>& queries, unsigned int step);
 };
 
 class LC3356_ZeroArrayTransformationII_Greedy : public LC3356_ZeroArrayTransformationII {
-    public:
-        int minZeroArray(std::vector<int>& nums, std::vector<std::vector<int>>& queries);
+public:
+    int minZeroArray(std::vector<int>& nums, std::vector<std::vector<int>>& queries);
 };
 
-
-#endif // LC3356_ZERO_ARRAY_TRANSFORMATION_II_H
+#endif  // LC3356_ZERO_ARRAY_TRANSFORMATION_II_H

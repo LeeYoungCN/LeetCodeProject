@@ -3,11 +3,12 @@
  * URL  : https://leetcode.cn/problems/generate-parentheses/description/?envType=daily-questionURL_STRenvId=2025-05-18
  */
 
-#include <cstdint>
-#include <cmath>
-#include <vector>
-#include <string>
 #include "lc0022_generate_parentheses.h"
+
+#include <cmath>
+#include <cstdint>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -39,8 +40,7 @@ void LC0022_GenerateParentheses_Num::num2Str(uint32_t num, uint32_t strLen, stri
     }
 }
 
-void LC0022_GenerateParentheses_Num::generateStrByLoop(uint32_t strLen,
-                                                       vector<string> &result)
+void LC0022_GenerateParentheses_Num::generateStrByLoop(uint32_t strLen, vector<string> &result)
 {
     uint32_t total = pow(2, strLen);
     for (uint32_t i = 0; i < total; ++i) {
@@ -73,8 +73,7 @@ vector<string> LC0022_GenerateParentheses_Itr1::generateParenthesis(int n)
     return result;
 }
 
-void LC0022_GenerateParentheses_Itr1::iter2Str(string &curr, uint32_t strLen,
-                                               vector<string> &result)
+void LC0022_GenerateParentheses_Itr1::iter2Str(string &curr, uint32_t strLen, vector<string> &result)
 {
     if (curr.size() >= strLen) {
         if (isValidStr(curr)) {
@@ -90,7 +89,8 @@ void LC0022_GenerateParentheses_Itr1::iter2Str(string &curr, uint32_t strLen,
     curr.pop_back();
 }
 
-void LC0022_GenerateParentheses_Itr2::generateStrByItr(string &curr, vector<string> &result, uint32_t leftNum, uint32_t rightNum, uint32_t maxCnt)
+void LC0022_GenerateParentheses_Itr2::generateStrByItr(string &curr, vector<string> &result, uint32_t leftNum,
+                                                       uint32_t rightNum, uint32_t maxCnt)
 {
     if (curr.size() == maxCnt * 2) {
         result.push_back(curr);

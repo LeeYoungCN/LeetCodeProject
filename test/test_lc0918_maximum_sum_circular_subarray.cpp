@@ -3,22 +3,22 @@
  * URL  : https://leetcode.cn/problems/maximum-sum-circular-subarray/description/
  */
 #include <vector>
+
 #include "gtest/gtest.h"
 #include "lc0918_maximum_sum_circular_subarray.h"
 
 using namespace std;
 
-
 class TEST_LC0918 : public testing::Test {
-    protected:
-        static void SetUpTestCase() {}
-        static void TearDownTestCase() {}
+protected:
+    static void SetUpTestCase() {}
+    static void TearDownTestCase() {}
 
-        void SetUp() override;
-        void TearDown() override;
+    void SetUp() override;
+    void TearDown() override;
 
-        vector<LC0918_MaximumSumCircularSubarray*> m_testList;
-        void RunTest(vector<int> &nums, int expectResult);
+    vector<LC0918_MaximumSumCircularSubarray *> m_testList;
+    void RunTest(vector<int> &nums, int expectResult);
 };
 
 void TEST_LC0918::SetUp()
@@ -35,10 +35,10 @@ void TEST_LC0918::TearDown()
     }
 }
 
-void TEST_LC0918::RunTest(vector<int>& nums, int expectResult)
+void TEST_LC0918::RunTest(vector<int> &nums, int expectResult)
 {
     for (LC0918_MaximumSumCircularSubarray *inst : m_testList) {
-        EXPECT_EQ(expectResult, inst->maxSubarraySumCircular(nums)) <<  typeid(*inst).name();
+        EXPECT_EQ(expectResult, inst->maxSubarraySumCircular(nums)) << typeid(*inst).name();
     }
 }
 
@@ -56,7 +56,7 @@ TEST_F(TEST_LC0918, case2)
 
 TEST_F(TEST_LC0918, case3)
 {
-    vector<int> nums = {3,-2, 2,-3};
+    vector<int> nums = {3, -2, 2, -3};
     RunTest(nums, 3);
 }
 

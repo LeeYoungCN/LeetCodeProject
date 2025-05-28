@@ -5,7 +5,6 @@
 #ifndef LC3489_ZERO_ARRAY_TRANSFORMATION_IV_H
 #define LC3489_ZERO_ARRAY_TRANSFORMATION_IV_H
 
-#include <cstdint>
 #include <vector>
 
 class LC3489_ZeroArrayTransformationIV {
@@ -15,7 +14,7 @@ public:
     int minZeroArray(std::vector<int> &nums, std::vector<std::vector<int>> &queries);
 
 private:
-    int32_t GetStep(uint32_t idx, const std::vector<int32_t> &nums, const std::vector<std::vector<int32_t>> &queries);
+    int GetStep(unsigned int idx, const std::vector<int> &nums, const std::vector<std::vector<int>> &queries);
 };
 
 #endif  // LC3489_ZERO_ARRAY_TRANSFORMATION_IV_H

@@ -11,14 +11,14 @@
 using namespace std;
 
 class TEST_LC2925 : public testing::Test {
-    protected:
-        static void SetUpTestSuite() {}
-        static void TearDownTestSuite() {}
-        void SetUp() override;
-        void TearDown() override;
+protected:
+    static void SetUpTestSuite() {}
+    static void TearDownTestSuite() {}
+    void SetUp() override;
+    void TearDown() override;
 
-        vector<LC2925_MaximumScoreAfterApplyingOperationsOnATree*> m_testList;
-        void RunTest(std::vector<std::vector<int>>& edges, std::vector<int>& values, int64_t expect);
+    vector<LC2925_MaximumScoreAfterApplyingOperationsOnATree*> m_testList;
+    void RunTest(std::vector<std::vector<int>>& edges, std::vector<int>& values, int64_t expect);
 };
 
 void TEST_LC2925::SetUp()
