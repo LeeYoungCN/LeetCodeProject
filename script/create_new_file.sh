@@ -4,7 +4,7 @@ root_path="$(cd ${file_path}/..; pwd)"
 
 source "${root_path}/script/common_func.sh"
 
-LEETCODE_INC_DIR="${root_path}/leetcode/include"
+LEETCODE_INC_DIR="${root_path}/leetcode/inc"
 LEETCODE_SRC_DIR="${root_path}/leetcode/src"
 TEST_DIR="${root_path}/test"
 
