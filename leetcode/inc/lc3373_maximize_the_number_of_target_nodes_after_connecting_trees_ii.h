@@ -17,7 +17,6 @@ public:
     std::vector<int> maxTargetNodes(std::vector<std::vector<int>>& edges1, std::vector<std::vector<int>>& edges2);
 
 private:
-    std::vector<std::vector<int>> BuildGraph(const std::vector<std::vector<int>>& edges);
     void DFS(const std::vector<std::vector<int>>& graph, int depth, int curr, int parent, TreeData& treeNodeData);
     void GetTreeNodeData(const std::vector<std::vector<int>>& edges, TreeData& treeNodeData);
 };
