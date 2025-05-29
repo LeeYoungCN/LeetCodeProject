@@ -46,7 +46,7 @@ void LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::GetTreeNodeDat
                                                                                   TreeData& treeNodeData)
 {
     uint32_t nodeCnt = edges.size() + 1;
-    vector<vector<int32_t>> graph = BuildGraph(edges);
+    vector<vector<int32_t>> graph = GetGraphByEdges(edges);
 
     vector<int32_t> ans(nodeCnt, 0);
 

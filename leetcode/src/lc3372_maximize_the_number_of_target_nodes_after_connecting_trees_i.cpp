@@ -37,7 +37,7 @@ vector<int32_t> LC3372_MaximizeTheNumberOfTargetNodesAfterConnectingTreesI::GetK
     const vector<vector<int>>& edges, int32_t k)
 {
     uint32_t nodeCnt = edges.size() + 1;
-    vector<vector<int32_t>> graph = BuildGraph(edges);
+    vector<vector<int32_t>> graph = GetGraphByEdges(edges);
 
     vector<int32_t> ans(nodeCnt, 0);
     for (uint32_t i = 0; i < nodeCnt; i++) {
