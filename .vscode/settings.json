@@ -40,6 +40,8 @@
     "clangd.fallbackFlags": [
         "-std=c++17",
         "-I${workspaceFolder}/leetcode/include",
-        "-Wall"
+        "-Wall",
+        "-Wconversion",
+        "-Wextra"
     ]
 }

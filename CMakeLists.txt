@@ -11,11 +11,17 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "CMAKE_BUILD_TYPE Debug" FORCE)
 endif()
 
-set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -O0")
-set(CMAKE_C_FLAGS_DEBUG "-g -Wall -O0")
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_definitions(-D__LC_DEBUG__)
+endif()
 
-set(CMAKE_CXX_FLAGS_RELEASE "-Wall -O3")
-set(CMAKE_C_FLAGS_RELEASE "-Wall -O3")
+set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
+set(CMAKE_C_FLAGS_DEBUG "-g -O0")
+
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+set(CMAKE_C_FLAGS_RELEASE " -O3")
+
+add_compile_options("-Wall" "-Wconversion" "-Wextra")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS   ON)
 set(CMAKE_VERBOSE_MAKEFILE          OFF)
