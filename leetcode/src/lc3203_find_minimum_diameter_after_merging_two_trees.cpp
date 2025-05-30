@@ -22,7 +22,7 @@ int32_t LC3203_FindMinimumDiameterAfterMergingTwoTrees::GeDiameter(vector<vector
 
     auto dfs = [&](auto&& dfs, int32_t curr, int32_t parent) -> int32_t {
         int32_t maxLen = 0;
-        for (int32_t child : graph[curr]) {
+        for (int32_t child : graph[(uint32_t)curr]) {
             if (child == parent) {
                 continue;
             }

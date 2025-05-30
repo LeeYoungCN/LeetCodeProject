@@ -18,9 +18,9 @@ int32_t LC3489_ZeroArrayTransformationIV::GetStep(uint32_t idx, const vector<int
         return 0;
     }
 
-    uint32_t queryCnt = queries.size();
+    uint32_t queryCnt = (uint32_t)queries.size();
 
-    vector<bool> dp(target + 1, false);
+    vector<bool> dp((uint32_t)target + 1, false);
     dp.at(0) = true;
 
     for (uint32_t i = 0; i < queryCnt; i++) {
@@ -34,11 +34,11 @@ int32_t LC3489_ZeroArrayTransformationIV::GetStep(uint32_t idx, const vector<int
         }
 
         for (int32_t j = target; j >= val; --j) {
-            dp.at(j) = dp.at(j) || dp.at(j - val);
+            dp.at(j) = dp.at((uint32_t)j) || dp.at((uint32_t)(j - val));
         }
 
-        if (dp.at(target)) {
-            return i + 1;
+        if (dp.at((uint32_t)target)) {
+            return (int32_t)i + 1;
         }
     }
     return -1;
@@ -46,7 +46,7 @@ int32_t LC3489_ZeroArrayTransformationIV::GetStep(uint32_t idx, const vector<int
 
 int LC3489_ZeroArrayTransformationIV::minZeroArray(vector<int> &nums, vector<vector<int>> &queries)
 {
-    uint32_t numCnt = nums.size();
+    uint32_t numCnt = (uint32_t)nums.size();
     int32_t ans = 0;
     for (uint32_t i = 0; i < numCnt; i++) {
         int32_t step = GetStep(i, nums, queries);

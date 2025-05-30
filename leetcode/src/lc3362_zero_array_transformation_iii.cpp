@@ -26,22 +26,22 @@ int LC3362_ZeroArrayTransformationIII::maxRemoval(std::vector<int> &nums, std::v
     const uint32_t END = 1;
 
     priority_queue<QuerySt> maxHeap;
-    int32_t length = nums.size();
+    const uint32_t length = (uint32_t)nums.size();
     vector<int32_t> deltaArray(length + 1, 0);
-    int32_t queryCnt = queries.size();
+    const uint32_t queryCnt = (uint32_t)queries.size();
     int32_t operation = 0;
-    int32_t queryIdx = 0;
+    uint32_t queryIdx = 0;
 
-    for (int32_t i = 0; i < length; ++i) {
+    for (uint32_t i = 0; i < length; ++i) {
         operation += deltaArray[i];
-        while (queryIdx < queryCnt && queries[queryIdx][START] == i) {
+        while (queryIdx < queryCnt && (uint32_t)queries[queryIdx][START] == i) {
             maxHeap.push({queries[queryIdx][START], queries[queryIdx][END]});
             ++queryIdx;
         }
 
         int32_t n = nums[i];
-        while (!maxHeap.empty() && maxHeap.top().end >= i && operation < n) {
-            deltaArray[maxHeap.top().end + 1] -= 1;
+        while (!maxHeap.empty() && (uint32_t)maxHeap.top().end >= i && operation < n) {
+            deltaArray[(uint32_t)maxHeap.top().end + 1] -= 1;
             maxHeap.pop();
             ++operation;
         }
@@ -50,5 +50,5 @@ int LC3362_ZeroArrayTransformationIII::maxRemoval(std::vector<int> &nums, std::v
         }
     }
 
-    return maxHeap.size();
+    return (int32_t)maxHeap.size();
 }

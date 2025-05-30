@@ -15,7 +15,7 @@ using namespace std;
 bool LC3356_ZeroArrayTransformationII_Array::isZeroArray(const vector<int32_t>& nums,
                                                          const vector<vector<int32_t>>& queries, uint32_t step)
 {
-    uint32_t length = nums.size();
+    const uint32_t length = (uint32_t)nums.size();
     vector<int32_t> deltaArray(length + 1, 0);
 
     for (uint32_t i = 0; i < step; i++) {
@@ -39,7 +39,7 @@ bool LC3356_ZeroArrayTransformationII_Array::isZeroArray(const vector<int32_t>& 
 
 int LC3356_ZeroArrayTransformationII_Array::minZeroArray(std::vector<int>& nums, std::vector<std::vector<int>>& queries)
 {
-    uint32_t maxStep = queries.size();
+    const uint32_t maxStep = (uint32_t)queries.size();
     uint32_t left = 0;
     uint32_t right = maxStep + 1;
 
@@ -57,20 +57,20 @@ int LC3356_ZeroArrayTransformationII_Array::minZeroArray(std::vector<int>& nums,
 int LC3356_ZeroArrayTransformationII_Greedy::minZeroArray(std::vector<int>& nums,
                                                           std::vector<std::vector<int>>& queries)
 {
-    int32_t queryIdx = 0;
-    int32_t length = nums.size();
-    int32_t queryCnt = queries.size();
+    uint32_t queryIdx = 0;
+    uint32_t length = (uint32_t)nums.size();
+    uint32_t queryCnt = (uint32_t)queries.size();
     int32_t operation = 0;
 
     vector<int32_t> deltaArray(length + 1, 0);
-    for (int32_t i = 0; i < length; ++i) {
+    for (uint32_t i = 0; i < length; ++i) {
         int32_t n = nums[i];
         operation += deltaArray[i];
 
         while (queryIdx < queryCnt && operation < n) {
             vector<int32_t> query = queries[queryIdx];
-            int32_t start = query[START_IDX];
-            int32_t end = query[END_IDX];
+            uint32_t start = query[START_IDX];
+            uint32_t end = query[END_IDX];
             int32_t delta = query[DELTA_IDX];
             deltaArray[start] += delta;
             deltaArray[end + 1] -= delta;

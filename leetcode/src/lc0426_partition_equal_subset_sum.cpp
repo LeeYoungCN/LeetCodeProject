@@ -13,7 +13,7 @@ using namespace std;
 
 bool LC0426_PartitionEqualSubsetSum_DP1::canPartition(std::vector<int>& nums)
 {
-    int32_t numCnt = nums.size();
+    uint32_t numCnt = (uint32_t)nums.size();
     if (numCnt < 2) {
         return false;
     }
@@ -34,8 +34,8 @@ bool LC0426_PartitionEqualSubsetSum_DP1::canPartition(std::vector<int>& nums)
     // j 刚好达到的值
     vector<vector<bool>> dp(numCnt, vector<bool>(target + 1, false));
 
-    dp[0][nums[0]] = true;
-    for (int32_t i = 1; i < numCnt; i++) {
+    dp[0][(uint32_t)nums[0]] = true;
+    for (uint32_t i = 1; i < numCnt; i++) {
         int32_t n = nums[i];
         for (int32_t j = 0; j <= target; j++) {
             if (j == 0) {
@@ -56,7 +56,7 @@ bool LC0426_PartitionEqualSubsetSum_DP1::canPartition(std::vector<int>& nums)
 
 bool LC0426_PartitionEqualSubsetSum_DP2::canPartition(std::vector<int>& nums)
 {
-    int32_t numCnt = nums.size();
+    int32_t numCnt = (uint32_t)nums.size();
     if (numCnt < 2) {
         return false;
     }

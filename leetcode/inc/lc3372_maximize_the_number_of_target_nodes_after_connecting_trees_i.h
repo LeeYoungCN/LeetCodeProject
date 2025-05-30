@@ -16,7 +16,7 @@ public:
                                     int k);
 
 private:
-    int GetKNodeCnt(const std::vector<std::vector<int>>& graph, int k, int nodeIdx, int parent);
+    int GetKNodeCnt(const std::vector<std::vector<int>>& graph, int k, unsigned int nodeIdx, unsigned int parent);
     std::vector<int> GetKNodeList(const std::vector<std::vector<int>>& edges, int k);
 };
 

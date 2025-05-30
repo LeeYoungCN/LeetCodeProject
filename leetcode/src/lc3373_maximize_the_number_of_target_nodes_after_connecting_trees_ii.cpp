@@ -45,7 +45,7 @@ void LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::DFS(const vect
 void LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::GetTreeNodeData(const vector<vector<int>>& edges,
                                                                                   TreeData& treeNodeData)
 {
-    uint32_t nodeCnt = edges.size() + 1;
+    uint32_t nodeCnt = (uint32_t)edges.size() + 1;
     vector<vector<int32_t>> graph = GetGraphByEdges(edges);
 
     vector<int32_t> ans(nodeCnt, 0);
@@ -56,8 +56,8 @@ void LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::GetTreeNodeDat
 vector<int32_t> LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::maxTargetNodes(
     vector<vector<int32_t>>& edges1, vector<vector<int32_t>>& edges2)
 {
-    uint32_t nodeCnt1 = edges1.size() + 1;
-    uint32_t nodeCnt2 = edges2.size() + 1;
+    uint32_t nodeCnt1 = (uint32_t)edges1.size() + 1;
+    uint32_t nodeCnt2 = (uint32_t)edges2.size() + 1;
 
     TreeData treeData1 = {.evenCnt = 0, .oddCnt = 0, .nodeList = vector<NodeType>(nodeCnt1, NodeType::EVEN)};
     TreeData treeData2 = {.evenCnt = 0, .oddCnt = 0, .nodeList = vector<NodeType>(nodeCnt2, NodeType::EVEN)};

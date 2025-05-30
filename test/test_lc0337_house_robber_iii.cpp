@@ -49,7 +49,7 @@ TreeNode *TEST_LC0337::ValList2TreeNode(const vector<string> &nodeValList, uint3
 
     TreeNode *root = (TreeNode *)malloc(sizeof(TreeNode));
 
-    root->val = stol(nodeValList[index]);
+    root->val = stoi(nodeValList[index]);
     root->left = ValList2TreeNode(nodeValList, 2 * index + 1);
     root->right = ValList2TreeNode(nodeValList, 2 * index + 2);
 

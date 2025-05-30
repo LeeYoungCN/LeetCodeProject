@@ -31,7 +31,7 @@ int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
     m_colCnt = m;
     m_rowCnt = n;
     std::map<uint32_t, std::vector<uint32_t>> validColorMap;
-    const uint32_t maxColorCnt = pow(COLOR_CNT, m_colCnt);
+    const uint32_t maxColorCnt = (uint32_t)pow(COLOR_CNT, m_colCnt);
 
     for (uint32_t color = 0; color < maxColorCnt; color++) {
         vector<uint32_t> colorGrid(m_colCnt, 0);
@@ -120,7 +120,7 @@ int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
 {
     m_colCnt = m;
     m_rowCnt = n;
-    const uint32_t maxColorCnt = pow(COLOR_CNT, m_colCnt);
+    const uint32_t maxColorCnt = (uint32_t)pow(COLOR_CNT, m_colCnt);
 
     vector<uint32_t> validColorArray;
     validColorArray.reserve(maxColorCnt);
@@ -131,7 +131,7 @@ int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
         }
     }
 
-    uint32_t validColorCnt = validColorArray.size();
+    uint32_t validColorCnt = (uint32_t)validColorArray.size();
     vector<vector<uint32_t>> adjColorMap(validColorCnt);
 
     for (uint32_t colorIdx1 = 0; colorIdx1 < validColorCnt; ++colorIdx1) {

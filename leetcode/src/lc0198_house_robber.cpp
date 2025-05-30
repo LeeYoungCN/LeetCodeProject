@@ -12,7 +12,7 @@ using namespace std;
 
 int LC0198_HouseRobber::rob(std::vector<int>& nums)
 {
-    uint32_t length = nums.size();
+    uint32_t length = (uint32_t)nums.size();
     vector<int32_t> dp(length);
 
     if (length == 1) {

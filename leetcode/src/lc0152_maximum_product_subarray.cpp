@@ -15,7 +15,7 @@ using namespace std;
 int LC00152_MaximumProductSubarray::maxProduct(vector<int>& nums)
 {
     int ret = nums[0];
-    uint32_t len = nums.size();
+    uint32_t len = (uint32_t)nums.size();
     vector<int32_t> dpMax(len);
     vector<int32_t> dpMin(len);
 

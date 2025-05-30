@@ -42,7 +42,7 @@ void LC0022_GenerateParentheses_Num::num2Str(uint32_t num, uint32_t strLen, stri
 
 void LC0022_GenerateParentheses_Num::generateStrByLoop(uint32_t strLen, vector<string> &result)
 {
-    uint32_t total = pow(2, strLen);
+    uint32_t total = (uint32_t)pow(2, strLen);
     for (uint32_t i = 0; i < total; ++i) {
         string curr = "";
         curr.reserve(strLen);
