@@ -5,7 +5,8 @@
 #include "lc0310_minimum_height_trees.h"
 
 #include <cstdint>
-#include <cstdio>
+#include <functional>
+#include <queue>
 #include <vector>
 
 #include "leetcode_utils.h"
@@ -58,6 +59,61 @@ vector<int> LC0310_MinimumHeightTrees_DFS::findMinHeightTrees(int n, vector<vect
     vector<int32_t> ans = {path[maxDepth / 2]};
     if (maxDepth % 2 == 1) {
         ans.push_back(path[maxDepth / 2 + 1]);
+    }
+    return ans;
+}
+
+vector<int> LC0310_MinimumHeightTrees_BFS::findMinHeightTrees(int n, vector<vector<int>> &edges)
+{
+    if (n == 1) {
+        return {0};
+    }
+
+    uint32_t nodeCnt = (uint32_t)n;
+    vector<vector<uint32_t>> graph = GetGraphByEdges(edges);
+    vector<uint32_t> parentNode(nodeCnt, nodeCnt);
+    vector<uint32_t> distance(nodeCnt, 0);
+
+    function<uint32_t(uint32_t)> bfs = [&](uint32_t startNode) -> uint32_t {
+        fill(distance.begin(), distance.end(), 0);
+        fill(parentNode.begin(), parentNode.end(), nodeCnt);
+
+        queue<uint32_t> nodeQueue;
+        uint32_t node = startNode;
+        nodeQueue.push(node);
+        distance[node] = 1;
+
+        while (!nodeQueue.empty()) {
+            node = nodeQueue.front();
+            nodeQueue.pop();
+            for (uint32_t child : graph[node]) {
+                if (distance[child] != 0) {
+                    continue;
+                }
+                parentNode[child] = node;
+                distance[child] = distance[node] + 1;
+                nodeQueue.push(child);
+            }
+        }
+        return node;
+    };
+
+    uint32_t maxNode1 = bfs(0);
+    uint32_t maxNode2 = bfs(maxNode1);
+    uint32_t maxDist = distance[maxNode2];
+
+    vector<int32_t> path(maxDist, 0);
+    uint32_t tmp = maxNode2;
+
+    for (uint32_t i = 0; i < maxDist; i++) {
+        uint32_t j = maxDist - i - 1;
+        path[j] = (int32_t)tmp;
+        tmp = parentNode[tmp];
+    }
+
+    vector<int32_t> ans = {path[maxDist / 2]};
+    if (maxDist % 2 == 0) {
+        ans.push_back(path[maxDist / 2 - 1]);
     }
     return ans;
 }
