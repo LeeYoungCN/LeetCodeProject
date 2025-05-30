@@ -4,6 +4,7 @@
  */
 #include "lc0310_minimum_height_trees.h"
 
+#include <algorithm>
 #include <cstdint>
 #include <functional>
 #include <queue>
@@ -115,5 +116,61 @@ vector<int> LC0310_MinimumHeightTrees_BFS::findMinHeightTrees(int n, vector<vect
     if (maxDist % 2 == 0) {
         ans.push_back(path[maxDist / 2 - 1]);
     }
+    return ans;
+}
+
+vector<int> LC0310_MinimumHeightTrees_TopologicalSort::findMinHeightTrees(int n, vector<vector<int>> &edges)
+{
+    if (n == 1) {
+        return {0};
+    }
+
+    uint32_t nodeCnt = (uint32_t)n;
+    vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
+    vector<uint32_t> nodeDegree(nodeCnt, 0);
+
+    for (const vector<int32_t> &edge : edges) {
+        uint32_t start = (uint32_t)edge[0];
+        uint32_t end = (uint32_t)edge[1];
+
+        graph[start].push_back(end);
+        graph[end].push_back(start);
+
+        nodeDegree[start]++;
+        nodeDegree[end]++;
+    }
+
+    queue<uint32_t> leafNodes;
+    for (uint32_t i = 0; i < nodeCnt; i++) {
+        if (nodeDegree[i] == 1) {
+            leafNodes.push(i);
+        }
+    }
+
+    uint32_t remnant = nodeCnt;
+
+    while (remnant > 2) {
+        uint32_t leafCnt = (uint32_t)leafNodes.size();
+
+        for (uint32_t i = 0; i < leafCnt; i++) {
+            uint32_t leaf = leafNodes.front();
+            leafNodes.pop();
+
+            for (uint32_t neighbor : graph[leaf]) {
+                if (--nodeDegree[neighbor] == 1) {
+                    leafNodes.push(neighbor);
+                }
+            }
+        }
+
+        remnant -= leafCnt;
+    }
+
+    vector<int32_t> ans;
+    while (!leafNodes.empty()) {
+        ans.push_back((int32_t)leafNodes.front());
+        leafNodes.pop();
+    }
+
     return ans;
 }

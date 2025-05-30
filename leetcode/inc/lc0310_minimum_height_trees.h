@@ -28,4 +28,11 @@ public:
     std::vector<int> findMinHeightTrees(int n, std::vector<std::vector<int>>& edges) override;
 };
 
+class LC0310_MinimumHeightTrees_TopologicalSort : public LC0310_MinimumHeightTrees {
+public:
+    LC0310_MinimumHeightTrees_TopologicalSort() = default;
+    virtual ~LC0310_MinimumHeightTrees_TopologicalSort() override = default;
+    std::vector<int> findMinHeightTrees(int n, std::vector<std::vector<int>>& edges) override;
+};
+
 #endif  // LC0310_MINIMUM_HEIGHT_TREES_H

@@ -24,6 +24,7 @@ void TEST_LC0310::SetUp()
 {
     m_testList.push_back(new LC0310_MinimumHeightTrees_DFS());
     m_testList.push_back(new LC0310_MinimumHeightTrees_BFS());
+    m_testList.push_back(new LC0310_MinimumHeightTrees_TopologicalSort());
 }
 
 void TEST_LC0310::TearDown()
