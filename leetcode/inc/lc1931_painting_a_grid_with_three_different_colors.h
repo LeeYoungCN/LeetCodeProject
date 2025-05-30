@@ -4,32 +4,36 @@
 
 #include <vector>
 
-namespace f1 {
 class LC1931_PaintingAGridWithThreeDifferentColors {
 public:
-    int colorTheGrid(int m, int n);
+    LC1931_PaintingAGridWithThreeDifferentColors() = default;
+    virtual ~LC1931_PaintingAGridWithThreeDifferentColors() = default;
+    virtual int colorTheGrid(int m, int n) = 0;
 
-private:
-    bool isValidColor(unsigned int color, std::vector<unsigned int> &colorGrid);
-
+protected:
     unsigned int m_rowCnt;
     unsigned int m_colCnt;
 };
-}  // namespace f1
 
-namespace f2 {
-class LC1931_PaintingAGridWithThreeDifferentColors {
+class LC1931_PaintingAGridWithThreeDifferentColors_Grid : public LC1931_PaintingAGridWithThreeDifferentColors {
 public:
-    int colorTheGrid(int m, int n);
+    LC1931_PaintingAGridWithThreeDifferentColors_Grid() = default;
+    virtual ~LC1931_PaintingAGridWithThreeDifferentColors_Grid() override = default;
+    int colorTheGrid(int m, int n) override;
+
+private:
+    bool isValidColor(unsigned int color, std::vector<unsigned int> &colorGrid);
+};
+
+class LC1931_PaintingAGridWithThreeDifferentColors_Number : public LC1931_PaintingAGridWithThreeDifferentColors {
+public:
+    LC1931_PaintingAGridWithThreeDifferentColors_Number() = default;
+    virtual ~LC1931_PaintingAGridWithThreeDifferentColors_Number() override = default;
+    int colorTheGrid(int m, int n) override;
 
 private:
     bool isValidColor(unsigned int color);
     bool isAdjColor(unsigned int color1, unsigned int color2);
-
-private:
-    unsigned int m_rowCnt;
-    unsigned int m_colCnt;
 };
-}  // namespace f2
 
 #endif  // LC1931_PAINTING_A_GRID_WITH_THREE_DIFFERENT_COLORS_H

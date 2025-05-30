@@ -1,20 +1,44 @@
-// https://leetcode.cn/problems/painting-a-grid-with-three-different-colors/description/?envType=daily-questionURL_STRenvId=2025-05-18
+/*
+ * Time : 2025-05-30 22:54:18
+ * URL  :
+ * https://leetcode.cn/problems/painting-a-grid-with-three-different-colors/description/?envType=daily-questionURL_STRenvId=2025-05-18
+ */
+#include <vector>
 
 #include "gtest/gtest.h"
 #include "lc1931_painting_a_grid_with_three_different_colors.h"
 
 using namespace std;
-using namespace f2;
 
 class TEST_LC1931 : public testing::Test {
 protected:
-    LC1931_PaintingAGridWithThreeDifferentColors m_test;
-    void RunTest(int m, int n, int result);
+    static void SetUpTestSuite() {}
+    static void TearDownTestSuite() {}
+    void SetUp() override;
+    void TearDown() override;
+
+    vector<LC1931_PaintingAGridWithThreeDifferentColors *> m_testList;
+    void RunTest(int m, int n, int expect);
 };
 
-void TEST_LC1931::RunTest(int m, int n, int result)
+void TEST_LC1931::SetUp()
 {
-    EXPECT_EQ(result, m_test.colorTheGrid(m, n));
+    m_testList.push_back(new LC1931_PaintingAGridWithThreeDifferentColors_Number());
+    m_testList.push_back(new LC1931_PaintingAGridWithThreeDifferentColors_Grid());
+}
+
+void TEST_LC1931::TearDown()
+{
+    for (LC1931_PaintingAGridWithThreeDifferentColors *inst : m_testList) {
+        delete inst;
+    }
+}
+
+void TEST_LC1931::RunTest(int m, int n, int expect)
+{
+    for (LC1931_PaintingAGridWithThreeDifferentColors *inst : m_testList) {
+        EXPECT_EQ(expect, inst->colorTheGrid(m, n));
+    }
 }
 
 TEST_F(TEST_LC1931, 1X2)
