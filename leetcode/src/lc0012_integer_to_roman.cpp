@@ -16,9 +16,9 @@ string LC0012_IntegerToRoman::intToRoman(int num)
         {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
     };
     string result = "";
-    uint32_t mod = 1000;
+    int32_t mod = 1000;
     for (uint32_t i = 0; num > 0; i++) {
-        uint32_t x = num / mod;
+        uint32_t x = (uint32_t)(num / mod);
         num = num % mod;
         mod /= 10;
         result += (table[i][x]);

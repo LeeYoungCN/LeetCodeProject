@@ -16,13 +16,13 @@ using namespace std;
 
 int32_t LC3203_FindMinimumDiameterAfterMergingTwoTrees::GeDiameter(vector<vector<int32_t>>& edges)
 {
-    vector<vector<int32_t>> graph = GetGraphByEdges(edges);
+    vector<vector<uint32_t>> graph = GetGraphByEdges(edges);
 
     int32_t res = 0;
 
-    auto dfs = [&](auto&& dfs, int32_t curr, int32_t parent) -> int32_t {
+    auto dfs = [&](auto&& dfs, uint32_t curr, uint32_t parent) -> int32_t {
         int32_t maxLen = 0;
-        for (int32_t child : graph[(uint32_t)curr]) {
+        for (uint32_t child : graph[curr]) {
             if (child == parent) {
                 continue;
             }
@@ -32,7 +32,7 @@ int32_t LC3203_FindMinimumDiameterAfterMergingTwoTrees::GeDiameter(vector<vector
         }
         return maxLen;
     };
-    (void)dfs(dfs, 0, -1);
+    (void)dfs(dfs, 0, (uint32_t)edges.size() + 1);
     return res;
 }
 

@@ -55,7 +55,7 @@ void LC0022_GenerateParentheses_Num::generateStrByLoop(uint32_t strLen, vector<s
 
 vector<string> LC0022_GenerateParentheses_Num::generateParenthesis(int n)
 {
-    uint32_t strLen = 2 * n;
+    uint32_t strLen = (uint32_t)(2 * n);
     vector<string> result;
     generateStrByLoop(strLen, result);
     return result;
@@ -63,7 +63,7 @@ vector<string> LC0022_GenerateParentheses_Num::generateParenthesis(int n)
 
 vector<string> LC0022_GenerateParentheses_Itr1::generateParenthesis(int n)
 {
-    uint32_t strLen = 2 * n;
+    uint32_t strLen = (uint32_t)(2 * n);
     vector<string> result;
     string curr = "";
     curr.reserve(strLen);
@@ -112,8 +112,9 @@ void LC0022_GenerateParentheses_Itr2::generateStrByItr(string &curr, vector<stri
 vector<string> LC0022_GenerateParentheses_Itr2::generateParenthesis(int n)
 {
     string curr = "";
-    curr.reserve(2 * n);
+    uint32_t cnt = (uint32_t)n;
+    curr.reserve(2 * cnt);
     vector<string> result;
-    generateStrByItr(curr, result, 0, 0, n);
+    generateStrByItr(curr, result, 0, 0, cnt);
     return result;
 }

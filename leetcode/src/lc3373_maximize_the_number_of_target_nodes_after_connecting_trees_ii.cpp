@@ -22,19 +22,19 @@ struct TreeData {
     vector<NodeType> nodeList;
 };
 
-void LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::DFS(const vector<vector<int32_t>>& graph,
-                                                                      int32_t depth, int32_t curr, int32_t parent,
+void LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::DFS(const vector<vector<uint32_t>>& graph,
+                                                                      int32_t depth, uint32_t curr, uint32_t parent,
                                                                       TreeData& treeNodeData)
 {
     if (depth % 2 == 0) {
         treeNodeData.evenCnt++;
-        treeNodeData.nodeList[curr] = NodeType::EVEN;
+        treeNodeData.nodeList[(uint32_t)curr] = NodeType::EVEN;
     } else {
         treeNodeData.oddCnt++;
-        treeNodeData.nodeList[curr] = NodeType::ODD;
+        treeNodeData.nodeList[(uint32_t)curr] = NodeType::ODD;
     }
 
-    for (int32_t child : graph[curr]) {
+    for (uint32_t child : graph[(uint32_t)curr]) {
         if (child == parent) {
             continue;
         }
@@ -46,11 +46,11 @@ void LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::GetTreeNodeDat
                                                                                   TreeData& treeNodeData)
 {
     uint32_t nodeCnt = (uint32_t)edges.size() + 1;
-    vector<vector<int32_t>> graph = GetGraphByEdges(edges);
+    vector<vector<uint32_t>> graph = GetGraphByEdges(edges);
 
     vector<int32_t> ans(nodeCnt, 0);
 
-    DFS(graph, 0, 0, -1, treeNodeData);
+    DFS(graph, 0, 0, nodeCnt, treeNodeData);
 }
 
 vector<int32_t> LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::maxTargetNodes(

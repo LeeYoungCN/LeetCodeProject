@@ -28,8 +28,8 @@ bool LC1931_PaintingAGridWithThreeDifferentColors::isValidColor(uint32_t color, 
 
 int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
 {
-    m_colCnt = m;
-    m_rowCnt = n;
+    m_colCnt = (uint32_t)m;
+    m_rowCnt = (uint32_t)n;
     std::map<uint32_t, std::vector<uint32_t>> validColorMap;
     const uint32_t maxColorCnt = (uint32_t)pow(COLOR_CNT, m_colCnt);
 
@@ -78,7 +78,7 @@ int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
             result -= MOD;
         }
     }
-    return result;
+    return (int32_t)result;
 }
 }  // namespace f1
 
@@ -118,8 +118,8 @@ bool LC1931_PaintingAGridWithThreeDifferentColors::isAdjColor(uint32_t color1, u
 
 int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
 {
-    m_colCnt = m;
-    m_rowCnt = n;
+    m_colCnt = (uint32_t)m;
+    m_rowCnt = (uint32_t)n;
     const uint32_t maxColorCnt = (uint32_t)pow(COLOR_CNT, m_colCnt);
 
     vector<uint32_t> validColorArray;
@@ -165,6 +165,6 @@ int LC1931_PaintingAGridWithThreeDifferentColors::colorTheGrid(int m, int n)
             result -= MOD;
         }
     }
-    return result;
+    return (int32_t)result;
 }
 }  // namespace f2

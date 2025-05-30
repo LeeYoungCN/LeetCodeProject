@@ -13,7 +13,7 @@ using namespace std;
 int32_t LC3489_ZeroArrayTransformationIV::GetStep(uint32_t idx, const vector<int32_t> &nums,
                                                   const vector<vector<int32_t>> &queries)
 {
-    int32_t target = nums[idx];
+    uint32_t target = (uint32_t)nums[idx];
     if (target == 0) {
         return 0;
     }
@@ -28,16 +28,16 @@ int32_t LC3489_ZeroArrayTransformationIV::GetStep(uint32_t idx, const vector<int
             continue;
         }
 
-        int32_t val = queries[i][2];
+        uint32_t val = (uint32_t)queries[i][2];
         if (val == 0) {
             continue;
         }
 
-        for (int32_t j = target; j >= val; --j) {
-            dp.at(j) = dp.at((uint32_t)j) || dp.at((uint32_t)(j - val));
+        for (uint32_t j = target; j >= val; --j) {
+            dp.at((uint32_t)j) = dp.at(j) || dp.at(j - val);
         }
 
-        if (dp.at((uint32_t)target)) {
+        if (dp.at(target)) {
             return (int32_t)i + 1;
         }
     }

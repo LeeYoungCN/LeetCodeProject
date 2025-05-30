@@ -24,7 +24,7 @@ std::vector<int> LC2942_FindWordsContainingCharacter::findWordsContaining(std::v
     vector<int32_t> ret;
     for (uint32_t i = 0; i < words.size(); i++) {
         if (isInStr(words.at(i), x)) {
-            ret.push_back(i);
+            ret.push_back((int32_t)i);
         }
     }
     return ret;

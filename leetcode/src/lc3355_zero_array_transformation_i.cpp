@@ -15,8 +15,8 @@ bool LC3355_ZeroArrayTransformationI::isZeroArray(vector<int>& nums, vector<vect
 {
     vector<int32_t> deltaArray(nums.size() + 1, 0);
     for (const vector<int>& query : queries) {
-        int left = query[0];
-        int right = query[1];
+        uint32_t left = (uint32_t)query[0];
+        uint32_t right = (uint32_t)query[1];
         deltaArray[left] += 1;
         deltaArray[right + 1] -= 1;
     }

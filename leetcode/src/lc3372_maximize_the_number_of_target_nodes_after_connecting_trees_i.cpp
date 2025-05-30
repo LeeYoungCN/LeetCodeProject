@@ -13,7 +13,7 @@
 
 using namespace std;
 
-int32_t LC3372_MaximizeTheNumberOfTargetNodesAfterConnectingTreesI::GetKNodeCnt(const vector<vector<int32_t>>& graph,
+int32_t LC3372_MaximizeTheNumberOfTargetNodesAfterConnectingTreesI::GetKNodeCnt(const vector<vector<uint32_t>>& graph,
                                                                                 int32_t k, uint32_t nodeIdx,
                                                                                 uint32_t parent)
 {
@@ -23,11 +23,11 @@ int32_t LC3372_MaximizeTheNumberOfTargetNodesAfterConnectingTreesI::GetKNodeCnt(
 
     int32_t ans = 1;
 
-    for (int32_t child : graph[(uint32_t)nodeIdx]) {
-        if ((uint32_t)child == parent) {
+    for (uint32_t child : graph[(uint32_t)nodeIdx]) {
+        if (child == parent) {
             continue;
         }
-        ans += GetKNodeCnt(graph, k - 1, (uint32_t)child, nodeIdx);
+        ans += GetKNodeCnt(graph, k - 1, child, nodeIdx);
     }
 
     return ans;
@@ -37,7 +37,7 @@ vector<int32_t> LC3372_MaximizeTheNumberOfTargetNodesAfterConnectingTreesI::GetK
     const vector<vector<int>>& edges, int32_t k)
 {
     const uint32_t nodeCnt = (uint32_t)edges.size() + 1;
-    vector<vector<int32_t>> graph = GetGraphByEdges(edges);
+    vector<vector<uint32_t>> graph = GetGraphByEdges(edges);
 
     vector<int32_t> ans(nodeCnt, 0);
     for (uint32_t i = 0; i < nodeCnt; i++) {

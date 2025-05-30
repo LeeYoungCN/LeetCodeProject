@@ -21,8 +21,8 @@ bool LC3356_ZeroArrayTransformationII_Array::isZeroArray(const vector<int32_t>& 
     for (uint32_t i = 0; i < step; i++) {
         vector<int32_t> query = queries[i];
         int32_t delta = query[DELTA_IDX];
-        uint32_t start = query[START_IDX];
-        uint32_t end = query[END_IDX];
+        uint32_t start = (uint32_t)query[START_IDX];
+        uint32_t end = (uint32_t)query[END_IDX];
 
         deltaArray[start] += delta;
         deltaArray[end + 1] -= delta;
@@ -51,7 +51,7 @@ int LC3356_ZeroArrayTransformationII_Array::minZeroArray(std::vector<int>& nums,
             left = k + 1;
         }
     }
-    return (int32_t)(left > maxStep ? -1 : left);
+    return left > maxStep ? -1 : (int32_t)left;
 }
 
 int LC3356_ZeroArrayTransformationII_Greedy::minZeroArray(std::vector<int>& nums,
@@ -69,8 +69,8 @@ int LC3356_ZeroArrayTransformationII_Greedy::minZeroArray(std::vector<int>& nums
 
         while (queryIdx < queryCnt && operation < n) {
             vector<int32_t> query = queries[queryIdx];
-            uint32_t start = query[START_IDX];
-            uint32_t end = query[END_IDX];
+            uint32_t start = (uint32_t)query[START_IDX];
+            uint32_t end = (uint32_t)query[END_IDX];
             int32_t delta = query[DELTA_IDX];
             deltaArray[start] += delta;
             deltaArray[end + 1] -= delta;
@@ -85,5 +85,5 @@ int LC3356_ZeroArrayTransformationII_Greedy::minZeroArray(std::vector<int>& nums
         }
     }
 
-    return queryIdx;
+    return (int32_t)queryIdx;
 }
