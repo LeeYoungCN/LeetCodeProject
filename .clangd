@@ -1,5 +1,5 @@
 CompileFlags:
-    Add: [-std=c++17, -Ileetcode/include -Wall]
+    Add: [-std=c++17, -Ileetcode/include -Wall -Wextra -Wconversion]
 InlayHints:              # 代码提示设置部分
   Enabled: true          # 启用代码提示
   ParameterNames: true   # 显示参数名称提示
