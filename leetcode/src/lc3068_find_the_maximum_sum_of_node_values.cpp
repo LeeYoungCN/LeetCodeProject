@@ -54,13 +54,13 @@ long long LC3068_FindTheMaximumSumOfNodeValues_DFS::maximumValueSum(std::vector<
     const uint32_t END_IDX = 1;
 
     uint32_t totalNode = (uint32_t)nums.size();
-    vector<vector<int32_t>> grid(totalNode);
+    vector<vector<uint32_t>> grid(totalNode);
 
     for (const vector<int32_t> &edge : edges) {
-        int32_t start = edge[START_IDX];
-        int32_t end = edge[END_IDX];
-        grid[(uint32_t)start].push_back(end);
-        grid[(uint32_t)end].push_back(start);
+        uint32_t start = (uint32_t)edge[START_IDX];
+        uint32_t end = (uint32_t)edge[END_IDX];
+        grid[start].push_back(end);
+        grid[end].push_back(start);
     }
 
     vector<vector<int64_t>> dp = {
@@ -71,29 +71,29 @@ long long LC3068_FindTheMaximumSumOfNodeValues_DFS::maximumValueSum(std::vector<
     const uint32_t NOT_FLIP_IDX = 0;
     const uint32_t FLIP_IDX = 1;
 
-    function<void(int32_t, int32_t)> dfs = [&](int32_t curr, int32_t parent) {
-        for (int32_t child : grid[(uint32_t)curr]) {
+    auto dfs = [&](auto &&dfs, uint32_t curr, uint32_t parent) -> void {
+        for (uint32_t child : grid[curr]) {
             if (child == parent) {
                 continue;
             }
-            dfs(child, curr);
-            int64_t notFlip =
-                max(dp[FLIP_IDX][(uint32_t)curr] + dp[FLIP_IDX][(uint32_t)child], dp[NOT_FLIP_IDX][(uint32_t)curr] + dp[NOT_FLIP_IDX][(uint32_t)child]);
-            int64_t flip =
-                max(dp[NOT_FLIP_IDX][(uint32_t)curr] + dp[FLIP_IDX][(uint32_t)child], dp[FLIP_IDX][(uint32_t)curr] + dp[NOT_FLIP_IDX][(uint32_t)child]);
+            dfs(dfs, child, curr);
+            int64_t notFlip = max(dp[FLIP_IDX][curr] + dp[FLIP_IDX][(uint32_t)child],
+                                  dp[NOT_FLIP_IDX][curr] + dp[NOT_FLIP_IDX][(uint32_t)child]);
+            int64_t flip = max(dp[NOT_FLIP_IDX][curr] + dp[FLIP_IDX][(uint32_t)child],
+                               dp[FLIP_IDX][curr] + dp[NOT_FLIP_IDX][(uint32_t)child]);
 
-            dp[NOT_FLIP_IDX][(uint32_t)curr] = notFlip;
-            dp[FLIP_IDX][(uint32_t)curr] = flip;
+            dp[NOT_FLIP_IDX][curr] = notFlip;
+            dp[FLIP_IDX][curr] = flip;
         }
 
-        int64_t oldNotflip = dp[NOT_FLIP_IDX][(uint32_t)curr];
-        int64_t oldFlip = dp[FLIP_IDX][(uint32_t)curr];
+        int64_t oldNotflip = dp[NOT_FLIP_IDX][curr];
+        int64_t oldFlip = dp[FLIP_IDX][curr];
 
-        dp[NOT_FLIP_IDX][(uint32_t)curr] = max(oldNotflip + nums[(uint32_t)curr], oldFlip + (nums[(uint32_t)curr] ^ k));
-        dp[FLIP_IDX][(uint32_t)curr] = max(oldNotflip + (nums[(uint32_t)curr] ^ k), oldFlip + nums[(uint32_t)curr]);
+        dp[NOT_FLIP_IDX][curr] = max(oldNotflip + nums[curr], oldFlip + (nums[curr] ^ k));
+        dp[FLIP_IDX][curr] = max(oldNotflip + (nums[curr] ^ k), oldFlip + nums[curr]);
     };
 
-    dfs(0, -1);
+    dfs(dfs, 0, totalNode);
     return dp[NOT_FLIP_IDX][0];
 }
 
