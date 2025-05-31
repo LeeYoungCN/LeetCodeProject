@@ -2,6 +2,7 @@
  * Time : 2025-05-29 17:35:45
  * URL  : https://leetcode.cn/problems/minimum-height-trees/
  */
+#include <algorithm>
 #include <vector>
 
 #include "gtest/gtest.h"
