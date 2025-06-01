@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 file_path=$(cd $(dirname $0); pwd)
 root_path=$(cd ${file_path}/..; pwd)
 

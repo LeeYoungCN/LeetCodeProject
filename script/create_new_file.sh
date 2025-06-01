@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 file_path="$(cd $(dirname $0); pwd)"
 root_path="$(cd ${file_path}/..; pwd)"
 
@@ -95,6 +95,7 @@ create_new_file_by_template() {
     replace_text "FUNC_PARAM"       "${func_param}"             "${new_file}"
     replace_text "CLASS_FUNC"       "${func_name}"              "${new_file}"
     replace_text "TIME_STR"         "${time_str}"               "${new_file}"
+    replace_text "PARAM_NAMES"      "${param_names}"            "${new_file}"
 }
 
 main() {
@@ -106,6 +107,19 @@ main() {
         func_param="${lc_func##*(}"
         func_param="${func_param%)}"
     fi
+
+    IFS=' ' read -r -a array <<< "${func_param}"
+    length=${#array[@]}
+
+    index=1
+    param_names=""
+    while [[ $index -lt $length ]]; do
+        param_names="${param_names}${array[$index]}"
+        if [ $index -lt $((length - 1)) ]; then
+            param_names="${param_names} "
+        fi
+        index=$((index + 2))
+    done
 
     # "https://leetcode.cn/problems/"
     local problem_name=$(echo ${url} | awk -F / '{print $5}')

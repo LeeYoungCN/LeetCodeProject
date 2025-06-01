@@ -34,13 +34,14 @@ void TEST_CLASSNAME::TearDown()
 void TEST_CLASSNAME::RunTest(FUNC_PARAM, FUNC_RET_TYPE expect)
 {
     for (CLASS_NAME *inst : m_testList) {
-        EXPECT_EQ(expect, inst->CLASS_FUNC(FUNC_PARAM));
+        EXPECT_EQ(expect, inst->CLASS_FUNC(PARAM_NAMES));
     }
 }
 
 TEST_F(TEST_CLASSNAME, case1)
 {
-    vector<int> nums = {1, 2, 3, 4};
-    RunTest(nums, 0);
+    FUNC_PARAM;
+    FUNC_RET_TYPE expect = 0;
+    RunTest(PARAM_NAMES, expect);
 }
 
