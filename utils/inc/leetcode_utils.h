@@ -40,13 +40,16 @@ void PrintVector(const std::vector<NUMBER> &vec, uint32_t start = 0, uint32_t en
     std::cout << Vector2String(vec, start, end, hasIdx) << std::endl;
 }
 
-class UtilsDegbug {
+class UtilsDebug {
 public:
-    virtual std::string ToString() = 0;
+    UtilsDebug() = default;
+    virtual ~UtilsDebug() = default;
+
+    virtual std::string toString() = 0;
 };
 
-void PrintVector(const std::vector<UtilsDegbug *> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true);
-std::string Vector2String(const std::vector<UtilsDegbug *> &vec, uint32_t start = 0, uint32_t end = 0,
+void PrintVector(const std::vector<UtilsDebug *> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true);
+std::string Vector2String(const std::vector<UtilsDebug *> &vec, uint32_t start = 0, uint32_t end = 0,
                           bool hasIdx = true);
 
 #endif  // LEETCODE_UTILS_H

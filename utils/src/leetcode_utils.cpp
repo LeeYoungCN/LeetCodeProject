@@ -26,12 +26,12 @@ vector<vector<uint32_t>> GetGraphByEdges(const vector<vector<int32_t>> &edges)
     return graph;
 }
 
-void PrintVector(const std::vector<UtilsDegbug *> &vec, uint32_t start, uint32_t end, bool hasIdx)
+void PrintVector(const std::vector<UtilsDebug *> &vec, uint32_t start, uint32_t end, bool hasIdx)
 {
     cout << Vector2String(vec, start, end, hasIdx) << endl;
 }
 
-std::string Vector2String(const std::vector<UtilsDegbug *> &vec, uint32_t start, uint32_t end, bool hasIdx)
+std::string Vector2String(const std::vector<UtilsDebug *> &vec, uint32_t start, uint32_t end, bool hasIdx)
 
 {
     if (end == 0) {
@@ -47,7 +47,7 @@ std::string Vector2String(const std::vector<UtilsDegbug *> &vec, uint32_t start,
             str += "[" + std::to_string(index) + "]=";
         }
 
-        str += vec[i]->ToString();
+        str += vec[i]->toString();
         if (i < length - 1) {
             str += ", ";
         }
