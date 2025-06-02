@@ -13,8 +13,9 @@ target=""
 test_case=""
 enable_clean=1
 preset="linux_gnu_debug"
+prefix=""
 
-ARGS=$(getopt -o c,t:p: --long clean,test:,pre_set: -n "$0" -- "$@")
+ARGS=$(getopt -o c,t:s:p: --long clean,test:,pre_set:prefix: -n "$0" -- "$@")
 
 if [ $? != 0 ]; then
     echo "Terminating..." >&2 ;
@@ -25,9 +26,10 @@ eval set -- "$ARGS"
 
 while true; do
     case "$1" in
-        -c|--clean) enable_clean=0; shift 1;;
-        -t|--test)  test_case="$2"; shift 2;;
-        -p|--pre_set) preset="$2"; shift 2;;
+        -c|--clean)     enable_clean=0; shift 1;;
+        -t|--test)      test_case="$2"; shift 2;;
+        -s|--pre_set)   preset="$2"; shift 2;;
+        -p|--prefix)    prefix="$2"; shift 2;;
         --) shift 1; break;;
         *) print_log "Internal error!";  exit 1;;
     esac
@@ -97,6 +99,7 @@ if [ ! -d "${buildcache_dir}" ]; then
           -DCMAKE_BUILD_TYPE="${build_type}" \
           -DCMAKE_INSTALL_PREFIX="${install_dir}" \
           -DCMAKE_TOOLCHAIN_FILE="${toolchain_file}" \
+          -DPROBLEM_PREFIX=${prefix}    \
           -G "${generator}"
 
     if [ $? -ne 0 ]; then

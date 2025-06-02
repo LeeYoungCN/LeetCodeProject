@@ -1,5 +1,11 @@
 add_executable(${TEST_RUNTIME_NAME})
-aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} SRC_LIST)
+
+if (NOT PROBLEM_PREFIX)
+    aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} SRC_LIST)
+else()
+    file(GLOB SRC_LIST "test_${PROBLEM_PREFIX}*.cpp" main.cpp)
+endif()
+
 target_sources(${TEST_RUNTIME_NAME} PRIVATE ${SRC_LIST})
 
 add_dependencies(${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME})
