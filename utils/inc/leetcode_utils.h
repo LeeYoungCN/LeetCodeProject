@@ -3,13 +3,14 @@
 
 #include <cstdint>
 #include <iostream>
+#include <map>
 #include <string>
 #include <vector>
 
 std::vector<std::vector<uint32_t>> GetGraphByEdges(const std::vector<std::vector<int32_t>> &edges);
 
-template <class NUMBER>
-std::string Vector2String(const std::vector<NUMBER> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
+template <class T>
+std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
 {
     if (end == 0) {
         end = (uint32_t)vec.size();
@@ -34,10 +35,28 @@ std::string Vector2String(const std::vector<NUMBER> &vec, uint32_t start = 0, ui
     return str;
 }
 
-template <class NUMBER>
-void PrintVector(const std::vector<NUMBER> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
+template <class T>
+void PrintVector(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
 {
     std::cout << Vector2String(vec, start, end, hasIdx) << std::endl;
+}
+
+template <class K = int32_t, class V = int32_t, class cmp = std::less<K>>
+std::string Map2String(std::map<K, V, cmp> map)
+{
+    std::string str;
+    for (const auto &[key, val] : map) {
+        str += "[" + std::to_string(key) + " : " + std::to_string(val) + "], ";
+    }
+    str.pop_back();
+    str.pop_back();
+    return str;
+}
+
+template <class K = int32_t, class V = int32_t, class cmp = std::less<K>>
+void PrintMap(std::map<K, V, cmp> map)
+{
+    std::cout << Map2String(map) << std::endl;
 }
 
 class UtilsDebug {
