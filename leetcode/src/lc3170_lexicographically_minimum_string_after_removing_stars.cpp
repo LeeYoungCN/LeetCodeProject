@@ -5,6 +5,7 @@
  */
 #include "lc3170_lexicographically_minimum_string_after_removing_stars.h"
 
+#include <algorithm>
 #include <cstdint>
 #include <map>
 #include <queue>
@@ -40,4 +41,28 @@ string LC3170_LexicographicallyMinimumStringAfterRemovingStars_Heap::clearStars(
     }
 
     return ans;
+}
+
+string LC3170_LexicographicallyMinimumStringAfterRemovingStars_Stack::clearStars(string s)
+{
+    const uint32_t length = (uint32_t)s.size();
+
+    map<char, vector<uint32_t>> charMap;
+    for (uint32_t i = 0; i < length; ++i) {
+        char c = s[i];
+        if (c != '*') {
+            charMap[c].push_back(i);
+            continue;
+        }
+
+        s[charMap.begin()->second.back()] = '*';
+        charMap.begin()->second.pop_back();
+
+        if (charMap.begin()->second.empty()) {
+            charMap.erase(charMap.begin());
+        }
+    }
+
+    s.erase(remove(s.begin(), s.end(), '*'), s.end());
+    return s;
 }

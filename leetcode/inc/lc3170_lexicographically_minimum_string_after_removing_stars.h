@@ -23,4 +23,12 @@ public:
     std::string clearStars(std::string s) override;
 };
 
+class LC3170_LexicographicallyMinimumStringAfterRemovingStars_Stack
+    : public LC3170_LexicographicallyMinimumStringAfterRemovingStars {
+public:
+    LC3170_LexicographicallyMinimumStringAfterRemovingStars_Stack() = default;
+    ~LC3170_LexicographicallyMinimumStringAfterRemovingStars_Stack() override = default;
+    std::string clearStars(std::string s) override;
+};
+
 #endif  // LC3170_LEXICOGRAPHICALLY_MINIMUM_STRING_AFTER_REMOVING_STARS_H

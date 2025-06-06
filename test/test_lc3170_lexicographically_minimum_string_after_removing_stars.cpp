@@ -25,6 +25,7 @@ protected:
 void TEST_LC3170::SetUp()
 {
     m_testList.push_back(new LC3170_LexicographicallyMinimumStringAfterRemovingStars_Heap());
+    m_testList.push_back(new LC3170_LexicographicallyMinimumStringAfterRemovingStars_Stack());
 }
 
 void TEST_LC3170::TearDown()
