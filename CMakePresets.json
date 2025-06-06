@@ -99,6 +99,42 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
+        },
+        {
+            "name": "darwin_base",
+            "hidden": true,
+            "generator": "Unix Makefiles",
+            "inherits": "project-base",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Darwin"
+            }
+        },
+        {
+            "name": "darwin_clang_base",
+            "hidden": true,
+            "inherits": "darwin_base",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
+            }
+        },
+        {
+            "name": "darwin_clang_debug",
+            "displayName": "Darwin Clang Debug",
+            "inherits": "darwin_clang_base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "darwin_clang_release",
+            "displayName": "Darwin Clang Release",
+            "inherits": "darwin_clang_base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
         }
     ]
 }

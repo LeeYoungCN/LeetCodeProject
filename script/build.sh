@@ -40,6 +40,8 @@ os=$(uname -s)
 if echo "${os}" | grep -q "MINGW" ; then
     os="MINGW"
     preset="mingw_debug"
+elif [ "${os}" = "Darwin" ] ; then
+    preset="darwin_clang_debug"
 fi
 
 case "$preset" in
@@ -71,6 +73,16 @@ case "$preset" in
     mingw_release)
         toolchain_file=${toolchain_file_dir}/mingw.cmake
         generator="MinGW Makefiles"
+        build_type="Release"
+    ;;
+    darwin_clang_debug)
+        toolchain_file=${toolchain_file_dir}/drawin_clang.cmake
+        generator="Unix Makefiles"
+        build_type="Debug"
+    ;;
+    darwin_clang_release)
+        toolchain_file=${toolchain_file_dir}/drawin_clang.cmake
+        generator="Unix Makefiles"
         build_type="Release"
     ;;
     *) print_log "Pre set error!";  exit 1;;
