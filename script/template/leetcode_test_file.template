@@ -34,7 +34,8 @@ void TEST_CLASSNAME::TearDown()
 void TEST_CLASSNAME::RunTest(FUNC_PARAM, FUNC_RET_TYPE expect)
 {
     for (CLASS_NAME *inst : m_testList) {
-        EXPECT_EQ(expect, inst->CLASS_FUNC(PARAM_NAMES));
+        FUNC_RET_TYPE result = inst->CLASS_FUNC(PARAM_NAMES);
+        EXPECT_EQ(expect, result);
     }
 }
 
