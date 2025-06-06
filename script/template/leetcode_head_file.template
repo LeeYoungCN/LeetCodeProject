@@ -5,17 +5,11 @@
 #ifndef DEF_STR
 #define DEF_STR
 
-#include <string>
-#include <vector>
-#include <deque>
-#include <set>
-#include <map>
-
 class CLASS_NAME {
-    public:
-        CLASS_NAME() = default;
-        virtual ~CLASS_NAME() = default;
-        FUNC_RET_TYPE CLASS_FUNC(FUNC_PARAM);
+public:
+    CLASS_NAME() = default;
+    virtual ~CLASS_NAME() = default;
+    FUNC_RET_TYPE CLASS_FUNC(FUNC_PARAM);
 };
 
-#endif // DEF_STR
+#endif  // DEF_STR

@@ -2,19 +2,9 @@
  * Time : TIME_STR
  * URL  : URL_STR
  */
-#include <cstdint>
-#include <algorithm>
-#include <string>
-#include <vector>
-#include <queue>
-#include <deque>
-#include <set>
-#include <stack>
-#include <unordered_set>
-#include <map>
-#include <unordered_map>
-#include <functional>
 #include "HEAD_FILE_NAME"
+
+#include <cstdint>
 
 using namespace std;
 
@@ -22,4 +12,3 @@ FUNC_RET_TYPE CLASS_NAME::CLASS_FUNC(FUNC_PARAM)
 {
     return 0;
 }
-
