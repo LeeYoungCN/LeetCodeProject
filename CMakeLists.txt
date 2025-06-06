@@ -12,7 +12,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_compile_definitions(-D__LC_DEBUG__)
+    add_compile_definitions(DEBUG_MODE)
 endif()
 
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
