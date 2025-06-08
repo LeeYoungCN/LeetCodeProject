@@ -1,6 +1,6 @@
 add_executable(${TEST_RUNTIME_NAME})
 
-if (NOT PROBLEM_PREFIX)
+if (PROBLEM_PREFIX STREQUAL "ALL")
     aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} SRC_LIST)
 else()
     file(GLOB SRC_LIST "test_${PROBLEM_PREFIX}*.cpp" main.cpp)

@@ -1,6 +1,6 @@
 add_library(${LEETCODE_LIB_NAME} SHARED)
 
-if (NOT PROBLEM_PREFIX)
+if (PROBLEM_PREFIX STREQUAL "ALL")
     aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_LIST)
 else()
     file(GLOB SRC_LIST "src/${PROBLEM_PREFIX}*.cpp")
