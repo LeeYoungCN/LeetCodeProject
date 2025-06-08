@@ -6,7 +6,10 @@
             "hidden": true,
             "binaryDir": "${sourceDir}/out/build/",
             "installDir": "${sourceDir}/out/install/${presetName}",
-            "description": "项目基础设置"
+            "description": "项目基础设置",
+            "cacheVariables": {
+                "PROBLEM_PREFIX": "ALL"
+            }
         },
         {
             "name": "mingw-base",
