@@ -10,8 +10,10 @@
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
-            "command": "bash ./build.sh -c",
-            "args": [],
+            "command": "${workspaceFolder}/script/build.sh",
+            "args": [
+                "-c"
+            ],
             "detail": "根据makefile生成可执行文件和库文件",
             "problemMatcher": [
                 "$gcc"
@@ -22,7 +24,7 @@
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
-            "command": "bash ./build.sh",
+            "command": "${workspaceFolder}/script/build.sh",
             "args": [],
             "detail": "根据makefile生成可执行文件和库文件",
             "problemMatcher": [
@@ -34,8 +36,11 @@
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
-            "command": "bash ./build.sh -t \"*\"",
-            "args": [],
+            "command": "${workspaceFolder}/script/build.sh",
+            "args": [
+                "-t",
+                "\"*\""
+            ],
             "detail": "根据makefile生成可执行文件和库文件",
             "problemMatcher": [
                 "$gcc"
