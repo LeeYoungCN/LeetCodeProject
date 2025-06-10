@@ -9,8 +9,6 @@
 #include <cstdint>
 #include <vector>
 
-#include "leetcode_utils.h"
-
 using namespace std;
 
 int32_t LC3372_MaximizeTheNumberOfTargetNodesAfterConnectingTreesI::GetKNodeCnt(const vector<vector<uint32_t>>& graph,
@@ -37,7 +35,18 @@ vector<int32_t> LC3372_MaximizeTheNumberOfTargetNodesAfterConnectingTreesI::GetK
     const vector<vector<int>>& edges, int32_t k)
 {
     const uint32_t nodeCnt = (uint32_t)edges.size() + 1;
-    vector<vector<uint32_t>> graph = GetGraphByEdges(edges);
+    const uint32_t START_NODE = 0;
+    const uint32_t END_NODE = 1;
+
+    vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
+
+    for (const vector<int32_t>& edge : edges) {
+        uint32_t start = (uint32_t)edge[START_NODE];
+        uint32_t end = (uint32_t)edge[END_NODE];
+
+        graph[start].push_back(end);
+        graph[end].push_back(start);
+    }
 
     vector<int32_t> ans(nodeCnt, 0);
     for (uint32_t i = 0; i < nodeCnt; i++) {

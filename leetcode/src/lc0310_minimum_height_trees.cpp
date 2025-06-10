@@ -10,9 +10,11 @@
 #include <queue>
 #include <vector>
 
-#include "leetcode_utils.h"
-
 using namespace std;
+namespace {
+const uint32_t START_NODE = 0;
+const uint32_t END_NODE = 1;
+}  // namespace
 
 vector<int> LC0310_MinimumHeightTrees_DFS::findMinHeightTrees(int n, vector<vector<int>> &edges)
 {
@@ -21,7 +23,16 @@ vector<int> LC0310_MinimumHeightTrees_DFS::findMinHeightTrees(int n, vector<vect
     }
 
     uint32_t nodeCnt = (uint32_t)n;
-    vector<vector<uint32_t>> graph = GetGraphByEdges(edges);
+
+    vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
+
+    for (const vector<int32_t> &edge : edges) {
+        uint32_t start = (uint32_t)edge[START_NODE];
+        uint32_t end = (uint32_t)edge[END_NODE];
+
+        graph[start].push_back(end);
+        graph[end].push_back(start);
+    }
     vector<uint32_t> parentNode(nodeCnt, nodeCnt);
 
     uint32_t maxNode = nodeCnt;
@@ -71,7 +82,16 @@ vector<int> LC0310_MinimumHeightTrees_BFS::findMinHeightTrees(int n, vector<vect
     }
 
     uint32_t nodeCnt = (uint32_t)n;
-    vector<vector<uint32_t>> graph = GetGraphByEdges(edges);
+
+    vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
+
+    for (const vector<int32_t> &edge : edges) {
+        uint32_t start = (uint32_t)edge[START_NODE];
+        uint32_t end = (uint32_t)edge[END_NODE];
+
+        graph[start].push_back(end);
+        graph[end].push_back(start);
+    }
     vector<uint32_t> parentNode(nodeCnt, nodeCnt);
     vector<uint32_t> distance(nodeCnt, 0);
 

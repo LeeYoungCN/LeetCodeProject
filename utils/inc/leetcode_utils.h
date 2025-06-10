@@ -5,9 +5,8 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <unordered_map>
 #include <vector>
-
-std::vector<std::vector<uint32_t>> GetGraphByEdges(const std::vector<std::vector<int32_t>> &edges);
 
 template <class T>
 std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
@@ -41,12 +40,32 @@ void PrintVector(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0
     std::cout << Vector2String(vec, start, end, hasIdx) << std::endl;
 }
 
-template <class K = int32_t, class V = int32_t, class cmp = std::less<K>>
+template <class map_type, class K = int32_t, class V = int32_t, class cmp = std::less<K>>
 std::string Map2String(std::map<K, V, cmp> map)
 {
     std::string str;
     for (const auto &[key, val] : map) {
-        str += "[" + std::to_string(key) + " : " + std::to_string(val) + "], ";
+        if (std::is_same<K, char>::value) {
+            str += "[" + &key + " : " + std::to_string(val) + "], ";
+        } else {
+            str += "[" + std::to_string(key) + " : " + std::to_string(val) + "], ";
+        }
+    }
+    str.pop_back();
+    str.pop_back();
+    return str;
+}
+
+template <class K, class V>
+std::string Map2String(std::unordered_map<K, V> map)
+{
+    std::string str;
+    for (const auto &[key, val] : map) {
+        if (std::is_same<K, char>::value) {
+            str += "[" + &key + " : " + std::to_string(val) + "], ";
+        } else {
+            str += "[" + std::to_string(key) + " : " + std::to_string(val) + "], ";
+        }
     }
     str.pop_back();
     str.pop_back();
@@ -55,6 +74,12 @@ std::string Map2String(std::map<K, V, cmp> map)
 
 template <class K = int32_t, class V = int32_t, class cmp = std::less<K>>
 void PrintMap(std::map<K, V, cmp> map)
+{
+    std::cout << Map2String(map) << std::endl;
+}
+
+template <class K, class V>
+void PrintMap(std::map<K, V> map)
 {
     std::cout << Map2String(map) << std::endl;
 }
