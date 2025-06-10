@@ -15,7 +15,7 @@ enable_clean=1
 preset="linux_gnu_debug"
 prefix=""
 
-ARGS=$(getopt -o c,t:s:p: --long clean,test:,pre_set:prefix: -n "$0" -- "$@")
+ARGS=$(getopt -o ct:s:p: --long clean,test:,pre_set:,prefix: -n "$0" -- "$@")
 
 if [ $? != 0 ]; then
     echo "Terminating..." >&2 ;
