@@ -52,7 +52,8 @@ while true; do
 done
 
 if [ -z "${prefix}" ] || [ -z "${url}" ]; then
-    print_log "error"
+    print_log "prefix or url empty."
+    exit 1
 fi
 
 echo "prefix [${prefix}]"
