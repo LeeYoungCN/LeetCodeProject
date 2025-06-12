@@ -13,7 +13,7 @@ using namespace std;
 
 int LC1456_MaximumNumberOfVowelsInASubstringOfGivenLength::maxVowels(string s, int k)
 {
-    const uint32_t length = (uint32_t)s.size();
+    const auto length = static_cast<uint32_t>(s.size());
 
     function<bool(char)> isVowels = [](char c) -> bool {
         return (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
@@ -28,16 +28,16 @@ int LC1456_MaximumNumberOfVowelsInASubstringOfGivenLength::maxVowels(string s, i
         if (isVowels(c)) {
             tmp++;
         }
-        if (end - start > (uint32_t)k) {
+        if (end - start > static_cast<uint32_t>(k)) {
             if (isVowels(s.at(start))) {
                 tmp--;
             }
             start++;
         }
         ans = max(ans, tmp);
-        if (ans >= (uint32_t)k) {
+        if (ans >= static_cast<uint32_t>(k)) {
             return k;
         }
     }
-    return (int32_t)ans;
+    return static_cast<int32_t>(ans);
 }

@@ -21,8 +21,8 @@ vector<int32_t> LC0386_LexicographicalNumbers_Str2Num::lexicalOrder(int32_t n)
     }
 
     vector<int32_t> ans;
-    ans.reserve((size_t)n);
-    for (string x : strSet) {
+    ans.reserve(static_cast<size_t>(n));
+    for (const string &x : strSet) {
         ans.push_back(atoi(x.c_str()));
     }
 
@@ -32,7 +32,7 @@ vector<int32_t> LC0386_LexicographicalNumbers_Str2Num::lexicalOrder(int32_t n)
 vector<int32_t> LC0386_LexicographicalNumbers_DFS::lexicalOrder(int32_t n)
 {
     vector<int32_t> ans;
-    ans.reserve((size_t)n);
+    ans.reserve(static_cast<size_t>(n));
 
     auto dfs = [&](auto &&dfs, int32_t base) -> bool {
         if (base > n) {
@@ -86,7 +86,7 @@ vector<int32_t> LC0386_LexicographicalNumbers_Iterator::lexicalOrder(int32_t n)
     NumIterator iter(n);
 
     vector<int32_t> ans;
-    ans.reserve((size_t)n);
+    ans.reserve(static_cast<size_t>(n));
 
     while (iter.HasNext()) {
         ans.push_back(iter.Next());

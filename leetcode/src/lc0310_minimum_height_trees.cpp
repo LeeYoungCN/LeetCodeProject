@@ -22,13 +22,13 @@ vector<int> LC0310_MinimumHeightTrees_DFS::findMinHeightTrees(int n, vector<vect
         return {0};
     }
 
-    uint32_t nodeCnt = (uint32_t)n;
+    auto nodeCnt = static_cast<uint32_t>(n);
 
     vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
 
     for (const vector<int32_t> &edge : edges) {
-        uint32_t start = (uint32_t)edge[START_NODE];
-        uint32_t end = (uint32_t)edge[END_NODE];
+        auto start = static_cast<uint32_t>(edge[START_NODE]);
+        auto end = static_cast<uint32_t>(edge[END_NODE]);
 
         graph[start].push_back(end);
         graph[end].push_back(start);
@@ -64,7 +64,7 @@ vector<int> LC0310_MinimumHeightTrees_DFS::findMinHeightTrees(int n, vector<vect
     vector<int32_t> path(maxDepth + 1, 0);
     for (uint32_t i = 0; i <= maxDepth; i++) {
         uint32_t j = maxDepth - i;
-        path[j] = (int32_t)tmpNode;
+        path[j] = static_cast<int32_t>(tmpNode);
         tmpNode = parentNode[tmpNode];
     }
     // Build ans.
@@ -81,13 +81,13 @@ vector<int> LC0310_MinimumHeightTrees_BFS::findMinHeightTrees(int n, vector<vect
         return {0};
     }
 
-    uint32_t nodeCnt = (uint32_t)n;
+    auto nodeCnt = static_cast<uint32_t>(n);
 
     vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
 
     for (const vector<int32_t> &edge : edges) {
-        uint32_t start = (uint32_t)edge[START_NODE];
-        uint32_t end = (uint32_t)edge[END_NODE];
+        auto start = static_cast<uint32_t>(edge[START_NODE]);
+        auto end = static_cast<uint32_t>(edge[END_NODE]);
 
         graph[start].push_back(end);
         graph[end].push_back(start);
@@ -128,7 +128,7 @@ vector<int> LC0310_MinimumHeightTrees_BFS::findMinHeightTrees(int n, vector<vect
 
     for (uint32_t i = 0; i < maxDist; i++) {
         uint32_t j = maxDist - i - 1;
-        path[j] = (int32_t)tmp;
+        path[j] = static_cast<int32_t>(tmp);
         tmp = parentNode[tmp];
     }
 
@@ -145,13 +145,13 @@ vector<int> LC0310_MinimumHeightTrees_TopologicalSort::findMinHeightTrees(int n,
         return {0};
     }
 
-    uint32_t nodeCnt = (uint32_t)n;
+    auto nodeCnt = static_cast<uint32_t>(n);
     vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
     vector<uint32_t> nodeDegree(nodeCnt, 0);
 
     for (const vector<int32_t> &edge : edges) {
-        uint32_t start = (uint32_t)edge[0];
-        uint32_t end = (uint32_t)edge[1];
+        auto start = static_cast<uint32_t>(edge[0]);
+        auto end = static_cast<uint32_t>(edge[1]);
 
         graph[start].push_back(end);
         graph[end].push_back(start);
@@ -170,7 +170,7 @@ vector<int> LC0310_MinimumHeightTrees_TopologicalSort::findMinHeightTrees(int n,
     uint32_t remnant = nodeCnt;
 
     while (remnant > 2) {
-        uint32_t leafCnt = (uint32_t)leafNodes.size();
+        auto leafCnt = static_cast<uint32_t>(leafNodes.size());
 
         for (uint32_t i = 0; i < leafCnt; i++) {
             uint32_t leaf = leafNodes.front();
@@ -188,7 +188,7 @@ vector<int> LC0310_MinimumHeightTrees_TopologicalSort::findMinHeightTrees(int n,
 
     vector<int32_t> ans;
     while (!leafNodes.empty()) {
-        ans.push_back((int32_t)leafNodes.front());
+        ans.push_back(static_cast<int32_t>(leafNodes.front()));
         leafNodes.pop();
     }
 

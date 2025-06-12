@@ -15,13 +15,13 @@ using namespace std;
 
 bool LC0055_JumpGame::canJump(std::vector<int>& nums)
 {
-    uint32_t distance = (uint32_t)nums.size();
-    uint32_t currMaxDistance = (uint32_t)nums[0];
+    auto distance = static_cast<uint32_t>(nums.size());
+    auto currMaxDistance = static_cast<uint32_t>(nums[0]);
     for (uint32_t i = 0; i < distance; i++) {
         if (i > currMaxDistance) {
             return false;
         }
-        currMaxDistance = max(currMaxDistance, (uint32_t)nums[i] + i);
+        currMaxDistance = max(currMaxDistance, static_cast<uint32_t>(nums[i]) + i);
         if (currMaxDistance >= distance - 1) {
             return true;
         }

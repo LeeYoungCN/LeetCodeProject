@@ -18,14 +18,14 @@ class LC0426_PartitionEqualSubsetSum_DP1 : public LC0426_PartitionEqualSubsetSum
 public:
     LC0426_PartitionEqualSubsetSum_DP1() = default;
     ~LC0426_PartitionEqualSubsetSum_DP1() override = default;
-    bool canPartition(std::vector<int>& nums) override;
+    bool canPartition(std::vector<int>& nums) final;
 };
 
 class LC0426_PartitionEqualSubsetSum_DP2 : public LC0426_PartitionEqualSubsetSum {
 public:
     LC0426_PartitionEqualSubsetSum_DP2() = default;
     ~LC0426_PartitionEqualSubsetSum_DP2() override = default;
-    bool canPartition(std::vector<int>& nums) override;
+    bool canPartition(std::vector<int>& nums) final;
 };
 
 #endif  // LC0426_PARTITION_EQUAL_SUBSET_SUM_H

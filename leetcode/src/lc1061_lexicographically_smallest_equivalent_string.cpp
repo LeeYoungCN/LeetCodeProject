@@ -43,21 +43,21 @@ void UnionFind::Union(uint32_t x, uint32_t y)
     }
 }
 
-#define C2N(chr) uint32_t(chr - 'a')
-#define N2C(num) char(num + 'a')
+#define C2N(chr) uint32_t((chr) - 'a')
+#define N2C(num) char((num) + 'a')
 
 string LC1061_LexicographicallySmallestEquivalentString::smallestEquivalentString(string s1, string s2, string baseStr)
 {
     const uint32_t CHAR_NUM = 26;
     UnionFind uf(CHAR_NUM);
 
-    const uint32_t length = (uint32_t)s1.size();
+    const auto length = static_cast<uint32_t>(s1.size());
     for (uint32_t i = 0; i < length; i++) {
         uf.Union(C2N(s1[i]), C2N(s2[i]));
     }
 
-    for (uint32_t i = 0; i < baseStr.size(); i++) {
-        baseStr[i] = N2C(uf.Find(C2N(baseStr[i])));
+    for (char &c : baseStr) {
+        c = N2C(uf.Find(C2N(c)));
     }
 
     return baseStr;

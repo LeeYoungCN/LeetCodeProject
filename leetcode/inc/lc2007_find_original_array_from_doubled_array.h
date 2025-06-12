@@ -18,7 +18,7 @@ class LC2007_FindOriginalArrayFromDoubledArray_Map : public LC2007_FindOriginalA
 public:
     LC2007_FindOriginalArrayFromDoubledArray_Map() = default;
     virtual ~LC2007_FindOriginalArrayFromDoubledArray_Map() override = default;
-    std::vector<int> findOriginalArray(std::vector<int>& changed) override;
+    std::vector<int> findOriginalArray(std::vector<int>& changed) final;
 };
 
 #endif  // LC2007_FIND_ORIGINAL_ARRAY_FROM_DOUBLED_ARRAY_H

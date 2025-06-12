@@ -9,7 +9,7 @@
 
 class LC1423_MaximumPointsYouCanObtainFromCards {
 public:
-    LC1423_MaximumPointsYouCanObtainFromCards()          = default;
+    LC1423_MaximumPointsYouCanObtainFromCards() = default;
     virtual ~LC1423_MaximumPointsYouCanObtainFromCards() = default;
     int maxScore(std::vector<int>& cardPoints, int k);
 };

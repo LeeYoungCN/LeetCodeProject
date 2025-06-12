@@ -21,7 +21,9 @@ public:
 
 class LC3356_ZeroArrayTransformationII_Array : public LC3356_ZeroArrayTransformationII {
 public:
-    int minZeroArray(std::vector<int>& nums, std::vector<std::vector<int>>& queries);
+    LC3356_ZeroArrayTransformationII_Array() = default;
+    ~LC3356_ZeroArrayTransformationII_Array() override = default;
+    int minZeroArray(std::vector<int>& nums, std::vector<std::vector<int>>& queries) final;
 
 private:
     bool isZeroArray(const std::vector<int>& nums, const std::vector<std::vector<int>>& queries, unsigned int step);
@@ -29,7 +31,9 @@ private:
 
 class LC3356_ZeroArrayTransformationII_Greedy : public LC3356_ZeroArrayTransformationII {
 public:
-    int minZeroArray(std::vector<int>& nums, std::vector<std::vector<int>>& queries);
+    LC3356_ZeroArrayTransformationII_Greedy() = default;
+    ~LC3356_ZeroArrayTransformationII_Greedy() override = default;
+    int minZeroArray(std::vector<int>& nums, std::vector<std::vector<int>>& queries) final;
 };
 
 #endif  // LC3356_ZERO_ARRAY_TRANSFORMATION_II_H

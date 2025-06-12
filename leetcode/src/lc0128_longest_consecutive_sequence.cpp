@@ -20,7 +20,8 @@ int LC0128_LongestConsecutiveSequence::longestConsecutive(vector<int>& nums)
         }
 
         int32_t y = x;
-        while (numSet.find(++y) != numSet.end()) {}
+        while (numSet.find(++y) != numSet.end()) {
+        }
         ans = max(ans, y - x);
     }
     return ans;

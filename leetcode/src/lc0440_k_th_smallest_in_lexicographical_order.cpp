@@ -29,7 +29,7 @@ int32_t LC0440_KThSmallestInLexicographicalOrder::findKthNumber(int32_t n, int32
     int32_t currStep = 1;
 
     while (currStep < k) {
-        int32_t step = (int32_t)GetStep(curr, n);
+        auto step = static_cast<int32_t>(GetStep(curr, n));
         if (currStep + step <= k) {
             currStep += step;
             curr++;

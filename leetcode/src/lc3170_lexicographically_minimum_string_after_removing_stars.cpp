@@ -45,7 +45,7 @@ string LC3170_LexicographicallyMinimumStringAfterRemovingStars_Heap::clearStars(
 
 string LC3170_LexicographicallyMinimumStringAfterRemovingStars_Stack::clearStars(string s)
 {
-    const uint32_t length = (uint32_t)s.size();
+    const auto length = static_cast<uint32_t>(s.size());
 
     map<char, vector<uint32_t>> charMap;
     for (uint32_t i = 0; i < length; ++i) {

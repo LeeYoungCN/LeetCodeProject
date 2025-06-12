@@ -38,10 +38,10 @@ bool LC1847_LargestColorValueInADirectedGraph_DFS::dfs(uint32_t curr, vector<Vis
             return false;
         }
         for (uint32_t i = 0; i < COLOR_CNT; i++) {
-            dp[(uint32_t)curr][i] = max(dp[child][i], dp[curr][i]);
+            dp[curr][i] = max(dp[child][i], dp[curr][i]);
         }
     }
-    uint32_t idx = (uint32_t)(m_colors[curr] - 'a');
+    auto idx = static_cast<uint32_t>(m_colors[curr] - 'a');
     dp[curr][idx] += 1;
     visitor[curr] = VisitStatus::FINISH;
     return true;
@@ -51,11 +51,11 @@ int LC1847_LargestColorValueInADirectedGraph_DFS::largestPathValue(string colors
 {
     m_colors = colors;
     m_edges = edges;
-    uint32_t nodeCnt = (uint32_t)m_colors.size();
+    auto nodeCnt = static_cast<uint32_t>(m_colors.size());
     vector<vector<uint32_t>> grid(nodeCnt);
 
     for (const vector<int32_t> &edge : m_edges) {
-        grid[(uint32_t)edge[EDGE_START]].push_back((uint32_t)edge[EDGE_END]);
+        grid[static_cast<uint32_t>(edge[EDGE_START])].push_back(static_cast<uint32_t>(edge[EDGE_END]));
     }
 
     vector<vector<int32_t>> dp(nodeCnt, vector<int32_t>(COLOR_CNT));
@@ -76,14 +76,14 @@ int LC1847_LargestColorValueInADirectedGraph_DFS::largestPathValue(string colors
 int LC1847_LargestColorValueInADirectedGraph_BFS::largestPathValue(std::string colors,
                                                                    std::vector<std::vector<int>> &edges)
 {
-    uint32_t nodeCnt = (uint32_t)colors.size();
+    auto nodeCnt = static_cast<uint32_t>(colors.size());
 
     vector<vector<uint32_t>> grid(nodeCnt);
     vector<uint32_t> inDegree(nodeCnt, 0);
 
     for (const vector<int32_t> &edge : edges) {
-        grid[(uint32_t)edge[EDGE_START]].push_back((uint32_t)edge[EDGE_END]);
-        ++inDegree[(uint32_t)edge[EDGE_END]];
+        grid[static_cast<uint32_t>(edge[EDGE_START])].push_back(static_cast<uint32_t>(edge[EDGE_END]));
+        ++inDegree[static_cast<uint32_t>(edge[EDGE_END])];
     }
 
     queue<uint32_t> nodeQue;
@@ -101,7 +101,7 @@ int LC1847_LargestColorValueInADirectedGraph_BFS::largestPathValue(std::string c
 
         uint32_t node = nodeQue.front();
         nodeQue.pop();
-        uint32_t idx = (uint32_t)colors[node] - 'a';
+        uint32_t idx = static_cast<uint32_t>(colors[node]) - 'a';
         colorTable[node][idx]++;
 
         for (uint32_t next : grid[node]) {

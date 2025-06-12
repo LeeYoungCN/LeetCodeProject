@@ -18,8 +18,8 @@ const uint32_t MAX_STEP = 6;
 
 int LC0909_SnakesAndLadders_Path::snakesAndLadders(vector<vector<int>>& board)
 {
-    const uint32_t n = (uint32_t)board.size();
-    const uint32_t target = (uint32_t)(n * n);
+    const auto n = static_cast<uint32_t>(board.size());
+    const uint32_t target = n * n;
     vector<int32_t> path(target + 1, 0);
 
     for (uint32_t i = 0, idx = 1; i < n; i++) {
@@ -50,15 +50,15 @@ int LC0909_SnakesAndLadders_Path::snakesAndLadders(vector<vector<int>>& board)
             uint32_t dist = distance[curr] + 1;
 
             if (next == target) {
-                return (int32_t)dist;
+                return static_cast<int32_t>(dist);
             }
 
             if (path[next] > 0) {
-                next = (uint32_t)path[next];
+                next = static_cast<uint32_t>(path[next]);
             }
 
             if (next == target) {
-                return (int32_t)dist;
+                return static_cast<int32_t>(dist);
             }
 
             if (!visitor[next] == true) {
@@ -73,14 +73,14 @@ int LC0909_SnakesAndLadders_Path::snakesAndLadders(vector<vector<int>>& board)
 
 int LC0909_SnakesAndLadders_XY::snakesAndLadders(vector<vector<int>>& board)
 {
-    const uint32_t n = (uint32_t)board.size();
-    const uint32_t target = (uint32_t)(n * n);
+    const auto n = static_cast<uint32_t>(board.size());
+    const auto target = static_cast<uint32_t>(n * n);
 
     function<int32_t(uint32_t)> getVal = [&](uint32_t idx) -> int32_t {
         uint32_t num = idx - 1;
-        uint32_t layer = (uint32_t)(num / n);
+        uint32_t layer = num / n;
         uint32_t x = n - 1 - layer;
-        uint32_t y = (uint32_t)(num % n);
+        uint32_t y = num % n;
         if (layer % 2 == 1) {
             y = n - y - 1;
         }
@@ -102,15 +102,15 @@ int LC0909_SnakesAndLadders_XY::snakesAndLadders(vector<vector<int>>& board)
             uint32_t dist = distance[curr] + 1;
 
             if (next == target) {
-                return (int32_t)dist;
+                return static_cast<int32_t>(dist);
             }
             int32_t val = getVal(next);
             if (val > 0) {
-                next = (uint32_t)val;
+                next = static_cast<uint32_t>(val);
             }
 
             if (next == target) {
-                return (int32_t)dist;
+                return static_cast<int32_t>(dist);
             }
 
             if (visitor[next] == true) {

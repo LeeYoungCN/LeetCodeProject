@@ -19,14 +19,14 @@ class LC0386_LexicographicalNumbers_Str2Num : public LC0386_LexicographicalNumbe
 public:
     LC0386_LexicographicalNumbers_Str2Num() = default;
     ~LC0386_LexicographicalNumbers_Str2Num() override = default;
-    std::vector<int> lexicalOrder(int n) override;
+    std::vector<int> lexicalOrder(int n) final;
 };
 
 class LC0386_LexicographicalNumbers_DFS : public LC0386_LexicographicalNumbers {
 public:
     LC0386_LexicographicalNumbers_DFS() = default;
     ~LC0386_LexicographicalNumbers_DFS() override = default;
-    std::vector<int> lexicalOrder(int n) override;
+    std::vector<int> lexicalOrder(int n) final;
 };
 
 class NumIterator {
@@ -34,19 +34,19 @@ public:
     NumIterator() = default;
     explicit NumIterator(int limit);
     ~NumIterator() = default;
-    bool HasNext() const;
+    [[nodiscard]] bool HasNext() const;
     int Next();
 
 private:
     int num = 1;
-    int limit;
+    int limit{};
 };
 
 class LC0386_LexicographicalNumbers_Iterator : public LC0386_LexicographicalNumbers {
 public:
     LC0386_LexicographicalNumbers_Iterator() = default;
     ~LC0386_LexicographicalNumbers_Iterator() override = default;
-    std::vector<int> lexicalOrder(int n) override;
+    std::vector<int> lexicalOrder(int n) final;
 };
 
 #endif  // LC0386_LEXICOGRAPHICAL_NUMBERS_H

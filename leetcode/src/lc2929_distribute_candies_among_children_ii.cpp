@@ -24,5 +24,5 @@ long long LC2929_DistributeCandiesAmongChildrenII::distributeCandies(int n, int 
     for (; t1 <= max_t1; t1++) {
         ans += min(t1 + limit, max_t2) - max(t1, min_t2) + 1;
     }
-    return (int64_t)ans;
+    return ans;
 }

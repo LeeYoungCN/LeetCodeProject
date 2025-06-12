@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#define REVERSE(x) (x ^ 0b10)
+#define REVERSE(x) ((x) ^ 0b10)
 
 int32_t LC3445_MaximumDifferenceBetweenEvenAndOddFrequencyII::maxDifference(string s, int32_t k)
 {
@@ -18,7 +18,7 @@ int32_t LC3445_MaximumDifferenceBetweenEvenAndOddFrequencyII::maxDifference(stri
 
     auto GetStatus = [](int32_t a, int32_t b) -> int32_t { return (((a & 0b1) << 1) | ((b & 0b1) << 0)); };
 
-    const uint32_t length = (uint32_t)s.size();
+    const auto length = static_cast<uint32_t>(s.size());
 
     int32_t ans = INT32_MIN;
 
@@ -39,7 +39,7 @@ int32_t LC3445_MaximumDifferenceBetweenEvenAndOddFrequencyII::maxDifference(stri
                 rightA += (s[right] == a ? 1 : 0);
                 rightB += (s[right] == b ? 1 : 0);
 
-                while (right - left + 1 >= (uint32_t)k && rightB > leftB && rightA > leftA) {
+                while (right - left + 1 >= static_cast<uint32_t>(k) && rightB > leftB && rightA > leftA) {
                     int32_t lStatus = GetStatus(leftA, leftB);
                     minLeft[lStatus] = min(minLeft[lStatus], leftA - leftB);
                     leftA += (s[left] == a ? 1 : 0);

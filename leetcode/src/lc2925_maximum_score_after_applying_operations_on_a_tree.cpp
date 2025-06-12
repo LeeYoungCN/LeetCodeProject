@@ -18,14 +18,14 @@ struct TreeValInfo {
 long long LC2925_MaximumScoreAfterApplyingOperationsOnATree::maximumScoreAfterOperations(vector<vector<int>>& edges,
                                                                                          vector<int>& values)
 {
-    const uint32_t length = (uint32_t)values.size();
+    const auto length = static_cast<uint32_t>(values.size());
 
     vector<vector<uint32_t>> grid(length);
     vector<vector<uint32_t>> TreeVal(length);
 
     for (const vector<int32_t>& edge : edges) {
-        uint32_t n1 = (uint32_t)edge[0];
-        uint32_t n2 = (uint32_t)edge[1];
+        auto n1 = static_cast<uint32_t>(edge[0]);
+        auto n2 = static_cast<uint32_t>(edge[1]);
         grid[n1].push_back(n2);
         grid[n2].push_back(n1);
     }

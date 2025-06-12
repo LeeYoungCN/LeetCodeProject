@@ -29,7 +29,7 @@ int32_t robSubArray(const vector<int32_t> nums, uint32_t start, uint32_t end)
 
 int LC0213_HouseRobberII::rob(std::vector<int>& nums)
 {
-    uint32_t length = (uint32_t)nums.size();
+    auto length = static_cast<uint32_t>(nums.size());
 
     if (length == 1) {
         return nums[0];

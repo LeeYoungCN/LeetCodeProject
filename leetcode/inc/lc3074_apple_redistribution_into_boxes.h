@@ -9,7 +9,7 @@
 
 class LC3074_AppleRedistributionIntoBoxes {
 public:
-    LC3074_AppleRedistributionIntoBoxes()          = default;
+    LC3074_AppleRedistributionIntoBoxes() = default;
     virtual ~LC3074_AppleRedistributionIntoBoxes() = default;
     int minimumBoxes(std::vector<int>& apple, std::vector<int>& capacity);
 };

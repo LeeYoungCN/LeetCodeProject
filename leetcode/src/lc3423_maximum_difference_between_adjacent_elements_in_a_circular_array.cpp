@@ -13,7 +13,7 @@ using namespace std;
 
 int32_t LC3423_MaximumDifferenceBetweenAdjacentElementsInACircularArray::maxAdjacentDistance(vector<int32_t>& nums)
 {
-    uint32_t length = (uint32_t)nums.size();
+    const auto length = static_cast<uint32_t>(nums.size());
     int32_t ans = 0;
     for (uint32_t i = 0; i < length; i++) {
         int32_t delta = 0;

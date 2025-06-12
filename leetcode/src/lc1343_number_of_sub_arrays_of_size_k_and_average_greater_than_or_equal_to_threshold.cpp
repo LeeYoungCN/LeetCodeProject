@@ -13,8 +13,8 @@ using namespace std;
 int LC1343_NumberOfSubArraysOfSizeKAndAverageGreaterThanOrEqualToThreshold::numOfSubarrays(vector<int>& arr, int k,
                                                                                            int threshold)
 {
-    const uint32_t length = (uint32_t)arr.size();
-    const uint32_t window = (uint32_t)k;
+    const auto length = static_cast<uint32_t>(arr.size());
+    const auto window = static_cast<uint32_t>(k);
     const int32_t target = (k * threshold);
 
     int32_t ans = 0;

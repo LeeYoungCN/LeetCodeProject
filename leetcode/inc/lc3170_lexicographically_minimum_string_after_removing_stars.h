@@ -20,7 +20,7 @@ class LC3170_LexicographicallyMinimumStringAfterRemovingStars_Heap
 public:
     LC3170_LexicographicallyMinimumStringAfterRemovingStars_Heap() = default;
     ~LC3170_LexicographicallyMinimumStringAfterRemovingStars_Heap() override = default;
-    std::string clearStars(std::string s) override;
+    std::string clearStars(std::string s) final;
 };
 
 class LC3170_LexicographicallyMinimumStringAfterRemovingStars_Stack
@@ -28,7 +28,7 @@ class LC3170_LexicographicallyMinimumStringAfterRemovingStars_Stack
 public:
     LC3170_LexicographicallyMinimumStringAfterRemovingStars_Stack() = default;
     ~LC3170_LexicographicallyMinimumStringAfterRemovingStars_Stack() override = default;
-    std::string clearStars(std::string s) override;
+    std::string clearStars(std::string s) final;
 };
 
 #endif  // LC3170_LEXICOGRAPHICALLY_MINIMUM_STRING_AFTER_REMOVING_STARS_H

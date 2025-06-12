@@ -37,7 +37,7 @@ typedef struct {
 
 int LC0918_MaximumSumCircularSubarray_Stack::maxSubarraySumCircular(std::vector<int>& nums)
 {
-    const uint32_t length = (uint32_t)nums.size();
+    const auto length = static_cast<uint32_t>(nums.size());
     PreSumSt preSum = {0, 0};
     deque<PreSumSt> sumStack;
 
@@ -66,7 +66,7 @@ int LC0918_MaximumSumCircularSubarray_Stack::maxSubarraySumCircular(std::vector<
 int LC0918_MaximumSumCircularSubarray_DP::maxSubarraySumCircular(std::vector<int>& nums)
 {
     int32_t ret = nums[0];
-    uint32_t length = (uint32_t)nums.size();
+    auto length = static_cast<uint32_t>(nums.size());
 
     vector<int32_t> lMaxSum(length);
     vector<int32_t> rMaxSum(length);

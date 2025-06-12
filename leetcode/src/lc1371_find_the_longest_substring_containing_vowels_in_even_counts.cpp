@@ -11,7 +11,7 @@ using namespace std;
 
 int32_t LC1371_FindTheLongestSubstringContainingVowelsInEvenCounts::findTheLongestSubstring(string s)
 {
-    const uint32_t length = (uint32_t)s.size();
+    const auto length = static_cast<uint32_t>(s.size());
     vector<uint32_t> position(1 << 5, length);
     position[0] = 0;
 
@@ -48,5 +48,5 @@ int32_t LC1371_FindTheLongestSubstringContainingVowelsInEvenCounts::findTheLonge
         }
     }
 
-    return (int32_t)ans;
+    return static_cast<int32_t>(ans);
 }

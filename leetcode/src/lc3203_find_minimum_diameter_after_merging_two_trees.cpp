@@ -16,12 +16,12 @@ int32_t LC3203_FindMinimumDiameterAfterMergingTwoTrees::GeDiameter(vector<vector
     const uint32_t START_NODE = 0;
     const uint32_t END_NODE = 1;
 
-    uint32_t nodeCnt = (uint32_t)edges.size() + 1;
+    const auto nodeCnt = static_cast<uint32_t>(edges.size()) + 1;
     vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
 
     for (const vector<int32_t>& edge : edges) {
-        uint32_t start = (uint32_t)edge[START_NODE];
-        uint32_t end = (uint32_t)edge[END_NODE];
+        auto start = static_cast<uint32_t>(edge[START_NODE]);
+        auto end = static_cast<uint32_t>(edge[END_NODE]);
 
         graph[start].push_back(end);
         graph[end].push_back(start);
@@ -41,7 +41,7 @@ int32_t LC3203_FindMinimumDiameterAfterMergingTwoTrees::GeDiameter(vector<vector
         }
         return maxLen;
     };
-    (void)dfs(dfs, 0, (uint32_t)edges.size() + 1);
+    (void)dfs(dfs, 0, static_cast<uint32_t>(edges.size()) + 1);
     return res;
 }
 

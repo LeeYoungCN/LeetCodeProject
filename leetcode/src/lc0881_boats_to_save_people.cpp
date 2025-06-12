@@ -15,7 +15,7 @@ int LC0881_BoatsToSavePeople::numRescueBoats(std::vector<int>& people, int limit
 {
     sort(people.begin(), people.end(), greater<int32_t>());
     uint32_t left = 0;
-    uint32_t right = (uint32_t)people.size() - 1;
+    uint32_t right = static_cast<uint32_t>(people.size()) - 1;
     int32_t ans = 0;
     while (left <= right) {
         int32_t n = limit - people[left];
@@ -26,5 +26,5 @@ int LC0881_BoatsToSavePeople::numRescueBoats(std::vector<int>& people, int limit
             right--;
         }
     }
-    return (int32_t)ans;
+    return ans;
 }

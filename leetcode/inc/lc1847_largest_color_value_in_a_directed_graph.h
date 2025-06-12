@@ -20,7 +20,7 @@ class LC1847_LargestColorValueInADirectedGraph_DFS : public LC1847_LargestColorV
 public:
     LC1847_LargestColorValueInADirectedGraph_DFS() = default;
     ~LC1847_LargestColorValueInADirectedGraph_DFS() override = default;
-    int largestPathValue(std::string colors, std::vector<std::vector<int>> &edges) override;
+    int largestPathValue(std::string colors, std::vector<std::vector<int>> &edges) final;
 
 private:
     enum class VisitStatus { UNUSED = 0, USING, FINISH };
@@ -36,7 +36,7 @@ class LC1847_LargestColorValueInADirectedGraph_BFS : public LC1847_LargestColorV
 public:
     LC1847_LargestColorValueInADirectedGraph_BFS() = default;
     ~LC1847_LargestColorValueInADirectedGraph_BFS() override = default;
-    int largestPathValue(std::string colors, std::vector<std::vector<int>> &edges) override;
+    int largestPathValue(std::string colors, std::vector<std::vector<int>> &edges) final;
 };
 
 #endif  // LC1847_LARGEST_COLOR_VALUE_IN_A_DIRECTED_GRAPH_H

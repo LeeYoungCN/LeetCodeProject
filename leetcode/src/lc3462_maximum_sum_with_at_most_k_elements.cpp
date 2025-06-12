@@ -14,20 +14,20 @@ using namespace std;
 
 long long LC3462_MaximumSumWithAtMostKElements_Sort::maxSum(vector<vector<int>>& grid, vector<int>& limits, int k)
 {
-    const uint32_t rowCnt = (uint32_t)grid.size();
+    const auto rowCnt = static_cast<uint32_t>(grid.size());
     vector<int64_t> valArray;
 
     for (uint32_t i = 0; i < rowCnt; i++) {
-        sort(grid[i].begin(), grid[i].end(), greater<int64_t>());
+        sort(grid[i].begin(), grid[i].end(), greater<>());
         valArray.insert(valArray.end(), grid[i].begin(), grid[i].begin() + limits[i]);
     }
-    sort(valArray.begin(), valArray.end(), greater<int64_t>());
+    sort(valArray.begin(), valArray.end(), greater<>());
     return reduce(valArray.begin(), valArray.begin() + k, 0LL);
 }
 
 long long LC3462_MaximumSumWithAtMostKElements_NthElement::maxSum(vector<vector<int>>& grid, vector<int>& limits, int k)
 {
-    const uint32_t rowCnt = (uint32_t)grid.size();
+    const auto rowCnt = static_cast<uint32_t>(grid.size());
     vector<int64_t> valArray;
 
     for (uint32_t i = 0; i < rowCnt; i++) {
@@ -35,6 +35,6 @@ long long LC3462_MaximumSumWithAtMostKElements_NthElement::maxSum(vector<vector<
         valArray.insert(valArray.end(), grid[i].begin(), grid[i].begin() + limits[i]);
     }
 
-    nth_element(valArray.begin(), valArray.begin() + k, valArray.end(), greater<int64_t>());
+    nth_element(valArray.begin(), valArray.begin() + k, valArray.end(), greater<>());
     return reduce(valArray.begin(), valArray.begin() + k, 0LL);
 }

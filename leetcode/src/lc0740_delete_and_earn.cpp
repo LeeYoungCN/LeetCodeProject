@@ -18,11 +18,11 @@ int LC0740_DeleteAndEarn::deleteAndEarn(std::vector<int>& nums)
     int32_t maxNum = *(pair.second);
     int32_t minNum = *(pair.first);
 
-    uint32_t length = (uint32_t)(maxNum - minNum + 1);
+    auto length = static_cast<uint32_t>(maxNum - minNum + 1);
 
     vector<int32_t> sumArray(length, 0);
     for (int32_t n : nums) {
-        sumArray[(uint32_t)(n - minNum)] += n;
+        sumArray[static_cast<uint32_t>(n - minNum)] += n;
     }
 
     vector<int32_t> dp(length, 0);

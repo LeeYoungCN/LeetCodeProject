@@ -13,7 +13,7 @@ using namespace std;
 int LC0053_MaximumSubarray_dp::maxSubArray(vector<int>& nums)
 {
     int ret = INT32_MIN;
-    const uint32_t length = (uint32_t)nums.size();
+    const auto length = static_cast<uint32_t>(nums.size());
     // dp[i] 表示包含nums[i]时的从左到右最大子数组的大小
     vector<int> dp = vector<int>(length);
     for (uint32_t i = 0; i < length; i++) {
@@ -29,7 +29,7 @@ int LC0053_MaximumSubarray_dp::maxSubArray(vector<int>& nums)
 
 int LC0053_MaximumSubarray_stack::maxSubArray(vector<int>& nums)
 {
-    const uint32_t length = (uint32_t)nums.size();
+    const auto length = static_cast<uint32_t>(nums.size());
     vector<int32_t> stack;
     stack.reserve(length + 1);
     stack.push_back(0);

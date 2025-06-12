@@ -8,7 +8,7 @@ using namespace std;
 
 void LC0075_SortColors::sortColors(vector<int> &nums)
 {
-    sort(nums, 0, (uint32_t)nums.size());
+    sort(nums, 0, static_cast<uint32_t>(nums.size()));
 }
 
 void LC0075_SortColors::sort(vector<int> &nums, uint32_t start, uint32_t length)

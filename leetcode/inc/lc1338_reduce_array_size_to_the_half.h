@@ -9,7 +9,7 @@
 
 class LC1338_ReduceArraySizeToTheHalf {
 public:
-    LC1338_ReduceArraySizeToTheHalf()          = default;
+    LC1338_ReduceArraySizeToTheHalf() = default;
     virtual ~LC1338_ReduceArraySizeToTheHalf() = default;
     int minSetSize(std::vector<int>& arr);
 };

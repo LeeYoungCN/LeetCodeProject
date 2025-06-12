@@ -13,7 +13,7 @@ using namespace std;
 
 vector<int32_t> LC2007_FindOriginalArrayFromDoubledArray_Map::findOriginalArray(vector<int32_t> &changed)
 {
-    const uint32_t length = (uint32_t)changed.size();
+    const auto length = static_cast<uint32_t>(changed.size());
     if (length % 2 != 0) {
         return {};
     }
@@ -40,7 +40,7 @@ vector<int32_t> LC2007_FindOriginalArrayFromDoubledArray_Map::findOriginalArray(
         }
 
         int32_t target = num * 2;
-        map<int32_t, uint32_t, less<>>::iterator it = changeMap.find(target);
+        auto it = changeMap.find(target);
 
         if (it == changeMap.end() || it->second < cnt) {
             return {};
@@ -53,4 +53,3 @@ vector<int32_t> LC2007_FindOriginalArrayFromDoubledArray_Map::findOriginalArray(
 
     return ans;
 }
-

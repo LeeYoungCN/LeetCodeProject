@@ -11,15 +11,15 @@ public:
     virtual int colorTheGrid(int m, int n) = 0;
 
 protected:
-    unsigned int m_rowCnt;
-    unsigned int m_colCnt;
+    unsigned int m_rowCnt{};
+    unsigned int m_colCnt{};
 };
 
 class LC1931_PaintingAGridWithThreeDifferentColors_Grid : public LC1931_PaintingAGridWithThreeDifferentColors {
 public:
     LC1931_PaintingAGridWithThreeDifferentColors_Grid() = default;
     virtual ~LC1931_PaintingAGridWithThreeDifferentColors_Grid() override = default;
-    int colorTheGrid(int m, int n) override;
+    int colorTheGrid(int m, int n) final;
 
 private:
     bool isValidColor(unsigned int color, std::vector<unsigned int> &colorGrid);
@@ -29,7 +29,7 @@ class LC1931_PaintingAGridWithThreeDifferentColors_Number : public LC1931_Painti
 public:
     LC1931_PaintingAGridWithThreeDifferentColors_Number() = default;
     virtual ~LC1931_PaintingAGridWithThreeDifferentColors_Number() override = default;
-    int colorTheGrid(int m, int n) override;
+    int colorTheGrid(int m, int n) final;
 
 private:
     bool isValidColor(unsigned int color);

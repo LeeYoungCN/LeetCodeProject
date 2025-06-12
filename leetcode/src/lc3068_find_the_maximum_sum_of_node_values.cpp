@@ -24,7 +24,7 @@ using namespace std;
 long long LC3068_FindTheMaximumSumOfNodeValues_Greedy::maximumValueSum(vector<int> &nums, int k,
                                                                        [[maybe_unused]] vector<vector<int>> &edges)
 {
-    const uint32_t length = (uint32_t)nums.size();
+    const auto length = static_cast<uint32_t>(nums.size());
 
     int64_t ret = 0;
     vector<int64_t> diffArray(length, 0);
@@ -53,12 +53,12 @@ long long LC3068_FindTheMaximumSumOfNodeValues_DFS::maximumValueSum(std::vector<
     const uint32_t START_IDX = 0;
     const uint32_t END_IDX = 1;
 
-    uint32_t totalNode = (uint32_t)nums.size();
+    auto totalNode = static_cast<uint32_t>(nums.size());
     vector<vector<uint32_t>> grid(totalNode);
 
     for (const vector<int32_t> &edge : edges) {
-        uint32_t start = (uint32_t)edge[START_IDX];
-        uint32_t end = (uint32_t)edge[END_IDX];
+        auto start = static_cast<uint32_t>(edge[START_IDX]);
+        auto end = static_cast<uint32_t>(edge[END_IDX]);
         grid[start].push_back(end);
         grid[end].push_back(start);
     }
@@ -77,10 +77,10 @@ long long LC3068_FindTheMaximumSumOfNodeValues_DFS::maximumValueSum(std::vector<
                 continue;
             }
             dfs(dfs, child, curr);
-            int64_t notFlip = max(dp[FLIP_IDX][curr] + dp[FLIP_IDX][(uint32_t)child],
-                                  dp[NOT_FLIP_IDX][curr] + dp[NOT_FLIP_IDX][(uint32_t)child]);
-            int64_t flip = max(dp[NOT_FLIP_IDX][curr] + dp[FLIP_IDX][(uint32_t)child],
-                               dp[FLIP_IDX][curr] + dp[NOT_FLIP_IDX][(uint32_t)child]);
+            int64_t notFlip =
+                max(dp[FLIP_IDX][curr] + dp[FLIP_IDX][child], dp[NOT_FLIP_IDX][curr] + dp[NOT_FLIP_IDX][child]);
+            int64_t flip =
+                max(dp[NOT_FLIP_IDX][curr] + dp[FLIP_IDX][child], dp[FLIP_IDX][curr] + dp[NOT_FLIP_IDX][child]);
 
             dp[NOT_FLIP_IDX][curr] = notFlip;
             dp[FLIP_IDX][curr] = flip;
@@ -100,7 +100,7 @@ long long LC3068_FindTheMaximumSumOfNodeValues_DFS::maximumValueSum(std::vector<
 long long LC3068_FindTheMaximumSumOfNodeValues_DP::maximumValueSum(
     std::vector<int> &nums, int k, [[maybe_unused]] std::vector<std::vector<int>> &edges)
 {
-    const uint32_t total = (uint32_t)nums.size();
+    const auto total = static_cast<uint32_t>(nums.size());
 
     uint32_t EVE_IDX = 0;
     uint32_t ODD_IDX = 1;

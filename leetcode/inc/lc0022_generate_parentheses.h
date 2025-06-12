@@ -21,7 +21,7 @@ protected:
 
 class LC0022_GenerateParentheses_Num : public LC0022_GenerateParentheses {
 public:
-    std::vector<std::string> generateParenthesis(int n) override;
+    std::vector<std::string> generateParenthesis(int n) final;
 
 private:
     void generateStrByLoop(unsigned int strLen, std::vector<std::string> &result);
@@ -30,7 +30,7 @@ private:
 
 class LC0022_GenerateParentheses_Itr1 : public LC0022_GenerateParentheses {
 public:
-    std::vector<std::string> generateParenthesis(int n);
+    std::vector<std::string> generateParenthesis(int n) final;
 
 private:
     void iter2Str(std::string &curr, unsigned int strLen, std::vector<std::string> &result);
@@ -38,7 +38,7 @@ private:
 
 class LC0022_GenerateParentheses_Itr2 : public LC0022_GenerateParentheses {
 public:
-    std::vector<std::string> generateParenthesis(int n);
+    std::vector<std::string> generateParenthesis(int n) final;
 
 private:
     void generateStrByItr(std::string &curr, std::vector<std::string> &result, unsigned int leftNum,

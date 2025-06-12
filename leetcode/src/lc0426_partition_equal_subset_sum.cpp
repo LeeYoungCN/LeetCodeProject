@@ -13,30 +13,30 @@ using namespace std;
 
 bool LC0426_PartitionEqualSubsetSum_DP1::canPartition(std::vector<int>& nums)
 {
-    uint32_t numCnt = (uint32_t)nums.size();
+    auto numCnt = static_cast<uint32_t>(nums.size());
     if (numCnt < 2) {
         return false;
     }
 
     int32_t sum = accumulate(nums.begin(), nums.end(), 0);
-    vector<int32_t>::iterator maxItr = max_element(nums.begin(), nums.end());
+    auto maxItr = max_element(nums.begin(), nums.end());
 
     if (sum % 2 == 1) {
         return false;
     }
 
-    uint32_t target = (uint32_t)sum / 2;
-    if (target < (uint32_t)*maxItr) {
+    uint32_t target = static_cast<uint32_t>(sum) / 2;
+    if (target < static_cast<uint32_t>(*maxItr)) {
         return false;
     }
 
     // i 数组当前的长度
     // j 刚好达到的值
-    vector<vector<bool>> dp(numCnt, vector<bool>((uint32_t)(target + 1), false));
+    vector<vector<bool>> dp(numCnt, vector<bool>((target + 1), false));
 
-    dp[0][(uint32_t)nums[0]] = true;
+    dp[0][static_cast<uint32_t>(nums[0])] = true;
     for (uint32_t i = 1; i < numCnt; i++) {
-        uint32_t n = (uint32_t)nums[i];
+        auto n = static_cast<uint32_t>(nums[i]);
         for (uint32_t j = 0; j <= target; j++) {
             if (j == 0) {
                 dp[i][j] = true;
@@ -56,26 +56,26 @@ bool LC0426_PartitionEqualSubsetSum_DP1::canPartition(std::vector<int>& nums)
 
 bool LC0426_PartitionEqualSubsetSum_DP2::canPartition(std::vector<int>& nums)
 {
-    uint32_t numCnt = (uint32_t)nums.size();
+    auto numCnt = static_cast<uint32_t>(nums.size());
     if (numCnt < 2) {
         return false;
     }
 
     int32_t sum = accumulate(nums.begin(), nums.end(), 0);
-    vector<int32_t>::iterator maxItr = max_element(nums.begin(), nums.end());
+    auto maxItr = max_element(nums.begin(), nums.end());
 
     if (sum % 2 == 1) {
         return false;
     }
-    uint32_t target = (uint32_t)sum / 2;
-    if (target < (uint32_t)*maxItr) {
+    uint32_t target = static_cast<uint32_t>(sum) / 2;
+    if (target < static_cast<uint32_t>(*maxItr)) {
         return false;
     }
     vector<bool> dp(target + 1, false);
 
     dp[0] = true;
     for (uint32_t i = 1; i < numCnt; i++) {
-        uint32_t n = (uint32_t)nums[i];
+        auto n = static_cast<uint32_t>(nums[i]);
         dp[n] = true;
         for (uint32_t j = target; j > n; --j) {
             dp[j] = dp[j] || dp[j - n];

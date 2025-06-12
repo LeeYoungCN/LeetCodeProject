@@ -15,10 +15,10 @@ string LC0012_IntegerToRoman::intToRoman(int num)
         {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
         {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
     };
-    string result = "";
+    string result;
     int32_t mod = 1000;
     for (uint32_t i = 0; num > 0; i++) {
-        uint32_t x = (uint32_t)(num / mod);
+        auto x = static_cast<uint32_t>(num / mod);
         num = num % mod;
         mod /= 10;
         result += (table[i][x]);

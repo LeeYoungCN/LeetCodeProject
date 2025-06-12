@@ -16,12 +16,12 @@ public:
 
 class LC0053_MaximumSubarray_dp : public LC0053_MaximumSubarray {
 public:
-    int maxSubArray(std::vector<int>& nums) override;
+    int maxSubArray(std::vector<int>& nums) final;
 };
 
 class LC0053_MaximumSubarray_stack : public LC0053_MaximumSubarray {
 public:
-    int maxSubArray(std::vector<int>& nums) override;
+    int maxSubArray(std::vector<int>& nums) final;
 };
 
 #endif  // LC0053_MAXIMUM_SUBARRAY_H

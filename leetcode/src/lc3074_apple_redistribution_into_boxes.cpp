@@ -21,9 +21,9 @@ int LC3074_AppleRedistributionIntoBoxes::minimumBoxes(vector<int>& apple, vector
     for (size_t i = 0; i < capacity.size(); i++) {
         appleCnt -= capacity[i];
         if (appleCnt <= 0) {
-            return (int32_t)i + 1;
+            return static_cast<int32_t>(i) + 1;
         }
     }
 
-    return (int32_t)capacity.size();
+    return static_cast<int32_t>(capacity.size());
 }

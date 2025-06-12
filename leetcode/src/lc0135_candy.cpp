@@ -14,14 +14,14 @@ using namespace std;
 
 int LC0135_Candy_Stack::candy(std::vector<int>& ratings)
 {
-    const uint32_t length = (uint32_t)ratings.size();
+    const auto length = static_cast<uint32_t>(ratings.size());
     vector<uint32_t> idxStack;
     idxStack.reserve(length);
 
     vector<int32_t> childCandy(length, 0);
     childCandy[0] = 1;
 
-    function<void(void)> processStack = [&](void) -> void {
+    function<void(void)> processStack = [&]() -> void {
         int32_t n = 1;
         while (!idxStack.empty()) {
             uint32_t idx = idxStack.back();
@@ -61,7 +61,7 @@ int LC0135_Candy_Stack::candy(std::vector<int>& ratings)
 
 int LC0135_Candy_TwoTraverse::candy(std::vector<int>& ratings)
 {
-    const uint32_t length = (uint32_t)ratings.size();
+    const auto length = static_cast<uint32_t>(ratings.size());
 
     vector<int32_t> leftCandy(length, 0);
 
@@ -89,7 +89,7 @@ int LC0135_Candy_TwoTraverse::candy(std::vector<int>& ratings)
 
 int LC0135_Candy_OneTraverse::candy(std::vector<int>& ratings)
 {
-    const uint32_t length = (uint32_t)ratings.size();
+    const auto length = static_cast<uint32_t>(ratings.size());
 
     int32_t ans = 1;
     int32_t pre = 1;

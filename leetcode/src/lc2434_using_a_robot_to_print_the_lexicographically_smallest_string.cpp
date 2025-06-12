@@ -14,7 +14,7 @@ using namespace std;
 
 string LC2434_UsingARobotToPrintTheLexicographicallySmallestString::robotWithString(string s)
 {
-    const uint32_t length = (uint32_t)s.size();
+    const auto length = static_cast<uint32_t>(s.size());
     if (length == 1) {
         return s;
     }
@@ -30,7 +30,7 @@ string LC2434_UsingARobotToPrintTheLexicographicallySmallestString::robotWithStr
     vector<char> stack;
     stack.reserve(length);
 
-    string ans = "";
+    string ans;
 
     for (uint32_t i = 0; i < length; i++) {
         stack.push_back(s[i]);

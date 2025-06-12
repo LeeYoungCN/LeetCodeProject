@@ -17,22 +17,22 @@ public:
 class LC0135_Candy_Stack : public LC0135_Candy {
 public:
     LC0135_Candy_Stack() = default;
-    virtual ~LC0135_Candy_Stack() override = default;
-    int candy(std::vector<int>& ratings) override;
+    ~LC0135_Candy_Stack() override = default;
+    int candy(std::vector<int>& ratings) override final;
 };
 
 class LC0135_Candy_TwoTraverse : public LC0135_Candy {
 public:
     LC0135_Candy_TwoTraverse() = default;
-    virtual ~LC0135_Candy_TwoTraverse() override = default;
-    int candy(std::vector<int>& ratings) override;
+    ~LC0135_Candy_TwoTraverse() override = default;
+    int candy(std::vector<int>& ratings) final;
 };
 
 class LC0135_Candy_OneTraverse : public LC0135_Candy {
 public:
     LC0135_Candy_OneTraverse() = default;
-    virtual ~LC0135_Candy_OneTraverse() override = default;
-    int candy(std::vector<int>& ratings) override;
+    ~LC0135_Candy_OneTraverse() = default;
+    int candy(std::vector<int>& ratings) final;
 };
 
 #endif  // LC0135_CANDY_H

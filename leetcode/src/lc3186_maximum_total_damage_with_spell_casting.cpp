@@ -19,7 +19,7 @@ long long LC3186_MaximumTotalDamageWithSpellCasting::maximumTotalDamage(std::vec
         numMap[p] += p;
     }
 
-    uint32_t numCnt = (uint32_t)numMap.size();
+    const auto numCnt = static_cast<uint32_t>(numMap.size());
 
     vector<pair<int32_t, int64_t>> numVec;
     numVec.reserve(numCnt);
@@ -34,9 +34,9 @@ long long LC3186_MaximumTotalDamageWithSpellCasting::maximumTotalDamage(std::vec
     for (uint32_t i = 1; i < numCnt; i++) {
         int64_t dpj = 0;
 
-        for (int32_t j = (int32_t)i - 1; j >= 0; j--) {
-            if (numVec[(uint32_t)j].first < numVec[i].first - 2) {
-                dpj = dp[(uint32_t)j];
+        for (int32_t j = static_cast<int32_t>(i) - 1; j >= 0; j--) {
+            if (numVec[static_cast<uint32_t>(j)].first < numVec[i].first - 2) {
+                dpj = dp[static_cast<uint32_t>(j)];
                 break;
             }
         }

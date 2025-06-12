@@ -21,7 +21,7 @@ int32_t LC3372_MaximizeTheNumberOfTargetNodesAfterConnectingTreesI::GetKNodeCnt(
 
     int32_t ans = 1;
 
-    for (uint32_t child : graph[(uint32_t)nodeIdx]) {
+    for (uint32_t child : graph[nodeIdx]) {
         if (child == parent) {
             continue;
         }
@@ -34,15 +34,15 @@ int32_t LC3372_MaximizeTheNumberOfTargetNodesAfterConnectingTreesI::GetKNodeCnt(
 vector<int32_t> LC3372_MaximizeTheNumberOfTargetNodesAfterConnectingTreesI::GetKNodeList(
     const vector<vector<int>>& edges, int32_t k)
 {
-    const uint32_t nodeCnt = (uint32_t)edges.size() + 1;
+    const uint32_t nodeCnt = static_cast<uint32_t>(edges.size()) + 1;
     const uint32_t START_NODE = 0;
     const uint32_t END_NODE = 1;
 
     vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
 
     for (const vector<int32_t>& edge : edges) {
-        uint32_t start = (uint32_t)edge[START_NODE];
-        uint32_t end = (uint32_t)edge[END_NODE];
+        auto start = static_cast<uint32_t>(edge[START_NODE]);
+        auto end = static_cast<uint32_t>(edge[END_NODE]);
 
         graph[start].push_back(end);
         graph[end].push_back(start);
@@ -63,10 +63,10 @@ vector<int> LC3372_MaximizeTheNumberOfTargetNodesAfterConnectingTreesI::maxTarge
     vector<int32_t> count1 = GetKNodeList(edges1, k);
     vector<int32_t> count2 = GetKNodeList(edges2, k - 1);
 
-    vector<int32_t>::iterator maxIt = max_element(count2.begin(), count2.end());
+    auto maxIt = max_element(count2.begin(), count2.end());
 
-    for (vector<int32_t>::iterator it = count1.begin(); it != count1.end(); it++) {
-        *it += *maxIt;
+    for (int32_t& it : count1) {
+        it += *maxIt;
     }
 
     return count1;

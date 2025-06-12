@@ -19,7 +19,7 @@ int LC1298_MaximumCandiesYouCanGetFromBoxes::maxCandies(std::vector<int>& status
     const int32_t OPEN = 1;
     const int32_t CLOSE = 0;
 
-    const uint32_t boxCnt = (uint32_t)status.size();
+    const auto boxCnt = static_cast<uint32_t>(status.size());
 
     vector<bool> noKeyBox(boxCnt, false);
     queue<int32_t> boxQueue;
@@ -32,20 +32,20 @@ int LC1298_MaximumCandiesYouCanGetFromBoxes::maxCandies(std::vector<int>& status
         int currBox = boxQueue.front();
         boxQueue.pop();
 
-        if (status[(uint32_t)currBox] == CLOSE) {
-            noKeyBox[(uint32_t)currBox] = true;
+        if (status[static_cast<uint32_t>(currBox)] == CLOSE) {
+            noKeyBox[static_cast<uint32_t>(currBox)] = true;
             continue;
         }
 
-        ans += candies[(uint32_t)currBox];
-        for (int32_t box : containedBoxes[(uint32_t)currBox]) {
+        ans += candies[static_cast<uint32_t>(currBox)];
+        for (int32_t box : containedBoxes[static_cast<uint32_t>(currBox)]) {
             boxQueue.push(box);
         }
 
-        for (int32_t boxKey : keys[(uint32_t)currBox]) {
-            status[(uint32_t)boxKey] = OPEN;
-            if (noKeyBox[(uint32_t)boxKey]) {
-                noKeyBox[(uint32_t)boxKey] = false;
+        for (int32_t boxKey : keys[static_cast<uint32_t>(currBox)]) {
+            status[static_cast<uint32_t>(boxKey)] = OPEN;
+            if (noKeyBox[static_cast<uint32_t>(boxKey)]) {
+                noKeyBox[static_cast<uint32_t>(boxKey)] = false;
                 boxQueue.push(boxKey);
             }
         }

@@ -12,7 +12,7 @@ using namespace std;
 
 vector<int> LC0238_ProductOfArrayExceptSelf::productExceptSelf(vector<int>& nums)
 {
-    const uint32_t length = (uint32_t)nums.size();
+    const auto length = static_cast<uint32_t>(nums.size());
     vector<int32_t> preifxSum(length, 1);
     vector<int32_t> suffixSum(length, 1);
 

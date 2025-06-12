@@ -27,10 +27,10 @@ bool LC1931_PaintingAGridWithThreeDifferentColors_Grid::isValidColor(uint32_t co
 
 int LC1931_PaintingAGridWithThreeDifferentColors_Grid::colorTheGrid(int m, int n)
 {
-    m_colCnt = (uint32_t)m;
-    m_rowCnt = (uint32_t)n;
+    m_colCnt = static_cast<uint32_t>(m);
+    m_rowCnt = static_cast<uint32_t>(n);
     std::map<uint32_t, std::vector<uint32_t>> validColorMap;
-    const uint32_t maxColorCnt = (uint32_t)pow(COLOR_CNT, m_colCnt);
+    const auto maxColorCnt = static_cast<uint32_t>(pow(COLOR_CNT, m_colCnt));
 
     for (uint32_t color = 0; color < maxColorCnt; color++) {
         vector<uint32_t> colorGrid(m_colCnt, 0);
@@ -77,7 +77,7 @@ int LC1931_PaintingAGridWithThreeDifferentColors_Grid::colorTheGrid(int m, int n
             result -= MOD;
         }
     }
-    return (int32_t)result;
+    return static_cast<int32_t>(result);
 }
 
 bool LC1931_PaintingAGridWithThreeDifferentColors_Number::isValidColor(uint32_t color)
@@ -115,9 +115,9 @@ bool LC1931_PaintingAGridWithThreeDifferentColors_Number::isAdjColor(uint32_t co
 
 int LC1931_PaintingAGridWithThreeDifferentColors_Number::colorTheGrid(int m, int n)
 {
-    m_colCnt = (uint32_t)m;
-    m_rowCnt = (uint32_t)n;
-    const uint32_t maxColorCnt = (uint32_t)pow(COLOR_CNT, m_colCnt);
+    m_colCnt = static_cast<uint32_t>(m);
+    m_rowCnt = static_cast<uint32_t>(n);
+    const auto maxColorCnt = static_cast<uint32_t>(pow(COLOR_CNT, m_colCnt));
 
     vector<uint32_t> validColorArray;
     validColorArray.reserve(maxColorCnt);
@@ -128,7 +128,7 @@ int LC1931_PaintingAGridWithThreeDifferentColors_Number::colorTheGrid(int m, int
         }
     }
 
-    uint32_t validColorCnt = (uint32_t)validColorArray.size();
+    auto validColorCnt = static_cast<uint32_t>(validColorArray.size());
     vector<vector<uint32_t>> adjColorMap(validColorCnt);
 
     for (uint32_t colorIdx1 = 0; colorIdx1 < validColorCnt; ++colorIdx1) {
@@ -162,5 +162,5 @@ int LC1931_PaintingAGridWithThreeDifferentColors_Number::colorTheGrid(int m, int
             result -= MOD;
         }
     }
-    return (int32_t)result;
+    return static_cast<int32_t>(result);
 }

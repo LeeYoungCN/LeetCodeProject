@@ -18,9 +18,8 @@ using namespace std;
 int LC0121_BestTimeToBuyAndSellStock::maxProfit(vector<int>& prices)
 {
     int32_t ret = INT32_MIN;
-    int32_t minPrice = __INT32_MAX__;
-    for (uint32_t i = 0; i < prices.size(); ++i) {
-        int currPrice = prices[i];
+    int32_t minPrice = INT32_MAX;
+    for (int currPrice : prices) {
         minPrice = min(minPrice, currPrice);
         ret = max(ret, currPrice - minPrice);
     }

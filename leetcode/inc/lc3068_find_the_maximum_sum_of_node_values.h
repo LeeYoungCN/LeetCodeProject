@@ -19,21 +19,21 @@ class LC3068_FindTheMaximumSumOfNodeValues_Greedy : public LC3068_FindTheMaximum
 public:
     LC3068_FindTheMaximumSumOfNodeValues_Greedy() = default;
     ~LC3068_FindTheMaximumSumOfNodeValues_Greedy() override = default;
-    long long maximumValueSum(std::vector<int>& nums, int k, std::vector<std::vector<int>>& edges) override;
+    long long maximumValueSum(std::vector<int>& nums, int k, std::vector<std::vector<int>>& edges) final;
 };
 
 class LC3068_FindTheMaximumSumOfNodeValues_DFS : public LC3068_FindTheMaximumSumOfNodeValues {
 public:
     LC3068_FindTheMaximumSumOfNodeValues_DFS() = default;
     ~LC3068_FindTheMaximumSumOfNodeValues_DFS() override = default;
-    long long maximumValueSum(std::vector<int>& nums, int k, std::vector<std::vector<int>>& edges) override;
+    long long maximumValueSum(std::vector<int>& nums, int k, std::vector<std::vector<int>>& edges) final;
 };
 
 class LC3068_FindTheMaximumSumOfNodeValues_DP : public LC3068_FindTheMaximumSumOfNodeValues {
 public:
     LC3068_FindTheMaximumSumOfNodeValues_DP() = default;
     ~LC3068_FindTheMaximumSumOfNodeValues_DP() override = default;
-    long long maximumValueSum(std::vector<int>& nums, int k, std::vector<std::vector<int>>& edges) override;
+    long long maximumValueSum(std::vector<int>& nums, int k, std::vector<std::vector<int>>& edges) final;
 };
 
 #endif  // LC3068_FIND_THE_MAXIMUM_SUM_OF_NODE_VALUES_H

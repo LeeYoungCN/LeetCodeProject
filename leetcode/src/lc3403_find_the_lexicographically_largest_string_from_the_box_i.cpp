@@ -26,14 +26,14 @@ namespace {
 
 std::string LC3403_FindTheLexicographicallyLargestStringFromTheBoxI::answerString(std::string word, int numFriends)
 {
-    const uint32_t length = (uint32_t)word.length();
+    const auto length = static_cast<uint32_t>(word.length());
     if (numFriends == 1) {
         return word;
     }
 
-    string ans = "";
+    string ans;
     for (uint32_t i = 0; i < length; i++) {
-        ans = max(ans, word.substr(i, min(length - i, length - (uint32_t)numFriends + 1)));
+        ans = max(ans, word.substr(i, min(length - i, length - static_cast<uint32_t>(numFriends) + 1)));
     }
     return ans;
 }

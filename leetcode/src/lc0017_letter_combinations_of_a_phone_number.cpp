@@ -20,7 +20,7 @@ void LC0017_LetterCombinationsOfAPhoneNumber::getResultByItr(uint32_t layer, str
         return;
     }
     char digitChar = m_digits[layer];
-    string layerStr = NUM_TO_STR[(uint32_t)(digitChar - '2')];
+    string layerStr = NUM_TO_STR[static_cast<uint32_t>(digitChar - '2')];
     for (char c : layerStr) {
         curr.push_back(c);
         getResultByItr(layer + 1, curr, result);
