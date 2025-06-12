@@ -22,7 +22,7 @@ public:
     int minSubArrayLen(int target, std::vector<int>& nums) override;
 
 private:
-    unsigned int FindLastLessEqual(const std::vector<int> prefixSums, int num);
+    unsigned int FindLastLessEqual(const std::vector<int>& prefixSums, int num);
 };
 
 class LC0209_MinimumSizeSubarraySum_StdLowerBound : public LC0209_MinimumSizeSubarraySum {
