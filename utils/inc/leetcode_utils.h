@@ -1,6 +1,7 @@
 #ifndef LEETCODE_UTILS_H
 #define LEETCODE_UTILS_H
 
+#include <algorithm>
 #include <cstdint>
 #include <iostream>
 #include <map>
@@ -14,6 +15,7 @@ std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_
     if (end == 0) {
         end = (uint32_t)vec.size();
     }
+    end = std::min(end, (uint32_t)vec.size());
 
     const uint32_t length = end - start;
     std::string str = "{";
