@@ -23,7 +23,7 @@ string LC2434_UsingARobotToPrintTheLexicographicallySmallestString::robotWithStr
     dp[length] = 'z';
 
     for (uint32_t i = 0; i < length; i++) {
-        uint32_t j = length - i - 1;
+        const uint32_t j = length - i - 1;
         dp[j] = min(s[j], dp[j + 1]);
     }
 

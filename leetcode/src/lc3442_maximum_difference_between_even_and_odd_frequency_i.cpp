@@ -18,7 +18,7 @@ int32_t LC3442_MaximumDifferenceBetweenEvenAndOddFrequencyI::maxDifference(strin
     int32_t eveMin = INT32_MAX;
 
     unordered_map<char, int32_t> charMap;
-    for (char c : s) {
+    for (const char c : s) {
         charMap[c]++;
     }
 

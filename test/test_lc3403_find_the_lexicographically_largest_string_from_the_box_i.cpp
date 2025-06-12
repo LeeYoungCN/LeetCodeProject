@@ -1,22 +1,24 @@
 /*
  * Time : 2025-06-04 07:33:18
- * URL  : https://leetcode.cn/problems/find-the-lexicographically-largest-string-from-the-box-i/description/?envType=daily-questionURL_STRenvId=2025-06-04
+ * URL  :
+ * https://leetcode.cn/problems/find-the-lexicographically-largest-string-from-the-box-i/description/?envType=daily-questionURL_STRenvId=2025-06-04
  */
 #include <vector>
+
 #include "gtest/gtest.h"
 #include "lc3403_find_the_lexicographically_largest_string_from_the_box_i.h"
 
 using namespace std;
 
 class TEST_LC3403 : public testing::Test {
-    protected:
-        static void SetUpTestSuite() {}
-        static void TearDownTestSuite() {}
-        void SetUp() override;
-        void TearDown() override;
+protected:
+    static void SetUpTestSuite() {}
+    static void TearDownTestSuite() {}
+    void SetUp() override;
+    void TearDown() override;
 
-        vector<LC3403_FindTheLexicographicallyLargestStringFromTheBoxI *> m_testList;
-        void RunTest(std::string word, int numFriends, std::string expect);
+    vector<LC3403_FindTheLexicographicallyLargestStringFromTheBoxI *> m_testList;
+    void RunTest(std::string word, int numFriends, std::string expect);
 };
 
 void TEST_LC3403::SetUp()

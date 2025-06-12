@@ -15,7 +15,7 @@ using namespace std;
 long long LC3186_MaximumTotalDamageWithSpellCasting::maximumTotalDamage(std::vector<int>& power)
 {
     unordered_map<int32_t, int64_t> numMap;
-    for (int32_t p : power) {
+    for (const int32_t p : power) {
         numMap[p] += p;
     }
 
@@ -23,7 +23,7 @@ long long LC3186_MaximumTotalDamageWithSpellCasting::maximumTotalDamage(std::vec
 
     vector<pair<int32_t, int64_t>> numVec;
     numVec.reserve(numCnt);
-    for (pair<int32_t, int64_t> p : numMap) {
+    for (const pair<int32_t, int64_t> p : numMap) {
         numVec.push_back(p);
     }
     sort(numVec.begin(), numVec.end());

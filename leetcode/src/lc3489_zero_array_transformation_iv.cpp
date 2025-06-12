@@ -13,12 +13,12 @@ using namespace std;
 int32_t LC3489_ZeroArrayTransformationIV::GetStep(uint32_t idx, const vector<int32_t> &nums,
                                                   const vector<vector<int32_t>> &queries)
 {
-    auto target = static_cast<uint32_t>(nums[idx]);
+    const auto target = static_cast<uint32_t>(nums[idx]);
     if (target == 0) {
         return 0;
     }
 
-    auto queryCnt = static_cast<uint32_t>(queries.size());
+    const auto queryCnt = static_cast<uint32_t>(queries.size());
 
     vector<bool> dp(static_cast<uint32_t>(target) + 1, false);
     dp.at(0) = true;
@@ -28,7 +28,7 @@ int32_t LC3489_ZeroArrayTransformationIV::GetStep(uint32_t idx, const vector<int
             continue;
         }
 
-        auto val = static_cast<uint32_t>(queries[i][2]);
+        const auto val = static_cast<uint32_t>(queries[i][2]);
         if (val == 0) {
             continue;
         }
@@ -46,10 +46,10 @@ int32_t LC3489_ZeroArrayTransformationIV::GetStep(uint32_t idx, const vector<int
 
 int LC3489_ZeroArrayTransformationIV::minZeroArray(vector<int> &nums, vector<vector<int>> &queries)
 {
-    auto numCnt = static_cast<uint32_t>(nums.size());
+    const auto numCnt = static_cast<uint32_t>(nums.size());
     int32_t ans = 0;
     for (uint32_t i = 0; i < numCnt; i++) {
-        int32_t step = GetStep(i, nums, queries);
+        const int32_t step = GetStep(i, nums, queries);
         if (step < 0) {
             return -1;
         }

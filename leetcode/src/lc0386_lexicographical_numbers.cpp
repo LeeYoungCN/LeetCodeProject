@@ -56,7 +56,7 @@ vector<int32_t> LC0386_LexicographicalNumbers_DFS::lexicalOrder(int32_t n)
     return ans;
 }
 
-NumIterator::NumIterator(int limit) : limit(limit) {}
+NumIterator::NumIterator(const int limit) : limit(limit) {}
 
 bool NumIterator::HasNext() const
 {

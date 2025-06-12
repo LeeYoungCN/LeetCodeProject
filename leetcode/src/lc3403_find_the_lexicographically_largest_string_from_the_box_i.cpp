@@ -20,10 +20,6 @@
 
 using namespace std;
 
-namespace {
-
-}
-
 std::string LC3403_FindTheLexicographicallyLargestStringFromTheBoxI::answerString(std::string word, int numFriends)
 {
     const auto length = static_cast<uint32_t>(word.length());

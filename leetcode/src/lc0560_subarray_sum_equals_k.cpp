@@ -17,12 +17,10 @@ int LC0560_SubarraySumEqualsK::subarraySum(vector<int>& nums, int k)
 
     int32_t prefixSum = 0;
     int32_t ans = 0;
-    for (auto n : nums) {
+    for (const auto n : nums) {
         prefixSum += n;
 
-        int32_t delta = prefixSum - k;
-
-        if (prefixSums.find(delta) != prefixSums.end()) {
+        if (int32_t delta = prefixSum - k; prefixSums.find(delta) != prefixSums.end()) {
             ans += prefixSums[delta];
         }
         prefixSums[prefixSum]++;

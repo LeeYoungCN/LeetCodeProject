@@ -13,12 +13,12 @@ using namespace std;
 
 int LC2592_MaximizeGreatnessOfAnArray::maximizeGreatness(std::vector<int>& nums)
 {
-    sort(nums.begin(), nums.end(), greater<int32_t>());
+    sort(nums.begin(), nums.end(), greater<>());
     int32_t ans = 0;
 
     uint32_t left = 0;
 
-    for (int32_t n : nums) {
+    for (const int32_t n : nums) {
         if (nums[left] > n) {
             ans++;
             left++;

@@ -37,12 +37,12 @@ int LC2131_LongestPalindromeByConcatenatingTwoLetterWords::longestPalindrome(vec
             continue;
         }
 
-        string revWord = {word[1], word[0]};
+        const string revWord = {word[1], word[0]};
         if (wordMap[revWord] == 0) {
             continue;
         }
 
-        int32_t n = min(wordMap[revWord], cnt);
+        const int32_t n = min(wordMap[revWord], cnt);
         ret += (4 * n);
         wordMap[revWord] = 0;
     }

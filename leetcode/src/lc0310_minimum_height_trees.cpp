@@ -12,8 +12,8 @@
 
 using namespace std;
 namespace {
-const uint32_t START_NODE = 0;
-const uint32_t END_NODE = 1;
+constexpr uint32_t START_NODE = 0;
+constexpr uint32_t END_NODE = 1;
 }  // namespace
 
 vector<int> LC0310_MinimumHeightTrees_DFS::findMinHeightTrees(int n, vector<vector<int>> &edges)
@@ -22,7 +22,7 @@ vector<int> LC0310_MinimumHeightTrees_DFS::findMinHeightTrees(int n, vector<vect
         return {0};
     }
 
-    auto nodeCnt = static_cast<uint32_t>(n);
+    const auto nodeCnt = static_cast<uint32_t>(n);
 
     vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
 
@@ -55,7 +55,7 @@ vector<int> LC0310_MinimumHeightTrees_DFS::findMinHeightTrees(int n, vector<vect
     // From 0 find x.
     dfs(dfs, 0, nodeCnt, 0);
     // From x find y.
-    uint32_t startNode = maxNode;
+    const uint32_t startNode = maxNode;
     maxNode = nodeCnt;
     maxDepth = 0;
     dfs(dfs, startNode, nodeCnt, 0);
@@ -81,7 +81,7 @@ vector<int> LC0310_MinimumHeightTrees_BFS::findMinHeightTrees(int n, vector<vect
         return {0};
     }
 
-    auto nodeCnt = static_cast<uint32_t>(n);
+    const auto nodeCnt = static_cast<uint32_t>(n);
 
     vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
 
@@ -119,9 +119,9 @@ vector<int> LC0310_MinimumHeightTrees_BFS::findMinHeightTrees(int n, vector<vect
         return node;
     };
 
-    uint32_t maxNode1 = bfs(0);
-    uint32_t maxNode2 = bfs(maxNode1);
-    uint32_t maxDist = distance[maxNode2];
+    const uint32_t maxNode1 = bfs(0);
+    const uint32_t maxNode2 = bfs(maxNode1);
+    const uint32_t maxDist = distance[maxNode2];
 
     vector<int32_t> path(maxDist, 0);
     uint32_t tmp = maxNode2;
@@ -145,7 +145,7 @@ vector<int> LC0310_MinimumHeightTrees_TopologicalSort::findMinHeightTrees(int n,
         return {0};
     }
 
-    auto nodeCnt = static_cast<uint32_t>(n);
+    const auto nodeCnt = static_cast<uint32_t>(n);
     vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
     vector<uint32_t> nodeDegree(nodeCnt, 0);
 

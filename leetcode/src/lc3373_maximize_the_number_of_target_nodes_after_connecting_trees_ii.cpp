@@ -26,13 +26,13 @@ void LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::DFS(const vect
 {
     if (depth % 2 == 0) {
         treeNodeData.evenCnt++;
-        treeNodeData.nodeList[(uint32_t)curr] = NodeType::EVEN;
+        treeNodeData.nodeList[curr] = NodeType::EVEN;
     } else {
         treeNodeData.oddCnt++;
-        treeNodeData.nodeList[(uint32_t)curr] = NodeType::ODD;
+        treeNodeData.nodeList[curr] = NodeType::ODD;
     }
 
-    for (uint32_t child : graph[(uint32_t)curr]) {
+    for (const uint32_t child : graph[curr]) {
         if (child == parent) {
             continue;
         }
@@ -43,13 +43,12 @@ void LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::DFS(const vect
 void LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::GetTreeNodeData(const vector<vector<int>>& edges,
                                                                                   TreeData& treeNodeData)
 {
-    const uint32_t START_NODE = 0;
-    const uint32_t END_NODE = 1;
-
-    uint32_t nodeCnt = static_cast<uint32_t>(edges.size()) + 1;
+    const uint32_t nodeCnt = static_cast<uint32_t>(edges.size()) + 1;
     vector<vector<uint32_t>> graph(nodeCnt, vector<uint32_t>());
 
     for (const vector<int32_t>& edge : edges) {
+        constexpr uint32_t START_NODE = 0;
+        constexpr uint32_t END_NODE = 1;
         auto start = static_cast<uint32_t>(edge[START_NODE]);
         auto end = static_cast<uint32_t>(edge[END_NODE]);
 
@@ -65,8 +64,8 @@ void LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::GetTreeNodeDat
 vector<int32_t> LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::maxTargetNodes(
     vector<vector<int32_t>>& edges1, vector<vector<int32_t>>& edges2)
 {
-    uint32_t nodeCnt1 = static_cast<uint32_t>(edges1.size()) + 1;
-    uint32_t nodeCnt2 = static_cast<uint32_t>(edges2.size()) + 1;
+    const uint32_t nodeCnt1 = static_cast<uint32_t>(edges1.size()) + 1;
+    const uint32_t nodeCnt2 = static_cast<uint32_t>(edges2.size()) + 1;
 
     TreeData treeData1 = {.evenCnt = 0, .oddCnt = 0, .nodeList = vector<NodeType>(nodeCnt1, NodeType::EVEN)};
     TreeData treeData2 = {.evenCnt = 0, .oddCnt = 0, .nodeList = vector<NodeType>(nodeCnt2, NodeType::EVEN)};
@@ -74,7 +73,7 @@ vector<int32_t> LC3373_MaximizeTheNumberOfTargetNodesAfterConnectingTreesII::max
     GetTreeNodeData(edges1, treeData1);
     GetTreeNodeData(edges2, treeData2);
 
-    int32_t maxTree2 = max(treeData2.evenCnt, treeData2.oddCnt);
+    const int32_t maxTree2 = max(treeData2.evenCnt, treeData2.oddCnt);
     vector<int32_t> ans(nodeCnt1);
 
     for (uint32_t i = 0; i < nodeCnt1; i++) {

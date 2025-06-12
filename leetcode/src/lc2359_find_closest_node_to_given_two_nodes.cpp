@@ -16,8 +16,8 @@ int LC2359_FindClosestNodeToGivenTwoNodes::closestMeetingNode(vector<int> &edges
 {
     const auto nodeCnt = static_cast<uint32_t>(edges.size());
 
-    const uint32_t node1Idx = 0;
-    const uint32_t node2Idx = 1;
+    constexpr uint32_t node1Idx = 0;
+    constexpr uint32_t node2Idx = 1;
     vector<vector<int32_t>> nodeDist = {vector<int32_t>(nodeCnt, -1), vector<int32_t>(nodeCnt, -1)};
 
     function<void(uint32_t, vector<int32_t> &)> getDist = [&](uint32_t startNode, vector<int32_t> &dist) -> void {

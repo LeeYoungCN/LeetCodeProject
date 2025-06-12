@@ -12,8 +12,8 @@
 using namespace std;
 
 namespace {
-const uint32_t MIN_STEP = 1;
-const uint32_t MAX_STEP = 6;
+constexpr uint32_t MIN_STEP = 1;
+constexpr uint32_t MAX_STEP = 6;
 }  // namespace
 
 int LC0909_SnakesAndLadders_Path::snakesAndLadders(vector<vector<int>>& board)
@@ -23,7 +23,7 @@ int LC0909_SnakesAndLadders_Path::snakesAndLadders(vector<vector<int>>& board)
     vector<int32_t> path(target + 1, 0);
 
     for (uint32_t i = 0, idx = 1; i < n; i++) {
-        uint32_t x = n - i - 1;
+        const uint32_t x = n - i - 1;
         for (uint32_t j = 0; j < n; j++) {
             uint32_t y = j;
             if (i % 2 == 1) {
@@ -42,12 +42,12 @@ int LC0909_SnakesAndLadders_Path::snakesAndLadders(vector<vector<int>>& board)
     visitor[1] = true;
 
     while (!stepQueue.empty()) {
-        uint32_t curr = stepQueue.front();
+        const uint32_t curr = stepQueue.front();
         stepQueue.pop();
 
         for (uint32_t i = MIN_STEP; i <= MAX_STEP; i++) {
             uint32_t next = curr + i;
-            uint32_t dist = distance[curr] + 1;
+            const uint32_t dist = distance[curr] + 1;
 
             if (next == target) {
                 return static_cast<int32_t>(dist);
@@ -76,10 +76,10 @@ int LC0909_SnakesAndLadders_XY::snakesAndLadders(vector<vector<int>>& board)
     const auto n = static_cast<uint32_t>(board.size());
     const auto target = static_cast<uint32_t>(n * n);
 
-    function<int32_t(uint32_t)> getVal = [&](uint32_t idx) -> int32_t {
-        uint32_t num = idx - 1;
-        uint32_t layer = num / n;
-        uint32_t x = n - 1 - layer;
+    const function<int32_t(uint32_t)> getVal = [&](const uint32_t idx) -> int32_t {
+        const uint32_t num = idx - 1;
+        const uint32_t layer = num / n;
+        const uint32_t x = n - 1 - layer;
         uint32_t y = num % n;
         if (layer % 2 == 1) {
             y = n - y - 1;
@@ -94,18 +94,17 @@ int LC0909_SnakesAndLadders_XY::snakesAndLadders(vector<vector<int>>& board)
     stepQueue.push(1);
     visitor[1] = true;
     while (!stepQueue.empty()) {
-        uint32_t curr = stepQueue.front();
+        const uint32_t curr = stepQueue.front();
         stepQueue.pop();
 
         for (uint32_t i = MIN_STEP; i <= MAX_STEP; i++) {
             uint32_t next = curr + i;
-            uint32_t dist = distance[curr] + 1;
+            const uint32_t dist = distance[curr] + 1;
 
             if (next == target) {
                 return static_cast<int32_t>(dist);
             }
-            int32_t val = getVal(next);
-            if (val > 0) {
+            if (const int32_t val = getVal(next); val > 0) {
                 next = static_cast<uint32_t>(val);
             }
 

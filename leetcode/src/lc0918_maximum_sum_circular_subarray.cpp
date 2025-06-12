@@ -20,14 +20,14 @@ int LC0918_MaximumSumCircularSubarray_Reverse::maxSubarraySumCircular(std::vecto
     int32_t preMax = 0;
     int32_t preMin = 0;
 
-    for (int32_t n : nums) {
+    for (const int32_t n : nums) {
         preMax = max(preMax + n, n);
         preMin = min(preMin + n, n);
         maxSum = max(preMax, maxSum);
         minSum = min(preMin, minSum);
         total += n;
     }
-    return (maxSum < 0 ? maxSum : max(maxSum, total - minSum));
+    return maxSum < 0 ? maxSum : max(maxSum, total - minSum);
 }
 
 typedef struct {
@@ -73,7 +73,7 @@ int LC0918_MaximumSumCircularSubarray_DP::maxSubarraySumCircular(std::vector<int
     int32_t preMax = 0;
 
     for (uint32_t i = 0; i < length; i++) {
-        uint32_t j = length - i - 1;
+        const uint32_t j = length - i - 1;
         if (i == 0) {
             lMaxSum[i] = nums[i];
             rMaxSum[j] = nums[j];

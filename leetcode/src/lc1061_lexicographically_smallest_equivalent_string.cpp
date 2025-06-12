@@ -29,8 +29,8 @@ uint32_t UnionFind::Find(uint32_t x)
 
 void UnionFind::Union(uint32_t x, uint32_t y)
 {
-    uint32_t xRoot = Find(x);
-    uint32_t yRoot = Find(y);
+    const uint32_t xRoot = Find(x);
+    const uint32_t yRoot = Find(y);
 
     if (xRoot == yRoot) {
         return;
@@ -48,7 +48,7 @@ void UnionFind::Union(uint32_t x, uint32_t y)
 
 string LC1061_LexicographicallySmallestEquivalentString::smallestEquivalentString(string s1, string s2, string baseStr)
 {
-    const uint32_t CHAR_NUM = 26;
+    constexpr uint32_t CHAR_NUM = 26;
     UnionFind uf(CHAR_NUM);
 
     const auto length = static_cast<uint32_t>(s1.size());

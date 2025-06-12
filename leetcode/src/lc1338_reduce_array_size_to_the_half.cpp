@@ -18,7 +18,7 @@ int LC1338_ReduceArraySizeToTheHalf::minSetSize(std::vector<int>& arr)
     for (int32_t n : arr) {
         numMap[n]++;
     }
-    auto numTypeCnt = static_cast<uint32_t>(numMap.size());
+    const auto numTypeCnt = static_cast<uint32_t>(numMap.size());
     vector<int32_t> numCntVec;
     numCntVec.reserve(numTypeCnt);
 
@@ -26,7 +26,7 @@ int LC1338_ReduceArraySizeToTheHalf::minSetSize(std::vector<int>& arr)
         numCntVec.push_back(cnt);
     }
 
-    sort(numCntVec.begin(), numCntVec.end(), greater<int32_t>());
+    sort(numCntVec.begin(), numCntVec.end(), greater<>());
 
     int32_t half = static_cast<int32_t>(arr.size()) / 2;
 

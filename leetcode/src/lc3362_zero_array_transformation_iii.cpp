@@ -19,11 +19,8 @@ struct QuerySt {
 
 int LC3362_ZeroArrayTransformationIII::maxRemoval(std::vector<int> &nums, std::vector<std::vector<int>> &queries)
 {
-    auto compareQuertVec = [](const vector<int32_t> &a, const vector<int32_t> &b) { return a[0] < b[0]; };
-    sort(queries.begin(), queries.end(), compareQuertVec);
-
-    const uint32_t START = 0;
-    const uint32_t END = 1;
+    auto compareQueryVec = [](const vector<int32_t> &a, const vector<int32_t> &b) { return a[0] < b[0]; };
+    sort(queries.begin(), queries.end(), compareQueryVec);
 
     priority_queue<QuerySt> maxHeap;
     const auto length = static_cast<uint32_t>(nums.size());
@@ -33,13 +30,16 @@ int LC3362_ZeroArrayTransformationIII::maxRemoval(std::vector<int> &nums, std::v
     uint32_t queryIdx = 0;
 
     for (uint32_t i = 0; i < length; ++i) {
+        constexpr uint32_t START = 0;
+        constexpr uint32_t END = 1;
+
         operation += deltaArray[i];
         while (queryIdx < queryCnt && static_cast<uint32_t>(queries[queryIdx][START]) == i) {
             maxHeap.push({queries[queryIdx][START], queries[queryIdx][END]});
             ++queryIdx;
         }
 
-        int32_t n = nums[i];
+        const int32_t n = nums[i];
         while (!maxHeap.empty() && static_cast<uint32_t>(maxHeap.top().end) >= i && operation < n) {
             deltaArray[static_cast<uint32_t>(maxHeap.top().end) + 1] -= 1;
             maxHeap.pop();

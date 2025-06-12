@@ -60,7 +60,7 @@ TEST_F(TEST_LC2359, case2)
 
 TEST_F(TEST_LC2359, case3)
 {
-    vector<int> edges = {4,3,0,5,3,-1};
+    vector<int> edges = {4, 3, 0, 5, 3, -1};
     int node1 = 4;
     int node2 = 0;
     int expect = 4;
@@ -69,7 +69,7 @@ TEST_F(TEST_LC2359, case3)
 
 TEST_F(TEST_LC2359, case4)
 {
-    vector<int> edges = {4,4,4,5,1,2,2};
+    vector<int> edges = {4, 4, 4, 5, 1, 2, 2};
     int node1 = 1;
     int node2 = 1;
     int expect = 1;
@@ -78,7 +78,7 @@ TEST_F(TEST_LC2359, case4)
 
 TEST_F(TEST_LC2359, case5)
 {
-    vector<int> edges = {4,4,8,-1,9,8,4,4,1,1};
+    vector<int> edges = {4, 4, 8, -1, 9, 8, 4, 4, 1, 1};
     int node1 = 5;
     int node2 = 6;
     int expect = 1;

@@ -19,7 +19,7 @@ int LC1423_MaximumPointsYouCanObtainFromCards::maxScore(vector<int>& cardPoints,
     uint32_t start = 0;
     int32_t sum = 0;
     for (uint32_t i = 0; i < totalLen; i++) {
-        uint32_t end = i + 1;
+        const uint32_t end = i + 1;
         sum += cardPoints[i];
         if (end - start > windowLen) {
             sum -= cardPoints[start];

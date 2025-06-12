@@ -13,8 +13,8 @@ using namespace std;
 
 int32_t LC3445_MaximumDifferenceBetweenEvenAndOddFrequencyII::maxDifference(string s, int32_t k)
 {
-    const char MIN_CHAR = '0';
-    const char MAX_CHAR = '4';
+    constexpr char MIN_CHAR = '0';
+    constexpr char MAX_CHAR = '4';
 
     auto GetStatus = [](int32_t a, int32_t b) -> int32_t { return (((a & 0b1) << 1) | ((b & 0b1) << 0)); };
 
@@ -40,14 +40,14 @@ int32_t LC3445_MaximumDifferenceBetweenEvenAndOddFrequencyII::maxDifference(stri
                 rightB += (s[right] == b ? 1 : 0);
 
                 while (right - left + 1 >= static_cast<uint32_t>(k) && rightB > leftB && rightA > leftA) {
-                    int32_t lStatus = GetStatus(leftA, leftB);
+                    const int32_t lStatus = GetStatus(leftA, leftB);
                     minLeft[lStatus] = min(minLeft[lStatus], leftA - leftB);
                     leftA += (s[left] == a ? 1 : 0);
                     leftB += (s[left] == b ? 1 : 0);
                     ++left;
                 }
 
-                int32_t rStatus = GetStatus(rightA, rightB);
+                const int32_t rStatus = GetStatus(rightA, rightB);
                 if (minLeft[REVERSE(rStatus)] != INT32_MAX) {
                     ans = max(ans, rightA - rightB - minLeft[REVERSE(rStatus)]);
                 }

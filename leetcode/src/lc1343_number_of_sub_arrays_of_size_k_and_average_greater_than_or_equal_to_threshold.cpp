@@ -20,7 +20,7 @@ int LC1343_NumberOfSubArraysOfSizeKAndAverageGreaterThanOrEqualToThreshold::numO
     int32_t ans = 0;
     int32_t sum = 0;
     for (uint32_t i = 0, start = 0; i < length; i++) {
-        uint32_t end = i + 1;
+        const uint32_t end = i + 1;
         sum += arr[i];
 
         if (end - start > window) {

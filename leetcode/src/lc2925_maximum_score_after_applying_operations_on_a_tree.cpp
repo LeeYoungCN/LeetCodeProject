@@ -38,9 +38,9 @@ long long LC2925_MaximumScoreAfterApplyingOperationsOnATree::maximumScoreAfterOp
         }
 
         TreeValInfo tmpChild = {0, 0};
-        for (uint32_t child : grid[curr]) {
+        for (const uint32_t child : grid[curr]) {
             if (child != parent) {
-                TreeValInfo childVal = dfs(child, curr);
+                const TreeValInfo childVal = dfs(child, curr);
                 tmpChild.healthVal += childVal.healthVal;
                 tmpChild.totalVal += childVal.totalVal;
             }

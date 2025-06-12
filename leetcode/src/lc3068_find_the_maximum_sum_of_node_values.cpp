@@ -50,13 +50,12 @@ long long LC3068_FindTheMaximumSumOfNodeValues_Greedy::maximumValueSum(vector<in
 long long LC3068_FindTheMaximumSumOfNodeValues_DFS::maximumValueSum(std::vector<int> &nums, int k,
                                                                     std::vector<std::vector<int>> &edges)
 {
-    const uint32_t START_IDX = 0;
-    const uint32_t END_IDX = 1;
-
     auto totalNode = static_cast<uint32_t>(nums.size());
     vector<vector<uint32_t>> grid(totalNode);
 
     for (const vector<int32_t> &edge : edges) {
+        constexpr uint32_t START_IDX = 0;
+        constexpr uint32_t END_IDX = 1;
         auto start = static_cast<uint32_t>(edge[START_IDX]);
         auto end = static_cast<uint32_t>(edge[END_IDX]);
         grid[start].push_back(end);
@@ -68,8 +67,8 @@ long long LC3068_FindTheMaximumSumOfNodeValues_DFS::maximumValueSum(std::vector<
         vector<int64_t>(totalNode, INT64_MIN)  // flip
     };
 
-    const uint32_t NOT_FLIP_IDX = 0;
-    const uint32_t FLIP_IDX = 1;
+    constexpr uint32_t NOT_FLIP_IDX = 0;
+    constexpr uint32_t FLIP_IDX = 1;
 
     auto dfs = [&](auto &&dfs, uint32_t curr, uint32_t parent) -> void {
         for (uint32_t child : grid[curr]) {
@@ -77,17 +76,17 @@ long long LC3068_FindTheMaximumSumOfNodeValues_DFS::maximumValueSum(std::vector<
                 continue;
             }
             dfs(dfs, child, curr);
-            int64_t notFlip =
+            const int64_t notFlip =
                 max(dp[FLIP_IDX][curr] + dp[FLIP_IDX][child], dp[NOT_FLIP_IDX][curr] + dp[NOT_FLIP_IDX][child]);
-            int64_t flip =
+            const int64_t flip =
                 max(dp[NOT_FLIP_IDX][curr] + dp[FLIP_IDX][child], dp[FLIP_IDX][curr] + dp[NOT_FLIP_IDX][child]);
 
             dp[NOT_FLIP_IDX][curr] = notFlip;
             dp[FLIP_IDX][curr] = flip;
         }
 
-        int64_t oldNotflip = dp[NOT_FLIP_IDX][curr];
-        int64_t oldFlip = dp[FLIP_IDX][curr];
+        const int64_t oldNotflip = dp[NOT_FLIP_IDX][curr];
+        const int64_t oldFlip = dp[FLIP_IDX][curr];
 
         dp[NOT_FLIP_IDX][curr] = max(oldNotflip + nums[curr], oldFlip + (nums[curr] ^ k));
         dp[FLIP_IDX][curr] = max(oldNotflip + (nums[curr] ^ k), oldFlip + nums[curr]);
@@ -102,13 +101,13 @@ long long LC3068_FindTheMaximumSumOfNodeValues_DP::maximumValueSum(
 {
     const auto total = static_cast<uint32_t>(nums.size());
 
-    uint32_t EVE_IDX = 0;
-    uint32_t ODD_IDX = 1;
+    constexpr uint32_t EVE_IDX = 0;
+    constexpr uint32_t ODD_IDX = 1;
 
     vector<vector<int64_t>> dp = {vector<int64_t>(total), vector<int64_t>(total)};
 
     for (uint32_t i = 0; i < total; i++) {
-        int32_t n = nums[i];
+        const int32_t n = nums[i];
         if (i == 0) {
             dp[EVE_IDX][i] = n;
             dp[ODD_IDX][i] = (n ^ k);

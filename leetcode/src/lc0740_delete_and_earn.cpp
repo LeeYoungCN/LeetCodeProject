@@ -13,12 +13,12 @@ using namespace std;
 
 int LC0740_DeleteAndEarn::deleteAndEarn(std::vector<int>& nums)
 {
-    auto pair = minmax_element(nums.begin(), nums.end());
+    const auto pair = minmax_element(nums.begin(), nums.end());
 
-    int32_t maxNum = *(pair.second);
-    int32_t minNum = *(pair.first);
+    const int32_t maxNum = *(pair.second);
+    const int32_t minNum = *(pair.first);
 
-    auto length = static_cast<uint32_t>(maxNum - minNum + 1);
+    const auto length = static_cast<uint32_t>(maxNum - minNum + 1);
 
     vector<int32_t> sumArray(length, 0);
     for (int32_t n : nums) {

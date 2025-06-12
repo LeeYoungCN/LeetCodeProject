@@ -13,7 +13,7 @@ using namespace std;
 
 int LC2144_MinimumCostOfBuyingCandiesWithDiscount::minimumCost(std::vector<int>& cost)
 {
-    sort(cost.begin(), cost.end(), greater<int32_t>());
+    sort(cost.begin(), cost.end(), greater<>());
     int32_t ans = 0;
     for (uint32_t i = 0; i < static_cast<uint32_t>(cost.size()); i++) {
         if (i % 3 == 2) {

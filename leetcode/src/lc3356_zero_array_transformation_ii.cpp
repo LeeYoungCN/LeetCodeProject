@@ -20,9 +20,9 @@ bool LC3356_ZeroArrayTransformationII_Array::isZeroArray(const vector<int32_t>& 
 
     for (uint32_t i = 0; i < step; i++) {
         const vector<int32_t>& query = queries[i];
-        int32_t delta = query[DELTA_IDX];
-        auto start = static_cast<uint32_t>(query[START_IDX]);
-        auto end = static_cast<uint32_t>(query[END_IDX]);
+        const int32_t delta = query[DELTA_IDX];
+        const auto start = static_cast<uint32_t>(query[START_IDX]);
+        const auto end = static_cast<uint32_t>(query[END_IDX]);
 
         deltaArray[start] += delta;
         deltaArray[end + 1] -= delta;
@@ -44,7 +44,7 @@ int LC3356_ZeroArrayTransformationII_Array::minZeroArray(std::vector<int>& nums,
     uint32_t right = maxStep + 1;
 
     while (left < right) {
-        uint32_t k = (left + right) / 2;
+        const uint32_t k = (left + right) / 2;
         if (isZeroArray(nums, queries, k)) {
             right = k;
         } else {
@@ -64,14 +64,14 @@ int LC3356_ZeroArrayTransformationII_Greedy::minZeroArray(std::vector<int>& nums
 
     vector<int32_t> deltaArray(length + 1, 0);
     for (uint32_t i = 0; i < length; ++i) {
-        int32_t n = nums[i];
+        const int32_t n = nums[i];
         operation += deltaArray[i];
 
         while (queryIdx < queryCnt && operation < n) {
             const vector<int32_t>& query = queries[queryIdx];
-            auto start = static_cast<uint32_t>(query[START_IDX]);
-            auto end = static_cast<uint32_t>(query[END_IDX]);
-            int32_t delta = query[DELTA_IDX];
+            const auto start = static_cast<uint32_t>(query[START_IDX]);
+            const auto end = static_cast<uint32_t>(query[END_IDX]);
+            const int32_t delta = query[DELTA_IDX];
             deltaArray[start] += delta;
             deltaArray[end + 1] -= delta;
 

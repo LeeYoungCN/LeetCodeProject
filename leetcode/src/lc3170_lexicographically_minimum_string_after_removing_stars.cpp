@@ -15,12 +15,11 @@ using namespace std;
 
 string LC3170_LexicographicallyMinimumStringAfterRemovingStars_Heap::clearStars(string s)
 {
-    const uint32_t length = (uint32_t)s.size();
+    const auto length = static_cast<uint32_t>(s.size());
 
     map<char, priority_queue<uint32_t>> charMap;
     for (uint32_t i = 0; i < length; ++i) {
-        char c = s[i];
-        if (c != '*') {
+        if (const char c = s[i]; c != '*') {
             charMap[c].push(i);
             continue;
         }
@@ -34,7 +33,7 @@ string LC3170_LexicographicallyMinimumStringAfterRemovingStars_Heap::clearStars(
     }
 
     string ans;
-    for (char c : s) {
+    for (const char c : s) {
         if (c != '*') {
             ans += c;
         }
@@ -49,8 +48,7 @@ string LC3170_LexicographicallyMinimumStringAfterRemovingStars_Stack::clearStars
 
     map<char, vector<uint32_t>> charMap;
     for (uint32_t i = 0; i < length; ++i) {
-        char c = s[i];
-        if (c != '*') {
+        if (const char c = s[i]; c != '*') {
             charMap[c].push_back(i);
             continue;
         }

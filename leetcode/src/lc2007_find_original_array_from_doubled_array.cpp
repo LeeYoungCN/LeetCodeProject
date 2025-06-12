@@ -19,7 +19,7 @@ vector<int32_t> LC2007_FindOriginalArrayFromDoubledArray_Map::findOriginalArray(
     }
 
     map<int32_t, uint32_t, less<>> changeMap;
-    for (int32_t n : changed) {
+    for (const int32_t n : changed) {
         changeMap[n]++;
     }
 
@@ -39,10 +39,9 @@ vector<int32_t> LC2007_FindOriginalArrayFromDoubledArray_Map::findOriginalArray(
             continue;
         }
 
-        int32_t target = num * 2;
-        auto it = changeMap.find(target);
+        const int32_t target = num * 2;
 
-        if (it == changeMap.end() || it->second < cnt) {
+        if (const auto it = changeMap.find(target); it == changeMap.end() || it->second < cnt) {
             return {};
         }
 

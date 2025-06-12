@@ -41,7 +41,7 @@ void TEST_LC3074::RunTest(vector<int>& apple, vector<int>& capacity, int expect)
 
 TEST_F(TEST_LC3074, case1)
 {
-    vector<int> apple    = {1, 3, 2};
+    vector<int> apple = {1, 3, 2};
     vector<int> capacity = {4, 3, 1, 5, 2};
 
     int expect = 2;
@@ -50,7 +50,7 @@ TEST_F(TEST_LC3074, case1)
 
 TEST_F(TEST_LC3074, case2)
 {
-    vector<int> apple    = {5, 5, 5};
+    vector<int> apple = {5, 5, 5};
     vector<int> capacity = {2, 4, 2, 7};
 
     int expect = 4;

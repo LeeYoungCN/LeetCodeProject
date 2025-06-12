@@ -11,14 +11,16 @@
 
 using namespace std;
 
+namespace {
+constexpr int32_t OPEN = 1;
+constexpr int32_t CLOSE = 0;
+}  // namespace
+
 int LC1298_MaximumCandiesYouCanGetFromBoxes::maxCandies(std::vector<int>& status, std::vector<int>& candies,
                                                         std::vector<std::vector<int>>& keys,
                                                         std::vector<std::vector<int>>& containedBoxes,
                                                         std::vector<int>& initialBoxes)
 {
-    const int32_t OPEN = 1;
-    const int32_t CLOSE = 0;
-
     const auto boxCnt = static_cast<uint32_t>(status.size());
 
     vector<bool> noKeyBox(boxCnt, false);
@@ -38,11 +40,11 @@ int LC1298_MaximumCandiesYouCanGetFromBoxes::maxCandies(std::vector<int>& status
         }
 
         ans += candies[static_cast<uint32_t>(currBox)];
-        for (int32_t box : containedBoxes[static_cast<uint32_t>(currBox)]) {
+        for (const int32_t box : containedBoxes[static_cast<uint32_t>(currBox)]) {
             boxQueue.push(box);
         }
 
-        for (int32_t boxKey : keys[static_cast<uint32_t>(currBox)]) {
+        for (const int32_t boxKey : keys[static_cast<uint32_t>(currBox)]) {
             status[static_cast<uint32_t>(boxKey)] = OPEN;
             if (noKeyBox[static_cast<uint32_t>(boxKey)]) {
                 noKeyBox[static_cast<uint32_t>(boxKey)] = false;

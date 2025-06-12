@@ -15,7 +15,6 @@ typedef struct {
 
 string LC3024_TypeOfTriangle::triangleType(vector<int>& nums)
 {
-    string ans[] = {"scalene", "isosceles", "isosceles", "equilateral"};
     const vector<TriLineArr> checkList = {{0, 1, 2}, {0, 2, 1}, {1, 2, 0}};
     bool isValid = true;
     uint32_t equalLineNum = 0;
@@ -29,6 +28,7 @@ string LC3024_TypeOfTriangle::triangleType(vector<int>& nums)
         }
     }
     if (isValid) {
+        const string ans[] = {"scalene", "isosceles", "isosceles", "equilateral"};
         return ans[equalLineNum];
     } else {
         return "none";

@@ -42,38 +42,38 @@ void TEST_LC1423::RunTest(vector<int> &cardPoints, int k, int expect)
 TEST_F(TEST_LC1423, case1)
 {
     vector<int> cardPoints = {1, 2, 3, 4, 5, 6, 1};
-    int k                  = 3;
-    int expect             = 12;
+    int k = 3;
+    int expect = 12;
     RunTest(cardPoints, k, expect);
 }
 
 TEST_F(TEST_LC1423, case2)
 {
     vector<int> cardPoints = {2, 2, 2};
-    int k                  = 2;
-    int expect             = 4;
+    int k = 2;
+    int expect = 4;
     RunTest(cardPoints, k, expect);
 }
 
 TEST_F(TEST_LC1423, case3)
 {
     vector<int> cardPoints = {9, 7, 7, 9, 7, 7, 9};
-    int k                  = 7;
-    int expect             = 55;
+    int k = 7;
+    int expect = 55;
     RunTest(cardPoints, k, expect);
 }
 
 TEST_F(TEST_LC1423, case4)
 {
     vector<int> cardPoints = {1, 1000, 1};
-    int k                  = 1;
-    int expect             = 1;
+    int k = 1;
+    int expect = 1;
     RunTest(cardPoints, k, expect);
 }
 TEST_F(TEST_LC1423, case5)
 {
     vector<int> cardPoints = {1, 79, 80, 1, 1, 1, 200, 1};
-    int k                  = 3;
-    int expect             = 202;
+    int k = 3;
+    int expect = 202;
     RunTest(cardPoints, k, expect);
 }

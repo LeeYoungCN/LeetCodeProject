@@ -19,13 +19,13 @@ bool LC0426_PartitionEqualSubsetSum_DP1::canPartition(std::vector<int>& nums)
     }
 
     int32_t sum = accumulate(nums.begin(), nums.end(), 0);
-    auto maxItr = max_element(nums.begin(), nums.end());
+    const auto maxItr = max_element(nums.begin(), nums.end());
 
     if (sum % 2 == 1) {
         return false;
     }
 
-    uint32_t target = static_cast<uint32_t>(sum) / 2;
+    const uint32_t target = static_cast<uint32_t>(sum) / 2;
     if (target < static_cast<uint32_t>(*maxItr)) {
         return false;
     }
@@ -56,13 +56,13 @@ bool LC0426_PartitionEqualSubsetSum_DP1::canPartition(std::vector<int>& nums)
 
 bool LC0426_PartitionEqualSubsetSum_DP2::canPartition(std::vector<int>& nums)
 {
-    auto numCnt = static_cast<uint32_t>(nums.size());
+    const auto numCnt = static_cast<uint32_t>(nums.size());
     if (numCnt < 2) {
         return false;
     }
 
     int32_t sum = accumulate(nums.begin(), nums.end(), 0);
-    auto maxItr = max_element(nums.begin(), nums.end());
+    const auto maxItr = max_element(nums.begin(), nums.end());
 
     if (sum % 2 == 1) {
         return false;
