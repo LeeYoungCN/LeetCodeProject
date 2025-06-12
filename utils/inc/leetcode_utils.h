@@ -6,6 +6,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <type_traits>
 #include <unordered_map>
 #include <vector>
 
@@ -13,9 +14,9 @@ template <class T>
 std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
 {
     if (end == 0) {
-        end = (uint32_t)vec.size();
+        end = static_cast<uint32_t>(vec.size());
     }
-    end = std::min(end, (uint32_t)vec.size());
+    end = std::min(end, static_cast<uint32_t>(vec.size()));
 
     const uint32_t length = end - start;
     std::string str = "{";
@@ -42,12 +43,12 @@ void PrintVector(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0
     std::cout << Vector2String(vec, start, end, hasIdx) << std::endl;
 }
 
-template <class map_type, class K = int32_t, class V = int32_t, class cmp = std::less<K>>
+template <class K = int32_t, class V = int32_t, class cmp = std::less<K>>
 std::string Map2String(std::map<K, V, cmp> map)
 {
     std::string str;
     for (const auto &[key, val] : map) {
-        if (std::is_same<K, char>::value) {
+        if constexpr (std::is_same<K, char>::value) {
             str += "[" + &key + " : " + std::to_string(val) + "], ";
         } else {
             str += "[" + std::to_string(key) + " : " + std::to_string(val) + "], ";
