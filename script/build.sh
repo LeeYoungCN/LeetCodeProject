@@ -15,7 +15,8 @@ google_test_case=""
 ctest_case=""
 enable_clean=1
 preset="linux_gnu_debug"
-prefix=""
+cmake_preset_file="${root_path}/CMakePresets.json"
+prefix=$(grep "PROBLEM_PREFIX" ${cmake_preset_file} | awk -F'"' '{print$4}')
 
 ARGS=$(getopt -o ct:s:p: --long clean,gtest:,pre_set:,prefix:,ctest: -n "$0" -- "$@")
 
