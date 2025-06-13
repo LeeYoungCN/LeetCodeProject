@@ -110,8 +110,8 @@ if [ ! -d "${buildcache_dir}" ]; then
           -B "${buildcache_dir}" \
           -DCMAKE_BUILD_TYPE="${build_type}" \
           -DCMAKE_INSTALL_PREFIX="${install_dir}" \
-          -DCMAKE_TOOLCHAIN_FILE="${toolchain_file}" \
           -DPROBLEM_PREFIX=${prefix}    \
+          --toolchain="${toolchain_file}" \
           -G "${generator}"
 
     if [ $? -ne 0 ]; then
