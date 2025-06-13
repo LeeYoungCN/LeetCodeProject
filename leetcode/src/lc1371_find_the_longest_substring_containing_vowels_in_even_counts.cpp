@@ -39,8 +39,6 @@ int32_t LC1371_FindTheLongestSubstringContainingVowelsInEvenCounts::findTheLonge
                 break;
         }
 
-        printf("i = %u, status = %u\n", i, status);
-
         if (position[status] == length) {
             position[status] = i + 1;
         } else {
