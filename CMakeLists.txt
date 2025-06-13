@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 project(LeetCode)
 
 include(${CMAKE_SOURCE_DIR}/cmake/third_lib_config.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/ctest_config.cmake)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 99)
@@ -48,6 +49,8 @@ add_subdirectory(leetcode)
 set(TEST_RUNTIME_NAME leetcode_test)
 add_subdirectory(test)
 add_dependencies(${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME} ${UTILS_LIB_NAME})
+# 添加ctest测试
+add_test(NAME test_leetcode COMMAND ${TEST_RUNTIME_NAME})
 
 install(TARGETS ${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME} ${UTILS_LIB_NAME}
         ARCHIVE DESTINATION lib       # 静态库 (.a)

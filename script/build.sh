@@ -6,6 +6,7 @@ source "${root_path}/script/common_func.sh"
 
 buildcache_root_dir="${root_path}/out/build"
 install_root_dir="${root_path}/out/install"
+ctest_root_dir="${root_path}/out/Testing"
 toolchain_file_dir="${root_path}/cmake"
 build_type="Debug"
 
@@ -106,12 +107,13 @@ fi
 if [ ! -d "${buildcache_dir}" ]; then
     mkdir -p "${buildcache_dir}"
 
-    cmake -S "${root_path}" \
-          -B "${buildcache_dir}" \
-          -DCMAKE_BUILD_TYPE="${build_type}" \
-          -DCMAKE_INSTALL_PREFIX="${install_dir}" \
-          -DPROBLEM_PREFIX=${prefix}    \
-          --toolchain="${toolchain_file}" \
+    cmake -S "${root_path}"                             \
+          -B "${buildcache_dir}"                        \
+          -DCMAKE_BUILD_TYPE="${build_type}"            \
+          -DCMAKE_INSTALL_PREFIX="${install_dir}"       \
+          -DPROBLEM_PREFIX="${prefix}"                  \
+          -DCTEST_BINARY_DIRECTORY="${ctest_root_dir}"  \
+          --toolchain="${toolchain_file}"               \
           -G "${generator}"
 
     if [ $? -ne 0 ]; then

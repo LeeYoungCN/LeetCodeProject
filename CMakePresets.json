@@ -8,6 +8,7 @@
             "installDir": "${sourceDir}/out/install/${presetName}",
             "description": "项目基础设置",
             "cacheVariables": {
+                "CTEST_BINARY_DIRECTORY": "${sourceDir}/out/Testing",
                 "PROBLEM_PREFIX": "ALL"
             }
         },
