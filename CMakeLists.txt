@@ -45,6 +45,8 @@ set(LEETCODE_LIB_NAME leetcode)
 set(LEETCODE_LIB_INCLUDE_PATH ${CMAKE_SOURCE_DIR}/leetcode/inc)
 add_subdirectory(leetcode)
 
+enable_testing()
+
 set(TEST_RUNTIME_NAME leetcode_test)
 add_subdirectory(test)
 add_dependencies(${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME} ${UTILS_LIB_NAME})
@@ -54,8 +56,3 @@ install(TARGETS ${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME} ${UTILS_LIB_NAME}
         LIBRARY DESTINATION lib       # 共享库 (.so/.dylib)
         RUNTIME DESTINATION bin       # Windows DLL
         COMPONENT runtime)
-
-# 添加ctest测试
-enable_testing()
-add_test(NAME test_leetcode COMMAND ${TEST_RUNTIME_NAME})
-set_tests_properties(test_leetcode PROPERTIES TIMEOUT 1)

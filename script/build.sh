@@ -11,12 +11,13 @@ toolchain_file_dir="${root_path}/cmake"
 build_type="Debug"
 
 target=""
-test_case=""
+google_test_case=""
+ctest_case=""
 enable_clean=1
 preset="linux_gnu_debug"
 prefix=""
 
-ARGS=$(getopt -o ct:s:p: --long clean,test:,pre_set:,prefix: -n "$0" -- "$@")
+ARGS=$(getopt -o ct:s:p: --long clean,gtest:,pre_set:,prefix:,ctest: -n "$0" -- "$@")
 
 if [ $? != 0 ]; then
     echo "Terminating..." >&2 ;
@@ -28,7 +29,8 @@ eval set -- "$ARGS"
 while true; do
     case "$1" in
         -c|--clean)     enable_clean=0; shift 1;;
-        -t|--test)      test_case="$2"; shift 2;;
+        -t|--gtest)     google_test_case="$2"; shift 2;;
+        --ctest)        ctest_case="$2"; shift 2;;
         -s|--pre_set)   preset="$2"; shift 2;;
         -p|--prefix)    prefix="$2"; shift 2;;
         --) shift 1; break;;
@@ -136,7 +138,16 @@ print_log "CMake build OK."
 
 cmake --install "${buildcache_dir}"
 
-cd "${bin_dir}" || exit 1
-if [ -n "${test_case}" ]; then
-    ./${target_name}* --gtest_filter=${test_case}
+if [ -n "${google_test_case}" ]; then
+    pushd "${bin_dir}" || exit 1
+    ./${target_name}* --gtest_filter=${google_test_case}
+    popd
+fi
+
+if [ -n "${ctest_case}" ]; then
+    if [ "${ctest_case}" == "*" ]; then
+        ctest --rerun-failed --output-on-failure --test-dir "${buildcache_dir}"
+    else
+        ctest --output-on-failure --test-dir "${buildcache_dir}" -R ${ctest_case}
+    fi
 fi
