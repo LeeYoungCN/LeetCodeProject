@@ -141,7 +141,7 @@ cmake --install "${buildcache_dir}"
 
 if [ -n "${google_test_case}" ]; then
     pushd "${bin_dir}" || exit 1
-    ./${target_name}* --gtest_filter=${google_test_case}
+    ./leetcode_test --gtest_filter=${google_test_case}
     popd
 fi
 
