@@ -16,10 +16,8 @@
             "hidden": true,
             "generator": "MinGW Makefiles",
             "inherits": "project-base",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "D:/Programs/MinGW/bin/gcc.exe",
-                "CMAKE_CXX_COMPILER": "D:/Programs/MinGW/bin/g++.exe"
-            },
+            "toolchainFile": "${sourceDir}/cmake/mingw.cmake",
+            "cacheVariables": {},
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -28,7 +26,7 @@
         },
         {
             "name": "mingw_debug",
-            "displayName": "Mingw Debug",
+            "displayName": "Mingw Debug Configure",
             "inherits": "mingw-base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -36,7 +34,7 @@
         },
         {
             "name": "mingw_release",
-            "displayName": "Mingw Release",
+            "displayName": "Mingw Release Configure",
             "inherits": "mingw-base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
@@ -57,14 +55,12 @@
             "name": "linux_gnu_base",
             "hidden": true,
             "inherits": "linux_base",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "/usr/bin/gcc",
-                "CMAKE_CXX_COMPILER": "/usr/bin/g++"
-            }
+            "toolchainFile": "${sourceDir}/cmake/linux_gnu.cmake",
+            "cacheVariables": {}
         },
         {
             "name": "linux_gnu_debug",
-            "displayName": "Linux GNU Debug",
+            "displayName": "Linux GNU Debug Configure",
             "inherits": "linux_gnu_base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -72,7 +68,7 @@
         },
         {
             "name": "linux_gnu_release",
-            "displayName": "Linux GNU Release",
+            "displayName": "Linux GNU Release Configure",
             "inherits": "linux_gnu_base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
@@ -82,14 +78,12 @@
             "name": "linux_clang_base",
             "hidden": true,
             "inherits": "linux_base",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "/home/ly/tools/clang/bin/clang",
-                "CMAKE_CXX_COMPILER": "/home/ly/tools/clang/bin/clang++"
-            }
+            "toolchainFile": "${sourceDir}/cmake/linux_clang.cmake",
+            "cacheVariables": {}
         },
         {
             "name": "linux_clang_debug",
-            "displayName": "Linux Clang Debug",
+            "displayName": "Linux Clang Debug Configure",
             "inherits": "linux_clang_base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -97,7 +91,7 @@
         },
         {
             "name": "linux_clang_release",
-            "displayName": "Linux Clang Release",
+            "displayName": "Linux Clang Release Configure",
             "inherits": "linux_clang_base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
@@ -118,14 +112,12 @@
             "name": "darwin_clang_base",
             "hidden": true,
             "inherits": "darwin_base",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "clang",
-                "CMAKE_CXX_COMPILER": "clang++"
-            }
+            "toolchainFile": "${sourceDir}/cmake/drawin_clang.cmake",
+            "cacheVariables": {}
         },
         {
             "name": "darwin_clang_debug",
-            "displayName": "Darwin Clang Debug",
+            "displayName": "Darwin Clang Debug Configure",
             "inherits": "darwin_clang_base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -133,11 +125,61 @@
         },
         {
             "name": "darwin_clang_release",
-            "displayName": "Darwin Clang Release",
+            "displayName": "Darwin Clang Release Configure",
             "inherits": "darwin_clang_base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "mingw_debug",
+            "configurePreset": "mingw_debug",
+            "displayName": "MinGW Debug Build",
+            "description": "Build the MinGW Debug configuration",
+            "targets":["all", "install"],
+            "jobs": 4
+        },
+        {
+            "name": "mingw_release",
+            "configurePreset": "mingw_release",
+            "displayName": "MinGW Release Build",
+            "description": "Build the MinGW Release configuration",
+            "targets":["all", "install"],
+            "jobs": 4
+        },
+        {
+            "name": "linux_clang_debug",
+            "configurePreset": "linux_clang_debug",
+            "displayName": "Linux Clang Debug Build",
+            "description": "Build the Linux Clang Debug configuration",
+            "targets":["all", "install"],
+            "jobs": 4
+        },
+        {
+            "name": "linux_clang_release",
+            "configurePreset": "linux_clang_release",
+            "displayName": "Linux Clang Release Build",
+            "description": "Build the Linux Clang Release configuration",
+            "targets":["all", "install"],
+            "jobs": 4
+        },
+        {
+            "name": "linux_gnu_debug",
+            "configurePreset": "linux_gnu_debug",
+            "displayName": "Linux GNU Debug Build",
+            "description": "Build the Linux GNU Debug configuration",
+            "targets":["all", "install"],
+            "jobs": 4
+        },
+        {
+            "name": "linux_gnu_release",
+            "configurePreset": "linux_gnu_release",
+            "displayName": "Linux GNU Release Build",
+            "description": "Build the Linux GNU Release configuration",
+            "targets":["all", "install"],
+            "jobs": 4
         }
     ]
 }
