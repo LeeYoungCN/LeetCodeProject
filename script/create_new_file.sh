@@ -1,8 +1,8 @@
 #!/usr/bin/bash
-file_path="$(cd $(dirname $0); pwd)"
-root_path="$(cd ${file_path}/..; pwd)"
+file_path="$(cd "$(dirname "$0")" || exit 1; pwd)"
+root_path="$(cd "${file_path}/.." || exit 1; pwd)"
 
-source "${root_path}/script/common_func.sh"
+source "$(dirname "$0")/common_func.sh"
 
 LEETCODE_INC_DIR="${root_path}/leetcode/inc"
 LEETCODE_SRC_DIR="${root_path}/leetcode/src"
@@ -24,6 +24,7 @@ def_str=""
 
 prefix=""
 url=""
+class_name=""
 
 lc_func=""
 func_name="LeetCodeFunction(std::vector<int> x)"
@@ -32,9 +33,17 @@ func_param="std::vector<int> x"
 
 time_str="$(date "+%Y-%m-%d %H:%M:%S")"
 
-ARGS=$(getopt -o p:u:f: --long prefix:,url:,func: -n "$0" -- "$@")
+function print_help()
+{
+    basename "$0"
+    echo "      -p|--prefix <file-prefix>   = 问题前缀"
+    echo "      -u|--url <url>              = 问题网址"
+    echo "      -f|--func <function-name>   = 函数名称"
+    echo "      -n|--name <class-name>      = 文件和类名称, 如果为空从url中获取"
+}
 
-if [ $? != 0 ]; then
+if ! ARGS=$(getopt -o p:u:f:n:? --long prefix:,url:,func:,name:,help -n "$0" -- "$@")
+then
     echo "Terminating..." >&2 ;
     exit 1;
 fi
@@ -46,13 +55,20 @@ while true; do
         -p|--prefix) prefix="$2"; shift 2;;
         -u|--url)    url="$2";    shift 2;;
         -f|--func)   lc_func="$2"; shift 2;;
+        -n|--name)   class_name="$2"; shift 2;;
+        --help)      print_help; exit 0;;
         --) shift; break;;
         *) echo "Internal error!"; exit 1;;
     esac
 done
 
-if [ -z "${prefix}" ] || [ -z "${url}" ]; then
-    print_log "prefix or url empty."
+if [ -z "${prefix}" ]; then
+    print_log "prefix empty."
+    exit 1
+fi
+
+if [ -z "${class_name}" ] && [ -z "${url}" ]; then
+    print_log "name empty."
     exit 1
 fi
 
@@ -63,25 +79,18 @@ if [ -n "${lc_func}" ]; then
     echo "func   [${lc_func}]"
 fi
 
-replace_text() {
-    local old_str="$1"
-    local new_str="$2"
-    local file_path="$3"
-    sed -i "s#${old_str}#${new_str}#g" "${file_path}"
-}
-
-create_new_file_by_template() {
+function create_new_file_by_template() {
     local template_file="$1"
     local new_file="$2"
 
     print_log "create [${new_file}]"
 
-    if [ ! -e ${template_file} ]; then
+    if [ ! -e "${template_file}" ]; then
         print_log "template file not exist!"
         exit 1
     fi
 
-    if [ -e ${new_file} ]; then
+    if [ -e "${new_file}" ]; then
         print_log "new file already exist!"
         return 0
     fi
@@ -99,7 +108,7 @@ create_new_file_by_template() {
     replace_text "PARAM_NAMES"      "${param_names}"            "${new_file}"
 }
 
-main() {
+function main() {
     if [ -n "${lc_func}" ]; then
         func_name="${lc_func%(*}"
         func_ret_type="${func_name% *}"
@@ -122,12 +131,20 @@ main() {
         index=$((index + 2))
     done
 
-    # "https://leetcode.cn/problems/"
-    local problem_name=$(echo ${url} | awk -F / '{print $5}')
-    problem_name=$(echo ${problem_name} | sed  's/-/_/g')
+    local problem_name
+    local prefix_fmt
+    local problem_fmt
 
-    local prefix_fmt=$(echo ${prefix} | tr 'a-z' 'A-Z')
-    local problem_fmt=$(echo ${problem_name} | sed -r 's/(^|_)(\w)/\U\2/g')
+    if [ -z "${class_name}" ]; then
+        # https://leetcode.cn/problems-name/
+        problem_name=$(awk -F / '{print $5}' <<< "${url}")
+    else
+        problem_name="${class_name}"
+    fi
+
+    problem_name="${problem_name//-/_}"
+    prefix_fmt=$(tr '[:lower:]' '[:upper:]' <<< "${prefix}")
+    problem_fmt=$(sed -r 's/(^|_)(\w)/\U\2/g' <<< "${problem_name}" )
 
     leetcode_file_name="${prefix}_${problem_name}"
     leetcode_class_name="${prefix_fmt}_${problem_fmt}"
@@ -137,7 +154,7 @@ main() {
     head_file_path="${LEETCODE_INC_DIR}/${leetcode_file_name}.h"
     src_file_path="${LEETCODE_SRC_DIR}/${leetcode_file_name}.cpp"
     test_file_path="${TEST_DIR}/test_${leetcode_file_name}.cpp"
-    def_str="$(echo ${leetcode_file_name} | tr 'a-z' 'A-Z')_H"
+    def_str="$(tr '[:lower:]' '[:upper:]' <<< "${leetcode_file_name}")_H"
 
     create_new_file_by_template "${TEMPLATE_HEAD_FILE}" "${head_file_path}"
     create_new_file_by_template "${TEMPLATE_SRC_FILE}"  "${src_file_path}"
