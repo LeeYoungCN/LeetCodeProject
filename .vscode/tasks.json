@@ -6,13 +6,13 @@
     },
     "tasks": [
         {
-            "label": "Build",
+            "label": "Clean",
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
             "command": "./build.sh",
             "args": [
-                "-c"
+                "--clean"
             ],
             "detail": "根据makefile生成可执行文件和库文件",
             "problemMatcher": [
@@ -20,26 +20,55 @@
             ]
         },
         {
-            "label": "Rebuild",
+            "label": "CMake Configure",
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
-            "command": "${workspaceFolder}/script/build.sh",
-            "args": [],
+            "command": "./build.sh",
+            "args": [
+                "--configure"
+            ],
             "detail": "根据makefile生成可执行文件和库文件",
             "problemMatcher": [
                 "$gcc"
             ]
         },
         {
-            "label": "Rebuild & Run",
+            "label": "CMake Build",
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
             "command": "./build.sh",
             "args": [
-                "-t",
-                "\"*\""
+                "--build"
+            ],
+            "detail": "根据makefile生成可执行文件和库文件",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Run gtest",
+            "options": {
+                "cwd": "${workspaceFolder}/script/"
+            },
+            "command": "./build.sh",
+            "args": [
+                "--gtest"
+            ],
+            "detail": "根据makefile生成可执行文件和库文件",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Run ctest",
+            "options": {
+                "cwd": "${workspaceFolder}/script/"
+            },
+            "command": "./build.sh",
+            "args": [
+                "--ctest"
             ],
             "detail": "根据makefile生成可执行文件和库文件",
             "problemMatcher": [

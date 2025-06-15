@@ -1,44 +1,42 @@
 #!/usr/bin/bash
-file_path="$(
+SCRIPT_DIR="$(
     cd "$(dirname "$0")" || exit 1
     pwd
 )"
-root_path="$(
-    cd "${file_path}/.." || exit 1
+ROOT_DIR="$(
+    cd "${SCRIPT_DIR}/.." || exit 1
     pwd
 )"
 
+readonly SCRIPT_DIR
+readonly ROOT_DIR
+
 # shellcheck disable=SC1091
-source "${file_path}/common_func.sh"
+source "${SCRIPT_DIR}/common_func.sh"
 
-LEETCODE_INC_DIR="${root_path}/leetcode/inc"
-LEETCODE_SRC_DIR="${root_path}/leetcode/src"
-TEST_DIR="${root_path}/test"
+readonly LEETCODE_INC_DIR="${ROOT_DIR}/leetcode/inc"
+readonly LEETCODE_SRC_DIR="${ROOT_DIR}/leetcode/src"
+readonly TEST_DIR="${ROOT_DIR}/test"
 
-TEMPLATE_FILE_DIR="${root_path}/script/template"
-TEMPLATE_HEAD_FILE="${TEMPLATE_FILE_DIR}/leetcode_head_file.template"
-TEMPLATE_SRC_FILE="${TEMPLATE_FILE_DIR}/leetcode_src_file.template"
-TEMPLATE_TEST_FILE="${TEMPLATE_FILE_DIR}/leetcode_test_file.template"
+readonly TEMPLATE_FILE_DIR="${ROOT_DIR}/script/template"
+readonly TEMPLATE_HEAD_FILE="${TEMPLATE_FILE_DIR}/leetcode_head_file.template"
+readonly TEMPLATE_SRC_FILE="${TEMPLATE_FILE_DIR}/leetcode_src_file.template"
+readonly TEMPLATE_TEST_FILE="${TEMPLATE_FILE_DIR}/leetcode_test_file.template"
 
-leetcode_file_name=""
-leetcode_class_name=""
-test_class_name=""
+ARG_PREFIX=""
+ARG_URL=""
+ARG_CLASS_NAME=""
+ARG_FUNC="int LeetCodeFunction(std::vector<int> x, int y)"
 
-head_file_path=""
-src_file_path=""
-test_file_path=""
-def_str=""
+g_leetcode_file_name=""
+g_leetcode_class_name=""
+g_test_class_name=""
+g_def_str=""
 
-prefix=""
-url=""
-class_name=""
-
-lc_func=""
-func_name="LeetCodeFunction(std::vector<int> x)"
-func_ret_type="int"
-func_param="std::vector<int> x"
-
-time_str="$(date "+%Y-%m-%d %H:%M:%S")"
+g_func_name=""
+g_func_ret_type=""
+g_func_param=""
+g_param_names=""
 
 function print_help() {
     basename "$0"
@@ -58,19 +56,23 @@ eval set -- "$ARGS"
 while true; do
     case "$1" in
     -p | --prefix)
-        prefix="$2"
+        ARG_PREFIX="$2"
+        readonly ARG_PREFIX
         shift 2
         ;;
     -u | --url)
-        url="$2"
+        ARG_URL="$2"
+        readonly ARG_URL
         shift 2
         ;;
     -f | --func)
-        lc_func="$2"
+        ARG_FUNC="$2"
+        readonly ARG_FUNC
         shift 2
         ;;
     -n | --name)
-        class_name="$2"
+        ARG_CLASS_NAME="$2"
+        readonly ARG_CLASS_NAME
         shift 2
         ;;
     --help)
@@ -88,26 +90,28 @@ while true; do
     esac
 done
 
-if [ -z "${prefix}" ]; then
+if [ -z "${ARG_PREFIX}" ]; then
     print_log "prefix empty."
     exit 1
 fi
 
-if [ -z "${class_name}" ] && [ -z "${url}" ]; then
+if [ -z "${ARG_CLASS_NAME}" ] && [ -z "${ARG_URL}" ]; then
     print_log "name empty."
     exit 1
 fi
 
-echo "prefix [${prefix}]"
-echo "url    [${url}]"
+echo "ARG_PREFIX [${ARG_PREFIX}]"
+echo "url    [${ARG_URL}]"
 
-if [ -n "${lc_func}" ]; then
-    echo "func   [${lc_func}]"
+if [ -n "${ARG_FUNC}" ]; then
+    echo "func   [${ARG_FUNC}]"
 fi
 
 function create_new_file_by_template() {
     local template_file="$1"
     local new_file="$2"
+    local time_str
+    time_str="$(date "+%Y-%m-%d %H:%M:%S")"
 
     print_log "create [${new_file}]"
 
@@ -122,69 +126,77 @@ function create_new_file_by_template() {
     fi
 
     cp "${template_file}" "${new_file}" || exit 1
-    replace_text "URL_STR" "${url}" "${new_file}"
-    replace_text "CLASS_NAME" "${leetcode_class_name}" "${new_file}"
-    replace_text "DEF_STR" "${def_str}" "${new_file}"
-    replace_text "HEAD_FILE_NAME" "${leetcode_file_name}.h" "${new_file}"
-    replace_text "TEST_CLASSNAME" "${test_class_name}" "${new_file}"
-    replace_text "FUNC_RET_TYPE" "${func_ret_type}" "${new_file}"
-    replace_text "FUNC_PARAM" "${func_param}" "${new_file}"
-    replace_text "CLASS_FUNC" "${func_name}" "${new_file}"
+    replace_text "URL_STR" "${ARG_URL}" "${new_file}"
+    replace_text "CLASS_NAME" "${g_leetcode_class_name}" "${new_file}"
+    replace_text "DEF_STR" "${g_def_str}" "${new_file}"
+    replace_text "HEAD_FILE_NAME" "${g_leetcode_file_name}.h" "${new_file}"
+    replace_text "TEST_CLASSNAME" "${g_test_class_name}" "${new_file}"
+    replace_text "FUNC_RET_TYPE" "${g_func_ret_type}" "${new_file}"
+    replace_text "FUNC_PARAM" "${g_func_param}" "${new_file}"
+    replace_text "CLASS_FUNC" "${g_func_name}" "${new_file}"
     replace_text "TIME_STR" "${time_str}" "${new_file}"
-    replace_text "PARAM_NAMES" "${param_names}" "${new_file}"
+    replace_text "PARAM_NAMES" "${g_param_names}" "${new_file}"
 }
 
-function main() {
-    if [ -n "${lc_func}" ]; then
-        func_name="${lc_func%(*}"
-        func_ret_type="${func_name% *}"
-        func_name="${func_name##* }"
+function get_function_data() {
+    g_func_ret_type="${ARG_FUNC%% *}"
 
-        func_param="${lc_func##*(}"
-        func_param="${func_param%)}"
-    fi
+    g_func_name="${ARG_FUNC#* }"
+    g_func_name="${g_func_name%(*}"
 
-    IFS=' ' read -r -a array <<<"${func_param}"
-    length=${#array[@]}
+    g_func_param="${ARG_FUNC##*(}"
+    g_func_param="${g_func_param%)}"
 
-    index=1
-    param_names=""
+    IFS=' ' read -r -a array <<<"${g_func_param}"
+    local length=${#array[@]}
+    local index=1
+
     while [[ $index -lt $length ]]; do
-        param_names="${param_names}${array[$index]}"
+        g_param_names="${g_param_names}${array[$index]}"
         if [ $index -lt $((length - 1)) ]; then
-            param_names="${param_names} "
+            g_param_names="${g_param_names} "
         fi
         index=$((index + 2))
     done
+}
 
-    local problem_name
+function get_class_data() {
+    local raw_class_name
     local prefix_fmt
-    local problem_fmt
+    local class_name_fmt
 
-    if [ -z "${class_name}" ]; then
+    if [ -z "${ARG_CLASS_NAME}" ]; then
         # https://leetcode.cn/problems-name/
-        problem_name=$(awk -F / '{print $5}' <<<"${url}")
+        raw_class_name=$(awk -F / '{print $5}' <<<"${ARG_URL}")
     else
-        problem_name="${class_name}"
+        raw_class_name="${ARG_CLASS_NAME}"
     fi
 
-    problem_name="${problem_name//-/_}"
-    prefix_fmt=$(tr '[:lower:]' '[:upper:]' <<<"${prefix}")
-    problem_fmt=$(sed -r 's/(^|_)(\w)/\U\2/g' <<<"${problem_name}")
+    raw_class_name="${raw_class_name//-/_}"
+    prefix_fmt=$(tr '[:lower:]' '[:upper:]' <<<"${ARG_PREFIX}")
+    class_name_fmt=$(sed -r 's/(^|_)(\w)/\U\2/g' <<<"${raw_class_name}")
 
-    leetcode_file_name="${prefix}_${problem_name}"
-    leetcode_class_name="${prefix_fmt}_${problem_fmt}"
+    g_leetcode_file_name="${ARG_PREFIX}_${raw_class_name}"
+    g_leetcode_class_name="${prefix_fmt}_${class_name_fmt}"
 
-    test_class_name="TEST_${prefix_fmt}"
+    g_test_class_name="TEST_${prefix_fmt}"
+    g_def_str="$(tr '[:lower:]' '[:upper:]' <<<"${g_leetcode_file_name}")_H"
+}
 
-    head_file_path="${LEETCODE_INC_DIR}/${leetcode_file_name}.h"
-    src_file_path="${LEETCODE_SRC_DIR}/${leetcode_file_name}.cpp"
-    test_file_path="${TEST_DIR}/test_${leetcode_file_name}.cpp"
-    def_str="$(tr '[:lower:]' '[:upper:]' <<<"${leetcode_file_name}")_H"
+function create_file() {
+    local head_file_path="${LEETCODE_INC_DIR}/${g_leetcode_file_name}.h"
+    local src_file_path="${LEETCODE_SRC_DIR}/${g_leetcode_file_name}.cpp"
+    local test_file_path="${TEST_DIR}/test_${g_leetcode_file_name}.cpp"
 
     create_new_file_by_template "${TEMPLATE_HEAD_FILE}" "${head_file_path}"
     create_new_file_by_template "${TEMPLATE_SRC_FILE}" "${src_file_path}"
     create_new_file_by_template "${TEMPLATE_TEST_FILE}" "${test_file_path}"
+}
+
+function main() {
+    get_function_data
+    get_class_data
+    create_file
 }
 
 main
