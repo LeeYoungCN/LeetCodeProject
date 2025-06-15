@@ -55,4 +55,22 @@ install(TARGETS ${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME} ${UTILS_LIB_NAME}
         ARCHIVE DESTINATION lib       # 静态库 (.a)
         LIBRARY DESTINATION lib       # 共享库 (.so/.dylib)
         RUNTIME DESTINATION bin       # Windows DLL
-        COMPONENT runtime)
+        COMPONENT all)
+
+install(TARGETS ${TEST_RUNTIME_NAME}
+        ARCHIVE DESTINATION lib       # 静态库 (.a)
+        LIBRARY DESTINATION lib       # 共享库 (.so/.dylib)
+        RUNTIME DESTINATION bin       # Windows DLL
+        COMPONENT leetcode_test)
+
+install(TARGETS ${LEETCODE_LIB_NAME}
+        ARCHIVE DESTINATION lib       # 静态库 (.a)
+        LIBRARY DESTINATION lib       # 共享库 (.so/.dylib)
+        RUNTIME DESTINATION bin       # Windows DLL
+        COMPONENT leetcode)
+
+install(TARGETS ${UTILS_LIB_NAME}
+        ARCHIVE DESTINATION lib       # 静态库 (.a)
+        LIBRARY DESTINATION lib       # 共享库 (.so/.dylib)
+        RUNTIME DESTINATION bin       # Windows DLL
+        COMPONENT utils)
