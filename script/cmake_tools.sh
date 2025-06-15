@@ -34,8 +34,8 @@ arg_component="all"
 arg_gtest_case="*"
 arg_ctest_case=""
 
-cmake_source_dir=""
-cmake_build_dir=""
+cmake_source_dir="${ROOT_DIR}"
+cmake_build_dir="${BUILDCACHE_ROOT_DIR}"
 cmake_install_dir=""
 cmake_build_type=""
 cmake_toolchain_file=""
@@ -44,7 +44,9 @@ cmake_preset=""
 cmake_problem_prefix=""
 cmake_build_target=""
 cmake_install_target=""
-cmake_configure_param_cfg=""
+cmake_configure_param_cfg="${cmake_build_dir}/cmake_configure.conf"
+
+g_is_init_param=0
 
 function print_help() {
     echo "$(basename "$0") [options]"
@@ -67,6 +69,7 @@ function print_help() {
     echo "                                    Run target ctest case:        --ctest=<ctest-case>."
     echo "                                    Run last failed ctest case:   --ctest=rerun."
     echo "                                    Get gtest case list:          --ctest=list."
+    echo "    --list                          List cmake configure param."
     echo "    --help                          Get help info."
 }
 
@@ -150,11 +153,13 @@ function init_cmake_configure_param() {
     fi
 
     cmake_install_dir="${INSTALL_ROOT_DIR}/${arg_preset}"
-
+    g_is_init_param=1
     print_log "Init CMake configure param success." info
+    record_cmake_configure_param
+    list_cmake_configure_info
 }
 
-function print_cmake_configure_info() {
+function list_cmake_configure_info() {
     print_log "cmake_preset:                ${cmake_preset}" info
     print_log "cmake_problem_prefix:        ${cmake_problem_prefix}" info
     print_log "cmake_build_type:            ${cmake_build_type}" info
@@ -164,6 +169,20 @@ function print_cmake_configure_info() {
     print_log "cmake_build_dir:             ${cmake_build_dir}" info
     print_log "cmake_install_dir:           ${cmake_install_dir}" info
     print_log "cmake_configure_param_cfg:   ${cmake_configure_param_cfg}" info
+}
+
+function init_cmake_env() {
+    if [ ! -d "${cmake_build_dir}" ]; then
+        print_log "CMake not confiure." error
+        exit 1
+    fi
+
+    if [ ${g_is_init_param} -eq 0 ]; then
+        # shellcheck disable=SC1090
+        source "${cmake_configure_param_cfg}"
+        list_cmake_configure_info
+        g_is_init_param=1
+    fi
 }
 
 function record_cmake_configure_param() {
@@ -182,8 +201,6 @@ function cmake_configure() {
     rm_dir "${cmake_build_dir}"
 
     init_cmake_configure_param
-    record_cmake_configure_param
-    print_cmake_configure_info
 
     if cmake -S "${cmake_source_dir}" \
         -B "${cmake_build_dir}" \
@@ -200,16 +217,9 @@ function cmake_configure() {
 }
 
 function cmake_build() {
-    if [ ! -d "${cmake_build_dir}" ]; then
-        print_log "CMake not confiure." error
-        exit 1
-    fi
+    init_cmake_env
 
     cmake_build_target="${arg_target}"
-    # shellcheck disable=SC1090
-    source "${cmake_configure_param_cfg}"
-    print_cmake_configure_info
-
     case ${cmake_build_target} in
     list)
         cmake --build "${cmake_build_dir}" --target "help"
@@ -226,9 +236,7 @@ function cmake_build() {
 }
 
 function cmake_install() {
-    # shellcheck disable=SC1090
-    source "${cmake_configure_param_cfg}"
-    print_cmake_configure_info
+    init_cmake_env
 
     rm_dir "${cmake_install_dir}"
     cmake_install_target=${arg_component}
@@ -250,6 +258,8 @@ function cmake_install() {
 }
 
 function run_gtest() {
+    init_cmake_env
+
     case "${arg_gtest_case}" in
     list)
         "${cmake_build_dir}"/bin/leetcode_test --gtest_list_tests
@@ -261,6 +271,8 @@ function run_gtest() {
 }
 
 function run_ctest() {
+    init_cmake_env
+
     if [ -z "${arg_ctest_case}" ]; then
         ctest --output-on-failure --test-dir "${cmake_build_dir}" -R "TEST_ALL"
         return 0
@@ -268,7 +280,7 @@ function run_ctest() {
 
     case "${arg_ctest_case}" in
     list)
-        ctest --test-list --test-dir "${cmake_build_dir}"
+        ctest --test-dir "${cmake_build_dir}" -N
         ;;
     rerun)
         ctest --rerun-failed --output-on-failure --test-dir "${cmake_build_dir}"
@@ -283,8 +295,11 @@ function run_ctest() {
 }
 
 function main() {
-
-    if ! ARGS=$(getopt -o cp:s: --long clean,install::,preset:,prefix:,configure,build::,gtest::,ctest::,help -n "$0" -- "$@"); then
+    if ! ARGS=$(
+        getopt -o cp:s: \
+            --long clean,install::,preset:,prefix:,configure,build::,gtest::,ctest::,help,list \
+            -n "$0" -- "$@"
+    ); then
         print_log "getopt failed." error
         exit 1
     fi
@@ -317,6 +332,7 @@ function main() {
             shift 2
             ;;
         --install)
+            arg_enable_build=1
             arg_enable_install=1
             if [ -n "${2}" ]; then
                 arg_component="${2}"
@@ -339,6 +355,10 @@ function main() {
             fi
             shift 2
             ;;
+        --list)
+            init_cmake_env
+            exit 0
+            ;;
         --help)
             print_help
             exit 0
@@ -353,11 +373,6 @@ function main() {
             ;;
         esac
     done
-
-    cmake_source_dir="${ROOT_DIR}"
-    cmake_build_dir="${BUILDCACHE_ROOT_DIR}"
-    cmake_configure_param_cfg="${cmake_build_dir}/cmake_configure.conf"
-    readonly cmake_configure_param_cfg
 
     if [ ${arg_enable_clean} -ne 0 ]; then
         rm_dir "${cmake_build_dir}"

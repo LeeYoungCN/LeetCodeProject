@@ -39,11 +39,12 @@ g_func_param=""
 g_param_names=""
 
 function print_help() {
-    basename "$0"
-    echo "      -p|--prefix <file-prefix>   = 问题前缀"
-    echo "      -u|--url <url>              = 问题网址"
-    echo "      -f|--func <function-name>   = 函数名称"
-    echo "      -n|--name <class-name>      = 文件和类名称, 如果为空从url中获取"
+    echo "$(basename "$0") [options]"
+    echo "Options:"
+    echo "    -p | --prefix <file-prefix>   = 问题前缀"
+    echo "    -u | --url <url>              = 问题网址"
+    echo "    -f | --func <function-name>   = 函数名称"
+    echo "    -n | --name <class-name>      = 文件和类名称, 如果为空从url中获取"
 }
 
 if ! ARGS=$(getopt -o p:u:f:n:? --long prefix:,url:,func:,name:,help -n "$0" -- "$@"); then
@@ -100,7 +101,7 @@ if [ -z "${ARG_CLASS_NAME}" ] && [ -z "${ARG_URL}" ]; then
     exit 1
 fi
 
-echo "ARG_PREFIX [${ARG_PREFIX}]"
+echo "prefix [${ARG_PREFIX}]"
 echo "url    [${ARG_URL}]"
 
 if [ -n "${ARG_FUNC}" ]; then

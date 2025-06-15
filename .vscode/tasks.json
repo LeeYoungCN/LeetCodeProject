@@ -10,7 +10,7 @@
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
-            "command": "./build.sh",
+            "command": "./cmake_tools.sh",
             "args": [
                 "--clean"
             ],
@@ -24,7 +24,7 @@
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
-            "command": "./build.sh",
+            "command": "./cmake_tools.sh",
             "args": [
                 "--configure"
             ],
@@ -38,7 +38,7 @@
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
-            "command": "./build.sh",
+            "command": "./cmake_tools.sh",
             "args": [
                 "--build"
             ],
@@ -52,7 +52,7 @@
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
-            "command": "./build.sh",
+            "command": "./cmake_tools.sh",
             "args": [
                 "--gtest"
             ],
@@ -66,7 +66,7 @@
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
-            "command": "./build.sh",
+            "command": "./cmake_tools.sh",
             "args": [
                 "--ctest"
             ],
