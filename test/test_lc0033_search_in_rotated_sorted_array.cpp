@@ -2,19 +2,7 @@
  * Time : 2025-06-16 17:41:26
  * URL  : https://leetcode.cn/problems/search-in-rotated-sorted-array/description/
  */
-#include <algorithm>
-#include <cmath>
-#include <cstdint>
-#include <cstdio>
-#include <deque>
-#include <functional>
-#include <map>
-#include <queue>
-#include <set>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
+
 #include <vector>
 
 #include "gtest/gtest.h"
