@@ -29,7 +29,7 @@ target_link_libraries(${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME} ${UTILS_LIB_NAME
 add_test(NAME TEST_ALL COMMAND ${TEST_RUNTIME_NAME})
 set_tests_properties(TEST_ALL PROPERTIES TIMEOUT 1)
 
-if (${PROBLEM_PREFIX} STREQUAL "ALL")
+if (${PROBLEM_PREFIX} STREQUAL "all")
     file(GLOB TEST_FILE_LIST "test_*.cpp")
     foreach(FILE_PATH ${TEST_FILE_LIST})
         get_filename_component(FILE_NAME ${FILE_PATH} NAME)
