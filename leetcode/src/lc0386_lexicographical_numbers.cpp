@@ -13,6 +13,11 @@
 
 using namespace std;
 
+namespace {
+constexpr int32_t NINE = 9;
+constexpr int32_t TEN = 10;
+}  // namespace
+
 vector<int32_t> LC0386_LexicographicalNumbers_Str2Num::lexicalOrder(int32_t n)
 {
     set<string> strSet;
@@ -23,7 +28,7 @@ vector<int32_t> LC0386_LexicographicalNumbers_Str2Num::lexicalOrder(int32_t n)
     vector<int32_t> ans;
     ans.reserve(static_cast<size_t>(n));
     for (const string &x : strSet) {
-        ans.push_back(atoi(x.c_str()));
+        ans.push_back(stoi(x));
     }
 
     return ans;
@@ -43,8 +48,8 @@ vector<int32_t> LC0386_LexicographicalNumbers_DFS::lexicalOrder(int32_t n)
             ans.push_back(base);
         }
 
-        for (int32_t i = (base == 0 ? 1 : 0); i <= 9; ++i) {
-            if (!dfs(dfs, base * 10 + i)) {
+        for (int32_t i = (base == 0 ? 1 : 0); i <= NINE; ++i) {
+            if (!dfs(dfs, base * TEN + i)) {
                 break;
             }
         }
@@ -67,11 +72,11 @@ int32_t NumIterator::Next()
 {
     int32_t ret = num;
 
-    if (num * 10 <= limit) {
-        num *= 10;
+    if (num * TEN <= limit) {
+        num *= TEN;
     } else {
-        while (num % 10 == 9 || num + 1 > limit) {
-            num /= 10;
+        while (num % TEN == NINE || num + 1 > limit) {
+            num /= TEN;
         }
         if (num != 0) {
             num++;
