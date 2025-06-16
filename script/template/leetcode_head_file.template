@@ -5,6 +5,9 @@
 #ifndef DEF_STR
 #define DEF_STR
 
+#include <string>
+#include <vector>
+
 class CLASS_NAME {
 public:
     CLASS_NAME() = default;
