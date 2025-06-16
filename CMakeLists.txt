@@ -14,7 +14,7 @@ endif()
 message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 
 if (NOT PROBLEM_PREFIX)
-    set(PROBLEM_PREFIX ALL CACHE STRING "PROBLEM_PREFIX ALL" FORCE)
+    set(PROBLEM_PREFIX all CACHE STRING "PROBLEM_PREFIX all" FORCE)
 endif()
 message(STATUS "PROBLEM_PREFIX: ${PROBLEM_PREFIX}")
 
@@ -61,16 +61,16 @@ install(TARGETS ${TEST_RUNTIME_NAME}
         ARCHIVE DESTINATION lib       # 静态库 (.a)
         LIBRARY DESTINATION lib       # 共享库 (.so/.dylib)
         RUNTIME DESTINATION bin       # Windows DLL
-        COMPONENT leetcode_test)
+COMPONENT leetcode_test)
 
 install(TARGETS ${LEETCODE_LIB_NAME}
         ARCHIVE DESTINATION lib       # 静态库 (.a)
         LIBRARY DESTINATION lib       # 共享库 (.so/.dylib)
         RUNTIME DESTINATION bin       # Windows DLL
-        COMPONENT leetcode)
+COMPONENT leetcode)
 
 install(TARGETS ${UTILS_LIB_NAME}
         ARCHIVE DESTINATION lib       # 静态库 (.a)
         LIBRARY DESTINATION lib       # 共享库 (.so/.dylib)
         RUNTIME DESTINATION bin       # Windows DLL
-        COMPONENT utils)
+COMPONENT utils)
