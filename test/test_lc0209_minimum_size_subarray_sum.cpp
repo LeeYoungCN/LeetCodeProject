@@ -3,10 +3,11 @@
  * URL  :
  * https://leetcode.cn/problems/minimum-size-subarray-sum/description/?envType=problem-list-v2URL_STRenvId=prefix-sum
  */
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc0209_minimum_size_subarray_sum.h"
 #include "leetcode_utils.h"
-
 using namespace std;
 
 class TEST_LC0209 : public testing::Test {

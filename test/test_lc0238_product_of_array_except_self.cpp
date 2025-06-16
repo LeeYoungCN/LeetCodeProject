@@ -4,6 +4,7 @@
  * https://leetcode.cn/problems/product-of-array-except-self/description/?envType=problem-list-v2URL_STRenvId=prefix-sum
  */
 #include <cstdint>
+#include <vector>
 
 #include "gtest/gtest.h"
 #include "lc0238_product_of_array_except_self.h"

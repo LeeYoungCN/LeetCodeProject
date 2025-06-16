@@ -3,6 +3,8 @@
  * URL  :
  * https://leetcode.cn/problems/k-th-smallest-in-lexicographical-order/description/?envType=daily-questionURL_STRenvId=2025-06-09
  */
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc0440_k_th_smallest_in_lexicographical_order.h"
 

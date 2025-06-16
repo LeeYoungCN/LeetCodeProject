@@ -3,8 +3,8 @@
  * URL  :
  * https://leetcode.cn/problems/lexicographically-minimum-string-after-removing-stars/description/?envType=daily-questionURL_STRenvId=2025-06-07
  */
-
 #include <string>
+#include <vector>
 
 #include "gtest/gtest.h"
 #include "lc3170_lexicographically_minimum_string_after_removing_stars.h"

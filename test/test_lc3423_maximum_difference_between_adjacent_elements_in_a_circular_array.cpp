@@ -3,6 +3,8 @@
  * URL  :
  * https://leetcode.cn/problems/maximum-difference-between-adjacent-elements-in-a-circular-array/?envType=daily-questionURL_STRenvId=2025-06-12
  */
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc3423_maximum_difference_between_adjacent_elements_in_a_circular_array.h"
 

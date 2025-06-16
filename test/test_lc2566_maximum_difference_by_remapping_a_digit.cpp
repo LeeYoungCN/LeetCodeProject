@@ -3,6 +3,8 @@
  * URL  :
  * https://leetcode.cn/problems/maximum-difference-by-remapping-a-digit/description/?envType=daily-questionURL_STRenvId=2025-06-14
  */
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc2566_maximum_difference_by_remapping_a_digit.h"
 

@@ -3,6 +3,8 @@
  * URL  :
  * https://leetcode.cn/problems/max-difference-you-can-get-from-changing-an-integer/description/?envType=daily-questionURL_STRenvId=2025-06-15
  */
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc1432_max_difference_you_can_get_from_changing_an_integer.h"
 
@@ -83,9 +85,7 @@ TEST_F(TEST_LC1432, case6)
 
 TEST_F(TEST_LC1432, case7)
 {
-    int num = 90270580; // 99279589 10270580
+    int num = 90270580;  // 99279589 10270580
     int expect = 89009009;
     RunTest(num, expect);
 }
-
-

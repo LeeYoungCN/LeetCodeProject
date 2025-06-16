@@ -2,6 +2,8 @@
  * Time : 2025-06-13 17:39:36
  * URL  : https://leetcode.cn/problems/house-robber-iv/description/
  */
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc2560_house_robber_iv.h"
 #include "leetcode_utils.h"

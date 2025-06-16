@@ -3,6 +3,8 @@
  * URL  :
  * https://leetcode.cn/problems/maximum-difference-between-even-and-odd-frequency-ii/?envType=daily-questionURL_STRenvId=2025-06-11
  */
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc3445_maximum_difference_between_even_and_odd_frequency_ii.h"
 

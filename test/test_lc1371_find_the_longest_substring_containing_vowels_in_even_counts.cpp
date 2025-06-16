@@ -2,6 +2,8 @@
  * Time : 2025-06-11 13:21:38
  * URL  : https://leetcode.cn/problems/find-the-longest-substring-containing-vowels-in-even-counts/description/
  */
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc1371_find_the_longest_substring_containing_vowels_in_even_counts.h"
 

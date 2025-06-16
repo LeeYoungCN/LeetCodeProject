@@ -3,6 +3,8 @@
  * URL  :
  * https://leetcode.cn/problems/minimize-the-maximum-difference-of-pairs/description/?envType=daily-questionURL_STRenvId=2025-06-13
  */
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc2616_minimize_the_maximum_difference_of_pairs.h"
 #include "leetcode_utils.h"

@@ -2,6 +2,8 @@
  * Time : 2025-06-12 18:03:55
  * URL  : https://leetcode.cn/problems/subarray-sum-equals-k/description/?envType=problem-list-v2URL_STRenvId=prefix-sum
  */
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc0560_subarray_sum_equals_k.h"
 

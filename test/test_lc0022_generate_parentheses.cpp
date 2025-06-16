@@ -42,7 +42,7 @@ void TEST_LC0022::RunTest(int n, const set<string> &expect)
         ASSERT_EQ(expect.size(), result.size());
 
         for (const string &str : result) {
-            std::set<string>::iterator it = expect.find(str);
+            auto it = expect.find(str);
             ASSERT_TRUE(expect.end() != it);
             EXPECT_STREQ(it->c_str(), str.c_str());
         }

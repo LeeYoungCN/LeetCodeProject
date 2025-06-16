@@ -3,6 +3,8 @@
  * URL  :
  * https://leetcode.cn/problems/maximum-difference-between-increasing-elements/description/?envType=daily-questionURL_STRenvId=2025-06-16
  */
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "lc2016_maximum_difference_between_increasing_elements.h"
 #include "leetcode_utils.h"
