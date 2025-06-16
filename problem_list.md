@@ -7,6 +7,7 @@ lc0053_maximum_subarray
 lc0055_jump_game
 lc0074_search_a_2d_matrix
 lc0075_sort_colors
+lc0081_search_in_rotated_sorted_array_ii
 lc0121_best_time_to_buy_and_sell_stock
 lc0128_longest_consecutive_sequence
 lc0135_candy
