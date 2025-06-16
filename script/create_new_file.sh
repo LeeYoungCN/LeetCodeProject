@@ -198,6 +198,7 @@ function main() {
     get_function_data
     get_class_data
     create_file
+    "${SCRIPT_DIR}/refresh_problem_list.sh"
 }
 
 main
