@@ -14,25 +14,30 @@ readonly ROOT_DIR
 # shellcheck disable=SC1091
 source "${SCRIPT_DIR}/common_func.sh"
 
-cd ${ROOT_DIR} || exit 1
+cd "${ROOT_DIR}" || exit 1
 
 readonly BUILDCACHE_ROOT_DIR="${ROOT_DIR}/out/build"
 readonly INSTALL_ROOT_DIR="${ROOT_DIR}/out/install"
 readonly TOOLCHAIN_FILE_DIR="${ROOT_DIR}/cmake"
 
-arg_enable_clean=0
-arg_enable_build=0
-arg_enable_configure=0
-arg_enable_install=0
-arg_enable_gtest=0
-arg_enable_ctest=0
+arg_enable_clean=1
+arg_clean_type="all"
 
-arg_preset=""
-arg_prefix=""
+arg_enable_build=1
 arg_target="all"
+
+arg_enable_configure=1
+arg_preset=""
+arg_problem="all"
+
+arg_enable_install=1
 arg_component="all"
-arg_gtest_case="*"
-arg_ctest_case=""
+
+arg_enable_gtest=1
+arg_gtest_case="all"
+
+arg_enable_ctest=1
+arg_ctest_case="all"
 
 cmake_source_dir="${ROOT_DIR}"
 cmake_build_dir="${BUILDCACHE_ROOT_DIR}"
@@ -43,34 +48,104 @@ cmake_generator=""
 cmake_preset=""
 cmake_problem_prefix=""
 cmake_build_target=""
-cmake_install_target=""
+cmake_install_component=""
 cmake_configure_param_cfg="${cmake_build_dir}/cmake_configure.conf"
 
-g_is_init_param=0
+g_is_init_param=1
 
 function print_help() {
     echo "$(basename "$0") [options]"
     echo "Options:"
-    echo "    -c | --clean                    Remove cmake build direction and cmake install direction."
-    echo "    -p | --prefix=<problem-pefix>   Set problem prefix. problem-pefix: ALL(default), lc0012, lc0017 ..."
-    echo "    -s | --preset=<preset-name>     CMake configure preset."
-    echo "                                    Windows: mingw_debug(default), mingw_release"
-    echo "                                    Linux:   linux_clang_debug(default), linux_clang_releas, linux_gnu_debug, linux_gnu_release"
-    echo "                                    Darwin:  darwin_clang_debug(default), darwin_clang_releas"
-    echo "    --configure                     Run CMake configure"
-    echo "    --build[=<target-name>]         Run cmake --build <cmake-build-dir> [--target <target-name>] -j4"
-    echo "                                    List all target name: --build=list"
-    echo "    --install[=<component>]         Run install cmake --install <cmake-build-dir> [--component <component>]."
-    echo "                                    List all component: --install=list"
-    echo "    --gtest[=<gtest-case>]          Run all gtest test case:      --gtest"
-    echo "                                    Run target gtest test case:   --gtestr=<gtest-case>."
-    echo "                                    Get gtest case list:          --gtest=list."
-    echo "    --ctest[=<ctest-case>]          Rerun ctest case TEST_ALL:    --ctest or --ctest=all."
-    echo "                                    Run target ctest case:        --ctest=<ctest-case>."
-    echo "                                    Run last failed ctest case:   --ctest=rerun."
-    echo "                                    Get gtest case list:          --ctest=list."
-    echo "    --list                          List cmake configure param."
-    echo "    --help                          Get help info."
+    echo "    -c, --clean[=<clean-type>]         Clean build cache. Default clean all."
+    echo "                                       List all clean type: --clean=list"
+    echo ""
+    echo "    -p, --problem[=<problem-pefix>]    Set problem to build. Default build all problems."
+    echo "                                       Build all problems: --problem(default) or --problem=all"
+    echo "                                       List all problems:  --problem=list"
+    echo ""
+    echo "    -s, --preset[=<preset-name>]       CMake configure preset."
+    echo "                                       Windows: mingw_debug(default), mingw_release"
+    echo "                                       Linux:   linux_clang_debug(default), linux_clang_releas, linux_gnu_debug, linux_gnu_release"
+    echo "                                       Darwin:  darwin_clang_debug(default), darwin_clang_releas"
+    echo ""
+    echo "        --configure                    Run CMake configure by preset and problems."
+    echo ""
+    echo "        --build[=<target-name>]        Run CMake build. Defaul build all targets."
+    echo "                                       Build all targets:    --build(default) or --build=all"
+    echo "                                       List all target name: --build=list"
+    echo ""
+    echo "        --install[=<component>]        Run CMake install. Default install all."
+    echo "                                       Install all components: --install(default) or --install=all"
+    echo "                                       List all component: --install=list"
+    echo ""
+    echo "        --gtest[=<gtest-case>]         Run all gtest test case:      --gtest"
+    echo "                                       Run target gtest test case:   --gtestr=<gtest-case>."
+    echo "                                       List all gtest case list:     --gtest=list."
+    echo ""
+    echo "        --ctest[=<ctest-case>]         Rerun ctest case TEST_ALL:    --ctest or --ctest=all"
+    echo "                                       Run target ctest case:        --ctest=<ctest-case>"
+    echo "                                       Run last failed ctest case:   --ctest=rerun"
+    echo "                                       List all gtest case:          --ctest=list"
+    echo ""
+    echo "        --list                         List cmake configure param."
+    echo ""
+    echo "        --help                         Get help info."
+}
+
+function clean_env() {
+    case "${arg_clean_type}" in
+    all)
+        rm_dir "${cmake_build_dir}"
+        rm_dir "${cmake_install_dir}"
+        ;;
+    build)
+        rm_dir "${cmake_build_dir}"
+        ;;
+    install)
+        rm_dir "${cmake_install_dir}"
+        ;;
+    list)
+        echo "all(default), build, all"
+        ;;
+    *)
+        print_log "Invalid clean type: [${arg_clean_type}]"
+        ;;
+    esac
+}
+
+function readonly_cmake_configure_param() {
+    readonly cmake_preset
+    readonly cmake_problem_prefix
+    readonly cmake_build_type
+    readonly cmake_generator
+    readonly cmake_toolchain_file
+    readonly cmake_source_dir
+    readonly cmake_build_dir
+    readonly cmake_install_dir
+}
+
+function list_cmake_configure_param() {
+    print_log "cmake_preset:                ${cmake_preset}" info
+    print_log "cmake_problem_prefix:        ${cmake_problem_prefix}" info
+    print_log "cmake_build_type:            ${cmake_build_type}" info
+    print_log "cmake_generator:             ${cmake_generator}" info
+    print_log "cmake_toolchain_file:        ${cmake_toolchain_file}" info
+    print_log "cmake_source_dir:            ${cmake_source_dir}" info
+    print_log "cmake_build_dir:             ${cmake_build_dir}" info
+    print_log "cmake_install_dir:           ${cmake_install_dir}" info
+    print_log "cmake_configure_param_cfg:   ${cmake_configure_param_cfg}" info
+}
+
+function record_cmake_configure_param() {
+    mkdir -p "${cmake_build_dir}"
+    wright_kv_to_file "cmake_preset" "${cmake_preset}" "${cmake_configure_param_cfg}"
+    wright_kv_to_file "cmake_problem_prefix" "${cmake_problem_prefix}" "${cmake_configure_param_cfg}"
+    wright_kv_to_file "cmake_build_type" "${cmake_build_type}" "${cmake_configure_param_cfg}"
+    wright_kv_to_file "cmake_generator" "${cmake_generator}" "${cmake_configure_param_cfg}"
+    wright_kv_to_file "cmake_toolchain_file" "${cmake_toolchain_file}" "${cmake_configure_param_cfg}"
+    wright_kv_to_file "cmake_source_dir" "${cmake_source_dir}" "${cmake_configure_param_cfg}"
+    wright_kv_to_file "cmake_build_dir" "${cmake_build_dir}" "${cmake_configure_param_cfg}"
+    wright_kv_to_file "cmake_install_dir" "${cmake_install_dir}" "${cmake_configure_param_cfg}"
 }
 
 function init_cmake_configure_param() {
@@ -99,44 +174,44 @@ function init_cmake_configure_param() {
         esac
     fi
 
-    case "$cmake_preset" in
+    case "${cmake_preset}" in
     linux_gnu_debug)
-        cmake_toolchain_file=${TOOLCHAIN_FILE_DIR}/linux_gnu.cmake
+        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/linux_gnu.cmake"
         cmake_generator="Unix Makefiles"
         cmake_build_type="Debug"
         ;;
     linux_gnu_release)
-        cmake_toolchain_file=${TOOLCHAIN_FILE_DIR}/linux_gnu.cmake
+        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/linux_gnu.cmake"
         cmake_generator="Unix Makefiles"
         cmake_build_type="Release"
         ;;
     linux_clang_debug)
-        cmake_toolchain_file=${TOOLCHAIN_FILE_DIR}/linux_clang.cmake
+        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/linux_clang.cmake"
         cmake_generator="Unix Makefiles"
         cmake_build_type="Debug"
         ;;
     linux_clang_release)
-        cmake_toolchain_file=${TOOLCHAIN_FILE_DIR}/linux_clang.cmake
+        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/linux_clang.cmake"
         cmake_generator="Unix Makefiles"
         cmake_build_type="Release"
         ;;
     mingw_debug)
-        cmake_toolchain_file=${TOOLCHAIN_FILE_DIR}/mingw.cmake
+        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/mingw.cmake"
         cmake_generator="MinGW Makefiles"
         cmake_build_type="Debug"
         ;;
     mingw_release)
-        cmake_toolchain_file=${TOOLCHAIN_FILE_DIR}/mingw.cmake
+        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/mingw.cmake"
         cmake_generator="MinGW Makefiles"
         cmake_build_type="Release"
         ;;
     darwin_clang_debug)
-        cmake_toolchain_file=${TOOLCHAIN_FILE_DIR}/drawin_clang.cmake
+        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/drawin_clang.cmake"
         cmake_generator="Unix Makefiles"
         cmake_build_type="Debug"
         ;;
     darwin_clang_release)
-        cmake_toolchain_file=${TOOLCHAIN_FILE_DIR}/drawin_clang.cmake
+        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/drawin_clang.cmake"
         cmake_generator="Unix Makefiles"
         cmake_build_type="Release"
         ;;
@@ -146,60 +221,38 @@ function init_cmake_configure_param() {
         ;;
     esac
 
-    if [ -z "${arg_prefix}" ]; then
-        cmake_problem_prefix="ALL"
-    else
-        cmake_problem_prefix="${arg_prefix}"
-    fi
-
+    cmake_problem_prefix="${arg_problem}"
     cmake_install_dir="${INSTALL_ROOT_DIR}/${arg_preset}"
-    g_is_init_param=1
-    print_log "Init CMake configure param success." info
+    readonly g_is_init_param=0
+    readonly_cmake_configure_param
     record_cmake_configure_param
-    list_cmake_configure_info
-}
-
-function list_cmake_configure_info() {
-    print_log "cmake_preset:                ${cmake_preset}" info
-    print_log "cmake_problem_prefix:        ${cmake_problem_prefix}" info
-    print_log "cmake_build_type:            ${cmake_build_type}" info
-    print_log "cmake_generator:             ${cmake_generator}" info
-    print_log "cmake_toolchain_file:        ${cmake_toolchain_file}" info
-    print_log "cmake_source_dir:            ${cmake_source_dir}" info
-    print_log "cmake_build_dir:             ${cmake_build_dir}" info
-    print_log "cmake_install_dir:           ${cmake_install_dir}" info
-    print_log "cmake_configure_param_cfg:   ${cmake_configure_param_cfg}" info
+    print_log "Init CMake configure param success." info
+    list_cmake_configure_param
 }
 
 function init_cmake_env() {
+    if [ ${g_is_init_param} -eq 0 ]; then
+        return 0
+    fi
+
     if [ ! -d "${cmake_build_dir}" ]; then
         print_log "CMake not confiure." error
         exit 1
     fi
 
-    if [ ${g_is_init_param} -eq 0 ]; then
-        # shellcheck disable=SC1090
-        source "${cmake_configure_param_cfg}"
-        list_cmake_configure_info
-        g_is_init_param=1
+    if [ ! -e "${cmake_configure_param_cfg}" ]; then
+        print_log "${cmake_configure_param_cfg} not exist." error
+        exit 1
     fi
-}
-
-function record_cmake_configure_param() {
-    mkdir -p "${cmake_build_dir}"
-    wright_kv_to_file "cmake_preset" "${cmake_preset}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_problem_prefix" "${cmake_problem_prefix}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_build_type" "${cmake_build_type}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_generator" "${cmake_generator}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_toolchain_file" "${cmake_toolchain_file}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_source_dir" "${cmake_source_dir}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_build_dir" "${cmake_build_dir}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_install_dir" "${cmake_install_dir}" "${cmake_configure_param_cfg}"
+    # shellcheck disable=SC1090
+    source "${cmake_configure_param_cfg}"
+    readonly g_is_init_param=0
+    readonly_cmake_configure_param
+    list_cmake_configure_param
 }
 
 function cmake_configure() {
     rm_dir "${cmake_build_dir}"
-
     init_cmake_configure_param
 
     if cmake -S "${cmake_source_dir}" \
@@ -219,8 +272,8 @@ function cmake_configure() {
 function cmake_build() {
     init_cmake_env
 
-    cmake_build_target="${arg_target}"
-    case ${cmake_build_target} in
+    readonly cmake_build_target="${arg_target}"
+    case "${cmake_build_target}" in
     list)
         cmake --build "${cmake_build_dir}" --target "help"
         ;;
@@ -238,23 +291,30 @@ function cmake_build() {
 function cmake_install() {
     init_cmake_env
 
-    rm_dir "${cmake_install_dir}"
-    cmake_install_target=${arg_component}
+    readonly cmake_install_component=${arg_component}
 
-    case ${cmake_install_target} in
+    case ${cmake_install_component} in
     list)
         cmake --build "${cmake_build_dir}" --target "list_install_components" -j4
+        return 0
+        ;;
+    all)
+        if cmake --install "${cmake_build_dir}"; then
+            print_log "CMake install all success." info
+        else
+            print_log "CMake install all failed." error
+            exit 1
+        fi
         ;;
     *)
-        if cmake --install "${cmake_build_dir}"; then
-            print_log "CMake install success." info
+        if cmake --install "${cmake_build_dir}" --component "${cmake_install_component}"; then
+            print_log "CMake install component [${cmake_install_component}] success." info
         else
-            print_log "CMake install failed." error
+            print_log "CMake install component [${cmake_install_component}] failed." error
             exit 1
         fi
         ;;
     esac
-
 }
 
 function run_gtest() {
@@ -263,6 +323,9 @@ function run_gtest() {
     case "${arg_gtest_case}" in
     list)
         "${cmake_build_dir}"/bin/leetcode_test --gtest_list_tests
+        ;;
+    all)
+        "${cmake_build_dir}"/bin/leetcode_test
         ;;
     *)
         "${cmake_build_dir}"/bin/leetcode_test --gtest_filter="${arg_gtest_case}"
@@ -294,10 +357,15 @@ function run_ctest() {
     esac
 }
 
+function list_problem_prefix() {
+    local problem_list_file="${ROOT_DIR}/problem_list.md"
+    cat "${problem_list_file}"
+}
+
 function main() {
     if ! ARGS=$(
-        getopt -o cp:s: \
-            --long clean,install::,preset:,prefix:,configure,build::,gtest::,ctest::,help,list \
+        getopt -o c::p:s: \
+            --long clean::,install::,preset:,problem:,configure,build::,gtest::,ctest::,help,list \
             -n "$0" -- "$@"
     ); then
         print_log "getopt failed." error
@@ -309,49 +377,49 @@ function main() {
     while true; do
         case "$1" in
         -c | --clean)
-            arg_enable_clean=1
-            shift 1
+            arg_enable_clean=0
+            if [ -n "${2}" ]; then
+                arg_clean_type="${2}"
+            fi
+            shift 2
             ;;
-        -p | --prefix)
-            arg_prefix=$2
+        -p | --problem)
+            arg_problem="${2}"
             shift 2
             ;;
         -s | --preset)
-            arg_preset=$2
+            arg_preset="${2}"
             shift 2
             ;;
         --configure)
-            arg_enable_configure=1
+            arg_enable_configure=0
             shift 1
             ;;
         --build)
-            arg_enable_build=1
+            arg_enable_build=0
             if [ -n "${2}" ]; then
-                arg_target=$2
+                arg_target="${2}"
             fi
             shift 2
             ;;
         --install)
-            arg_enable_build=1
-            arg_enable_install=1
+            arg_enable_install=0
             if [ -n "${2}" ]; then
                 arg_component="${2}"
             fi
             shift 2
             ;;
         -t | --gtest)
-            arg_enable_build=1
-            arg_enable_gtest=1
-            if [ -n "$2" ]; then
-                arg_gtest_case="$2"
+            arg_enable_gtest=0
+            if [ -n "${2}" ]; then
+                arg_gtest_case="${2}"
             fi
             shift 2
             ;;
         --ctest)
-            arg_enable_build=1
-            arg_enable_ctest=1
-            if [ -n "$2" ]; then
-                arg_ctest_case="$2"
+            arg_enable_ctest=0
+            if [ -n "${2}" ]; then
+                arg_ctest_case="${2}"
             fi
             shift 2
             ;;
@@ -368,34 +436,57 @@ function main() {
             break
             ;;
         *)
-            print_log "Invalid param [${1}]." error
+            print_log "Invalid getopt param [${1}]." error
             exit 1
             ;;
         esac
     done
 
-    if [ ${arg_enable_clean} -ne 0 ]; then
-        rm_dir "${cmake_build_dir}"
-        rm_dir "${cmake_install_dir}"
+    readonly arg_enable_clean
+    readonly arg_clean_type
+
+    readonly arg_enable_configure
+    readonly arg_preset
+    readonly arg_problem
+
+    readonly arg_enable_build
+    readonly arg_target
+
+    readonly arg_enable_install
+    readonly arg_component
+
+    readonly arg_enable_gtest
+    readonly arg_gtest_case
+
+    readonly arg_enable_ctest
+    readonly arg_ctest_case
+
+    if [ "${arg_problem}" == "list" ]; then
+        list_problem_prefix
+        exit 0
     fi
 
-    if [ ${arg_enable_configure} -ne 0 ]; then
+    if [ ${arg_enable_clean} -eq 0 ]; then
+        clean_env
+    fi
+
+    if [ ${arg_enable_configure} -eq 0 ]; then
         cmake_configure
     fi
 
-    if [ ${arg_enable_build} -ne 0 ]; then
+    if [ ${arg_enable_build} -eq 0 ]; then
         cmake_build
     fi
 
-    if [ ${arg_enable_install} -ne 0 ]; then
+    if [ ${arg_enable_install} -eq 0 ]; then
         cmake_install
     fi
 
-    if [ ${arg_enable_gtest} -ne 0 ]; then
+    if [ ${arg_enable_gtest} -eq 0 ]; then
         run_gtest
     fi
 
-    if [ ${arg_enable_ctest} -ne 0 ]; then
+    if [ ${arg_enable_ctest} -eq 0 ]; then
         run_ctest
     fi
 }
