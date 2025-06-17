@@ -28,7 +28,7 @@ std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_
             str += "[" + std::to_string(index) + "]=";
         }
 
-        str += std::to_string(vec[i]);
+        str += std::to_string(vec[index]);
         if (i < length - 1) {
             str += ", ";
         }

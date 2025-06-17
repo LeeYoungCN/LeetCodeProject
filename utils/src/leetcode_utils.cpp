@@ -16,7 +16,7 @@ std::string Vector2String(const std::vector<UtilsDebug *> &vec, uint32_t start, 
 
 {
     if (end == 0) {
-        end = (uint32_t)vec.size();
+        end = static_cast<uint32_t>(vec.size());
     }
 
     const uint32_t length = end - start;
