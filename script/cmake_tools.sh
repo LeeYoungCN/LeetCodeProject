@@ -71,7 +71,7 @@ function print_help() {
     echo ""
     echo "        --configure                    Run CMake configure by preset and problems."
     echo ""
-    echo "        --build[=<target-name>]        Run CMake build. Defaul build all targets."
+    echo "        --build[=<target-name>]        Run CMake build. Default build all targets."
     echo "                                       Build all targets:    --build(default) or --build=all"
     echo "                                       List all target name: --build=list"
     echo ""
@@ -114,7 +114,7 @@ function clean_env() {
         rm_dir "${cmake_install_dir}"
         ;;
     list)
-        echo "all(default), build, all"
+        echo "all(default), build, install"
         ;;
     *)
         print_log "Invalid clean type: [${arg_clean_type}]"
@@ -245,7 +245,7 @@ function init_cmake_env() {
     fi
 
     if [ ! -d "${cmake_build_dir}" ]; then
-        print_log "CMake not confiure." error
+        print_log "CMake not configure." error
         exit 1
     fi
 
