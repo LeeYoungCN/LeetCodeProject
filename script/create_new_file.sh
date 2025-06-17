@@ -137,6 +137,7 @@ function create_new_file_by_template() {
     replace_text "CLASS_FUNC" "${g_func_name}" "${new_file}"
     replace_text "TIME_STR" "${time_str}" "${new_file}"
     replace_text "PARAM_NAMES" "${g_param_names}" "${new_file}"
+    print_log "create [${new_file}] success." info
 }
 
 function get_function_data() {

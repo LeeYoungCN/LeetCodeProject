@@ -25,25 +25,29 @@ function replace_text() {
     local old_str="$1"
     local new_str="$2"
     local file_path="$3"
-    sed -i "s#${old_str}#${new_str}#g" "${file_path}"
+    if ! sed -i "s#${old_str}#${new_str}#g" "${file_path}"; then
+        print_log "Replace failed. ${old_str} -> ${new_str}  ${file_path}." error
+    fi
 }
 
 function rm_dir() {
     local dir="${1}"
     if [ ! -d "${dir}" ]; then
+        print_log "Remove [${dir}] success, not exist." info
         return 0
     fi
 
     if ! rm -rf "${dir}"; then
-        print_log "remove ${dir} failed." error
+        print_log "Remove [${dir}] failed." error
+    else
+        print_log "Remove [${dir}] success." info
     fi
 }
 
-function wright_kv_to_file()
-{
+function wright_kv_to_file() {
     local key="$1"
     local val="${2}"
     local file="${3}"
 
-    echo "${key}=\"${val}\"" >> "${file}"
+    echo "${key}=\"${val}\"" >>"${file}"
 }

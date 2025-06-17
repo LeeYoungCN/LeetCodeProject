@@ -41,6 +41,7 @@ arg_ctest_case="all"
 
 cmake_source_dir="${ROOT_DIR}"
 cmake_build_dir="${BUILDCACHE_ROOT_DIR}"
+cmake_test_runtime="${cmake_build_dir}/bin/leetcode_test"
 cmake_install_dir=""
 cmake_build_type=""
 cmake_toolchain_file=""
@@ -93,6 +94,14 @@ function print_help() {
 }
 
 function clean_env() {
+    if [ -e "${cmake_configure_param_cfg}" ]; then
+        # shellcheck disable=SC1090
+        source "${cmake_configure_param_cfg}"
+        list_cmake_configure_param
+    else
+        cmake_install_dir="${INSTALL_ROOT_DIR}"
+    fi
+
     case "${arg_clean_type}" in
     all)
         rm_dir "${cmake_build_dir}"
@@ -222,7 +231,7 @@ function init_cmake_configure_param() {
     esac
 
     cmake_problem_prefix="${arg_problem}"
-    cmake_install_dir="${INSTALL_ROOT_DIR}/${arg_preset}"
+    cmake_install_dir="${INSTALL_ROOT_DIR}/${cmake_preset}"
     readonly g_is_init_param=0
     readonly_cmake_configure_param
     record_cmake_configure_param
@@ -255,7 +264,8 @@ function cmake_configure() {
     rm_dir "${cmake_build_dir}"
     init_cmake_configure_param
 
-    if cmake -S "${cmake_source_dir}" \
+    if cmake \
+        -S "${cmake_source_dir}" \
         -B "${cmake_build_dir}" \
         -G "${cmake_generator}" \
         -DCMAKE_TOOLCHAIN_FILE="${cmake_toolchain_file}" \
@@ -320,21 +330,31 @@ function cmake_install() {
 function run_gtest() {
     init_cmake_env
 
+    if [ ! -e "${cmake_test_runtime}" ]; then
+        print_log "Test runtime [${cmake_test_runtime}] not exist!" error
+        exit 1
+    fi
+
     case "${arg_gtest_case}" in
     list)
-        "${cmake_build_dir}"/bin/leetcode_test --gtest_list_tests
+        "${cmake_test_runtime}" --gtest_list_tests
         ;;
     all)
-        "${cmake_build_dir}"/bin/leetcode_test
+        "${cmake_test_runtime}"
         ;;
     *)
-        "${cmake_build_dir}"/bin/leetcode_test --gtest_filter="${arg_gtest_case}"
+        "${cmake_test_runtime}" --gtest_filter="${arg_gtest_case}"
         ;;
     esac
 }
 
 function run_ctest() {
     init_cmake_env
+
+    if [ ! -e "${cmake_test_runtime}" ]; then
+        print_log "Test runtime [${cmake_test_runtime}] not exist!" error
+        exit 1
+    fi
 
     if [ -z "${arg_ctest_case}" ]; then
         ctest --output-on-failure --test-dir "${cmake_build_dir}" -R "TEST_ALL"
