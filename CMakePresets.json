@@ -1,5 +1,9 @@
-﻿{
+{
     "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 28
+    },
     "configurePresets": [
         {
             "name": "project-base",
@@ -146,51 +150,69 @@
     ],
     "buildPresets": [
         {
-            "name": "mingw_debug",
+            "name": "mingw_debug_build",
             "configurePreset": "mingw_debug",
             "displayName": "MinGW Debug Build",
             "description": "Build the MinGW Debug configuration",
-            "targets":["all", "install"],
+            "targets": [
+                "all",
+                "install"
+            ],
             "jobs": 4
         },
         {
-            "name": "mingw_release",
+            "name": "mingw_release_build",
             "configurePreset": "mingw_release",
             "displayName": "MinGW Release Build",
             "description": "Build the MinGW Release configuration",
-            "targets":["all", "install"],
+            "targets": [
+                "all",
+                "install"
+            ],
             "jobs": 4
         },
         {
-            "name": "linux_clang_debug",
+            "name": "linux_clang_debug_build",
             "configurePreset": "linux_clang_debug",
             "displayName": "Linux Clang Debug Build",
             "description": "Build the Linux Clang Debug configuration",
-            "targets":["all", "install"],
+            "targets": [
+                "all",
+                "install"
+            ],
             "jobs": 4
         },
         {
-            "name": "linux_clang_release",
+            "name": "linux_clang_release_build",
             "configurePreset": "linux_clang_release",
             "displayName": "Linux Clang Release Build",
             "description": "Build the Linux Clang Release configuration",
-            "targets":["all", "install"],
+            "targets": [
+                "all",
+                "install"
+            ],
             "jobs": 4
         },
         {
-            "name": "linux_gnu_debug",
+            "name": "linux_gnu_debug_build",
             "configurePreset": "linux_gnu_debug",
             "displayName": "Linux GNU Debug Build",
             "description": "Build the Linux GNU Debug configuration",
-            "targets":["all", "install"],
+            "targets": [
+                "all",
+                "install"
+            ],
             "jobs": 4
         },
         {
-            "name": "linux_gnu_release",
+            "name": "linux_gnu_release_build",
             "configurePreset": "linux_gnu_release",
             "displayName": "Linux GNU Release Build",
             "description": "Build the Linux GNU Release configuration",
-            "targets":["all", "install"],
+            "targets": [
+                "all",
+                "install"
+            ],
             "jobs": 4
         }
     ]
