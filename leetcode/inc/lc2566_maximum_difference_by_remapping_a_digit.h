@@ -1,6 +1,7 @@
 /*
  * Time : 2025-06-14 02:00:32
- * URL  : https://leetcode.cn/problems/maximum-difference-by-remapping-a-digit/description/?envType=daily-questionURL_STRenvId=2025-06-14
+ * URL  :
+ * https://leetcode.cn/problems/maximum-difference-by-remapping-a-digit/description/?envType=daily-questionURL_STRenvId=2025-06-14
  */
 #ifndef LC2566_MAXIMUM_DIFFERENCE_BY_REMAPPING_A_DIGIT_H
 #define LC2566_MAXIMUM_DIFFERENCE_BY_REMAPPING_A_DIGIT_H

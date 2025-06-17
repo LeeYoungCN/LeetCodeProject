@@ -15,14 +15,16 @@ public:
     virtual int maximumDifference(std::vector<int>& nums) = 0;
 };
 
-class LC2016_MaximumDifferenceBetweenIncreasingElements_MinArray : public LC2016_MaximumDifferenceBetweenIncreasingElements {
+class LC2016_MaximumDifferenceBetweenIncreasingElements_MinArray
+    : public LC2016_MaximumDifferenceBetweenIncreasingElements {
 public:
     LC2016_MaximumDifferenceBetweenIncreasingElements_MinArray() = default;
     ~LC2016_MaximumDifferenceBetweenIncreasingElements_MinArray() override = default;
     int maximumDifference(std::vector<int>& nums) final;
 };
 
-class LC2016_MaximumDifferenceBetweenIncreasingElements_PreMin : public LC2016_MaximumDifferenceBetweenIncreasingElements {
+class LC2016_MaximumDifferenceBetweenIncreasingElements_PreMin
+    : public LC2016_MaximumDifferenceBetweenIncreasingElements {
 public:
     LC2016_MaximumDifferenceBetweenIncreasingElements_PreMin() = default;
     ~LC2016_MaximumDifferenceBetweenIncreasingElements_PreMin() override = default;
