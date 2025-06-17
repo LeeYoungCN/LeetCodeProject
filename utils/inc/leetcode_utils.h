@@ -3,12 +3,15 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <cstdio>
 #include <iostream>
 #include <map>
 #include <string>
 #include <type_traits>
 #include <unordered_map>
 #include <vector>
+
+#define LOG(fmt, ...) printf("[%s:%d %s] " fmt "\n", __FILE_NAME__, __LINE__, __func__, ##__VA_ARGS__)
 
 template <class T>
 std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
@@ -17,7 +20,10 @@ std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_
         end = static_cast<uint32_t>(vec.size());
     }
     end = std::min(end, static_cast<uint32_t>(vec.size()));
-
+    if (start >= end) {
+        LOG("Invalid param. start=%u, end=%u.", start, end);
+        return "";
+    }
     const uint32_t length = end - start;
     std::string str = "{";
 
