@@ -12,6 +12,7 @@ lc0121_best_time_to_buy_and_sell_stock
 lc0128_longest_consecutive_sequence
 lc0135_candy
 lc0152_maximum_product_subarray
+lc0153_find_minimum_in_rotated_sorted_array
 lc0198_house_robber
 lc0209_minimum_size_subarray_sum
 lc0213_house_robber_ii
