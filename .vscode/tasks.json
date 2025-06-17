@@ -54,6 +54,7 @@
             },
             "command": "./cmake_tools.sh",
             "args": [
+                "--build",
                 "--gtest"
             ],
             "detail": "根据makefile生成可执行文件和库文件",
@@ -68,6 +69,7 @@
             },
             "command": "./cmake_tools.sh",
             "args": [
+                "--build",
                 "--ctest"
             ],
             "detail": "根据makefile生成可执行文件和库文件",
