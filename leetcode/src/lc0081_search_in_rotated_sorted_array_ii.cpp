@@ -5,13 +5,12 @@
  */
 #include "lc0081_search_in_rotated_sorted_array_ii.h"
 
-#include <cmath>
 #include <cstdint>
 #include <vector>
 
 using namespace std;
 
-bool isLeftArea(const vector<int32_t>& nums, int32_t n)
+bool LC0081_SearchInRotatedSortedArrayII_DFS::isLeftArea(const vector<int32_t>& nums, int32_t n)
 {
     return n >= nums[0];
 }
@@ -52,4 +51,42 @@ bool LC0081_SearchInRotatedSortedArrayII_DFS::dfs(const vector<int32_t>& nums, i
 bool LC0081_SearchInRotatedSortedArrayII_DFS::search(vector<int32_t>& nums, int32_t target)
 {
     return dfs(nums, target, 0, static_cast<uint32_t>(nums.size()));
+}
+
+bool LC0081_SearchInRotatedSortedArrayII_Loop::search(vector<int32_t>& nums, int32_t target)
+{
+    uint32_t left = 0;
+    auto right = static_cast<uint32_t>(nums.size());
+
+    auto isOderArea = [&](uint32_t left, int32_t n) -> bool { return n >= nums[left]; };
+
+    while (left < right) {
+        uint32_t curr = (left + right) / 2;
+        if (nums[curr] == target) {
+            return true;
+        }
+
+        if (nums[curr] == nums[left] && nums[curr] == nums[right - 1]) {
+            left++;
+            if (right > 1) {
+                right--;
+            }
+            continue;
+        }
+        if (isOderArea(left, target) == isOderArea(left, nums[curr])) {
+            if (nums[curr] < target) {
+                left = curr + 1;  // 右缩进
+            } else {
+                right = curr;  // 左缩进
+            }
+        } else {
+            if (isOderArea(left, target)) {
+                right = curr;  // 左缩进
+            } else {
+                left = curr;  // 右缩进
+            }
+        }
+    }
+
+    return false;
 }

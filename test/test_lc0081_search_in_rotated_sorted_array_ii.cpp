@@ -27,6 +27,7 @@ protected:
 void TEST_LC0081::SetUp()
 {
     m_testList.push_back(new LC0081_SearchInRotatedSortedArrayII_DFS());
+    m_testList.push_back(new LC0081_SearchInRotatedSortedArrayII_Loop());
 }
 
 void TEST_LC0081::TearDown()

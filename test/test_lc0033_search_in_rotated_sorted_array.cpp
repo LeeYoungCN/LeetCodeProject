@@ -24,7 +24,8 @@ protected:
 
 void TEST_LC0033::SetUp()
 {
-    m_testList.push_back(new LC0033_SearchInRotatedSortedArray());
+    m_testList.push_back(new LC0033_SearchInRotatedSortedArray_F1());
+    m_testList.push_back(new LC0033_SearchInRotatedSortedArray_F2());
 }
 
 void TEST_LC0033::TearDown()
