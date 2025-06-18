@@ -6,7 +6,7 @@
     },
     "configurePresets": [
         {
-            "name": "project-base",
+            "name": "project_base",
             "hidden": true,
             "binaryDir": "${sourceDir}/out/build/",
             "installDir": "${sourceDir}/out/install/${presetName}",
@@ -16,10 +16,65 @@
             }
         },
         {
+            "name": "msvc_base",
+            "hidden": true,
+            "generator": "Ninja",
+            "inherits": "project_base",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "cl.exe",
+                "CMAKE_CXX_COMPILER": "cl.exe"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "msvc_x64_debug",
+            "displayName": "MSVC x64 Debug Configure",
+            "inherits": "msvc_base",
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "msvc_x64_release",
+            "displayName": "MSVC x64 Release Configure",
+            "inherits": "msvc_x64_debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "msvc_x86_debug",
+            "displayName": "MSVC x86 Debug Configure",
+            "inherits": "msvc_base",
+            "architecture": {
+                "value": "x86",
+                "strategy": "external"
+            },
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "msvc_x86_release",
+            "displayName": "MSVC x86 Release Configure",
+            "inherits": "msvc_x86_debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
             "name": "mingw-base",
             "hidden": true,
             "generator": "MinGW Makefiles",
-            "inherits": "project-base",
+            "inherits": "project_base",
             "toolchainFile": "${sourceDir}/cmake/mingw.cmake",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "D:/Programs/MinGW/bin/gcc.exe",
@@ -51,7 +106,7 @@
             "name": "linux_base",
             "hidden": true,
             "generator": "Unix Makefiles",
-            "inherits": "project-base",
+            "inherits": "project_base",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -114,7 +169,7 @@
             "name": "darwin_base",
             "hidden": true,
             "generator": "Unix Makefiles",
-            "inherits": "project-base",
+            "inherits": "project_base",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -153,7 +208,7 @@
             "name": "mingw_debug_build",
             "configurePreset": "mingw_debug",
             "displayName": "MinGW Debug Build",
-            "description": "Build the MinGW Debug configuration",
+            "description": "Build the MinGW Debug target.",
             "targets": [
                 "all",
                 "install"
@@ -164,7 +219,7 @@
             "name": "mingw_release_build",
             "configurePreset": "mingw_release",
             "displayName": "MinGW Release Build",
-            "description": "Build the MinGW Release configuration",
+            "description": "Build the MinGW Release target.",
             "targets": [
                 "all",
                 "install"
@@ -175,7 +230,7 @@
             "name": "linux_clang_debug_build",
             "configurePreset": "linux_clang_debug",
             "displayName": "Linux Clang Debug Build",
-            "description": "Build the Linux Clang Debug configuration",
+            "description": "Build the Linux Clang Debug target.",
             "targets": [
                 "all",
                 "install"
@@ -186,7 +241,7 @@
             "name": "linux_clang_release_build",
             "configurePreset": "linux_clang_release",
             "displayName": "Linux Clang Release Build",
-            "description": "Build the Linux Clang Release configuration",
+            "description": "Build the Linux Clang Release target.",
             "targets": [
                 "all",
                 "install"
@@ -197,7 +252,7 @@
             "name": "linux_gnu_debug_build",
             "configurePreset": "linux_gnu_debug",
             "displayName": "Linux GNU Debug Build",
-            "description": "Build the Linux GNU Debug configuration",
+            "description": "Build the Linux GNU Debug target.",
             "targets": [
                 "all",
                 "install"
@@ -208,7 +263,7 @@
             "name": "linux_gnu_release_build",
             "configurePreset": "linux_gnu_release",
             "displayName": "Linux GNU Release Build",
-            "description": "Build the Linux GNU Release configuration",
+            "description": "Build the Linux GNU Release target.",
             "targets": [
                 "all",
                 "install"
