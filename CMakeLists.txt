@@ -3,32 +3,69 @@ project(LeetCode)
 
 include(${CMAKE_SOURCE_DIR}/cmake/third_lib_config.cmake)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_C_STANDARD 99)
 
-message(STATUS CMAKE_SYSTEM_NAME: ${CMAKE_SYSTEM_NAME})
+if(MSVC)
+    set(COMPILER_TYPE "MSVC ${MSVC_VERSION}")
+  
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
+    add_compile_options(/WX /permissive- /utf-8)
+elseif(CMAKE_COMPILER_IS_GNUCXX AND WIN32)
+    set(COMPILER_TYPE "MinGW")
+
+    set(CMAKE_CXX_FLAGS_DEBUG "-g3 -O0")
+    set(CMAKE_C_FLAGS_DEBUG "-g3 -O0")
+
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+    set(CMAKE_C_FLAGS_RELEASE " -O3")
+
+    add_compile_options("-Wall" "-Wconversion" "-Wextra" "-pedantic")
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    set(COMPILER_TYPE "Clang")
+    set(CMAKE_CXX_FLAGS_DEBUG "-g3 -O0")
+    set(CMAKE_C_FLAGS_DEBUG "-g3 -O0")
+
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+    set(CMAKE_C_FLAGS_RELEASE " -O3")
+
+    add_compile_options("-Wall" "-Wconversion" "-Wextra" "-pedantic")
+else()
+    set(COMPILER_TYPE "Unknown")
+    message(WARNING "Unknown: ${CMAKE_CXX_COMPILER_ID}")
+endif()
+
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(ARCHITECTURE "x64")
+else()
+    set(ARCHITECTURE "x86")
+endif()
 
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "CMAKE_BUILD_TYPE Debug" FORCE)
 endif()
-message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 
 if (NOT PROBLEM_PREFIX)
     set(PROBLEM_PREFIX all CACHE STRING "PROBLEM_PREFIX all" FORCE)
 endif()
-message(STATUS "PROBLEM_PREFIX: ${PROBLEM_PREFIX}")
+
+message(STATUS "CMAKE_SYSTEM_NAME:      ${CMAKE_SYSTEM_NAME}")
+message(STATUS "CMAKE_C_COMPILER_ID:    ${CMAKE_C_COMPILER_ID}")
+message(STATUS "CMAKE_CXX_COMPILER_ID:  ${CMAKE_CXX_COMPILER_ID}")  # clang, gnu
+message(STATUS "CMAKE_SYSTEM_PROCESSOR: ${CMAKE_SYSTEM_PROCESSOR}")
+message(STATUS "COMPILER_TYPE:          ${COMPILER_TYPE}")
+message(STATUS "CMAKE_SIZEOF_VOID_P:    ${CMAKE_SIZEOF_VOID_P}")
+message(STATUS "ARCHITECTURE:           ${ARCHITECTURE}")
+
+message(STATUS "CMAKE_BUILD_TYPE:       ${CMAKE_BUILD_TYPE}")
+message(STATUS "PROBLEM_PREFIX:         ${PROBLEM_PREFIX}")
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_definitions(DEBUG_MODE)
+else()
+    add_compile_definitions(DNEBUG_MODE)
 endif()
-
-set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
-set(CMAKE_C_FLAGS_DEBUG "-g -O0")
-
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
-set(CMAKE_C_FLAGS_RELEASE " -O3")
-
-add_compile_options("-Wall" "-Wconversion" "-Wextra")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS   ON)
 set(CMAKE_VERBOSE_MAKEFILE          OFF)
