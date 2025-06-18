@@ -57,7 +57,7 @@ TEST_F(TEST_LC3356, case2)
 TEST_F(TEST_LC3356, case3)
 {
     vector<int32_t> nums = {0, 0, 0};
-    vector<vector<int32_t>> queries = {{1, 3, 2}, {0, 2, 1}, {0, 2, 1}};
+    vector<vector<int32_t>> queries = {{1, 2, 2}, {0, 2, 1}, {0, 2, 1}};
     RunTest(nums, queries, 0);
 }
 
