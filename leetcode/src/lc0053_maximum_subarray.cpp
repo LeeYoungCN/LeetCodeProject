@@ -14,7 +14,7 @@ int LC0053_MaximumSubarray_dp::maxSubArray(vector<int>& nums)
 {
     int ret = INT32_MIN;
     const auto length = static_cast<uint32_t>(nums.size());
-    // dp[i] 表示包含nums[i]时的从左到右最大子数组的大小
+
     vector<int> dp = vector<int>(length);
     for (uint32_t i = 0; i < length; i++) {
         if (i == 0) {

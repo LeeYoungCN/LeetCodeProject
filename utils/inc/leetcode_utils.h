@@ -11,7 +11,11 @@
 #include <unordered_map>
 #include <vector>
 
-#define LOG(fmt, ...) printf("[%s:%d %s] " fmt "\n", __FILE_NAME__, __LINE__, __func__, ##__VA_ARGS__)
+#if defined(_MSC_VER)
+#define LOG(fmt, ...) printf("[%s:%d %s] " fmt "\n", __FILE__, __LINE__, __func__, ##__VA_ARGS__)
+#else
+#define LOG(fmt, ...) printf("[%s:%d %s] " fmt "\n", __FILE_NAME__, __LINE__, __func__, __VA_ARGS__)
+#endif
 
 template <class T>
 std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)

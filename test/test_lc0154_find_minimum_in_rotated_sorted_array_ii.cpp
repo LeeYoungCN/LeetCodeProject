@@ -25,7 +25,7 @@ protected:
 
 void TEST_LC0154::SetUp()
 {
-    // m_testList.push_back(new LC0154_FindMinimumInRotatedSortedArrayII_F1());
+    m_testList.push_back(new LC0154_FindMinimumInRotatedSortedArrayII_F1());
     m_testList.push_back(new LC0154_FindMinimumInRotatedSortedArrayII_F2());
 }
 
@@ -45,84 +45,72 @@ void TEST_LC0154::RunTest(vector<int> &nums)
     }
 }
 
-// 正序，无重复项
 TEST_F(TEST_LC0154, case1)
 {
     vector<int> nums = {1, 3, 5};
     RunTest(nums);
 }
 
-// 正序，有重复项
 TEST_F(TEST_LC0154, case2)
 {
     vector<int> nums = {1, 1, 1, 3, 3, 3, 5};
     RunTest(nums);
 }
 
-// 倒叙，无重复项
 TEST_F(TEST_LC0154, case3)
 {
     vector<int> nums = {5, 4, 3, 2, 1};
     RunTest(nums);
 }
 
-// 倒叙，有重复项
 TEST_F(TEST_LC0154, case4)
 {
     vector<int> nums = {5, 5, 5, 4, 3, 2, 2, 1, 1, 1};
     RunTest(nums);
 }
 
-// 乱序, 无重复项
 TEST_F(TEST_LC0154, case5)
 {
     vector<int> nums = {3, 4, 5, 0, 1, 2};
     RunTest(nums);
 }
 
-// 乱序, 左侧重复项
 TEST_F(TEST_LC0154, case6)
 {
     vector<int> nums = {2, 2, 2, 0, 1};
     RunTest(nums);
 }
 
-// 乱序, 右侧重复项
 TEST_F(TEST_LC0154, case7)
 {
     vector<int> nums = {3, 4, 5, 0, 1, 2, 2, 2};
     RunTest(nums);
 }
 
-// 乱序, 双侧有重复项
 TEST_F(TEST_LC0154, case8)
 {
     vector<int> nums = {5, 5, 5, 0, 1, 2, 5, 5, 5};
     RunTest(nums);
 }
 
-// 全部相同
 TEST_F(TEST_LC0154, case9)
 {
     vector<int> nums = {5, 5, 5, 5, 5, 5};
     RunTest(nums);
 }
 
-// 单个
 TEST_F(TEST_LC0154, case10)
 {
     vector<int> nums = {5};
     RunTest(nums);
 }
 
-// 两个
 TEST_F(TEST_LC0154, case11)
 {
     vector<int> nums = {5, 6};
     RunTest(nums);
 }
 
-// 两个
 TEST_F(TEST_LC0154, case12)
 {
     vector<int> nums = {6, 5};

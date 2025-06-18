@@ -32,7 +32,7 @@ long long LC2925_MaximumScoreAfterApplyingOperationsOnATree::maximumScoreAfterOp
 
     function<TreeValInfo(uint32_t, uint32_t)> dfs = [&](uint32_t curr, uint32_t parent) -> TreeValInfo {
         TreeValInfo currVal = {0, values[curr]};
-        // 叶节点
+        // leaf node
         if (grid[curr].size() == 1 && grid[curr][0] == parent) {
             return currVal;
         }

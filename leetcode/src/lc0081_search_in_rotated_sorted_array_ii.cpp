@@ -33,15 +33,15 @@ bool LC0081_SearchInRotatedSortedArrayII_DFS::dfs(const vector<int32_t>& nums, i
     } else {
         if (isLeftArea(nums, target) == isLeftArea(nums, currNum)) {
             if (currNum < target) {
-                left = curr + 1;  // 右缩进
+                left = curr + 1;
             } else {
-                right = curr;  // 左缩进
+                right = curr;
             }
         } else {
             if (isLeftArea(nums, target)) {
-                right = curr;  // 左缩进
+                right = curr;
             } else {
-                left = curr + 1;  // 右缩进
+                left = curr + 1;
             }
         }
         return dfs(nums, target, left, right);
@@ -75,15 +75,15 @@ bool LC0081_SearchInRotatedSortedArrayII_Loop::search(vector<int32_t>& nums, int
         }
         if (isOderArea(left, target) == isOderArea(left, nums[curr])) {
             if (nums[curr] < target) {
-                left = curr + 1;  // 右缩进
+                left = curr + 1;
             } else {
-                right = curr;  // 左缩进
+                right = curr;
             }
         } else {
             if (isOderArea(left, target)) {
-                right = curr;  // 左缩进
+                right = curr;
             } else {
-                left = curr;  // 右缩进
+                left = curr;
             }
         }
     }

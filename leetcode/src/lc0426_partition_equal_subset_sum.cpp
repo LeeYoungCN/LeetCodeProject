@@ -30,8 +30,6 @@ bool LC0426_PartitionEqualSubsetSum_DP1::canPartition(std::vector<int>& nums)
         return false;
     }
 
-    // i 数组当前的长度
-    // j 刚好达到的值
     vector<vector<bool>> dp(numCnt, vector<bool>((target + 1), false));
 
     dp[0][static_cast<uint32_t>(nums[0])] = true;

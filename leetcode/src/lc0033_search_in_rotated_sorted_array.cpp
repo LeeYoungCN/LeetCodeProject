@@ -26,15 +26,15 @@ int32_t LC0033_SearchInRotatedSortedArray_F1::search(vector<int32_t>& nums, int3
 
         if (isTargetInLeft == isLeftArea(nums[curr])) {
             if (nums[curr] < target) {
-                left = curr + 1;  // 右缩进
+                left = curr + 1;
             } else {
-                right = curr;  // 左缩进
+                right = curr;
             }
         } else {
             if (isTargetInLeft) {
-                right = curr;  // 左缩进
+                right = curr;
             } else {
-                left = curr + 1;  // 右缩进
+                left = curr + 1;
             }
         }
     }
@@ -57,15 +57,15 @@ int32_t LC0033_SearchInRotatedSortedArray_F2::search(vector<int32_t>& nums, int3
 
         if (isLeftArea(left, target) == isLeftArea(left, nums[curr])) {
             if (nums[curr] < target) {
-                left = curr + 1;  // 右缩进
+                left = curr + 1;
             } else {
-                right = curr;  // 左缩进
+                right = curr;
             }
         } else {
             if (isLeftArea(left, target)) {
-                right = curr;  // 左缩进
+                right = curr;
             } else {
-                left = curr + 1;  // 右缩进
+                left = curr + 1;
             }
         }
     }
