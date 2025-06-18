@@ -1,5 +1,9 @@
 add_library(${LEETCODE_LIB_NAME} SHARED)
 
+set_target_properties(${LEETCODE_LIB_NAME} PROPERTIES
+    WINDOWS_EXPORT_ALL_SYMBOLS ON  # 自动导出所有符号
+)
+
 if (PROBLEM_PREFIX STREQUAL "all")
     aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_LIST)
 else()

@@ -1,7 +1,22 @@
-
 set(GOOGLE_TEST_PATH ${CMAKE_SOURCE_DIR}/third_lib/google_test)
 set(GOOGLE_TEST_INCLUDE_PATH ${GOOGLE_TEST_PATH}/include)
-set(GOOGLE_TEST_LIBRARY_PATH ${GOOGLE_TEST_PATH}/lib/${CMAKE_SYSTEM_NAME})
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    if (MSVC)
+        set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+        if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+            set(TARGET_ARCH "x64")
+        else()
+            set(TARGET_ARCH "x86")
+        endif()
+
+        set(GOOGLE_TEST_LIBRARY_PATH ${GOOGLE_TEST_PATH}/lib/${CMAKE_SYSTEM_NAME}/MSVC_${TARGET_ARCH}_${CMAKE_BUILD_TYPE})
+    elseif(CMAKE_COMPILER_IS_GNUCXX AND WIN32)
+        set(GOOGLE_TEST_LIBRARY_PATH ${GOOGLE_TEST_PATH}/lib/${CMAKE_SYSTEM_NAME}/MinGW)
+    endif()
+else()
+    set(GOOGLE_TEST_LIBRARY_PATH ${GOOGLE_TEST_PATH}/lib/${CMAKE_SYSTEM_NAME})
+endif()
 
 set(MOCKCPP_PATH ${CMAKE_SOURCE_DIR}/third_lib/mockcpp)
 set(MOCKCPP_INCLUDE_PATH ${MOCKCPP_PATH}/include)
