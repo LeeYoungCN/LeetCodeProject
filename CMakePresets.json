@@ -8,7 +8,7 @@
             "installDir": "${sourceDir}/out/install/${presetName}",
             "description": "项目基础设置",
             "cacheVariables": {
-                "PROBLEM_PREFIX": "all"
+                "PROBLEM_PREFIX": "lc0012"
             }
         },
         {
@@ -199,72 +199,116 @@
             }
         }
     ],
-    "buildPresets": [
-        {
-            "name": "mingw_debug_build",
-            "configurePreset": "mingw_debug",
-            "displayName": "MinGW Debug Build",
-            "description": "Build the MinGW Debug target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
-        },
-        {
-            "name": "mingw_release_build",
-            "configurePreset": "mingw_release",
-            "displayName": "MinGW Release Build",
-            "description": "Build the MinGW Release target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
-        },
-        {
-            "name": "linux_clang_debug_build",
-            "configurePreset": "linux_clang_debug",
-            "displayName": "Linux Clang Debug Build",
-            "description": "Build the Linux Clang Debug target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
-        },
-        {
-            "name": "linux_clang_release_build",
-            "configurePreset": "linux_clang_release",
-            "displayName": "Linux Clang Release Build",
-            "description": "Build the Linux Clang Release target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
-        },
-        {
-            "name": "linux_gnu_debug_build",
-            "configurePreset": "linux_gnu_debug",
-            "displayName": "Linux GNU Debug Build",
-            "description": "Build the Linux GNU Debug target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
-        },
-        {
-            "name": "linux_gnu_release_build",
-            "configurePreset": "linux_gnu_release",
-            "displayName": "Linux GNU Release Build",
-            "description": "Build the Linux GNU Release target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
-        }
-    ]
+  "buildPresets": [
+    {
+      "name": "msvc_x64_debug_build",
+      "configurePreset": "msvc_x64_debug",
+      "displayName": "MSVC x64 Debug Build",
+      "description": "Build the MSVC x64 Debug target.",
+      "targets": [
+        "all",
+        "install"
+      ],
+      "jobs": 4
+    },
+    {
+      "name": "msvc_x64_release_build",
+      "configurePreset": "msvc_x64_release",
+      "displayName": "MSVC x64 Release Build",
+      "description": "Build the MSVC x64 Release target.",
+      "targets": [
+        "all",
+        "install"
+      ],
+      "jobs": 4
+    },
+    {
+      "name": "msvc_x86_debug_build",
+      "configurePreset": "msvc_x86_debug",
+      "displayName": "MSVC x86 Debug Build",
+      "description": "Build the MSVC x86 Debug target.",
+      "targets": [
+        "all",
+        "install"
+      ],
+      "jobs": 4
+    },
+    {
+      "name": "msvc_x86_release_build",
+      "configurePreset": "msvc_x86_release",
+      "displayName": "MSVC x86 Release Build",
+      "description": "Build the MSVC x86 Release target.",
+      "targets": [
+        "all",
+        "install"
+      ],
+      "jobs": 4
+    },
+    {
+      "name": "mingw_debug_build",
+      "configurePreset": "mingw_debug",
+      "displayName": "MinGW Debug Build",
+      "description": "Build the MinGW Debug target.",
+      "targets": [
+        "all",
+        "install"
+      ],
+      "jobs": 4
+    },
+    {
+      "name": "mingw_release_build",
+      "configurePreset": "mingw_release",
+      "displayName": "MinGW Release Build",
+      "description": "Build the MinGW Release target.",
+      "targets": [
+        "all",
+        "install"
+      ],
+      "jobs": 4
+    },
+    {
+      "name": "linux_clang_debug_build",
+      "configurePreset": "linux_clang_debug",
+      "displayName": "Linux Clang Debug Build",
+      "description": "Build the Linux Clang Debug target.",
+      "targets": [
+        "all",
+        "install"
+      ],
+      "jobs": 4
+    },
+    {
+      "name": "linux_clang_release_build",
+      "configurePreset": "linux_clang_release",
+      "displayName": "Linux Clang Release Build",
+      "description": "Build the Linux Clang Release target.",
+      "targets": [
+        "all",
+        "install"
+      ],
+      "jobs": 4
+    },
+    {
+      "name": "linux_gnu_debug_build",
+      "configurePreset": "linux_gnu_debug",
+      "displayName": "Linux GNU Debug Build",
+      "description": "Build the Linux GNU Debug target.",
+      "targets": [
+        "all",
+        "install"
+      ],
+      "jobs": 4
+    },
+    {
+      "name": "linux_gnu_release_build",
+      "configurePreset": "linux_gnu_release",
+      "displayName": "Linux GNU Release Build",
+      "description": "Build the Linux GNU Release target.",
+      "targets": [
+        "all",
+        "install"
+      ],
+      "jobs": 4
+    }
+  ]
 }
