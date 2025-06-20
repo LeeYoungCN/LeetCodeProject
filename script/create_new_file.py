@@ -148,6 +148,18 @@ def main():
     parser.add_argument('-n', '--class_name', help='Class name.')
     args = parser.parse_args()
 
+    if args.prefix:
+        log(f"Prefix invalid {args.prefix}.", "ERROR")
+        return 1
+    
+    if args.url and args.class_name:
+        log(f"Url or class_name invalid.", "ERROR")
+        return 1
+    
+    if args.function:
+        log(f"function invalid {args.function}.", "ERROR")
+        return 1
+    
     obj = LeetcodeFile(args.prefix, args.url, args.function, args.class_name)
     obj.print_data()
     obj.create_files()
