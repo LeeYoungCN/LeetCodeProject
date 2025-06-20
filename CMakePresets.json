@@ -67,7 +67,7 @@
             }
         },
         {
-            "name": "msvc_clang_base",
+            "name": "clang_msvc_base",
             "hidden": true,
             "generator": "MinGW Makefiles",
             "inherits": "project_base",
@@ -82,17 +82,17 @@
             }
         },
         {
-            "name": "msvc_clang_debug",
-            "displayName": "MSVC Clang Debug Configure",
-            "inherits": "msvc_clang_base",
+            "name": "clang_msvc_debug",
+            "displayName": "Clang MSVC Debug Configure",
+            "inherits": "clang_msvc_base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
-            "name": "msvc_clang_release",
-            "displayName": "MSVC Clang Release Configure",
-            "inherits": "msvc_clang_base",
+            "name": "clang_msvc_release",
+            "displayName": "Clang MSVC Release Configure",
+            "inherits": "clang_msvc_base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
@@ -269,6 +269,28 @@
       "configurePreset": "msvc_x86_release",
       "displayName": "MSVC x86 Release Build",
       "description": "Build the MSVC x86 Release target.",
+      "targets": [
+        "all",
+        "install"
+      ],
+      "jobs": 4
+    },
+    {
+      "name": "clang_msvc_debug_build",
+      "configurePreset": "clang_msvc_debug",
+      "displayName": "Clang MSVC Debug Build",
+      "description": "Build the Clang MSVC Debug target.",
+      "targets": [
+        "all",
+        "install"
+      ],
+      "jobs": 4
+    },
+    {
+      "name": "clang_msvc_release_build",
+      "configurePreset": "clang_msvc_release",
+      "displayName": "Clang MSVC Release Build",
+      "description": "Build the Clang MSVC Release target.",
       "targets": [
         "all",
         "install"
