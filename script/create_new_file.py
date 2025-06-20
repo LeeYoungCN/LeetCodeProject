@@ -140,6 +140,9 @@ class LeetcodeFile:
         self.__create_file_by_template(TEMPLATE_SRC_FILE, SRC_FILE_PATH)
         self.__create_file_by_template(TEMPLATE_TEST_FILE, TEST_FILE_PATH)
 
+def is_valid_arg(arg:str) -> bool:
+    return not (arg is None or arg == "")
+
 def main():
     parser = argparse.ArgumentParser(description='创建leetcode文件.')
     parser.add_argument('-p', '--prefix', help='Problem prefix.')
@@ -148,15 +151,15 @@ def main():
     parser.add_argument('-n', '--class_name', help='Class name.')
     args = parser.parse_args()
 
-    if args.prefix:
+    if not is_valid_arg(args.prefix):
         log(f"Prefix invalid {args.prefix}.", "ERROR")
         return 1
     
-    if args.url and args.class_name:
+    if not is_valid_arg(args.url) and not is_valid_arg(args.class_name):
         log(f"Url or class_name invalid.", "ERROR")
         return 1
     
-    if args.function:
+    if not is_valid_arg(args.function):
         log(f"function invalid {args.function}.", "ERROR")
         return 1
     
