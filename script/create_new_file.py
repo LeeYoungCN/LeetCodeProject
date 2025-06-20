@@ -1,6 +1,7 @@
 import argparse
 import os
 from pathlib import Path
+
 from refresh_problem_list import refresh_problem_list
 
 __CURRENT_FILE_PATH = Path(__file__).resolve()
@@ -16,15 +17,16 @@ TEMPLATE_HEAD_FILE = TEMPLATE_DIR + "leetcode_head_file.template"
 TEMPLATE_SRC_FILE = TEMPLATE_DIR + "leetcode_src_file.template"
 TEMPLATE_TEST_FILE = TEMPLATE_DIR + "leetcode_test_file.template"
 
+
 def log(message, level="INFO"):
     """带颜色的日志输出"""
     from datetime import datetime
-    
+
     COLORS = {
-        "DEBUG": "\033[94m",    # 蓝色
-        "INFO": "\033[92m",     # 绿色
+        "DEBUG": "\033[94m",  # 蓝色
+        "INFO": "\033[92m",  # 绿色
         "WARNING": "\033[93m",  # 黄色
-        "ERROR": "\033[91m",    # 红色
+        "ERROR": "\033[91m",  # 红色
         "CRITICAL": "\033[1;91m"  # 加粗红色
     }
     RESET = "\033[0m"
@@ -33,8 +35,9 @@ def log(message, level="INFO"):
     colored_level = f"{COLORS.get(level, '')}{level}{RESET}"
     print(f"[{timestamp}] [{colored_level}] {message}")
 
+
 class LeetcodeFile:
-    def __init__(self, prefix:str, url:str, function:str, class_name:str = None):
+    def __init__(self, prefix: str, url: str, function: str, class_name: str = None):
         self.__problem_prefix = prefix
         self.__url = url
         self.__funciton = function
@@ -53,7 +56,7 @@ class LeetcodeFile:
 
         self.__init_func_data()
         self.__init_class_data()
-    
+
     def __init_func_data(self):
         # long long func_name(vector<int>& x, string y)
 
@@ -118,34 +121,34 @@ class LeetcodeFile:
         if os.path.exists(new_file):
             log(f"{new_file} already exist.", "ERROR")
             return
-        
+
         if not os.path.exists(template_file):
             log(f"{new_file} not exist!", "ERROR")
 
         from datetime import datetime
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         replace_list = [
-            ["URL_STR",         self.__url],
-            ["CLASS_NAME",      self.__leetcode_class_name],
-            ["DEF_STR",         self.__def_str],
-            ["HEAD_FILE_NAME",  self.__leetcode_head_file],
-            ["TEST_CLASSNAME",  self.__test_class_name],
-            ["FUNC_RET_TYPE",   self.__func_ret_type],
-            ["FUNC_PARAM",      self.__func_params],
-            ["CLASS_FUNC",      self.__func_name],
-            ["TIME_STR",        timestamp],
-            ["PARAM_NAMES",     self.__param_names]
-        ]    
+            ["URL_STR", self.__url],
+            ["CLASS_NAME", self.__leetcode_class_name],
+            ["DEF_STR", self.__def_str],
+            ["HEAD_FILE_NAME", self.__leetcode_head_file],
+            ["TEST_CLASSNAME", self.__test_class_name],
+            ["FUNC_RET_TYPE", self.__func_ret_type],
+            ["FUNC_PARAM", self.__func_params],
+            ["CLASS_FUNC", self.__func_name],
+            ["TIME_STR", timestamp],
+            ["PARAM_NAMES", self.__param_names]
+        ]
 
         with open(template_file, 'r', encoding='utf-8') as infile:
             lines = infile.readlines()
-        
+
         with open(new_file, 'w', encoding='utf-8') as outfile:
             for line in lines:
                 for replace_pair in replace_list:
                     line = line.replace(replace_pair[0], replace_pair[1])
                 outfile.write(line)
-        
+
         log(f"Create [{new_file}] success.")
 
     def create_files(self):
@@ -156,8 +159,10 @@ class LeetcodeFile:
         self.__create_file_by_template(TEMPLATE_SRC_FILE, SRC_FILE_PATH)
         self.__create_file_by_template(TEMPLATE_TEST_FILE, TEST_FILE_PATH)
 
-def is_valid_arg(arg:str) -> bool:
+
+def is_valid_arg(arg: str) -> bool:
     return not (arg is None or arg == "")
+
 
 def main():
     parser = argparse.ArgumentParser(description='创建leetcode文件.')
@@ -170,15 +175,15 @@ def main():
     if not is_valid_arg(args.prefix):
         log(f"Prefix invalid {args.prefix}.", "ERROR")
         return 1
-    
+
     if not is_valid_arg(args.url) and not is_valid_arg(args.class_name):
         log(f"Url or class_name invalid.", "ERROR")
         return 1
-    
+
     if not is_valid_arg(args.function):
         log(f"function invalid {args.function}.", "ERROR")
         return 1
-    
+
     obj = LeetcodeFile(args.prefix, args.url, args.function, args.class_name)
     obj.print_data()
     obj.create_files()

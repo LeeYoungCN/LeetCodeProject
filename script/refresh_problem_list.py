@@ -5,11 +5,11 @@ __CURRENT_FILE_PATH = Path(__file__).resolve()
 __SCRIPT_DIR = os.path.dirname(__CURRENT_FILE_PATH)
 __ROOT_DIR = os.path.dirname(__SCRIPT_DIR)
 LEETCODE_SRC_DIR = __ROOT_DIR + "/leetcode/src/"
-PROBLEM_LIST_FILE=__ROOT_DIR + "/problem_list.md"
+PROBLEM_LIST_FILE = __ROOT_DIR + "/problem_list.md"
 
 
 def refresh_problem_list() -> None:
-    file_name_list:list = []
+    file_name_list: list = []
     with os.scandir(LEETCODE_SRC_DIR) as entries:
         for entry in entries:
             if entry.is_file():
