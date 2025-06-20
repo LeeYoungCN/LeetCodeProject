@@ -8,7 +8,7 @@
             "installDir": "${sourceDir}/out/install/${presetName}",
             "description": "项目基础设置",
             "cacheVariables": {
-                "PROBLEM_PREFIX": "lc0012"
+                "PROBLEM_PREFIX": "all"
             }
         },
         {
