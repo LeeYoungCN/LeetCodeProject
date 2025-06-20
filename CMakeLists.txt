@@ -31,7 +31,7 @@ else(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
     endif()
 endif()
 
-include(${CMAKE_SOURCE_DIR}/cmake/cmake_configure_info.cmake)
+
 
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "CMAKE_BUILD_TYPE Debug" FORCE)
@@ -50,6 +50,8 @@ endif()
 if (${CMAKE_INSTALL_PREFIX} STREQUAL "C:/Program Files (x86)/LeetCode" OR ${CMAKE_INSTALL_PREFIX} STREQUAL "/usr")
     set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/out/install" CACHE STRING "CMAKE_INSTALL_PREFIX out/install" FORCE)
 endif()
+
+include(${CMAKE_SOURCE_DIR}/cmake/cmake_configure_info.cmake)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
