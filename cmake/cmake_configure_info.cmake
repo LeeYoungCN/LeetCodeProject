@@ -35,11 +35,15 @@ message(STATUS "CMAKE_CXX_COMPILER:                     ${CMAKE_CXX_COMPILER}")
 message(STATUS "CMAKE_CXX_COMPILER_ID:                  ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "CMAKE_CXX_COMPILER_VERSION:             ${CMAKE_CXX_COMPILER_VERSION}")
 message(STATUS "CMAKE_CXX_COMPILER_FRONTEND_VARIANT:    ${CMAKE_CXX_COMPILER_FRONTEND_VARIANT}")
- 
 
 message(STATUS "CMAKE_SIZEOF_VOID_P:                    ${CMAKE_SIZEOF_VOID_P}")
 message(STATUS "ARCHITECTURE:                           ${ARCHITECTURE}")
 
 message(STATUS "CMAKE_BUILD_TYPE:                       ${CMAKE_BUILD_TYPE}")
 message(STATUS "PROBLEM_PREFIX:                         ${PROBLEM_PREFIX}")
-message(STATUS "CMAKE_INSTALL_PREFIX                    ${CMAKE_INSTALL_PREFIX}")
+message(STATUS "CMAKE_INSTALL_PREFIX:                   ${CMAKE_INSTALL_PREFIX}")
+
+message(STATUS "CMAKE_C_FLAGS_DEBUG:                    ${CMAKE_C_FLAGS_DEBUG}")
+message(STATUS "CMAKE_CXX_FLAGS_DEBUG:                  ${CMAKE_CXX_FLAGS_DEBUG}")
+message(STATUS "CMAKE_C_FLAGS_RELEASE:                  ${CMAKE_C_FLAGS_RELEASE}")
+message(STATUS "CMAKE_CXX_FLAGS_RELEASE:                ${CMAKE_CXX_FLAGS_RELEASE}")
