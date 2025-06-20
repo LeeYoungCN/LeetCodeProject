@@ -183,6 +183,8 @@ def main():
     obj.print_data()
     obj.create_files()
     refresh_problem_list()
+    return None
+
 
 if __name__ == "__main__":
     main()

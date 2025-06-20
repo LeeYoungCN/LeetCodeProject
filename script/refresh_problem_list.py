@@ -7,7 +7,8 @@ __ROOT_DIR = os.path.dirname(__SCRIPT_DIR)
 LEETCODE_SRC_DIR = __ROOT_DIR + "/leetcode/src/"
 PROBLEM_LIST_FILE=__ROOT_DIR + "/problem_list.md"
 
-def refresh_problem_list():
+
+def refresh_problem_list() -> None:
     file_name_list:list = []
     with os.scandir(LEETCODE_SRC_DIR) as entries:
         for entry in entries:
@@ -17,6 +18,7 @@ def refresh_problem_list():
     with open(PROBLEM_LIST_FILE, 'w', encoding='utf-8') as file:
         for file_name in file_name_list:
             file.write(f"{file_name}\n")
+    return None
 
 
 if __name__ == "__main__":
