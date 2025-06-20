@@ -1,4 +1,7 @@
 add_executable(${TEST_RUNTIME_NAME})
+set_target_properties(${TEST_RUNTIME_NAME} PROPERTIES
+    COMPILE_PDB_NAME_DEBUG "${TEST_RUNTIME_NAME}_debug"  # 生成 leetcode_debug.pdb
+)
 
 if (PROBLEM_PREFIX STREQUAL "all")
     aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} SRC_LIST)
