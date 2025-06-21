@@ -46,14 +46,14 @@ class LeetcodeFile:
     def __init_func_data(self):
         # long long func_name(vector<int>& x, string y)
 
-        """ long long func_name """
-        func_name_with_ret = self.__funciton.split('(')[0]
+        """long long func_name"""
+        func_name_with_ret = self.__funciton.split("(")[0]
         """ vector<int>& x, string y """
-        self.__func_params = self.__funciton.split('(')[1].split(')')[0]
+        self.__func_params = self.__funciton.split("(")[1].split(")")[0]
         """ func_name """
-        self.__func_name = func_name_with_ret.split(' ')[-1]
+        self.__func_name = func_name_with_ret.split(" ")[-1]
         """ long long """
-        self.__func_ret_type = func_name_with_ret.rsplit(' ', 1)[0]
+        self.__func_ret_type = func_name_with_ret.rsplit(" ", 1)[0]
         """ x, y """
         param_parts = self.__func_params.split()
 
@@ -66,8 +66,8 @@ class LeetcodeFile:
 
     def __init_class_data(self):
         if self.__class_name is None:
-            """ https://leetcode.cn/problems/class-name/description -> class-name """
-            raw_class_name = self.__url.split('/')[4]
+            """https://leetcode.cn/problems/class-name/description -> class-name"""
+            raw_class_name = self.__url.split("/")[4]
         else:
             raw_class_name = self.__class_name
         """ 前缀全大写: lc1234 -> LC1234"""
@@ -77,7 +77,7 @@ class LeetcodeFile:
 
         """ 匈牙利转大驼峰: class_name -> ClassName """
         class_name_pascal = ""
-        for name_part in class_name_snake.split('_'):
+        for name_part in class_name_snake.split("_"):
             if is_roman_num_str(name_part):
                 class_name_pascal = name_part.upper()
             else:
@@ -117,8 +117,9 @@ class LeetcodeFile:
             log(f"{new_file} not exist!", "ERROR")
 
         from datetime import datetime
+
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        replace_list:list[list[str]] = [
+        replace_list: list[list[str]] = [
             ["URL_STR", self.__url],
             ["CLASS_NAME", self.__leetcode_class_name],
             ["DEF_STR", self.__def_str],
@@ -128,13 +129,13 @@ class LeetcodeFile:
             ["FUNC_PARAM", self.__func_params],
             ["CLASS_FUNC", self.__func_name],
             ["TIME_STR", timestamp],
-            ["PARAM_NAMES", self.__param_names]
+            ["PARAM_NAMES", self.__param_names],
         ]
 
-        with open(template_file, 'r', encoding='utf-8') as infile:
+        with open(template_file, "r", encoding="utf-8") as infile:
             lines = infile.readlines()
 
-        with open(new_file, 'w', encoding='utf-8') as outfile:
+        with open(new_file, "w", encoding="utf-8") as outfile:
             for line in lines:
                 for replace_pair in replace_list:
                     line = line.replace(replace_pair[0], replace_pair[1])
@@ -148,7 +149,7 @@ class LeetcodeFile:
         test_file_path = _TEST_SRC_DIR + self.__test_src_file
 
         self.__create_file_by_template(_TEMPLATE_HEAD_FILE, head_file_path)
-        self.__create_file_by_template(_TEMPLATE_SRC_FILE,  src_file_path)
+        self.__create_file_by_template(_TEMPLATE_SRC_FILE, src_file_path)
         self.__create_file_by_template(_TEMPLATE_TEST_FILE, test_file_path)
 
 
@@ -157,11 +158,11 @@ def is_valid_arg(arg: str) -> bool:
 
 
 def main():
-    parser = argparse.ArgumentParser(description='创建leetcode文件.')
-    parser.add_argument('-p', '--prefix', help='Problem prefix.')
-    parser.add_argument('-u', '--url', help='Problem URL.')
-    parser.add_argument('-f', '--function', help='Problem function.')
-    parser.add_argument('-n', '--class_name', help='Class name.')
+    parser = argparse.ArgumentParser(description="创建leetcode文件.")
+    parser.add_argument("-p", "--prefix", help="Problem prefix.")
+    parser.add_argument("-u", "--url", help="Problem URL.")
+    parser.add_argument("-f", "--function", help="Problem function.")
+    parser.add_argument("-n", "--class_name", help="Class name.")
     args = parser.parse_args()
 
     if not is_valid_arg(args.prefix):

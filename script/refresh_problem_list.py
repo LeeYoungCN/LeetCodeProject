@@ -13,9 +13,9 @@ def refresh_problem_list() -> None:
     with os.scandir(LEETCODE_SRC_DIR) as entries:
         for entry in entries:
             if entry.is_file():
-                file_name_list.append(os.path.basename(entry.path).rsplit('.', 1)[0])
+                file_name_list.append(os.path.basename(entry.path).rsplit(".", 1)[0])
 
-    with open(PROBLEM_LIST_FILE, 'w', encoding='utf-8') as file:
+    with open(PROBLEM_LIST_FILE, "w", encoding="utf-8") as file:
         for file_name in file_name_list:
             file.write(f"{file_name}\n")
     return None
