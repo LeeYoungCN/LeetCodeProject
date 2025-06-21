@@ -20,7 +20,6 @@
     "files.autoSave": "afterDelay",
     "C_Cpp.intelliSenseEngine": "disabled",
     "C_Cpp.intelliSenseEngineFallback": "disabled",
-    "clangd.path": "${env:OS == 'Windows_NT' ? 'D:/Programs/LLVM_msvc/bin/clangd.exe' : 'clangd'}",
     "clangd.serverCompletionRanking": true, // 借助网上的信息排序建议
     "clangd.arguments": [
         "--compile-commands-dir=${workspaceFolder}/out/build",
