@@ -1,39 +1,21 @@
 import argparse
 import os
 from pathlib import Path
-
+from common_func import log, is_roman_num_str
 from refresh_problem_list import refresh_problem_list
 
-__CURRENT_FILE_PATH = Path(__file__).resolve()
-__SCRIPT_DIR = os.path.dirname(__CURRENT_FILE_PATH)
-__ROOT_DIR = os.path.dirname(__SCRIPT_DIR)
+_CURRENT_FILE_PATH = Path(__file__).resolve()
+_SCRIPT_DIR = os.path.dirname(_CURRENT_FILE_PATH)
+_ROOT_DIR = os.path.dirname(_SCRIPT_DIR)
 
-TEST_SRC_DIR = __ROOT_DIR + "/test/"
-LEETCODE_SRC_DIR = __ROOT_DIR + "/leetcode/src/"
-LEETCODE_INC_DIR = __ROOT_DIR + "/leetcode/inc/"
-TEMPLATE_DIR = __SCRIPT_DIR + "/template/"
+_TEST_SRC_DIR = _ROOT_DIR + "/test/"
+_LEETCODE_SRC_DIR = _ROOT_DIR + "/leetcode/src/"
+_LEETCODE_INC_DIR = _ROOT_DIR + "/leetcode/inc/"
+_TEMPLATE_DIR = _SCRIPT_DIR + "/template/"
 
-TEMPLATE_HEAD_FILE = TEMPLATE_DIR + "leetcode_head_file.template"
-TEMPLATE_SRC_FILE = TEMPLATE_DIR + "leetcode_src_file.template"
-TEMPLATE_TEST_FILE = TEMPLATE_DIR + "leetcode_test_file.template"
-
-
-def log(message, level="INFO"):
-    """带颜色的日志输出"""
-    from datetime import datetime
-
-    COLORS = {
-        "DEBUG": "\033[94m",  # 蓝色
-        "INFO": "\033[92m",  # 绿色
-        "WARNING": "\033[93m",  # 黄色
-        "ERROR": "\033[91m",  # 红色
-        "CRITICAL": "\033[1;91m"  # 加粗红色
-    }
-    RESET = "\033[0m"
-
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    colored_level = f"{COLORS.get(level, '')}{level}{RESET}"
-    print(f"[{timestamp}] [{colored_level}] {message}")
+_TEMPLATE_HEAD_FILE = _TEMPLATE_DIR + "leetcode_head_file.template"
+_TEMPLATE_SRC_FILE = _TEMPLATE_DIR + "leetcode_src_file.template"
+_TEMPLATE_TEST_FILE = _TEMPLATE_DIR + "leetcode_test_file.template"
 
 
 class LeetcodeFile:
@@ -42,6 +24,7 @@ class LeetcodeFile:
         self.__url = url
         self.__funciton = function
         self.__class_name = class_name
+
         self.__func_ret_type = None
         self.__func_name = None
         self.__func_params = None
@@ -53,6 +36,9 @@ class LeetcodeFile:
         self.__leetcode_class_name = None
         self.__test_class_name = None
         self.__def_str = None
+
+        if self.__url is None:
+            self.__url = ""
 
         self.__init_func_data()
         self.__init_class_data()
@@ -88,10 +74,15 @@ class LeetcodeFile:
         prefix_upper = self.__problem_prefix.upper()
         """ 下划线: class-name -> class_name """
         class_name_snake = raw_class_name.replace("-", "_")
+
         """ 匈牙利转大驼峰: class_name -> ClassName """
         class_name_pascal = ""
         for name_part in class_name_snake.split('_'):
-            class_name_pascal += name_part[0].upper() + name_part[1:]
+            if is_roman_num_str(name_part):
+                class_name_pascal = name_part.upper()
+            else:
+                class_name_pascal += name_part[0].upper() + name_part[1:]
+
         """ lc1234_class_name """
         self.__leetcode_file_name = self.__problem_prefix + "_" + class_name_snake
         """ lc1234_class_name.h """
@@ -127,7 +118,7 @@ class LeetcodeFile:
 
         from datetime import datetime
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        replace_list = [
+        replace_list:list[list[str]] = [
             ["URL_STR", self.__url],
             ["CLASS_NAME", self.__leetcode_class_name],
             ["DEF_STR", self.__def_str],
@@ -152,12 +143,13 @@ class LeetcodeFile:
         log(f"Create [{new_file}] success.")
 
     def create_files(self):
-        HEAD_FILE_PATH = LEETCODE_INC_DIR + self.__leetcode_head_file
-        SRC_FILE_PATH = LEETCODE_SRC_DIR + self.__leetcode_src_file
-        TEST_FILE_PATH = TEST_SRC_DIR + self.__test_src_file
-        self.__create_file_by_template(TEMPLATE_HEAD_FILE, HEAD_FILE_PATH)
-        self.__create_file_by_template(TEMPLATE_SRC_FILE, SRC_FILE_PATH)
-        self.__create_file_by_template(TEMPLATE_TEST_FILE, TEST_FILE_PATH)
+        head_file_path = _LEETCODE_INC_DIR + self.__leetcode_head_file
+        src_file_path = _LEETCODE_SRC_DIR + self.__leetcode_src_file
+        test_file_path = _TEST_SRC_DIR + self.__test_src_file
+
+        self.__create_file_by_template(_TEMPLATE_HEAD_FILE, head_file_path)
+        self.__create_file_by_template(_TEMPLATE_SRC_FILE,  src_file_path)
+        self.__create_file_by_template(_TEMPLATE_TEST_FILE, test_file_path)
 
 
 def is_valid_arg(arg: str) -> bool:
@@ -174,21 +166,21 @@ def main():
 
     if not is_valid_arg(args.prefix):
         log(f"Prefix invalid {args.prefix}.", "ERROR")
-        return 1
+        return
 
     if not is_valid_arg(args.url) and not is_valid_arg(args.class_name):
         log(f"Url or class_name invalid.", "ERROR")
-        return 1
+        return
 
     if not is_valid_arg(args.function):
         log(f"function invalid {args.function}.", "ERROR")
-        return 1
+        return
 
     obj = LeetcodeFile(args.prefix, args.url, args.function, args.class_name)
     obj.print_data()
     obj.create_files()
     refresh_problem_list()
-    return None
+    return
 
 
 if __name__ == "__main__":
