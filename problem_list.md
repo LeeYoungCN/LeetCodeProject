@@ -1,4 +1,3 @@
-lc0000_test_name_iv
 lc0012_integer_to_roman
 lc0017_letter_combinations_of_a_phone_number
 lc0022_generate_parentheses
@@ -28,6 +27,7 @@ lc0386_lexicographical_numbers
 lc0426_partition_equal_subset_sum
 lc0440_k_th_smallest_in_lexicographical_order
 lc0560_subarray_sum_equals_k
+lc0583_delete_operation_for_two_strings
 lc0740_delete_and_earn
 lc0881_boats_to_save_people
 lc0909_snakes_and_ladders
