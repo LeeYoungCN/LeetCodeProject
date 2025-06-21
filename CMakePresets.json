@@ -69,7 +69,7 @@
         {
             "name": "clang_msvc_base",
             "hidden": true,
-            "generator": "MinGW Makefiles",
+            "generator": "Ninja",
             "inherits": "project_base",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "D:/Programs/LLVM_msvc/bin/clang.exe",
@@ -102,7 +102,6 @@
             "hidden": true,
             "generator": "MinGW Makefiles",
             "inherits": "project_base",
-            "toolchainFile": "${sourceDir}/cmake/mingw.cmake",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "D:/Programs/MinGW/bin/gcc.exe",
                 "CMAKE_CXX_COMPILER": "D:/Programs/MinGW/bin/g++.exe"
@@ -144,7 +143,6 @@
             "name": "linux_gnu_base",
             "hidden": true,
             "inherits": "linux_base",
-            "toolchainFile": "${sourceDir}/cmake/linux_gnu.cmake",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "/usr/bin/gcc",
                 "CMAKE_CXX_COMPILER": "/usr/bin/g++"
@@ -170,7 +168,6 @@
             "name": "linux_clang_base",
             "hidden": true,
             "inherits": "linux_base",
-            "toolchainFile": "${sourceDir}/cmake/linux_clang.cmake",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "/home/ly/tools/clang/bin/clang",
                 "CMAKE_CXX_COMPILER": "/home/ly/tools/clang/bin/clang++"
@@ -207,7 +204,6 @@
             "name": "darwin_clang_base",
             "hidden": true,
             "inherits": "darwin_base",
-            "toolchainFile": "${sourceDir}/cmake/drawin_clang.cmake",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "clang",
                 "CMAKE_CXX_COMPILER": "clang++"
