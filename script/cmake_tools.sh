@@ -219,12 +219,12 @@ function init_cmake_configure_param() {
         ;;
     clang_msvc_debug)
         cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/clang_msvc.cmake"
-        cmake_generator="MinGW Makefiles"
+        cmake_generator="Ninja"
         cmake_build_type="Debug"
         ;;
     clang_msvc_release)
         cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/clang_msvc.cmake"
-        cmake_generator="MinGW Makefiles"
+        cmake_generator="Ninja"
         cmake_build_type="Release"
         ;;
     darwin_clang_debug)
