@@ -18,7 +18,7 @@ cd "${ROOT_DIR}" || exit 1
 
 readonly BUILDCACHE_ROOT_DIR="${ROOT_DIR}/out/build"
 readonly INSTALL_ROOT_DIR="${ROOT_DIR}/out/install"
-readonly TOOLCHAIN_FILE_DIR="${ROOT_DIR}/cmake"
+readonly TOOLCHAIN_FILE_DIR="${ROOT_DIR}/cmake/toolchain_files"
 
 arg_enable_clean=1
 arg_clean_type="all"
