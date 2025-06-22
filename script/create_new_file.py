@@ -79,7 +79,7 @@ class LeetcodeFile:
         class_name_pascal = ""
         for name_part in class_name_snake.split("_"):
             if is_roman_num_str(name_part):
-                class_name_pascal = name_part.upper()
+                class_name_pascal += name_part.upper()
             else:
                 class_name_pascal += name_part[0].upper() + name_part[1:]
 
