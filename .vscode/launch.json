@@ -5,27 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Windows",
-            "type": "cppdbg",
+            "name": "MSVC",
+            "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/out/build/bin/leetcode_test.exe",
-            "args": [],
+            "args": [
+                "--gtest_filter=*"
+            ],
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "stopAtEntry": false,
-            "MIMode": "gdb",
-            "miDebuggerPath": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
         },
         {
-            "name": "Linux",
+            "name": "GNU",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/out/build/bin/leetcode_test",
