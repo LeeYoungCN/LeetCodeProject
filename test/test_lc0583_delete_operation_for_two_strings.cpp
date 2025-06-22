@@ -23,7 +23,8 @@ protected:
 
 void TEST_LC0583::SetUp()
 {
-    m_testList.push_back(new LC0583_DeleteOperationForTwoStrings());
+    m_testList.push_back(new LC0583_DeleteOperationForTwoStrings_MinDelete());
+    m_testList.push_back(new LC0583_DeleteOperationForTwoStrings_MaxCommon());
 }
 
 void TEST_LC0583::TearDown()
