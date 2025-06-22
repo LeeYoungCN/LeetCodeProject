@@ -1,12 +1,13 @@
 cmake_minimum_required(VERSION 3.14)
 project(LeetCode)
 
-
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_C_STANDARD 99)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS   ON)
 set(CMAKE_VERBOSE_MAKEFILE          OFF)
+
+include(${CMAKE_SOURCE_DIR}/cmake/get_cmake_preset.cmake)
 
 if (MSVC)
     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} /MDd")
@@ -43,7 +44,7 @@ else()
 endif()
 
 if (${CMAKE_INSTALL_PREFIX} STREQUAL "C:/Program Files (x86)/LeetCode" OR ${CMAKE_INSTALL_PREFIX} STREQUAL "/usr")
-    set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/out/install" CACHE STRING "CMAKE_INSTALL_PREFIX out/install" FORCE)
+    set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/out/install/${CMAKE_PRESET}" CACHE STRING "CMAKE_INSTALL_PREFIX out/install" FORCE)
 endif()
 
 include(${CMAKE_SOURCE_DIR}/cmake/cmake_configure_info.cmake)
