@@ -161,14 +161,14 @@ function record_cmake_configure_param() {
 }
 
 function init_cmake_configure_param() {
+    os=$(uname -s)
+    if echo "${os}" | grep -q "MINGW"; then
+        os="Windows"
+    fi
+
     if [ -n "${arg_preset}" ]; then
         cmake_preset="${arg_preset}"
     else
-        os=$(uname -s)
-        if echo "${os}" | grep -q "MINGW"; then
-            os="Windows"
-        fi
-
         case ${os} in
         Windows)
             cmake_preset="mingw_debug"
@@ -186,59 +186,83 @@ function init_cmake_configure_param() {
         esac
     fi
 
-    case "${cmake_preset}" in
-    linux_gnu_debug)
-        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/linux_gnu.cmake"
-        cmake_generator="Unix Makefiles"
-        cmake_build_type="Debug"
+    case "${os}" in
+    Windows)
+        case "${cmake_preset}" in
+        mingw_debug)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/mingw.cmake"
+            cmake_generator="MinGW Makefiles"
+            cmake_build_type="Debug"
+            ;;
+        mingw_release)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/mingw.cmake"
+            cmake_generator="MinGW Makefiles"
+            cmake_build_type="Release"
+            ;;
+        clang_msvc_debug)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/clang_msvc.cmake"
+            cmake_generator="Ninja"
+            cmake_build_type="Debug"
+            ;;
+        clang_msvc_release)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/clang_msvc.cmake"
+            cmake_generator="Ninja"
+            cmake_build_type="Release"
+            ;;
+        *)
+            print_log "Preset: ${arg_preset} error!" error
+            exit 1
+            ;;
+        esac
         ;;
-    linux_gnu_release)
-        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/linux_gnu.cmake"
-        cmake_generator="Unix Makefiles"
-        cmake_build_type="Release"
+    Linux)
+        case "${cmake_preset}" in
+        linux_gnu_debug)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/linux_gnu.cmake"
+            cmake_generator="Unix Makefiles"
+            cmake_build_type="Debug"
+            ;;
+        linux_gnu_release)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/linux_gnu.cmake"
+            cmake_generator="Unix Makefiles"
+            cmake_build_type="Release"
+            ;;
+        linux_clang_debug)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/linux_clang.cmake"
+            cmake_generator="Unix Makefiles"
+            cmake_build_type="Debug"
+            ;;
+        linux_clang_release)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/linux_clang.cmake"
+            cmake_generator="Unix Makefiles"
+            cmake_build_type="Release"
+            ;;
+        *)
+            print_log "Preset: ${arg_preset} error!" error
+            exit 1
+            ;;
+        esac
         ;;
-    linux_clang_debug)
-        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/linux_clang.cmake"
-        cmake_generator="Unix Makefiles"
-        cmake_build_type="Debug"
-        ;;
-    linux_clang_release)
-        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/linux_clang.cmake"
-        cmake_generator="Unix Makefiles"
-        cmake_build_type="Release"
-        ;;
-    mingw_debug)
-        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/mingw.cmake"
-        cmake_generator="MinGW Makefiles"
-        cmake_build_type="Debug"
-        ;;
-    mingw_release)
-        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/mingw.cmake"
-        cmake_generator="MinGW Makefiles"
-        cmake_build_type="Release"
-        ;;
-    clang_msvc_debug)
-        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/clang_msvc.cmake"
-        cmake_generator="Ninja"
-        cmake_build_type="Debug"
-        ;;
-    clang_msvc_release)
-        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/clang_msvc.cmake"
-        cmake_generator="Ninja"
-        cmake_build_type="Release"
-        ;;
-    darwin_clang_debug)
-        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/drawin_clang.cmake"
-        cmake_generator="Unix Makefiles"
-        cmake_build_type="Debug"
-        ;;
-    darwin_clang_release)
-        cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/drawin_clang.cmake"
-        cmake_generator="Unix Makefiles"
-        cmake_build_type="Release"
+    Darwin)
+        case "${cmake_preset}" in
+        darwin_clang_debug)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/drawin_clang.cmake"
+            cmake_generator="Unix Makefiles"
+            cmake_build_type="Debug"
+            ;;
+        darwin_clang_release)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/drawin_clang.cmake"
+            cmake_generator="Unix Makefiles"
+            cmake_build_type="Release"
+            ;;
+        *)
+            print_log "Preset: ${arg_preset} error!" error
+            exit 1
+            ;;
+        esac
         ;;
     *)
-        print_log "Preset: ${arg_preset} error!" error
+        print_log "os: ${os} error!"
         exit 1
         ;;
     esac
