@@ -2,24 +2,12 @@
  * Time : 2025-06-22 18:18:39
  * URL  : https://leetcode.cn/problems/decode-ways/description/?envType=problem-list-v2&envId=dynamic-programming
  */
-#include <algorithm>
 #include <cmath>
-#include <cstdint>
-#include <cstdio>
-#include <deque>
-#include <functional>
-#include <map>
-#include <queue>
-#include <set>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 #include "gtest/gtest.h"
 #include "lc0091_decode_ways.h"
-#include "leetcode_utils.h"
 
 using namespace std;
 
@@ -36,7 +24,8 @@ protected:
 
 void TEST_LC0091::SetUp()
 {
-    m_testList.push_back(new LC0091_DecodeWays());
+    m_testList.push_back(new LC0091_DecodeWays_V1());
+    m_testList.push_back(new LC0091_DecodeWays_V2());
 }
 
 void TEST_LC0091::TearDown()

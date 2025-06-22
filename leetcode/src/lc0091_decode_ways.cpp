@@ -10,7 +10,7 @@
 
 using namespace std;
 
-int LC0091_DecodeWays::numDecodings(std::string s)
+int LC0091_DecodeWays_V1::numDecodings(std::string s)
 {
     if (s[0] == '0') {
         return 0;
@@ -51,4 +51,26 @@ int LC0091_DecodeWays::numDecodings(std::string s)
         }
     }
     return static_cast<int32_t>(dpLength[shortIdx][length - 1] + dpLength[longIdx][length - 1]);
+}
+
+int LC0091_DecodeWays_V2::numDecodings(std::string s)
+{
+    if (s[0] == '0') {
+        return 0;
+    }
+    const auto length = static_cast<uint32_t>(s.length());
+
+    vector<uint32_t> dp(length, 0);
+    dp[0] = 1;
+
+    for (uint32_t i = 1; i < length; ++i) {
+        if (s[i] != '0') {
+            dp[i] = dp[i - 1];
+        }
+        if ((s[i - 1] == '1' && (s[i] >= '0' && s[i] <= '9')) || (s[i - 1] == '2' && (s[i] >= '0' && s[i] <= '6'))) {
+            dp[i] += (i >= 2 ? dp[i - 2] : 1);
+        }
+    }
+
+    return static_cast<int32_t>(dp.back());
 }
