@@ -171,7 +171,7 @@ function init_cmake_configure_param() {
     else
         case ${os} in
         Windows)
-            cmake_preset="mingw_debug"
+            cmake_preset="clang_msvc_debug"
             ;;
         Linux)
             cmake_preset="linux_clang_debug"
