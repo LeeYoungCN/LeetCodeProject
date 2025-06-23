@@ -14,7 +14,7 @@ def refresh_problem_list() -> None:
         for entry in entries:
             if entry.is_file():
                 file_name_list.append(os.path.basename(entry.path).rsplit(".", 1)[0])
-
+    file_name_list.sort()
     with open(PROBLEM_LIST_FILE, "w", encoding="utf-8") as file:
         for file_name in file_name_list:
             file.write(f"{file_name}\n")
