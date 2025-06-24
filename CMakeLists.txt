@@ -7,7 +7,6 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_EXPORT_COMPILE_COMMANDS   ON)
 set(CMAKE_VERBOSE_MAKEFILE          OFF)
 
-include(${CMAKE_SOURCE_DIR}/cmake/get_cmake_preset.cmake)
 
 if (MSVC)
     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} /MDd")
@@ -47,6 +46,7 @@ if (${CMAKE_INSTALL_PREFIX} STREQUAL "C:/Program Files (x86)/LeetCode" OR ${CMAK
     set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/out/install/${CMAKE_PRESET}" CACHE STRING "Default CMAKE_INSTALL_PREFIX out/install/${CMAKE_PRESET}" FORCE)
 endif()
 
+include(${CMAKE_SOURCE_DIR}/cmake/get_cmake_preset.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/cmake_configure_info.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/third_lib_config.cmake)
 

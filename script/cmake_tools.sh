@@ -52,6 +52,8 @@ cmake_build_target=""
 cmake_install_component=""
 cmake_configure_param_cfg="${cmake_build_dir}/cmake_configure.conf"
 ARCHITECTURE="x64"
+cmake_c_compiler=""
+cmake_cxx_compiler=""
 
 g_is_init_param=1
 
@@ -145,6 +147,8 @@ function list_cmake_configure_param() {
     print_log "cmake_install_dir:           ${cmake_install_dir}" info
     print_log "cmake_configure_param_cfg:   ${cmake_configure_param_cfg}" info
     print_log "ARCHITECTURE:                ${ARCHITECTURE}" info
+    print_log "cmake_c_compiler:            ${cmake_c_compiler}" info
+    print_log "cmake_cxx_compiler:          ${cmake_cxx_compiler}" info
 }
 
 function record_cmake_configure_param() {
@@ -271,7 +275,7 @@ function init_cmake_configure_param() {
     cmake_install_dir="${INSTALL_ROOT_DIR}/${cmake_preset}"
     readonly g_is_init_param=0
     readonly_cmake_configure_param
-    record_cmake_configure_param
+    # record_cmake_configure_param
     print_log "Init CMake configure param success." info
     list_cmake_configure_param
 }
