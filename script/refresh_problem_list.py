@@ -6,7 +6,7 @@ __SCRIPT_DIR = os.path.dirname(__CURRENT_FILE_PATH)
 __ROOT_DIR = os.path.dirname(__SCRIPT_DIR)
 _CODE_DIR = __ROOT_DIR + "/code"
 _LEETCODE_SRC_DIR = _CODE_DIR + "/leetcode/src/"
-_PROBLEM_LIST_FILE = __ROOT_DIR + "/problem_list.md"
+_PROBLEM_LIST_FILE = _CODE_DIR + "/problem_list.md"
 
 
 def refresh_problem_list() -> None:
