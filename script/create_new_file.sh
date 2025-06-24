@@ -165,8 +165,10 @@ function get_function_data() {
 function refresh_problem_prefix() {
     local cmake_preset_file=${ROOT_DIR}/CMakePresets.json
     local problem_prefix
-    problem_prefix=$(grep PROBLEM_PREFIX "${cmake_preset_file}" | awk -F": " '{print$2}')
-    replace_text "${problem_prefix}" "\"${g_leetcode_file_name}\"," "${cmake_preset_file}"
+    local trimmed
+    problem_prefix=$(grep PROBLEM_PREFIX "${cmake_preset_file}")
+    trimmed=$(echo "$problem_prefix" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+    replace_text "${trimmed}" "\"PROBLEM_PREFIX\": \"${g_leetcode_file_name}\"," "${cmake_preset_file}"
 }
 
 function get_class_data() {
