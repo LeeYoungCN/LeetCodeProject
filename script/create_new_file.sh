@@ -141,10 +141,10 @@ function create_new_file_by_template() {
 }
 
 function get_function_data() {
-    g_func_ret_type="${ARG_FUNC%% *}"
+    local func_name_with_ret="${ARG_FUNC%(*}"
 
-    g_func_name="${ARG_FUNC#* }"
-    g_func_name="${g_func_name%(*}"
+    g_func_ret_type="${func_name_with_ret% *}"
+    g_func_name="${func_name_with_ret##* }"
 
     g_func_param="${ARG_FUNC##*(}"
     g_func_param="${g_func_param%)}"
@@ -202,13 +202,13 @@ function create_file() {
     create_new_file_by_template "${TEMPLATE_HEAD_FILE}" "${head_file_path}"
     create_new_file_by_template "${TEMPLATE_SRC_FILE}" "${src_file_path}"
     create_new_file_by_template "${TEMPLATE_TEST_FILE}" "${test_file_path}"
-    refresh_problem_prefix
 }
 
 function main() {
     get_function_data
     get_class_data
     create_file
+    refresh_problem_prefix
     "${SCRIPT_DIR}/refresh_problem_list.sh"
 }
 
