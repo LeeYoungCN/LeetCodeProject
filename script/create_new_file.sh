@@ -162,6 +162,13 @@ function get_function_data() {
     done
 }
 
+function refresh_problem_prefix() {
+    local cmake_preset_file=${ROOT_DIR}/CMakePresets.json
+    local problem_prefix
+    problem_prefix=$(grep PROBLEM_PREFIX "${cmake_preset_file}" | awk -F": " '{print$2}')
+    replace_text "${problem_prefix}" "\"${g_leetcode_file_name}\"," "${cmake_preset_file}"
+}
+
 function get_class_data() {
     local raw_class_name
     local prefix_fmt
@@ -193,6 +200,7 @@ function create_file() {
     create_new_file_by_template "${TEMPLATE_HEAD_FILE}" "${head_file_path}"
     create_new_file_by_template "${TEMPLATE_SRC_FILE}" "${src_file_path}"
     create_new_file_by_template "${TEMPLATE_TEST_FILE}" "${test_file_path}"
+    refresh_problem_prefix
 }
 
 function main() {

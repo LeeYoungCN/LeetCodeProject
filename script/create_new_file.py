@@ -1,5 +1,6 @@
 import argparse
 import os
+import json
 from pathlib import Path
 from common_func import log, is_roman_num_str
 from refresh_problem_list import refresh_problem_list
@@ -153,6 +154,24 @@ class LeetcodeFile:
         self.__create_file_by_template(_TEMPLATE_SRC_FILE, src_file_path)
         self.__create_file_by_template(_TEMPLATE_TEST_FILE, test_file_path)
 
+    def refresh_problem_prefix(self):
+        cmake_preset_file = _ROOT_DIR + "/CMakePresets.json"
+        # 读取JSON文件
+        with open(cmake_preset_file, "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        # 修改JSON内容
+        for configure in data["configurePresets"]:
+            if configure["name"] == "project_base":
+                configure["cacheVariables"][
+                    "PROBLEM_PREFIX"
+                ] = self.__leetcode_file_name
+                break
+
+        # 写回JSON文件
+        with open(cmake_preset_file, "w", encoding="utf-8") as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+
 
 def is_valid_arg(arg: str) -> bool:
     return not (arg is None or arg == "")
@@ -181,6 +200,7 @@ def main():
     obj = LeetcodeFile(args.prefix, args.url, args.function, args.class_name)
     obj.print_data()
     obj.create_files()
+    obj.refresh_problem_prefix()
     refresh_problem_list()
     return
 
