@@ -15,9 +15,10 @@
     do {                                                     \
         printf("[%s:%d %s] ", __FILE__, __LINE__, __func__); \
         printf(fmt, __VA_ARGS__);                            \
+        printf("\n");                                        \
     } while (0);
 
-template <class T>
+template <class T = int32_t>
 std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
 {
     if (end == 0) {
@@ -38,7 +39,12 @@ std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_
             str += "[" + std::to_string(index) + "]=";
         }
 
-        str += std::to_string(vec[index]);
+        T val = vec[index];
+        if constexpr (std::is_same<T, char>::value) {
+            str += &val;
+        } else {
+            str += std::to_string(val);
+        }
         if (i < length - 1) {
             str += ", ";
         }
@@ -46,6 +52,9 @@ std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_
     str += "}";
     return str;
 }
+
+std::string Vector2String(const std::vector<std::string> &vec, uint32_t start = 0, uint32_t end = 0,
+                          bool hasIdx = true);
 
 template <class T>
 void PrintVector(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
