@@ -15,6 +15,7 @@ lc0091_decode_ways
 lc0097_interleaving_string
 lc0118_pascals_triangle
 lc0119_pascals_triangle_ii
+lc0120_triangle
 lc0121_best_time_to_buy_and_sell_stock
 lc0122_best_time_to_buy_and_sell_stock_ii
 lc0123_best_time_to_buy_and_sell_stock_iii
