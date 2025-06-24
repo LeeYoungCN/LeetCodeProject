@@ -14,9 +14,9 @@ readonly ROOT_DIR
 # shellcheck disable=SC1091
 source "${SCRIPT_DIR}/common_func.sh"
 
-readonly LEETCODE_INC_DIR="${ROOT_DIR}/leetcode/inc"
-readonly LEETCODE_SRC_DIR="${ROOT_DIR}/leetcode/src"
-readonly TEST_DIR="${ROOT_DIR}/test"
+readonly LEETCODE_INC_DIR="${ROOT_DIR}/code/leetcode/inc"
+readonly LEETCODE_SRC_DIR="${ROOT_DIR}/code//leetcode/src"
+readonly TEST_DIR="${ROOT_DIR}/code/test"
 readonly PROBLEM_LIST_FILE="${ROOT_DIR}/problem_list.md"
 
 if [ -e "${PROBLEM_LIST_FILE}" ]; then

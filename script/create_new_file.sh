@@ -14,9 +14,9 @@ readonly ROOT_DIR
 # shellcheck disable=SC1091
 source "${SCRIPT_DIR}/common_func.sh"
 
-readonly LEETCODE_INC_DIR="${ROOT_DIR}/leetcode/inc"
-readonly LEETCODE_SRC_DIR="${ROOT_DIR}/leetcode/src"
-readonly TEST_DIR="${ROOT_DIR}/test"
+readonly LEETCODE_INC_DIR="${ROOT_DIR}/code/leetcode/inc"
+readonly LEETCODE_SRC_DIR="${ROOT_DIR}/code/leetcode/src"
+readonly TEST_DIR="${ROOT_DIR}/code/test"
 
 readonly TEMPLATE_FILE_DIR="${ROOT_DIR}/script/template"
 readonly TEMPLATE_HEAD_FILE="${TEMPLATE_FILE_DIR}/leetcode_head_file.template"

@@ -8,9 +8,10 @@ _CURRENT_FILE_PATH = Path(__file__).resolve()
 _SCRIPT_DIR = os.path.dirname(_CURRENT_FILE_PATH)
 _ROOT_DIR = os.path.dirname(_SCRIPT_DIR)
 
-_TEST_SRC_DIR = _ROOT_DIR + "/test/"
-_LEETCODE_SRC_DIR = _ROOT_DIR + "/leetcode/src/"
-_LEETCODE_INC_DIR = _ROOT_DIR + "/leetcode/inc/"
+_CODE_DIR = _ROOT_DIR + "/code"
+_TEST_SRC_DIR = _CODE_DIR + "/test/"
+_LEETCODE_SRC_DIR = _CODE_DIR + "/leetcode/src/"
+_LEETCODE_INC_DIR = _CODE_DIR + "/leetcode/inc/"
 _TEMPLATE_DIR = _SCRIPT_DIR + "/template/"
 
 _TEMPLATE_HEAD_FILE = _TEMPLATE_DIR + "leetcode_head_file.template"
