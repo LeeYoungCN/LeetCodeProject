@@ -149,16 +149,16 @@ function get_function_data() {
     g_func_param="${ARG_FUNC##*(}"
     g_func_param="${g_func_param%)}"
 
-    IFS=' ' read -r -a array <<<"${g_func_param}"
+    IFS=',' read -r -a array <<<"${g_func_param}"
     local length=${#array[@]}
-    local index=1
+    local index=0
 
-    while [[ $index -lt $length ]]; do
-        g_param_names="${g_param_names}${array[$index]}"
+    for praram in "${array[@]}"; do
+        g_param_names="${g_param_names}${praram##* }"
         if [ $index -lt $((length - 1)) ]; then
-            g_param_names="${g_param_names} "
+            g_param_names="${g_param_names}, "
         fi
-        index=$((index + 2))
+        index=$((index + 1))
     done
 }
 

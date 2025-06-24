@@ -57,14 +57,12 @@ class LeetcodeFile:
         """ long long """
         self.__func_ret_type = func_name_with_ret.rsplit(" ", 1)[0]
         """ x, y """
-        param_parts = self.__func_params.split()
-
+        param_parts = self.__func_params.split(", ")
         self.__param_names = ""
         for i in range(0, len(param_parts)):
-            if i % 2 == 1:
-                self.__param_names += param_parts[i]
-                if i != len(param_parts) - 1:
-                    self.__param_names += " "
+            self.__param_names += param_parts[i].rsplit(" ")[-1]
+            if i < len(param_parts) - 1:
+                self.__param_names += ", "
 
     def __init_class_data(self):
         if self.__class_name is None:
