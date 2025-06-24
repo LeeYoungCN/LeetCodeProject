@@ -6,7 +6,7 @@
             "hidden": true,
             "binaryDir": "${sourceDir}/out/build/",
             "installDir": "${sourceDir}/out/install/${presetName}",
-            "description": "项目基础设置",
+            "description": "Project base config.",
             "cacheVariables": {
                 "PROBLEM_PREFIX": "all",
                 "CMAKE_PRESET": "${presetName}"
