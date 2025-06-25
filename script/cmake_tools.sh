@@ -68,7 +68,7 @@ function print_help() {
     echo "                                       List all problems:  --problem=list"
     echo ""
     echo "    -s, --preset[=<preset-name>]       CMake configure preset."
-    echo "                                       Windows: mingw_debug(default), mingw_release"
+    echo "                                       Windows: win_mingw_debug(default), win_mingw_release"
     echo "                                       Linux:   linux_clang_debug(default), linux_clang_releas, linux_gnu_debug, linux_gnu_release"
     echo "                                       Darwin:  darwin_clang_debug(default), darwin_clang_releas"
     echo ""
@@ -175,7 +175,7 @@ function init_cmake_configure_param() {
     else
         case ${os} in
         Windows)
-            cmake_preset="clang_msvc_debug"
+            cmake_preset="win_clang_debug"
             ;;
         Linux)
             cmake_preset="linux_clang_debug"
@@ -193,23 +193,23 @@ function init_cmake_configure_param() {
     case "${os}" in
     Windows)
         case "${cmake_preset}" in
-        mingw_debug)
-            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/mingw.cmake"
+        win_mingw_debug)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_mingw.cmake"
             cmake_generator="MinGW Makefiles"
             cmake_build_type="Debug"
             ;;
-        mingw_release)
-            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/mingw.cmake"
+        win_mingw_release)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_mingw.cmake"
             cmake_generator="MinGW Makefiles"
             cmake_build_type="Release"
             ;;
-        clang_msvc_debug)
-            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/clang_msvc.cmake"
+        win_clang_debug)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_clang.cmake"
             cmake_generator="Ninja"
             cmake_build_type="Debug"
             ;;
-        clang_msvc_release)
-            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/clang_msvc.cmake"
+        win_clang_release)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_clang.cmake"
             cmake_generator="Ninja"
             cmake_build_type="Release"
             ;;
