@@ -184,7 +184,7 @@ CheckOptions:
   readability-static-accessed-through-instance.NameSpecifierNestingThreshold: '3'
   readability-string-compare.StringLikeClasses: '::std::basic_string;::std::basic_string_view'
   readability-uniqueptr-delete-release.PreferResetCall: 'false'
-  readability-identifier-length.IgnoredVariableNames: '^(i|j|k|it|err|tmp|id|ok|fd|res|dp)$'
+  readability-identifier-length.IgnoredVariableNames: '^(i|j|k|s|it|err|tmp|id|ok|fd|res|dp)$'
   readability-identifier-naming.GlobalConstantCase: 'UPPER_CAS'
 SystemHeaders:   false
 ...
