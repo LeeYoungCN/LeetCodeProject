@@ -69,7 +69,7 @@
             }
         },
         {
-            "name": "clang_msvc_base",
+            "name": "win_clang_base",
             "hidden": true,
             "generator": "Ninja",
             "inherits": "project_base",
@@ -85,30 +85,30 @@
             }
         },
         {
-            "name": "clang_msvc_debug",
-            "displayName": "Clang MSVC Debug Configure",
-            "inherits": "clang_msvc_base",
+            "name": "win_clang_debug",
+            "displayName": "Clang Debug Configure",
+            "inherits": "win_clang_base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
-            "name": "clang_msvc_release",
-            "displayName": "Clang MSVC Release Configure",
-            "inherits": "clang_msvc_base",
+            "name": "win_clang_release",
+            "displayName": "Clang Release Configure",
+            "inherits": "win_clang_base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
         },
         {
-            "name": "mingw_base",
+            "name": "win_mingw_base",
             "hidden": true,
             "generator": "MinGW Makefiles",
             "inherits": "project_base",
             "toolchainFile": "${sourceDir}/cmake/toolchain_files/win_mingw.cmake",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "D:/Programs/MinGW/bin/gcc.exe",
-                "CMAKE_CXX_COMPILER": "D:/Programs/MinGW/bin/g++.exe"
+                "CMAKE_C_COMPILER": "D:/Programs/msys64/mingw64/bin/gcc.exe",
+                "CMAKE_CXX_COMPILER": "D:/Programs/msys64/mingw64/bin/g++.exe"
             },
             "condition": {
                 "type": "equals",
@@ -117,9 +117,9 @@
             }
         },
         {
-            "name": "mingw_debug",
+            "name": "win_mingw_debug",
             "displayName": "Mingw Debug Configure",
-            "inherits": "mingw_base",
+            "inherits": "win_mingw_base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
@@ -127,7 +127,7 @@
         {
             "name": "mingw_release",
             "displayName": "Mingw Release Configure",
-            "inherits": "mingw_base",
+            "inherits": "win_mingw_base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
@@ -278,10 +278,10 @@
             "jobs": 4
         },
         {
-            "name": "clang_msvc_debug_build",
-            "configurePreset": "clang_msvc_debug",
-            "displayName": "Clang MSVC Debug Build",
-            "description": "Build the Clang MSVC Debug target.",
+            "name": "win_clang_debug_build",
+            "configurePreset": "win_clang_debug",
+            "displayName": "Clang Debug Build",
+            "description": "Build the Clang Debug target.",
             "targets": [
                 "all",
                 "install"
@@ -289,10 +289,10 @@
             "jobs": 4
         },
         {
-            "name": "clang_msvc_release_build",
-            "configurePreset": "clang_msvc_release",
-            "displayName": "Clang MSVC Release Build",
-            "description": "Build the Clang MSVC Release target.",
+            "name": "win_clang_release_build",
+            "configurePreset": "win_clang_release",
+            "displayName": "Clang Release Build",
+            "description": "Build the Clang Release target.",
             "targets": [
                 "all",
                 "install"
@@ -300,9 +300,9 @@
             "jobs": 4
         },
         {
-            "name": "mingw_debug_build",
-            "configurePreset": "mingw_debug",
-            "displayName": "MinGW Debug Build",
+            "name": "win_mingw_debug_build",
+            "configurePreset": "win_mingw_debug",
+            "displayName": "Windows MinGW Debug Build",
             "description": "Build the MinGW Debug target.",
             "targets": [
                 "all",
@@ -311,7 +311,7 @@
             "jobs": 4
         },
         {
-            "name": "mingw_release_build",
+            "name": "win_mingw_release_build",
             "configurePreset": "mingw_release",
             "displayName": "MinGW Release Build",
             "description": "Build the MinGW Release target.",

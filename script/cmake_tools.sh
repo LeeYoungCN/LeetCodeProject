@@ -68,7 +68,7 @@ function print_help() {
     echo "                                       List all problems:  --problem=list"
     echo ""
     echo "    -s, --preset[=<preset-name>]       CMake configure preset."
-    echo "                                       Windows: win_mingw_debug(default), win_mingw_release"
+    echo "                                       Windows: win_clang_debug(default), win_clang_release, win_mingw_debug, win_mingw_release"
     echo "                                       Linux:   linux_clang_debug(default), linux_clang_releas, linux_gnu_debug, linux_gnu_release"
     echo "                                       Darwin:  darwin_clang_debug(default), darwin_clang_releas"
     echo ""
@@ -277,7 +277,6 @@ function init_cmake_configure_param() {
     readonly_cmake_configure_param
     # record_cmake_configure_param
     print_log "Init CMake configure param success." info
-    list_cmake_configure_param
 }
 
 function init_cmake_env() {
@@ -312,6 +311,7 @@ function cmake_configure() {
         -DCMAKE_TOOLCHAIN_FILE="${cmake_toolchain_file}" \
         -DCMAKE_BUILD_TYPE="${cmake_build_type}" \
         -DCMAKE_INSTALL_PREFIX="${cmake_install_dir}" \
+        -DCMAKE_PRESET="${cmake_preset}" \
         -DPROBLEM_PREFIX="${cmake_problem_prefix}"; then
         print_log "CMake configuration success." info
     else
