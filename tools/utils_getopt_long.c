@@ -22,7 +22,7 @@ static void move_non_opt_to_end(int32_t argc, char *const argv[])
     for (int32_t i = utils_optind; i < argc - 1; ++i) {
         args[i] = args[i + 1];
     }
-    args[argc - 1] = (char *)curr_argv;
+    args[argc - 1] = curr_argv;
     if (utils_non_opt_start == -1) {
         utils_non_opt_start = argc - 1;
     } else {
@@ -97,7 +97,7 @@ static int32_t process_sort_option(int32_t argc, char *const argv[], const char 
     const char *curr_argv = argv[utils_optind];
     int32_t ans = 0;
     curr_argv++;
-    utils_optopt = curr_argv[0];
+    utils_optopt = (int32_t)curr_argv[0];
     ans = utils_optopt;
     const char *opt_point = strchr(optstring, utils_optopt);
     if (opt_point == NULL) {
