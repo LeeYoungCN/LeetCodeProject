@@ -302,7 +302,7 @@
         {
             "name": "win_mingw_debug_build",
             "configurePreset": "win_mingw_debug",
-            "displayName": "Windows MinGW Debug Build",
+            "displayName": "MinGW Debug Build",
             "description": "Build the MinGW Debug target.",
             "targets": [
                 "all",
