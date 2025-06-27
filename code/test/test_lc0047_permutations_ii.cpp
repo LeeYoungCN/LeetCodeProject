@@ -24,7 +24,8 @@ protected:
 
 void TEST_LC0047::SetUp()
 {
-    m_testList.push_back(new LC0047_PermutationsII());
+    m_testList.emplace_back(new LC0047_PermutationsII_Set());
+    m_testList.emplace_back(new LC0047_PermutationsII_Sort());
 }
 
 void TEST_LC0047::TearDown()
@@ -60,5 +61,12 @@ TEST_F(TEST_LC0047, case2)
 {
     std::vector<int> nums = {1, 2, 3};
     std::vector<std::vector<int>> expect = {{1, 2, 3}, {1, 3, 2}, {2, 1, 3}, {2, 3, 1}, {3, 1, 2}, {3, 2, 1}};
+    RunTest(nums, expect);
+}
+
+TEST_F(TEST_LC0047, case3)
+{
+    std::vector<int> nums = {3, 3, 0, 3};
+    std::vector<std::vector<int>> expect = {{0, 3, 3, 3}, {3, 0, 3, 3}, {3, 3, 0, 3}, {3, 3, 3, 0}};
     RunTest(nums, expect);
 }
