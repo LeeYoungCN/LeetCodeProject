@@ -19,7 +19,6 @@
 
 #include "gtest/gtest.h"
 #include "HEAD_FILE_NAME"
-#include "leetcode_utils.h"
 
 using namespace std;
 

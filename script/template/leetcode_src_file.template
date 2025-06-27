@@ -19,8 +19,6 @@
 #include <unordered_set>
 #include <vector>
 
-#include "leetcode_utils.h"
-
 using namespace std;
 
 FUNC_RET_TYPE CLASS_NAME::CLASS_FUNC(FUNC_PARAM)
