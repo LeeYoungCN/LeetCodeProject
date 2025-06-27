@@ -41,7 +41,7 @@ std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_
 
         T val = vec[index];
         if constexpr (std::is_same<T, char>::value) {
-            str += &val;
+            str += val;
         } else {
             str += std::to_string(val);
         }
