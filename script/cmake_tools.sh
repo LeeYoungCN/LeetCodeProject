@@ -101,7 +101,6 @@ function clean_env() {
     if [ -e "${cmake_configure_param_cfg}" ]; then
         # shellcheck disable=SC1090
         source "${cmake_configure_param_cfg}"
-        list_cmake_configure_param
     else
         cmake_install_dir="${INSTALL_ROOT_DIR}"
     fi
@@ -140,18 +139,20 @@ function readonly_cmake_configure_param() {
 }
 
 function list_cmake_configure_param() {
-    print_log "cmake_preset:                ${cmake_preset}" info
-    print_log "cmake_problem_prefix:        ${cmake_problem_prefix}" info
-    print_log "cmake_build_type:            ${cmake_build_type}" info
-    print_log "cmake_generator:             ${cmake_generator}" info
-    print_log "cmake_toolchain_file:        ${cmake_toolchain_file}" info
-    print_log "cmake_source_dir:            ${cmake_source_dir}" info
-    print_log "cmake_build_dir:             ${cmake_build_dir}" info
-    print_log "cmake_install_dir:           ${cmake_install_dir}" info
-    print_log "cmake_configure_param_cfg:   ${cmake_configure_param_cfg}" info
-    print_log "ARCHITECTURE:                ${ARCHITECTURE}" info
-    print_log "cmake_c_compiler:            ${cmake_c_compiler}" info
-    print_log "cmake_cxx_compiler:          ${cmake_cxx_compiler}" info
+    if [ ! -e "${cmake_configure_param_cfg}" ]; then
+        print_log "${cmake_configure_param_cfg} not exist." error
+        return 1
+    fi
+    local RED='\033[0;31m'
+    local GREEN='\033[32m'
+    local BLUE='\033[34m'
+    local NC='\033[0m' # 重置颜色
+    while IFS= read -r line; do
+        local key="${line%=*}"
+        local val="${line#*=}"
+        local white_space="                              "
+        echo -e "${BLUE}${key}:${white_space:${#key}}${val}${NC}"
+    done <"${cmake_configure_param_cfg}"
 }
 
 function record_cmake_configure_param() {
@@ -301,7 +302,6 @@ function init_cmake_env() {
         source "${cmake_configure_param_cfg}"
         readonly g_is_init_param=0
         readonly_cmake_configure_param
-        list_cmake_configure_param
     else
         print_log "${cmake_configure_param_cfg} not exist." error
     fi
@@ -496,7 +496,7 @@ function main() {
             shift 2
             ;;
         --list)
-            init_cmake_env
+            list_cmake_configure_param
             exit 0
             ;;
         --help)
