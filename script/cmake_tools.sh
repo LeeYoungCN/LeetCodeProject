@@ -277,7 +277,7 @@ function init_cmake_configure_param() {
         # shellcheck disable=SC1090
         source "${env_param_file}"
     fi
-
+    g_is_init_param=0
     print_log "Init CMake configure param success." info
 }
 
@@ -295,6 +295,7 @@ function init_cmake_env() {
     if [ -e "${cmake_configure_param_cfg}" ]; then
         # shellcheck disable=SC1090
         source "${cmake_configure_param_cfg}"
+        g_is_init_param=0
     else
         print_log "${cmake_configure_param_cfg} not exist." error
     fi
