@@ -39,9 +39,11 @@ arg_gtest_case="all"
 arg_enable_ctest=1
 arg_ctest_case="all"
 
+preset_array=("")
+
 cmake_source_dir="${ROOT_DIR}"
-cmake_build_dir="${BUILDCACHE_ROOT_DIR}"
-cmake_test_runtime="${cmake_build_dir}/bin/leetcode_test"
+cmake_build_dir=""
+cmake_test_runtime=""
 cmake_install_dir=""
 cmake_build_type=""
 cmake_toolchain_file=""
@@ -50,7 +52,7 @@ cmake_preset=""
 cmake_problem_prefix=""
 cmake_build_target=""
 cmake_install_component=""
-cmake_configure_param_cfg="${cmake_build_dir}/cmake_configure.conf"
+cmake_configure_param_cfg=""
 ARCHITECTURE="x64"
 env_param_file=""
 
@@ -96,23 +98,19 @@ function print_help() {
 }
 
 function clean_env() {
-    if [ -e "${cmake_configure_param_cfg}" ]; then
-        # shellcheck disable=SC1090
-        source "${cmake_configure_param_cfg}"
-    else
-        cmake_install_dir="${INSTALL_ROOT_DIR}"
-    fi
+    local build_dir="${BUILDCACHE_ROOT_DIR}/${arg_preset}"
+    local install_dir="${INSTALL_ROOT_DIR}/${arg_preset}"
 
     case "${arg_clean_type}" in
     all)
-        rm_dir "${cmake_build_dir}"
-        rm_dir "${cmake_install_dir}"
+        rm_dir "${build_dir}"
+        rm_dir "${install_dir}"
         ;;
     build)
-        rm_dir "${cmake_build_dir}"
+        rm_dir "${build_dir}"
         ;;
     install)
-        rm_dir "${cmake_install_dir}"
+        rm_dir "${install_dir}"
         ;;
     list)
         echo "all(default), build, install"
@@ -124,48 +122,61 @@ function clean_env() {
 }
 
 function list_cmake_configure_param() {
-    if [ ! -e "${cmake_configure_param_cfg}" ]; then
-        print_log "${cmake_configure_param_cfg} not exist." error
-        return 1
-    fi
     local RED='\033[0;31m'
     local GREEN='\033[32m'
     local BLUE='\033[34m'
-    local NC='\033[0m' # 重置颜色
-    while IFS= read -r line; do
-        local key="${line%=*}"
-        local val="${line#*=}"
-        local white_space="                              "
-        echo -e "${BLUE}${key}:${white_space:${#key}}${val}${NC}"
-    done <"${cmake_configure_param_cfg}"
+    local NC='\033[0m'
+
+    find "${BUILDCACHE_ROOT_DIR}" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -print0 |
+        while IFS= read -r -d '' dir; do
+            echo "----- ${dir} -----"
+            local configure_param_cfg="${dir}/cmake_configure.conf"
+            if [ ! -e "${configure_param_cfg}" ]; then
+                print_log "${configure_param_cfg} not exist." error
+                return 1
+            fi
+
+            while IFS= read -r line; do
+                local key="${line%%=*}"
+                local val="${line#*=}"
+                local white_space="                              "
+                echo -e "${BLUE}${key}:${white_space:${#key}}${val}${NC}"
+            done <"${configure_param_cfg}"
+        done
 }
 
-function init_cmake_configure_param() {
+function init_cmake_preset() {
     os=$(uname -s)
     if echo "${os}" | grep -q "MINGW"; then
         os="Windows"
     fi
 
-    if [ -n "${arg_preset}" ]; then
-        cmake_preset="${arg_preset}"
-    else
-        case ${os} in
-        Windows)
-            cmake_preset="win_clang_debug"
-            ;;
-        Linux)
-            cmake_preset="linux_clang_debug"
-            ;;
-        Darwin)
-            cmake_preset="darwin_clang_debug"
-            ;;
-        *)
-            print_log "os: ${os} error!"
-            exit 1
-            ;;
-        esac
-    fi
+    case ${os} in
+    Windows)
+        cmake_preset="win_clang_debug"
+        preset_array=("win_mingw_debug" "win_mingw_release" "win_clang_debug" "win_clang_release")
+        ;;
+    Linux)
+        cmake_preset="linux_clang_debug"
+        preset_array=("linux_gnu_debug" "linux_gnu_release" "linux_clang_debug" "linux_clang_release")
+        ;;
+    Darwin)
+        cmake_preset="darwin_clang_debug"
+        preset_array=("darwin_clang_debug" "darwin_clang_release")
+        ;;
+    *)
+        print_log "os: ${os} error!"
+        exit 1
+        ;;
+    esac
 
+    if [ -n "${arg_preset}" ] && [ "${arg_preset}" != "all" ]; then
+        cmake_preset="${arg_preset}"
+    fi
+    cmake_build_dir="${BUILDCACHE_ROOT_DIR}/${cmake_preset}"
+}
+
+function init_cmake_configure_param() {
     case "${os}" in
     Windows)
         case "${cmake_preset}" in
@@ -188,6 +199,18 @@ function init_cmake_configure_param() {
             cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_clang.cmake"
             cmake_generator="Ninja"
             cmake_build_type="Release"
+            ;;
+        msvc_x64_debug)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_msvc.cmake"
+            cmake_generator="Ninja"
+            cmake_build_type="Debug"
+            env_param_file="${SCRIPT_DIR}/load_msvc_env.sh"
+            ;;
+        msvc_x64_release)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_msvc.cmake"
+            cmake_generator="Ninja"
+            cmake_build_type="Release"
+            env_param_file="${SCRIPT_DIR}/load_msvc_env.sh"
             ;;
         *)
             print_log "Preset: ${arg_preset} error!" error
@@ -264,9 +287,10 @@ function init_cmake_env() {
     fi
 
     if [ ! -d "${cmake_build_dir}" ]; then
-        print_log "CMake not configure." error
+        print_log "[${cmake_preset}] CMake not configure." error
         exit 1
     fi
+    cmake_configure_param_cfg="${cmake_build_dir}/cmake_configure.conf"
 
     if [ -e "${cmake_configure_param_cfg}" ]; then
         # shellcheck disable=SC1090
@@ -292,10 +316,12 @@ function cmake_configure() {
         -DCMAKE_BUILD_TYPE="${cmake_build_type}" \
         -DCMAKE_INSTALL_PREFIX="${cmake_install_dir}" \
         -DCMAKE_PRESET="${cmake_preset}" \
+        -DENV_PARAM_FILE="${env_param_file}" \
         -DPROBLEM_PREFIX="${cmake_problem_prefix}"; then
-        print_log "CMake configuration success." info
+        print_log "[${cmake_preset}] CMake configuration success." info
+        cp "${cmake_build_dir}/compile_commands.json" "${BUILDCACHE_ROOT_DIR}/compile_commands.json"
     else
-        print_log "CMake configuration failed." error
+        print_log "[${cmake_preset}] CMake configuration failed." error
         exit 1
     fi
 }
@@ -310,9 +336,9 @@ function cmake_build() {
         ;;
     *)
         if cmake --build "${cmake_build_dir}" --target "${cmake_build_target}" -j4; then
-            print_log "CMake build success." info
+            print_log "[${cmake_preset}] CMake build success." info
         else
-            print_log "CMake build failed." error
+            print_log "[${cmake_preset}] CMake build failed." error
             exit 1
         fi
         ;;
@@ -331,9 +357,9 @@ function cmake_install() {
         ;;
     all)
         if cmake --install "${cmake_build_dir}"; then
-            print_log "CMake install all success." info
+            print_log "[${cmake_preset}] CMake install all success." info
         else
-            print_log "CMake install all failed." error
+            print_log "[${cmake_preset}] CMake install all failed." error
             exit 1
         fi
         ;;
@@ -350,7 +376,7 @@ function cmake_install() {
 
 function run_gtest() {
     init_cmake_env
-
+    cmake_test_runtime="${cmake_build_dir}/bin/leetcode_test"
     if [ ! -e "${cmake_test_runtime}" ]; then
         print_log "Test runtime [${cmake_test_runtime}] not exist!" error
         exit 1
@@ -371,7 +397,7 @@ function run_gtest() {
 
 function run_ctest() {
     init_cmake_env
-
+    cmake_test_runtime="${cmake_build_dir}/bin/leetcode_test"
     if [ ! -e "${cmake_test_runtime}" ]; then
         print_log "Test runtime [${cmake_test_runtime}] not exist!" error
         exit 1
@@ -507,9 +533,17 @@ function main() {
         exit 0
     fi
 
+    if [ "${arg_preset}" == "list" ]; then
+        echo "${preset_array[@]}"
+        exit 0
+    fi
+
     if [ ${arg_enable_clean} -eq 0 ]; then
         clean_env
+        exit 0
     fi
+
+    init_cmake_preset
 
     if [ ${arg_enable_configure} -eq 0 ]; then
         cmake_configure

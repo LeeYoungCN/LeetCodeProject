@@ -58,3 +58,5 @@ file(APPEND ${CMAKE_CONFIGURE_FILE} "cmake_system_processor=\"${CMAKE_SYSTEM_PRO
 file(APPEND ${CMAKE_CONFIGURE_FILE} "cmake_install_dir=\"${CMAKE_INSTALL_PREFIX}\"\n")
 file(APPEND ${CMAKE_CONFIGURE_FILE} "cmake_source_dir=\"${CMAKE_SOURCE_DIR}\"\n")
 file(APPEND ${CMAKE_CONFIGURE_FILE} "cmake_build_dir=\"${CMAKE_BINARY_DIR}\"\n")
+file(APPEND ${CMAKE_CONFIGURE_FILE} "env_param_file=\"${ENV_PARAM_FILE}\"\n")
+
