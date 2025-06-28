@@ -52,8 +52,6 @@ cmake_build_target=""
 cmake_install_component=""
 cmake_configure_param_cfg="${cmake_build_dir}/cmake_configure.conf"
 ARCHITECTURE="x64"
-cmake_c_compiler=""
-cmake_cxx_compiler=""
 env_param_file=""
 
 g_is_init_param=1
@@ -125,19 +123,6 @@ function clean_env() {
     esac
 }
 
-function readonly_cmake_configure_param() {
-    readonly cmake_preset
-    readonly cmake_problem_prefix
-    readonly cmake_build_type
-    readonly cmake_generator
-    readonly cmake_toolchain_file
-    readonly cmake_source_dir
-    readonly cmake_build_dir
-    readonly cmake_install_dir
-    readonly env_param_file
-    readonly cmake_preset
-}
-
 function list_cmake_configure_param() {
     if [ ! -e "${cmake_configure_param_cfg}" ]; then
         print_log "${cmake_configure_param_cfg} not exist." error
@@ -153,19 +138,6 @@ function list_cmake_configure_param() {
         local white_space="                              "
         echo -e "${BLUE}${key}:${white_space:${#key}}${val}${NC}"
     done <"${cmake_configure_param_cfg}"
-}
-
-function record_cmake_configure_param() {
-    mkdir -p "${cmake_build_dir}"
-    wright_kv_to_file "cmake_preset" "${cmake_preset}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_problem_prefix" "${cmake_problem_prefix}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_build_type" "${cmake_build_type}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_generator" "${cmake_generator}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_toolchain_file" "${cmake_toolchain_file}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_source_dir" "${cmake_source_dir}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_build_dir" "${cmake_build_dir}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "cmake_install_dir" "${cmake_install_dir}" "${cmake_configure_param_cfg}"
-    wright_kv_to_file "ARCHITECTURE" "${ARCHITECTURE}" "${cmake_configure_param_cfg}"
 }
 
 function init_cmake_configure_param() {
@@ -277,13 +249,12 @@ function init_cmake_configure_param() {
 
     cmake_problem_prefix="${arg_problem}"
     cmake_install_dir="${INSTALL_ROOT_DIR}/${cmake_preset}"
-    readonly g_is_init_param=0
-    readonly_cmake_configure_param
+
     if [ -n "${env_param_file}" ]; then
         # shellcheck disable=SC1090
         source "${env_param_file}"
     fi
-    # record_cmake_configure_param
+
     print_log "Init CMake configure param success." info
 }
 
@@ -300,8 +271,6 @@ function init_cmake_env() {
     if [ -e "${cmake_configure_param_cfg}" ]; then
         # shellcheck disable=SC1090
         source "${cmake_configure_param_cfg}"
-        readonly g_is_init_param=0
-        readonly_cmake_configure_param
     else
         print_log "${cmake_configure_param_cfg} not exist." error
     fi
