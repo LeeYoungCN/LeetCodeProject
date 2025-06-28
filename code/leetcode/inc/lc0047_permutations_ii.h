@@ -22,8 +22,8 @@ public:
     std::vector<std::vector<int>> permuteUnique(std::vector<int>& nums) final;
 
 private:
-    void dfs(const std::vector<int32_t>& nums, std::vector<int32_t>& permution, std::vector<bool>& visitor,
-             std::set<std::vector<int32_t>>& listSet);
+    void dfs(const std::vector<int>& nums, std::vector<int>& permution, std::vector<bool>& visitor,
+             std::set<std::vector<int>>& listSet);
 };
 
 class LC0047_PermutationsII_Sort : public LC0047_PermutationsII {
@@ -33,8 +33,8 @@ public:
     std::vector<std::vector<int>> permuteUnique(std::vector<int>& nums) final;
 
 private:
-    void dfs(const std::vector<int32_t>& nums, std::vector<bool>& visitor, std::vector<int32_t>& permution,
-             std::vector<std::vector<int32_t>>& ans);
+    void dfs(const std::vector<int>& nums, std::vector<bool>& visitor, std::vector<int>& permution,
+             std::vector<std::vector<int>>& ans);
 };
 
 #endif  // LC0047_PERMUTATIONS_II_H
