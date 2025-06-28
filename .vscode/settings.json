@@ -1,14 +1,17 @@
 {
-    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.buildDirectory": "${workspaceFolder}/out/build",
     "cmake.sourceDirectory": "${workspaceFolder}",
+    "cmake.configureOnEdit": false,
+    "cmake.configureOnOpen": false,
+    "cmake.copyCompileCommands": "${workspaceFolder}/out/build/compile_commands.json",
     "editor.mouseWheelZoom": true,
     "workbench.editor.wrapTabs": true,
     "terminal.integrated.profiles.windows": {
-        "MyBash": {
+        "git_bash": {
             "path": "D:\\Programs\\Git\\bin\\bash.exe"
         }
     },
-    "terminal.integrated.defaultProfile.windows": "MyBash",
+    "terminal.integrated.defaultProfile.windows": "git_bash",
     "window.zoomLevel": 1,
     "editor.fontFamily": "'JetBrains Mono', Consolas, monospace",
     "editor.fontSize": 18,
@@ -18,9 +21,9 @@
         100,
         120
     ],
+    "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
     "clang-format.executable": "clang-format",
-    "files.autoSave": "afterDelay",
     "C_Cpp.intelliSenseEngine": "disabled",
     "C_Cpp.intelliSenseEngineFallback": "disabled",
     "clangd.serverCompletionRanking": true, // 借助网上的信息排序建议
@@ -41,8 +44,6 @@
         "-j=4"
     ],
     "clangd.fallbackFlags": [
-        "-std=c++17",
-        "-I${workspaceFolder}/leetcode/include",
         "-Wall",
         "-Wconversion",
         "-Wextra"
