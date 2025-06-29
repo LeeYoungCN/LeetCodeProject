@@ -6,3 +6,5 @@ build
 .vs
 out
 *.pyc
+CMakePresets.json
+.vscode/tasks.json
