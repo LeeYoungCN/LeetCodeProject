@@ -42,7 +42,6 @@ void PrintVector(const std::vector<UtilsDebug *> &vec, uint32_t start, uint32_t 
 }
 
 std::string Vector2String(const std::vector<UtilsDebug *> &vec, uint32_t start, uint32_t end, bool hasIdx)
-
 {
     if (end == 0) {
         end = static_cast<uint32_t>(vec.size());
