@@ -21,13 +21,16 @@
 template <class T = int32_t>
 std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
 {
+    if (vec.empty()) {
+        return "{}";
+    }
     if (end == 0) {
         end = static_cast<uint32_t>(vec.size());
     }
     end = std::min(end, static_cast<uint32_t>(vec.size()));
     if (start >= end) {
         LOG("Invalid param. start=%u, end=%u.", start, end);
-        return "";
+        return "{}";
     }
     const uint32_t length = end - start;
     std::string str = "{";
@@ -65,10 +68,14 @@ void PrintVector(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0
 template <class K = int32_t, class V = int32_t, class cmp = std::less<K>>
 std::string Map2String(std::map<K, V, cmp> map)
 {
+    if(map.empty()) {
+        return "{}";
+    }
+
     std::string str;
     for (const auto &[key, val] : map) {
         if constexpr (std::is_same<K, char>::value) {
-            str += "[" + &key + " : " + std::to_string(val) + "], ";
+            str += "[" + key + " : " + std::to_string(val) + "], ";
         } else {
             str += "[" + std::to_string(key) + " : " + std::to_string(val) + "], ";
         }
