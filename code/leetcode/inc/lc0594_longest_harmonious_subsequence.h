@@ -11,7 +11,7 @@ class LC0594_LongestHarmoniousSubsequence {
 public:
     LC0594_LongestHarmoniousSubsequence() = default;
     virtual ~LC0594_LongestHarmoniousSubsequence() = default;
-    int32_t findLHS(std::vector<int32_t>& nums);
+    int findLHS(std::vector<int>& nums);
 };
 
 #endif  // LC0594_LONGEST_HARMONIOUS_SUBSEQUENCE_H

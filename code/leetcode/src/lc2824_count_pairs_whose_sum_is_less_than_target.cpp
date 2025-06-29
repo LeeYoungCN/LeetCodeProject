@@ -66,7 +66,7 @@ int32_t LC2824_CountPairsWhoseSumIsLessThanTarget_DoublePtr::countPairs(std::vec
             right--;
         }
         if (left < right) {
-            ans += right - left;
+            ans += static_cast<uint32_t>(right - left);
         }
     }
     return static_cast<int32_t>(ans);
