@@ -152,7 +152,7 @@ class LeetcodeFile:
         self.__create_file_by_template(_TEMPLATE_SRC_FILE, src_file_path)
         self.__create_file_by_template(_TEMPLATE_TEST_FILE, test_file_path)
 
-    def refresh_problem_prefix(self):
+    def __refresh_cmake_preset(self):
         cmake_preset_file = _ROOT_DIR + "/CMakePresets.json"
         # 读取JSON文件
         with open(cmake_preset_file, "r", encoding="utf-8") as file:
@@ -169,6 +169,26 @@ class LeetcodeFile:
         # 写回JSON文件
         with open(cmake_preset_file, "w", encoding="utf-8") as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
+
+    def __refresh_tasks_json(self):
+        tasks_json = _ROOT_DIR + "/.vscode/tasks.json"
+        with open(tasks_json, "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        # 修改JSON内容
+        for configure in data["tasks"]:
+            if configure["label"] == "CMake Configure":
+                configure["args"][0] = "--configure"
+                configure["args"][1] = "--problem=" + self.__leetcode_file_name
+                break
+
+        # 写回JSON文件
+        with open(tasks_json, "w", encoding="utf-8") as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+
+    def refresh_config_file(self):
+        self.__refresh_cmake_preset()
+        self.__refresh_tasks_json()
 
 
 def is_valid_arg(arg: str) -> bool:
@@ -198,7 +218,8 @@ def main():
     obj = LeetcodeFile(args.prefix, args.url, args.function, args.class_name)
     obj.print_data()
     obj.create_files()
-    obj.refresh_problem_prefix()
+    obj.refresh_config_file()
+
     refresh_problem_list()
     return
 
