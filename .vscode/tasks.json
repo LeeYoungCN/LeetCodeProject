@@ -26,7 +26,8 @@
             },
             "command": "./cmake_tools.sh",
             "args": [
-                "--configure"
+                "--configure",
+                "--problem=all"
             ],
             "detail": "根据makefile生成可执行文件和库文件",
             "problemMatcher": [
