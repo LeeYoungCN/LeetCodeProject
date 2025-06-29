@@ -24,7 +24,8 @@ protected:
 
 void TEST_LC0039::SetUp()
 {
-    m_testList.push_back(new LC0039_CombinationSum());
+    m_testList.push_back(new LC0039_CombinationSum_DFS());
+    m_testList.push_back(new LC0039_CombinationSum_Stack());
 }
 
 void TEST_LC0039::TearDown()
