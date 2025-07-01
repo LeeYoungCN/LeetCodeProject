@@ -175,8 +175,8 @@
             "inherits": "linux_base",
             "toolchainFile": "${sourceDir}/cmake/toolchain_files/linux_clang.cmake",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "/home/ly/tools/clang/bin/clang",
-                "CMAKE_CXX_COMPILER": "/home/ly/tools/clang/bin/clang++"
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
             }
         },
         {
