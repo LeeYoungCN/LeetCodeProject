@@ -7,7 +7,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0122_best_time_to_buy_and_sell_stock_ii.h"
-#include "leetcode_utils.h"
+#include "leetcode_utils.hpp"
 
 using namespace std;
 

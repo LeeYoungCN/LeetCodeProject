@@ -7,7 +7,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0209_minimum_size_subarray_sum.h"
-#include "leetcode_utils.h"
+#include "leetcode_utils.hpp"
 using namespace std;
 
 class TEST_LC0209 : public testing::Test {

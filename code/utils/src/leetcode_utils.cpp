@@ -1,4 +1,4 @@
-#include "leetcode_utils.h"
+#include "leetcode_utils.hpp"
 
 #include <cstdint>
 #include <iostream>

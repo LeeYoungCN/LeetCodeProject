@@ -8,7 +8,7 @@
 
 #include "gtest/gtest.h"
 #include "lc2824_count_pairs_whose_sum_is_less_than_target.h"
-#include "leetcode_utils.h"
+#include "leetcode_utils.hpp"
 
 using namespace std;
 

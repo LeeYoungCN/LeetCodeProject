@@ -6,7 +6,7 @@
 
 #include "gtest/gtest.h"
 #include "lc2560_house_robber_iv.h"
-#include "leetcode_utils.h"
+#include "leetcode_utils.hpp"
 
 using namespace std;
 

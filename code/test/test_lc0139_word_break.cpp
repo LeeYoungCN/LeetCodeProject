@@ -8,7 +8,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0139_word_break.h"
-#include "leetcode_utils.h"
+#include "leetcode_utils.hpp"
 
 using namespace std;
 
