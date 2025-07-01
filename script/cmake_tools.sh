@@ -39,6 +39,8 @@ arg_gtest_case="all"
 arg_enable_ctest=1
 arg_ctest_case="all"
 
+arg_enable_list_param=1
+
 preset_array=("")
 
 cmake_source_dir="${ROOT_DIR}"
@@ -121,28 +123,36 @@ function clean_env() {
     esac
 }
 
-function list_cmake_configure_param() {
+function list_cmake_configure_param_in_dir() {
     local RED='\033[0;31m'
     local GREEN='\033[32m'
     local BLUE='\033[34m'
     local NC='\033[0m'
 
-    find "${BUILDCACHE_ROOT_DIR}" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -print0 |
-        while IFS= read -r -d '' dir; do
-            echo "----- ${dir} -----"
-            local configure_param_cfg="${dir}/cmake_configure.conf"
-            if [ ! -e "${configure_param_cfg}" ]; then
-                print_log "${configure_param_cfg} not exist." error
-                return 1
-            fi
+    local build_dir="${1}"
+    local configure_param_cfg="${build_dir}/cmake_configure.conf"
+    if [ ! -e "${configure_param_cfg}" ]; then
+        print_log "${configure_param_cfg} not exist." error
+        return 1
+    fi
+    echo "----- ${build_dir} -----"
+    while IFS= read -r line; do
+        local key="${line%%=*}"
+        local val="${line#*=}"
+        local white_space="                              "
+        echo -e "${BLUE}${key}:${white_space:${#key}}${val}${NC}"
+    done <"${configure_param_cfg}"
+}
 
-            while IFS= read -r line; do
-                local key="${line%%=*}"
-                local val="${line#*=}"
-                local white_space="                              "
-                echo -e "${BLUE}${key}:${white_space:${#key}}${val}${NC}"
-            done <"${configure_param_cfg}"
-        done
+function list_cmake_configure_param() {
+    if [ -n "${arg_preset}" ]; then
+        list_cmake_configure_param_in_dir "${cmake_build_dir}"
+    else
+        find "${BUILDCACHE_ROOT_DIR}" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -print0 |
+            while IFS= read -r -d '' dir; do
+                list_cmake_configure_param_in_dir "${dir}"
+            done
+    fi
 }
 
 function init_cmake_preset() {
@@ -492,8 +502,8 @@ function main() {
             shift 2
             ;;
         --list)
-            list_cmake_configure_param
-            exit 0
+            arg_enable_list_param=0
+            shift 1
             ;;
         --help)
             print_help
@@ -545,6 +555,10 @@ function main() {
     fi
 
     init_cmake_preset
+
+    if [ ${arg_enable_list_param} -eq 0 ]; then
+        list_cmake_configure_param
+    fi
 
     if [ ${arg_enable_configure} -eq 0 ]; then
         cmake_configure
