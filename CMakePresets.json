@@ -1,5 +1,5 @@
 {
-    "version": 3,
+    "version": 10,
     "configurePresets": [
         {
             "name": "project_base",
@@ -125,7 +125,7 @@
             }
         },
         {
-            "name": "mingw_release",
+            "name": "win_mingw_release",
             "displayName": "Mingw Release Configure",
             "inherits": "win_mingw_base",
             "cacheVariables": {
@@ -312,7 +312,7 @@
         },
         {
             "name": "win_mingw_release_build",
-            "configurePreset": "mingw_release",
+            "configurePreset": "win_mingw_release",
             "displayName": "MinGW Release Build",
             "description": "Build the MinGW Release target.",
             "targets": [
@@ -364,6 +364,94 @@
                 "install"
             ],
             "jobs": 4
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "TEST_ALL_base",
+            "filter": {
+                "include": {
+                    "name": "^TEST_ALL$"
+                }
+            },
+            "hidden": true,
+            "output": {
+                "outputOnFailure": true,
+                "outputLogFile": "${sourceDir}/out/Testing/${presetName}/Test_ALL.log",
+                "outputJUnitFile": "${sourceDir}/out/Testing/${presetName}/Test_ALL.xml"
+            }
+        },
+        {
+            "name": "msvc_x64_debug_ctest",
+            "displayName": "MSVC x64 Debug Ctest",
+            "description": "Test the MSVC x64 Debug target.",
+            "configurePreset": "msvc_x64_debug",
+            "inherits": [
+                "TEST_ALL_base"
+            ]
+        },
+        {
+            "name": "msvc_x64_release_ctest",
+            "displayName": "MSVC x64 Release Ctest",
+            "description": "Test the MSVC x64 Release target.",
+            "configurePreset": "msvc_x64_release",
+            "inherits": [
+                "TEST_ALL_base"
+            ]
+        },
+        {
+            "name": "msvc_x86_debug_ctest",
+            "displayName": "MSVC x86 Debug Ctest",
+            "description": "Test the MSVC x86 Debug target.",
+            "configurePreset": "msvc_x86_debug",
+            "inherits": [
+                "TEST_ALL_base"
+            ]
+        },
+        {
+            "name": "msvc_x86_release_ctest",
+            "displayName": "MSVC x86 Release Configure",
+            "description": "Test the MSVC x86 Release target.",
+            "configurePreset": "msvc_x86_release",
+            "inherits": [
+                "TEST_ALL_base"
+            ]
+        },
+        {
+            "name": "win_clang_debug_ctest",
+            "configurePreset": "win_clang_debug",
+            "displayName": "Clang Debug Ctest",
+            "description": "Test the Clang Debug target.",
+            "inherits": [
+                "TEST_ALL_base"
+            ]
+        },
+        {
+            "name": "win_clang_release_ctest",
+            "configurePreset": "win_clang_release",
+            "displayName": "Clang Release Ctest",
+            "description": "Test the Clang Release target.",
+            "inherits": [
+                "TEST_ALL_base"
+            ]
+        },
+        {
+            "name": "win_mingw_debug_ctest",
+            "displayName": "MinGW Debug Ctest",
+            "description": "Test the MinGW Debug target.",
+            "configurePreset": "win_mingw_debug",
+            "inherits": [
+                "TEST_ALL_base"
+            ]
+        },
+        {
+            "name": "win_mingw_release_ctest",
+            "displayName": "MinGW Release Ctest",
+            "description": "Test the MinGW Release target.",
+            "configurePreset": "win_mingw_release",
+            "inherits": [
+                "TEST_ALL_base"
+            ]
         }
     ]
 }
