@@ -13,7 +13,7 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     endif()
 endif()
 
-set(UTILS_LIB_NAME utils)
+set(UTILS_LIB_NAME leetcode_utils)
 set(UTILS_LIB_INCLUDE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/utils/inc)
 add_subdirectory(utils)
 

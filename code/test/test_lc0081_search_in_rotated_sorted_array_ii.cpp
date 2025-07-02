@@ -9,7 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0081_search_in_rotated_sorted_array_ii.h"
-#include "leetcode_utils.hpp"
+#include "leetcode_utils_vector.hpp"
 
 using namespace std;
 

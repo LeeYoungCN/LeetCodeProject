@@ -7,7 +7,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0594_longest_harmonious_subsequence.h"
-#include "leetcode_utils.hpp"
+#include "leetcode_utils_vector.hpp"
 
 using namespace std;
 

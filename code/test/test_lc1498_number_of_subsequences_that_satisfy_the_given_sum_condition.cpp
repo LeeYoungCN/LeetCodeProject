@@ -9,7 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "lc1498_number_of_subsequences_that_satisfy_the_given_sum_condition.h"
-#include "leetcode_utils.hpp"
+#include "leetcode_utils_vector.hpp"
 
 using namespace std;
 
