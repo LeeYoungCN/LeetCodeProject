@@ -57,4 +57,7 @@ void PrintVector(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0
     std::cout << Vector2String(vec, start, end, hasIdx) << std::endl;
 }
 
+std::vector<std::string> String2VecStr(const std::string& str);
+std::vector<int32_t> String2VecInt(const std::string& str);
+
 #endif  // LEETCODE_UTILS_VECTOR_HPP

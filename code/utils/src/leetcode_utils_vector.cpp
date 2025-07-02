@@ -6,7 +6,7 @@
 
 #include "leetcode_utils_common.hpp"
 
-std::string Vector2String(const std::vector<std::string> &vec, uint32_t start, uint32_t end, bool hasIdx)
+std::string Vector2String(const std::vector<std::string>& vec, uint32_t start, uint32_t end, bool hasIdx)
 {
     if (vec.empty()) {
         return "{}";
@@ -36,4 +36,42 @@ std::string Vector2String(const std::vector<std::string> &vec, uint32_t start, u
     }
     str += "}";
     return str;
+}
+
+std::vector<std::string> String2VecStr(const std::string& str)
+{
+    std::vector<std::string> ans;
+    uint32_t start = 0;
+
+    for (uint32_t i = 1; i < str.length(); ++i) {
+        if (start == 0 && ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'a' && str[i] <= 'z') ||
+                           (str[i] >= 'A' && str[i] <= 'Z') || str[i] == '-')) {
+            start = i;
+        } else if ((str[i] == ',' || str[i] == ']') && start != 0) {
+            ans.emplace_back(str.substr(start, i - start));
+            start = 0;
+        }
+    }
+
+    return ans;
+}
+
+std::vector<int32_t> String2VecInt(const std::string& str)
+{
+    std::vector<int32_t> ans;
+    uint32_t start = 0;
+
+    for (uint32_t i = 1; i < str.length(); ++i) {
+        if (str[i] == ']') {
+            break;
+        }
+        if (start == 0 && ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'a' && str[i] <= 'z') ||
+                           (str[i] >= 'A' && str[i] <= 'Z'))) {
+            start = i;
+        } else if (str[i] == ',') {
+            ans.emplace_back(std::stoi(str.substr(start, i - start)));
+            start = 0;
+        }
+    }
+    return ans;
 }

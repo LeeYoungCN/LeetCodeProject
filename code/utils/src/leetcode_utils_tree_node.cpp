@@ -4,12 +4,18 @@
 #include <string>
 #include <vector>
 
+#include "leetcode_utils_vector.hpp"
+
+TreeNode *String2TreeNode(const std::string &nodeValStr)
+{
+    return NodeVal2TreeNode(String2VecStr(nodeValStr));
+}
+
 TreeNode *NodeVal2TreeNode(const std::vector<std::string> &nodeValList, uint32_t index)
 {
     if (index >= nodeValList.size()) {
         return nullptr;
     }
-
     const std::string NULLPTR_STR = "null";
     if (nodeValList[index] == NULLPTR_STR) {
         return nullptr;
