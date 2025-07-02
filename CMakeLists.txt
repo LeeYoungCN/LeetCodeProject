@@ -51,9 +51,10 @@ if (NOT CMAKE_THIRD_PARTY_PATH)
     set(CMAKE_THIRD_PARTY_PATH "${CMAKE_SOURCE_DIR}/third_lib/${CMAKE_PRESET}" CACHE STRING "Default CMAKE_THIRD_PARTY_PATH third_lib" FORCE)
 endif()
 
+set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${CMAKE_THIRD_PARTY_PATH}/googletest")
+
 include(${CMAKE_SOURCE_DIR}/cmake/get_cmake_preset.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/cmake_configure_info.cmake)
-include(${CMAKE_THIRD_PARTY_PATH}/cmake/googletest.cmake)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
