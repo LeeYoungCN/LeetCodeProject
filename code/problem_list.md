@@ -16,6 +16,7 @@ lc0075_sort_colors
 lc0081_search_in_rotated_sorted_array_ii
 lc0091_decode_ways
 lc0097_interleaving_string
+lc0112_path_sum
 lc0118_pascals_triangle
 lc0119_pascals_triangle_ii
 lc0120_triangle
