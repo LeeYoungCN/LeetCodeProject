@@ -10,7 +10,6 @@
 #include "gtest/gtest.h"
 #include "lc2200_find_all_k_distant_indices_in_an_array.h"
 
-
 using namespace std;
 
 class TEST_LC2200 : public testing::Test {

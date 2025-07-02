@@ -35,8 +35,7 @@ void TEST_LC0039::TearDown()
     }
 }
 
-void TEST_LC0039::RunTest(std::vector<int32_t>& candidates, int32_t target,
-                          std::vector<std::vector<int32_t>>& expect)
+void TEST_LC0039::RunTest(std::vector<int32_t>& candidates, int32_t target, std::vector<std::vector<int32_t>>& expect)
 {
     for (LC0039_CombinationSum* inst : m_testList) {
         std::vector<std::vector<int32_t>> result = inst->combinationSum(candidates, target);

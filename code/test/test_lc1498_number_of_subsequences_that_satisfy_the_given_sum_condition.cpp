@@ -70,7 +70,7 @@ TEST_F(TEST_LC1498, case3)
 
 TEST_F(TEST_LC1498, case4)
 {
-    std::vector<int> nums = {5,2,4,1,7,6,8};
+    std::vector<int> nums = {5, 2, 4, 1, 7, 6, 8};
     int target = 16;
     const int expect = 127;
     RunTest(nums, target, expect);

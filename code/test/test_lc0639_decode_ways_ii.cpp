@@ -89,4 +89,3 @@ TEST_F(TEST_LC0639, case7)
     const int expect = 196465252;
     RunTest(s, expect);
 }
-
