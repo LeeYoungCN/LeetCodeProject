@@ -47,9 +47,13 @@ if (${CMAKE_INSTALL_PREFIX} STREQUAL "C:/Program Files (x86)/${PROJECT_NAME}" OR
     set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/out/install/${CMAKE_PRESET}" CACHE STRING "Default CMAKE_INSTALL_PREFIX out/install/${CMAKE_PRESET}" FORCE)
 endif()
 
+if (NOT CMAKE_THIRD_PARTY_PATH)
+    set(CMAKE_THIRD_PARTY_PATH "${CMAKE_SOURCE_DIR}/third_lib/${CMAKE_PRESET}" CACHE STRING "Default CMAKE_THIRD_PARTY_PATH third_lib" FORCE)
+endif()
+
 include(${CMAKE_SOURCE_DIR}/cmake/get_cmake_preset.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/cmake_configure_info.cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/third_lib_config.cmake)
+include(${CMAKE_THIRD_PARTY_PATH}/cmake/googletest.cmake)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)

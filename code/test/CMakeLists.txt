@@ -15,13 +15,13 @@ target_sources(${TEST_RUNTIME_NAME} PRIVATE ${SRC_LIST})
 add_dependencies(${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME})
 
 target_include_directories(${TEST_RUNTIME_NAME} PRIVATE
-    ${GOOGLE_TEST_INCLUDE_PATH}
+    ${GOOGLE_TEST_INC_PATH}
     ${LEETCODE_LIB_INCLUDE_PATH}
     ${UTILS_LIB_INCLUDE_PATH}
 )
 
 target_link_directories(${TEST_RUNTIME_NAME} PRIVATE
-    ${GOOGLE_TEST_LIBRARY_PATH}
+    ${GOOGLE_TEST_LIB_PATH}
 )
 
 target_link_libraries(${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME} ${UTILS_LIB_NAME} gtest)

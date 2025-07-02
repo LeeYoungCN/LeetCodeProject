@@ -8,3 +8,4 @@ out
 *.pyc
 CMakePresets.json
 .vscode/tasks.json
+third_lib
