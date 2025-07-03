@@ -44,9 +44,9 @@ arg_enable_list_param=1
 preset_array=("")
 
 cmake_source_dir="${ROOT_DIR}"
-cmake_build_dir=""
+cmake_binary_dir=""
 cmake_test_runtime=""
-cmake_install_dir=""
+cmake_install_prefix=""
 cmake_build_type=""
 cmake_toolchain_file=""
 cmake_generator=""
@@ -146,7 +146,7 @@ function list_cmake_configure_param_in_dir() {
 
 function list_cmake_configure_param() {
     if [ -n "${arg_preset}" ]; then
-        list_cmake_configure_param_in_dir "${cmake_build_dir}"
+        list_cmake_configure_param_in_dir "${cmake_binary_dir}"
     else
         find "${BUILDCACHE_ROOT_DIR}" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -print0 |
             while IFS= read -r -d '' dir; do
@@ -183,7 +183,7 @@ function init_cmake_preset() {
     if [ -n "${arg_preset}" ] && [ "${arg_preset}" != "all" ]; then
         cmake_preset="${arg_preset}"
     fi
-    cmake_build_dir="${BUILDCACHE_ROOT_DIR}/${cmake_preset}"
+    cmake_binary_dir="${BUILDCACHE_ROOT_DIR}/${cmake_preset}"
 }
 
 function init_cmake_configure_param() {
@@ -281,7 +281,7 @@ function init_cmake_configure_param() {
     esac
 
     cmake_problem_prefix="${arg_problem}"
-    cmake_install_dir="${INSTALL_ROOT_DIR}/${cmake_preset}"
+    cmake_install_prefix="${INSTALL_ROOT_DIR}/${cmake_preset}"
 
     if [ -n "${env_param_file}" ]; then
         # shellcheck disable=SC1090
@@ -296,11 +296,11 @@ function init_cmake_env() {
         return 0
     fi
 
-    if [ ! -d "${cmake_build_dir}" ]; then
+    if [ ! -d "${cmake_binary_dir}" ]; then
         print_log "[${cmake_preset}] CMake not configure." error
         exit 1
     fi
-    cmake_configure_param_cfg="${cmake_build_dir}/cmake_configure.conf"
+    cmake_configure_param_cfg="${cmake_binary_dir}/cmake_configure.conf"
 
     if [ -e "${cmake_configure_param_cfg}" ]; then
         # shellcheck disable=SC1090
@@ -316,21 +316,21 @@ function init_cmake_env() {
 }
 
 function cmake_configure() {
-    rm_dir "${cmake_build_dir}"
+    rm_dir "${cmake_binary_dir}"
     init_cmake_configure_param
 
     if cmake \
         -S "${cmake_source_dir}" \
-        -B "${cmake_build_dir}" \
+        -B "${cmake_binary_dir}" \
         -G "${cmake_generator}" \
         -DCMAKE_TOOLCHAIN_FILE="${cmake_toolchain_file}" \
         -DCMAKE_BUILD_TYPE="${cmake_build_type}" \
-        -DCMAKE_INSTALL_PREFIX="${cmake_install_dir}" \
+        -DCMAKE_INSTALL_PREFIX="${cmake_install_prefix}" \
         -DCMAKE_PRESET="${cmake_preset}" \
         -DENV_PARAM_FILE="${env_param_file}" \
-        -DPROBLEM_PREFIX="${cmake_problem_prefix}"; then
+        -DCMAKE_PROBLEM_PREFIX="${cmake_problem_prefix}"; then
         print_log "[${cmake_preset}] CMake configuration success." info
-        cp "${cmake_build_dir}/compile_commands.json" "${BUILDCACHE_ROOT_DIR}/compile_commands.json"
+        cp "${cmake_binary_dir}/compile_commands.json" "${BUILDCACHE_ROOT_DIR}/compile_commands.json"
     else
         print_log "[${cmake_preset}] CMake configuration failed." error
         exit 1
@@ -343,10 +343,10 @@ function cmake_build() {
     readonly cmake_build_target="${arg_target}"
     case "${cmake_build_target}" in
     list)
-        cmake --build "${cmake_build_dir}" --target "help"
+        cmake --build "${cmake_binary_dir}" --target "help"
         ;;
     *)
-        if cmake --build "${cmake_build_dir}" --target "${cmake_build_target}" -j4; then
+        if cmake --build "${cmake_binary_dir}" --target "${cmake_build_target}" -j4; then
             print_log "[${cmake_preset}] CMake build success." info
         else
             print_log "[${cmake_preset}] CMake build failed." error
@@ -363,11 +363,11 @@ function cmake_install() {
 
     case ${cmake_install_component} in
     list)
-        cmake --build "${cmake_build_dir}" --target "list_install_components" -j4
+        cmake --build "${cmake_binary_dir}" --target "list_install_components" -j4
         return 0
         ;;
     all)
-        if cmake --install "${cmake_build_dir}"; then
+        if cmake --install "${cmake_binary_dir}"; then
             print_log "[${cmake_preset}] CMake install all success." info
         else
             print_log "[${cmake_preset}] CMake install all failed." error
@@ -375,7 +375,7 @@ function cmake_install() {
         fi
         ;;
     *)
-        if cmake --install "${cmake_build_dir}" --component "${cmake_install_component}"; then
+        if cmake --install "${cmake_binary_dir}" --component "${cmake_install_component}"; then
             print_log "CMake install component [${cmake_install_component}] success." info
         else
             print_log "CMake install component [${cmake_install_component}] failed." error
@@ -387,7 +387,7 @@ function cmake_install() {
 
 function run_gtest() {
     init_cmake_env
-    cmake_test_runtime="${cmake_build_dir}/bin/leetcode_test"
+    cmake_test_runtime="${cmake_binary_dir}/bin/leetcode_test"
     if [ ! -e "${cmake_test_runtime}" ]; then
         print_log "Test runtime [${cmake_test_runtime}] not exist!" error
         exit 1
@@ -408,29 +408,29 @@ function run_gtest() {
 
 function run_ctest() {
     init_cmake_env
-    cmake_test_runtime="${cmake_build_dir}/bin/leetcode_test"
+    cmake_test_runtime="${cmake_binary_dir}/bin/leetcode_test"
     if [ ! -e "${cmake_test_runtime}" ]; then
         print_log "Test runtime [${cmake_test_runtime}] not exist!" error
         exit 1
     fi
 
     if [ -z "${arg_ctest_case}" ]; then
-        ctest --output-on-failure --test-dir "${cmake_build_dir}" -R "TEST_ALL"
+        ctest --output-on-failure --test-dir "${cmake_binary_dir}" -R "TEST_ALL"
         return 0
     fi
 
     case "${arg_ctest_case}" in
     list)
-        ctest --test-dir "${cmake_build_dir}" -N
+        ctest --test-dir "${cmake_binary_dir}" -N
         ;;
     rerun)
-        ctest --rerun-failed --output-on-failure --test-dir "${cmake_build_dir}"
+        ctest --rerun-failed --output-on-failure --test-dir "${cmake_binary_dir}"
         ;;
     all)
-        ctest --output-on-failure --test-dir "${cmake_build_dir}" -R "TEST_ALL"
+        ctest --output-on-failure --test-dir "${cmake_binary_dir}" -R "TEST_ALL"
         ;;
     *)
-        ctest --output-on-failure --test-dir "${cmake_build_dir}" -R "${arg_ctest_case}"
+        ctest --output-on-failure --test-dir "${cmake_binary_dir}" -R "${arg_ctest_case}"
         ;;
     esac
 }

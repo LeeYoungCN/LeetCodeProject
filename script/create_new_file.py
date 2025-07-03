@@ -162,7 +162,7 @@ class LeetcodeFile:
         for configure in data["configurePresets"]:
             if configure["name"] == "project_base":
                 configure["cacheVariables"][
-                    "PROBLEM_PREFIX"
+                    "CMAKE_PROBLEM_PREFIX"
                 ] = self.__leetcode_file_name
                 break
 
