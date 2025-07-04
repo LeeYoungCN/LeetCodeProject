@@ -44,10 +44,9 @@ std::vector<std::string> String2VecStr(const std::string& str)
     uint32_t start = 0;
 
     for (uint32_t i = 1; i < str.length(); ++i) {
-        if (start == 0 && ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'a' && str[i] <= 'z') ||
-                           (str[i] >= 'A' && str[i] <= 'Z') || str[i] == '-')) {
+        if (start == 0 && (isAlpha(str[i]) || isNumber(i, str))) {
             start = i;
-        } else if ((str[i] == ',' || str[i] == ']') && start != 0) {
+        } else if (start != 0 && !isAlpha(str[i]) && !isNumber(i, str)) {
             ans.emplace_back(str.substr(start, i - start));
             start = 0;
         }
@@ -62,13 +61,9 @@ std::vector<int32_t> String2VecInt(const std::string& str)
     uint32_t start = 0;
 
     for (uint32_t i = 1; i < str.length(); ++i) {
-        if (str[i] == ']') {
-            break;
-        }
-        if (start == 0 && ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'a' && str[i] <= 'z') ||
-                           (str[i] >= 'A' && str[i] <= 'Z'))) {
+        if (start == 0 && isNumber(i, str)) {
             start = i;
-        } else if (str[i] == ',') {
+        } else if (!isNumber(i, str) && start != 0) {
             ans.emplace_back(std::stoi(str.substr(start, i - start)));
             start = 0;
         }
