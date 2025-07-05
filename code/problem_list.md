@@ -13,6 +13,7 @@ lc0063_unique_paths_ii
 lc0072_edit_distance
 lc0074_search_a_2d_matrix
 lc0075_sort_colors
+lc0078_subsets
 lc0081_search_in_rotated_sorted_array_ii
 lc0091_decode_ways
 lc0097_interleaving_string
