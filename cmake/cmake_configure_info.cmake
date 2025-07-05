@@ -4,6 +4,13 @@ else()
     set(ARCHITECTURE "x86")
 endif()
 
+include(ProcessorCount)
+ProcessorCount(CPU_CORES)
+
+if(CPU_CORES EQUAL 0)
+  set(CPU_CORES 1)
+endif()
+
 set(CMAKE_CONFIGURE_FILE  ${CMAKE_BINARY_DIR}/cmake_configure.conf)
 set(CMAKE_CONFIGURE_SRC   ${CMAKE_CURRENT_LIST_DIR}/cmake_configure.conf.in)
 
@@ -17,8 +24,7 @@ message(STATUS "CMAKE_PRESET:                           ${CMAKE_PRESET}")
 message(STATUS "CMAKE_PROBLEM_PREFIX:                   ${CMAKE_PROBLEM_PREFIX}")
 message(STATUS "CMAKE_SYSTEM_NAME:                      ${CMAKE_SYSTEM_NAME}")
 message(STATUS "CMAKE_SYSTEM_PROCESSOR:                 ${CMAKE_SYSTEM_PROCESSOR}")
-message(STATUS "CMAKE_HOST_SYSTEM_PROCESSOR_COUNT:      ${CMAKE_HOST_SYSTEM_PROCESSOR_COUNT}")
-
+message(STATUS "CPU_CORES:                              ${CPU_CORES}")
 message(STATUS "CMAKE_VERSION:                          ${CMAKE_VERSION}")
 message(STATUS "CMAKE_C_COMPILER:                       ${CMAKE_C_COMPILER}")
 message(STATUS "CMAKE_C_COMPILER_ID:                    ${CMAKE_C_COMPILER_ID}")
