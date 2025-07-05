@@ -1,3 +1,4 @@
+#!/usr/local/bin/bash
 SCRIPT_DIR="$(
     cd "$(dirname "$0")" || exit 1
     pwd
@@ -16,10 +17,6 @@ if echo "${OS}" | grep -q "MINGW"; then
 fi
 
 readonly OS
-
-if [ ${OS} == "Darwin" ]; then
-    export PATH="/usr/local/opt/gnu-getopt/bin:${PATH}"
-fi
 
 # shellcheck disable=SC1091
 source "${SCRIPT_DIR}/common_func.sh"
@@ -446,7 +443,6 @@ function list_problem_prefix() {
 }
 
 function main() {
-    /usr/local/opt/gnu-getopt/bin
     if ! ARGS=$(
         getopt -o c::p:s: \
             --long clean::,install::,preset:,problem:,configure,build::,gtest::,ctest::,help,list \
