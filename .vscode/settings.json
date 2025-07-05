@@ -4,7 +4,6 @@
     "cmake.configureOnEdit": false,
     "cmake.configureOnOpen": false,
     "cmake.copyCompileCommands": "${workspaceFolder}/out/build/compile_commands.json",
-    "editor.mouseWheelZoom": true,
     "workbench.editor.wrapTabs": true,
     "terminal.integrated.profiles.windows": {
         "git_bash": {
@@ -12,7 +11,9 @@
         }
     },
     "terminal.integrated.defaultProfile.windows": "git_bash",
+    "terminal.integrated.fontSize": 18,
     "window.zoomLevel": 1,
+    "editor.mouseWheelZoom": true,
     "editor.fontFamily": "'JetBrains Mono', Consolas, monospace",
     "editor.fontSize": 18,
     "editor.wordWrap": "bounded",
@@ -21,9 +22,9 @@
         100,
         120
     ],
-    "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
     "clang-format.executable": "clang-format",
+    "files.autoSave": "afterDelay",
     "C_Cpp.intelliSenseEngine": "disabled",
     "C_Cpp.intelliSenseEngineFallback": "disabled",
     "clangd.serverCompletionRanking": true, // 借助网上的信息排序建议
