@@ -14,10 +14,12 @@ configure_file(
 
 message(STATUS "CMAKE_CONFIGURE_FILE:                   ${CMAKE_CONFIGURE_FILE}")
 message(STATUS "CMAKE_PRESET:                           ${CMAKE_PRESET}")
+message(STATUS "CMAKE_PROBLEM_PREFIX:                   ${CMAKE_PROBLEM_PREFIX}")
 message(STATUS "CMAKE_SYSTEM_NAME:                      ${CMAKE_SYSTEM_NAME}")
 message(STATUS "CMAKE_SYSTEM_PROCESSOR:                 ${CMAKE_SYSTEM_PROCESSOR}")
-message(STATUS "CMAKE_PROBLEM_PREFIX:                   ${CMAKE_PROBLEM_PREFIX}")
+message(STATUS "CMAKE_HOST_SYSTEM_PROCESSOR_COUNT:      ${CMAKE_HOST_SYSTEM_PROCESSOR_COUNT}")
 
+message(STATUS "CMAKE_VERSION:                          ${CMAKE_VERSION}")
 message(STATUS "CMAKE_C_COMPILER:                       ${CMAKE_C_COMPILER}")
 message(STATUS "CMAKE_C_COMPILER_ID:                    ${CMAKE_C_COMPILER_ID}")
 message(STATUS "CMAKE_C_COMPILER_VERSION:               ${CMAKE_C_COMPILER_VERSION}")

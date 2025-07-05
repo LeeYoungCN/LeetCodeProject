@@ -40,12 +40,12 @@ void TEST_LC0039::RunTest(std::vector<int32_t>& candidates, int32_t target, std:
     for (LC0039_CombinationSum* inst : m_testList) {
         std::vector<std::vector<int32_t>> result = inst->combinationSum(candidates, target);
         ASSERT_EQ(expect.size(), result.size());
-        ranges::sort(expect);
-        ranges::sort(result);
+        sort(expect.begin(), expect.end());
+        sort(result.begin(), expect.end());
         for (uint32_t i = 0; i < expect.size(); ++i) {
             ASSERT_EQ(expect.at(i).size(), result.at(i).size());
-            ranges::sort(expect.at(i));
-            ranges::sort(result.at(i));
+            sort(expect.at(i).begin(), expect.at(i).end());
+            sort(result.at(i).begin(), result.at(i).end());
             for (uint32_t j = 0; j < expect.at(i).size(); ++j) {
                 EXPECT_EQ(expect.at(i).at(j), result.at(i).at(j));
             }

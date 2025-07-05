@@ -32,7 +32,7 @@ void LC0039_CombinationSum_DFS::dfs(const std::vector<int32_t>& candidates, vect
 std::vector<std::vector<int32_t>> LC0039_CombinationSum_DFS::combinationSum(std::vector<int32_t>& candidates,
                                                                             int32_t target)
 {
-    ranges::sort(candidates);
+    sort(candidates.begin(), candidates.end());
     std::vector<std::vector<int32_t>> ans;
     vector<int32_t> currVec;
     for (uint32_t i = 0; i < static_cast<uint32_t>(candidates.size()); i++) {
@@ -54,7 +54,7 @@ struct StackData {
 std::vector<std::vector<int32_t>> LC0039_CombinationSum_Stack::combinationSum(std::vector<int32_t>& candidates,
                                                                               int32_t target)
 {
-    ranges::sort(candidates);
+    sort(candidates.begin(), candidates.end());
     std::vector<std::vector<int32_t>> ans;
     vector<int32_t> currVec;
     stack<StackData> callStack;

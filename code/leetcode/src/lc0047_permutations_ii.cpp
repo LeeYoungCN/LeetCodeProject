@@ -63,7 +63,7 @@ void LC0047_PermutationsII_Sort::dfs(const vector<int32_t>& nums, vector<bool>& 
 
 std::vector<std::vector<int>> LC0047_PermutationsII_Sort::permuteUnique(std::vector<int>& nums)
 {
-    ranges::sort(nums);
+    sort(nums.begin(), nums.end());
     vector<vector<int32_t>> ans;
     vector<bool> visitor(nums.size(), false);
     vector<int32_t> permution;

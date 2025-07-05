@@ -1,4 +1,4 @@
-{
+﻿{
     "version": 10,
     "configurePresets": [
         {
@@ -234,136 +234,97 @@
     ],
     "buildPresets": [
         {
-            "name": "msvc_x64_debug_build",
-            "configurePreset": "msvc_x64_debug",
-            "displayName": "MSVC x64 Debug Build",
-            "description": "Build the MSVC x64 Debug target.",
+            "name": "project_build_base",
+            "hidden": true,
             "targets": [
                 "all",
                 "install"
             ],
             "jobs": 4
+        },
+        {
+            "name": "msvc_x64_debug_build",
+            "configurePreset": "msvc_x64_debug",
+            "displayName": "MSVC x64 Debug Build",
+            "description": "Build the MSVC x64 Debug target.",
+            "inherits":["project_build_base"]
         },
         {
             "name": "msvc_x64_release_build",
             "configurePreset": "msvc_x64_release",
             "displayName": "MSVC x64 Release Build",
             "description": "Build the MSVC x64 Release target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
+            "inherits":["project_build_base"]
         },
         {
             "name": "msvc_x86_debug_build",
             "configurePreset": "msvc_x86_debug",
             "displayName": "MSVC x86 Debug Build",
             "description": "Build the MSVC x86 Debug target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
+            "inherits":["project_build_base"]
         },
         {
             "name": "msvc_x86_release_build",
             "configurePreset": "msvc_x86_release",
             "displayName": "MSVC x86 Release Build",
             "description": "Build the MSVC x86 Release target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
+            "inherits":["project_build_base"]
         },
         {
             "name": "win_clang_debug_build",
             "configurePreset": "win_clang_debug",
             "displayName": "Clang Debug Build",
             "description": "Build the Clang Debug target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
+            "inherits":["project_build_base"]
         },
         {
             "name": "win_clang_release_build",
             "configurePreset": "win_clang_release",
             "displayName": "Clang Release Build",
             "description": "Build the Clang Release target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
+            "inherits":["project_build_base"]
         },
         {
             "name": "win_mingw_debug_build",
             "configurePreset": "win_mingw_debug",
             "displayName": "MinGW Debug Build",
             "description": "Build the MinGW Debug target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
+            "inherits":["project_build_base"]
         },
         {
             "name": "win_mingw_release_build",
             "configurePreset": "win_mingw_release",
             "displayName": "MinGW Release Build",
             "description": "Build the MinGW Release target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
+            "inherits":["project_build_base"]
         },
         {
             "name": "linux_clang_debug_build",
             "configurePreset": "linux_clang_debug",
             "displayName": "Linux Clang Debug Build",
             "description": "Build the Linux Clang Debug target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
+            "inherits":["project_build_base"]
         },
         {
             "name": "linux_clang_release_build",
             "configurePreset": "linux_clang_release",
             "displayName": "Linux Clang Release Build",
             "description": "Build the Linux Clang Release target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
+            "inherits":["project_build_base"]
         },
         {
-            "name": "linux_gnu_debug_build",
-            "configurePreset": "linux_gnu_debug",
-            "displayName": "Linux GNU Debug Build",
-            "description": "Build the Linux GNU Debug target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
+            "name": "darwin_clang_debug_build",
+            "configurePreset": "darwin_clang_debug",
+            "displayName": "Darwin Clang Debug Build",
+            "description": "Build the Darwin Clang Debug target.",
+            "inherits":["project_build_base"]
         },
         {
-            "name": "linux_gnu_release_build",
-            "configurePreset": "linux_gnu_release",
-            "displayName": "Linux GNU Release Build",
-            "description": "Build the Linux GNU Release target.",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "jobs": 4
+            "name": "darwin_clang_release_build",
+            "configurePreset": "darwin_clang_release",
+            "displayName": "Darwin Clang Debug Build",
+            "description": "Build the Darwin Clang Release target.",
+            "inherits":["project_build_base"]
         }
     ],
     "testPresets": [
@@ -445,10 +406,19 @@
             ]
         },
         {
-            "name": "win_mingw_release_ctest",
-            "displayName": "MinGW Release Ctest",
-            "description": "Test the MinGW Release target.",
-            "configurePreset": "win_mingw_release",
+            "name": "darwin_clang_debug_ctest",
+            "displayName": "Darwin Clang Debug Ctest",
+            "description": "Test the Darwin Clang Debug target.",
+            "configurePreset": "darwin_clang_debug",
+            "inherits": [
+                "TEST_ALL_base"
+            ]
+        },
+        {
+            "name": "darwin_clang_release_ctest",
+            "displayName": "Darwin Clang Release Ctest",
+            "description": "Test the Darwin Clang Release target.",
+            "configurePreset": "darwin_clang_release",
             "inherits": [
                 "TEST_ALL_base"
             ]

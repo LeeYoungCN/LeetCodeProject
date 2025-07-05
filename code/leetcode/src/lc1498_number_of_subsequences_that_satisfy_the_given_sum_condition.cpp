@@ -22,7 +22,7 @@ int LC1498_NumberOfSubsequencesThatSatisfyTheGivenSumCondition::numSubseq(std::v
         pow[i] = pow[i - 1] * 2 % MOD;
     }
 
-    ranges::sort(nums);
+    sort(nums.begin(), nums.end());
 
     size_t ans = 0;
     size_t left = 0;

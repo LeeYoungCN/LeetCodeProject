@@ -13,7 +13,7 @@ using namespace std;
 
 int32_t LC1394_FindLuckyIntegerInAnArray::findLucky(std::vector<int32_t>& arr)
 {
-    ranges::sort(arr);
+    sort(arr.begin(), arr.end());
     int32_t ans = -1;
     int32_t pre = arr[0];
     int32_t cnt = 0;

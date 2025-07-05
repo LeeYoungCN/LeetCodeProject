@@ -44,7 +44,7 @@ size_t LC2824_CountPairsWhoseSumIsLessThanTarget_Find::findLowerBound(const std:
 
 int32_t LC2824_CountPairsWhoseSumIsLessThanTarget_Find::countPairs(std::vector<int32_t>& nums, int32_t target)
 {
-    ranges::sort(nums);
+    sort(nums.begin(), nums.end());
 
     size_t ans = 0;
     for (size_t i = 0; i < nums.size(); i++) {
@@ -59,7 +59,7 @@ int32_t LC2824_CountPairsWhoseSumIsLessThanTarget_Find::countPairs(std::vector<i
 
 int32_t LC2824_CountPairsWhoseSumIsLessThanTarget_DoublePtr::countPairs(std::vector<int32_t>& nums, int32_t target)
 {
-    ranges::sort(nums);
+    sort(nums.begin(), nums.end());
     uint32_t ans = 0;
     for (size_t left = 0, right = nums.size() - 1; left < right; left++) {
         while (nums[left] + nums[right] >= target && left < right) {

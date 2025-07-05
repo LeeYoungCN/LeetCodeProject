@@ -39,8 +39,8 @@ void TEST_LC0046::RunTest(std::vector<int>& nums, std::vector<std::vector<int>>&
     for (LC0046_Permutations* inst : m_testList) {
         std::vector<std::vector<int>> result = inst->permute(nums);
         ASSERT_EQ(result.size(), expect.size());
-        ranges::sort(result);
-        ranges::sort(expect);
+        sort(result.begin(), result.end());
+        sort(expect.begin(), expect.end());
         for (uint32_t i = 0; i < expect.size(); i++) {
             for (uint32_t j = 0; j < expect[i].size(); ++j) {
                 EXPECT_EQ(expect[i][j], result[i][j]);
