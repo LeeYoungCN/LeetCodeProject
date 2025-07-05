@@ -41,7 +41,7 @@ void TEST_LC0039::RunTest(std::vector<int32_t>& candidates, int32_t target, std:
         std::vector<std::vector<int32_t>> result = inst->combinationSum(candidates, target);
         ASSERT_EQ(expect.size(), result.size());
         sort(expect.begin(), expect.end());
-        sort(result.begin(), expect.end());
+        sort(result.begin(), result.end());
         for (uint32_t i = 0; i < expect.size(); ++i) {
             ASSERT_EQ(expect.at(i).size(), result.at(i).size());
             sort(expect.at(i).begin(), expect.at(i).end());
