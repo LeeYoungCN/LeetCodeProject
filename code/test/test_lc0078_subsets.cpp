@@ -25,7 +25,8 @@ protected:
 
 void TEST_LC0078::SetUp()
 {
-    m_testList.push_back(new LC0078_Subsets());
+    m_testList.push_back(new LC0078_Subsets_Enum());
+    m_testList.push_back(new LC0078_Subsets_DFS());
 }
 
 void TEST_LC0078::TearDown()

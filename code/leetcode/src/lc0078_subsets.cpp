@@ -10,7 +10,7 @@
 
 using namespace std;
 
-std::vector<std::vector<int32_t>> LC0078_Subsets::subsets(std::vector<int32_t>& nums)
+std::vector<std::vector<int32_t>> LC0078_Subsets_Enum::subsets(std::vector<int32_t>& nums)
 {
     std::vector<std::vector<int32_t>> ans;
     const auto bitWidth = static_cast<uint32_t>(nums.size());
@@ -28,5 +28,28 @@ std::vector<std::vector<int32_t>> LC0078_Subsets::subsets(std::vector<int32_t>& 
     for (uint32_t i = 0; i < maxNum; ++i) {
         ans.emplace_back(num2Vec(i));
     }
+    return ans;
+}
+
+void dfs(const std::vector<int32_t>& nums, uint32_t currIdx, vector<int32_t>& currVec, vector<vector<int32_t>>& ans)
+{
+    if (currIdx == nums.size()) {
+        ans.emplace_back(currVec);
+        return;
+    }
+
+    currVec.push_back(nums[currIdx]);
+    dfs(nums, currIdx + 1, currVec, ans);
+    currVec.pop_back();
+    dfs(nums, currIdx + 1, currVec, ans);
+}
+
+std::vector<std::vector<int32_t>> LC0078_Subsets_DFS::subsets(std::vector<int32_t>& nums)
+{
+    std::vector<std::vector<int32_t>> ans;
+    ans.reserve(1U << nums.size());
+    vector<int32_t> currVec;
+    currVec.reserve(nums.size());
+    dfs(nums, 0, currVec, ans);
     return ans;
 }
