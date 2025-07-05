@@ -44,6 +44,7 @@ lc0583_delete_operation_for_two_strings
 lc0594_longest_harmonious_subsequence
 lc0639_decode_ways_ii
 lc0740_delete_and_earn
+lc0848_shifting_letters
 lc0881_boats_to_save_people
 lc0909_snakes_and_ladders
 lc0918_maximum_sum_circular_subarray

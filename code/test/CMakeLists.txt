@@ -20,6 +20,7 @@ target_include_directories(${TEST_RUNTIME_NAME} PRIVATE
     ${UTILS_LIB_INCLUDE_PATH}
 )
 
+set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${CMAKE_THIRD_PARTY_PATH}/googletest")
 find_package(GTest REQUIRED)
 target_link_libraries(${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME} ${UTILS_LIB_NAME} GTest::GTest)
 
