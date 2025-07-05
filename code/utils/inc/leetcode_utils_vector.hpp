@@ -57,7 +57,47 @@ void PrintVector(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0
     std::cout << Vector2String(vec, start, end, hasIdx) << std::endl;
 }
 
+template <class T = int32_t>
+std::string Matrix2String(const std::vector<std::vector<T>> &matrix, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
+{
+    if (matrix.empty()) {
+        return "{}";
+    }
+    if (end == 0) {
+        end = static_cast<uint32_t>(matrix.size());
+    }
+    end = std::min(end, static_cast<uint32_t>(matrix.size()));
+    if (start >= end) {
+        LOG("Invalid param. start=%u, end=%u.", start, end);
+        return "{}";
+    }
+
+    const uint32_t vecNum = end - start;
+    std::string str = "{\n";
+
+    for (uint32_t i = 0; i < vecNum; i++) {
+        uint32_t index = i + start;
+
+        if (hasIdx) {
+            str += "[" + std::to_string(index) + "]=";
+        }
+
+        str += Vector2String(matrix[index]);
+        str += "\n";
+    }
+    str += "}";
+    return str;
+}
+
+template <class T>
+void PrintMatrix(const std::vector<std::vector<T>> &matrix, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
+{
+    std::cout << Matrix2String(matrix, start, end, hasIdx) << std::endl;
+}
+
+
 std::vector<std::string> String2VecStr(const std::string& str);
 std::vector<int32_t> String2VecInt(const std::string& str);
+std::vector<std::vector<int32_t>> String2MatrixInt(const std::string& str);
 
 #endif  // LEETCODE_UTILS_VECTOR_HPP

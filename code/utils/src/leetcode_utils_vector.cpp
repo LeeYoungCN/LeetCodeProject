@@ -51,7 +51,9 @@ std::vector<std::string> String2VecStr(const std::string& str)
             start = 0;
         }
     }
-
+    if (start != 0) {
+        ans.emplace_back(str.substr(start, str.length() - start));
+    }
     return ans;
 }
 
@@ -66,6 +68,25 @@ std::vector<int32_t> String2VecInt(const std::string& str)
         } else if (!isNumber(i, str) && start != 0) {
             ans.emplace_back(std::stoi(str.substr(start, i - start)));
             start = 0;
+        }
+    }
+    if (start != 0) {
+        ans.emplace_back(std::stoi(str.substr(start, str.length() - start)));
+    }
+    return ans;
+}
+
+std::vector<std::vector<int32_t>> String2MatrixInt(const std::string& str)
+{
+    std::vector<std::vector<int32_t>> ans;
+    std::vector<size_t> bracketStack;
+    for (size_t i = 1; i < str.length(); i++) {
+        if (str[i] == '[') {
+            bracketStack.push_back(i);
+        } else if (str[i] == ']' && !bracketStack.empty()) {
+            size_t start = bracketStack.back();
+            bracketStack.pop_back();
+            ans.emplace_back(String2VecInt(str.substr(start, i - start)));
         }
     }
     return ans;
