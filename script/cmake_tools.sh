@@ -1,4 +1,3 @@
-#!/usr/bin/bash
 SCRIPT_DIR="$(
     cd "$(dirname "$0")" || exit 1
     pwd
@@ -10,6 +9,17 @@ ROOT_DIR="$(
 
 readonly SCRIPT_DIR
 readonly ROOT_DIR
+
+OS=$(uname -s)
+if echo "${OS}" | grep -q "MINGW"; then
+    OS="Windows"
+fi
+
+readonly OS
+
+if [ ${OS} == "Darwin" ]; then
+    export PATH="/usr/local/opt/gnu-getopt/bin:${PATH}"
+fi
 
 # shellcheck disable=SC1091
 source "${SCRIPT_DIR}/common_func.sh"
@@ -156,12 +166,7 @@ function list_cmake_configure_param() {
 }
 
 function init_cmake_preset() {
-    os=$(uname -s)
-    if echo "${os}" | grep -q "MINGW"; then
-        os="Windows"
-    fi
-
-    case ${os} in
+    case ${OS} in
     Windows)
         cmake_preset="win_clang_debug"
         preset_array=("win_mingw_debug" "win_mingw_release" "win_clang_debug" "win_clang_release")
@@ -175,7 +180,7 @@ function init_cmake_preset() {
         preset_array=("darwin_clang_debug" "darwin_clang_release")
         ;;
     *)
-        print_log "os: ${os} error!"
+        print_log "OS: ${OS} error!"
         exit 1
         ;;
     esac
@@ -187,7 +192,7 @@ function init_cmake_preset() {
 }
 
 function init_cmake_configure_param() {
-    case "${os}" in
+    case "${OS}" in
     Windows)
         case "${cmake_preset}" in
         win_mingw_debug)
@@ -275,7 +280,7 @@ function init_cmake_configure_param() {
         esac
         ;;
     *)
-        print_log "os: ${os} error!"
+        print_log "OS: ${OS} error!"
         exit 1
         ;;
     esac
@@ -441,6 +446,7 @@ function list_problem_prefix() {
 }
 
 function main() {
+    /usr/local/opt/gnu-getopt/bin
     if ! ARGS=$(
         getopt -o c::p:s: \
             --long clean::,install::,preset:,problem:,configure,build::,gtest::,ctest::,help,list \
