@@ -34,7 +34,7 @@ private:
 };
 
 class LC2824_CountPairsWhoseSumIsLessThanTarget_DoublePtr : public LC2824_CountPairsWhoseSumIsLessThanTarget {
-    public:
+public:
     LC2824_CountPairsWhoseSumIsLessThanTarget_DoublePtr() = default;
     ~LC2824_CountPairsWhoseSumIsLessThanTarget_DoublePtr() override = default;
     int32_t countPairs(std::vector<int32_t>& nums, int32_t target) override;

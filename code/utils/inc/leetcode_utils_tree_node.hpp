@@ -14,7 +14,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-TreeNode *String2TreeNode(const std::string& nodeValStr);
+TreeNode *String2TreeNode(const std::string &nodeValStr);
 TreeNode *NodeVal2TreeNode(const std::vector<std::string> &nodeValList, uint32_t index = 0);
 void FreeTreeNode(TreeNode *root);
 

@@ -28,5 +28,4 @@ public:
     int minDistance(std::string word1, std::string word2) final;
 };
 
-
 #endif  // LC0583_DELETE_OPERATION_FOR_TWO_STRINGS_H

@@ -1,6 +1,7 @@
 /*
  * Time : 2025-06-22 14:42:38
- * URL  : https://leetcode.cn/problems/divide-a-string-into-groups-of-size-k/description/?envType=daily-question&envId=2025-06-22
+ * URL  :
+ * https://leetcode.cn/problems/divide-a-string-into-groups-of-size-k/description/?envType=daily-question&envId=2025-06-22
  */
 #ifndef LC2138_DIVIDE_A_STRING_INTO_GROUPS_OF_SIZE_K_H
 #define LC2138_DIVIDE_A_STRING_INTO_GROUPS_OF_SIZE_K_H

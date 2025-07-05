@@ -15,7 +15,7 @@ std::vector<std::vector<int32_t>> LC0078_Subsets_Enum::subsets(std::vector<int32
     std::vector<std::vector<int32_t>> ans;
     const auto bitWidth = static_cast<uint32_t>(nums.size());
     const uint32_t maxNum = (1U << bitWidth);
-    function num2Vec = [&](uint32_t num)->vector<int32_t> {
+    function num2Vec = [&](uint32_t num) -> vector<int32_t> {
         vector<int32_t> ans;
         for (uint32_t i = 0; i < bitWidth; i++) {
             if (num & (1U << i)) {

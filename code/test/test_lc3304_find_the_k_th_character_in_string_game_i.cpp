@@ -1,6 +1,7 @@
 /*
  * Time : 2025-07-03 14:46:38
- * URL  : https://leetcode.cn/problems/find-the-k-th-character-in-string-game-i/description/?envType=daily-question&envId=2025-07-03
+ * URL  :
+ * https://leetcode.cn/problems/find-the-k-th-character-in-string-game-i/description/?envType=daily-question&envId=2025-07-03
  */
 #include <algorithm>
 #include <cmath>
@@ -30,7 +31,7 @@ protected:
     void TearDown() override;
 
     vector<LC3304_FindTheKThCharacterInStringGameI *> m_testList;
-    void RunTest(int32_t k, const char& expect);
+    void RunTest(int32_t k, const char &expect);
 };
 
 void TEST_LC3304::SetUp()
@@ -45,7 +46,7 @@ void TEST_LC3304::TearDown()
     }
 }
 
-void TEST_LC3304::RunTest(int32_t k, const char& expect)
+void TEST_LC3304::RunTest(int32_t k, const char &expect)
 {
     for (LC3304_FindTheKThCharacterInStringGameI *inst : m_testList) {
         char result = inst->kthCharacter(k);

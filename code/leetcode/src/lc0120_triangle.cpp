@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int LC0120_Triangle::minimumTotal(std::vector<std::vector<int>>& triangle)
+int LC0120_Triangle::minimumTotal(std::vector<std::vector<int>> &triangle)
 {
     vector<int32_t> dp(triangle.back().size() + 1, 0);
 

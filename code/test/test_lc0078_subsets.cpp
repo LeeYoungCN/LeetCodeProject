@@ -19,7 +19,7 @@ protected:
     void SetUp() override;
     void TearDown() override;
 
-    vector<LC0078_Subsets *> m_testList;
+    vector<LC0078_Subsets*> m_testList;
     void RunTest(std::vector<int32_t>& nums, std::vector<std::vector<int32_t>>& expect);
 };
 
@@ -31,21 +31,21 @@ void TEST_LC0078::SetUp()
 
 void TEST_LC0078::TearDown()
 {
-    for (LC0078_Subsets *inst : m_testList) {
+    for (LC0078_Subsets* inst : m_testList) {
         delete inst;
     }
 }
 
 void TEST_LC0078::RunTest(std::vector<int32_t>& nums, std::vector<std::vector<int32_t>>& expect)
 {
-    for (LC0078_Subsets *inst : m_testList) {
+    for (LC0078_Subsets* inst : m_testList) {
         std::vector<std::vector<int32_t>> result = inst->subsets(nums);
         ASSERT_EQ(expect.size(), result.size());
         sort(expect.begin(), expect.end());
         sort(result.begin(), result.end());
         for (uint32_t i = 0; i < expect.size(); ++i) {
             ASSERT_EQ(expect[i].size(), result[i].size());
-            for(uint32_t j = 0; j < expect[i].size(); ++j) {
+            for (uint32_t j = 0; j < expect[i].size(); ++j) {
                 EXPECT_EQ(expect[i][j], result[i][j]);
             }
         }
