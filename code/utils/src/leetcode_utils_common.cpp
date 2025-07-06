@@ -17,12 +17,12 @@ bool isNumber(uint32_t idx, const std::string& str)
 
 bool isLowerAlpha(char c)
 {
-    return c <= 'a' && c >= 'z';
+    return c >= 'a' && c <= 'z';
 }
 
 bool isUpperAlpha(char c)
 {
-    return c <= 'A' && c >= 'Z';
+    return c >= 'A' && c <= 'Z';
 }
 
 bool isAlpha(char c)
