@@ -369,6 +369,7 @@ function cmake_install() {
         return 0
         ;;
     all)
+        rm_dir "${cmake_install_prefix}"
         if cmake --install "${cmake_binary_dir}"; then
             print_log "[${cmake_preset}] CMake install all success." info
         else
