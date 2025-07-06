@@ -25,6 +25,7 @@ lc0121_best_time_to_buy_and_sell_stock
 lc0122_best_time_to_buy_and_sell_stock_ii
 lc0123_best_time_to_buy_and_sell_stock_iii
 lc0128_longest_consecutive_sequence
+lc0134_gas_station
 lc0135_candy
 lc0139_word_break
 lc0152_maximum_product_subarray
