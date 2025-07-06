@@ -1,4 +1,9 @@
 #!/usr/local/bin/bash
+echo "Bash version: $BASH_VERSION"
+if [ -z "$BASHRC_LOADED" ]; then
+    source "${HOME}/.bashrc"
+fi
+
 SCRIPT_DIR="$(
     cd "$(dirname "$0")" || exit 1
     pwd
