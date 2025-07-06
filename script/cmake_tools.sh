@@ -266,12 +266,12 @@ function init_cmake_configure_param() {
     Darwin)
         case "${cmake_preset}" in
         darwin_clang_debug)
-            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/drawin_clang.cmake"
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/darwin_clang.cmake"
             cmake_generator="Unix Makefiles"
             cmake_build_type="Debug"
             ;;
         darwin_clang_release)
-            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/drawin_clang.cmake"
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/darwin_clang.cmake"
             cmake_generator="Unix Makefiles"
             cmake_build_type="Release"
             ;;

@@ -210,6 +210,7 @@
             "name": "darwin_clang_base",
             "hidden": true,
             "inherits": "darwin_base",
+            "toolchainFile": "${sourceDir}/cmake/toolchain_files/darwin_clang.cmake",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "clang",
                 "CMAKE_CXX_COMPILER": "clang++"
