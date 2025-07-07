@@ -75,4 +75,3 @@ TEST_F(TEST_LC0134, case4)
     const int32_t expect = 0;
     RunTest(gas, cost, expect);
 }
-
