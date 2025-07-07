@@ -41,7 +41,7 @@ endif()
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_definitions(DEBUG_MODE)
 else()
-    add_compile_definitions(DNEBUG_MODE)
+    add_compile_definitions(NDEBUG_MODE)
 endif()
 
 if (${CMAKE_INSTALL_PREFIX} STREQUAL "C:/Program Files (x86)/${PROJECT_NAME}" OR
