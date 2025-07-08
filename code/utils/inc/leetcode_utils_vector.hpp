@@ -83,7 +83,7 @@ std::string Matrix2String(const std::vector<std::vector<T>> &matrix, uint32_t st
             str += "[" + std::to_string(index) + "]=";
         }
 
-        str += Vector2String(matrix[index]);
+        str += Vector2String(matrix[index], 0, 0, hasIdx);
         str += "\n";
     }
     str += "}";
