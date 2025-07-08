@@ -11,7 +11,7 @@
         }
     },
     "terminal.integrated.defaultProfile.windows": "git_bash",
-    "terminal.integrated.fontSize": 18,
+    "terminal.integrated.fontSize": 16,
     "window.zoomLevel": 1,
     "editor.mouseWheelZoom": true,
     "editor.fontFamily": "'JetBrains Mono', Consolas, monospace",
