@@ -47,7 +47,7 @@ void dfs(const std::vector<int32_t>& nums, uint32_t currIdx, vector<int32_t>& cu
 std::vector<std::vector<int32_t>> LC0078_Subsets_DFS::subsets(std::vector<int32_t>& nums)
 {
     std::vector<std::vector<int32_t>> ans;
-    ans.reserve(1U << nums.size());
+    ans.reserve(static_cast<size_t>(1ULL << nums.size()));
     vector<int32_t> currVec;
     currVec.reserve(nums.size());
     dfs(nums, 0, currVec, ans);
