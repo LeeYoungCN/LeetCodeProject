@@ -75,7 +75,9 @@
             "inherits": "project_base",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "D:/Programs/LLVM_msvc/bin/clang.exe",
-                "CMAKE_CXX_COMPILER": "D:/Programs/LLVM_msvc/bin/clang++.exe"
+                "CMAKE_CXX_COMPILER": "D:/Programs/LLVM_msvc/bin/clang++.exe",
+                "CMAKE_C_FLAGS": "--target=x86_64-pc-windows-msvc",
+                "CMAKE_CXX_FLAGS": "--target=x86_64-pc-windows-msvc"
             },
             "condition": {
                 "type": "equals",

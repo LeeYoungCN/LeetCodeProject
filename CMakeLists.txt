@@ -26,10 +26,6 @@ if(CMAKE_COMPILER_IS_GNUCXX OR
     add_compile_options("-Wall" "-Wconversion" "-Wextra" "-pedantic")
 endif()
 
-if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang" AND WIN32)
-    add_compile_options(--target=x86_64-pc-windows-msvc)
-endif()
-
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug CACHE STRING "Default CMAKE_BUILD_TYPE Debug" FORCE)
 endif()
