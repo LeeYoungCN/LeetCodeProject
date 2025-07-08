@@ -12,16 +12,16 @@ using namespace std;
 
 std::string LC2381_ShiftingLettersII::shiftingLetters(std::string s, std::vector<std::vector<int32_t>> &shifts)
 {
-    constexpr uint32_t START = 0;
-    constexpr uint32_t END = 1;
+    constexpr size_t START = 0;
+    constexpr size_t END = 1;
     constexpr uint32_t DIR = 2;
-    constexpr uint32_t CHR_CNT = 26;
+    constexpr int32_t CHR_CNT = 26;
 
     vector<int32_t> prefixSum(s.size() + 1);
     for (const auto &vec : shifts) {
         int delta = (vec[DIR] == 0 ? -1 : 1);
-        prefixSum[vec[START]] += delta;
-        prefixSum[vec[END] + 1] -= delta;
+        prefixSum[static_cast<size_t>(vec[START])] += delta;
+        prefixSum[static_cast<size_t>(vec[END] + 1)] -= delta;
     }
 
     int32_t sum = 0;
