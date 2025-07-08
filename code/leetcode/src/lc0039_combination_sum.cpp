@@ -79,6 +79,7 @@ std::vector<std::vector<int32_t>> LC0039_CombinationSum_Stack::combinationSum(st
                     break;
                 } else {
                     data.status = LOOP;
+                    [[fallthrough]];
                 }
             case LOOP:
                 if (data.nextIdx == candidates.size()) {
