@@ -12,6 +12,6 @@ set(CMAKE_CXX_COMPILER clang++)
 # set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 
 # 额外选项（可选）
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -target x86_64-w64-mingw32")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -target x86_64-w64-mingw32")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --target=x86_64-w64-mingw32 -fuse-ld=lld -pthread")
+set(CMAKE_C_FLAGS "--target=x86_64-w64-mingw32")
+set(CMAKE_CXX_FLAGS "--target=x86_64-w64-mingw32")
+set(CMAKE_EXE_LINKER_FLAGS "--target=x86_64-w64-mingw32 -fuse-ld=lld -pthread")

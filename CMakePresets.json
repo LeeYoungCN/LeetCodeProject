@@ -18,6 +18,7 @@
             "hidden": true,
             "generator": "Ninja",
             "inherits": "project_base",
+            "toolchainFile": "${sourceDir}/cmake/toolchain_files/win_msvc.cmake",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "cl.exe",
                 "CMAKE_CXX_COMPILER": "cl.exe"
@@ -73,8 +74,8 @@
             "hidden": true,
             "inherits": "project_base",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "D:/Programs/LLVM_msvc/bin/clang.exe",
-                "CMAKE_CXX_COMPILER": "D:/Programs/LLVM_msvc/bin/clang++.exe"
+                "CMAKE_C_COMPILER": "clang.exe",
+                "CMAKE_CXX_COMPILER": "clang++.exe"
             },
             "condition": {
                 "type": "equals",
@@ -87,11 +88,7 @@
             "hidden": true,
             "inherits": "win_clang_base",
             "generator": "MinGW Makefiles",
-            "cacheVariables": {
-                "CMAKE_C_FLAGS": "--target=x86_64-w64-mingw32",
-                "CMAKE_CXX_FLAGS": "--target=x86_64-w64-mingw32",
-                "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld --target=x86_64-w64-mingw32 -pthread"
-            }
+            "toolchainFile": "${sourceDir}/cmake/toolchain_files/win_clang_mingw.cmake"
         },
         {
             "name": "win_clang_mingw_debug",
@@ -114,14 +111,10 @@
             "hidden": true,
             "generator": "Ninja",
             "inherits": "win_clang_base",
-            "cacheVariables": {
-                "CMAKE_C_FLAGS": "--target=x86_64-pc-windows-msvc",
-                "CMAKE_CXX_FLAGS": "--target=x86_64-pc-windows-msvc",
-                "CMAKE_EXE_LINKER_FLAGS": "--target=x86_64-pc-windows-msvc"
-            }
+            "toolchainFile": "${sourceDir}/cmake/toolchain_files/win_clang_msvc.cmake"
         },
         {
-            "name": "win_clang_debug",
+            "name": "win_clang_msvc_debug",
             "displayName": "Clang MSVC Debug Configure",
             "inherits": "win_clang_msvc_base",
             "cacheVariables": {
@@ -129,7 +122,7 @@
             }
         },
         {
-            "name": "win_clang_release",
+            "name": "win_clang_msvc_release",
             "displayName": "Clang MSVC Release Configure",
             "inherits": "win_clang_msvc_base",
             "cacheVariables": {
@@ -141,9 +134,10 @@
             "hidden": true,
             "generator": "MinGW Makefiles",
             "inherits": "project_base",
+            "toolchainFile": "${sourceDir}/cmake/toolchain_files/win_mingw.cmake",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "D:/Programs/msys64/mingw64/bin/gcc.exe",
-                "CMAKE_CXX_COMPILER": "D:/Programs/msys64/mingw64/bin/g++.exe"
+                "CMAKE_C_COMPILER": "gcc.exe",
+                "CMAKE_CXX_COMPILER": "g++.exe"
             },
             "condition": {
                 "type": "equals",
@@ -182,6 +176,7 @@
             "name": "linux_gnu_base",
             "hidden": true,
             "inherits": "linux_base",
+            "toolchainFile": "${sourceDir}/cmake/toolchain_files/linux_gnu.cmake",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "/usr/bin/gcc",
                 "CMAKE_CXX_COMPILER": "/usr/bin/g++"
@@ -207,6 +202,7 @@
             "name": "linux_clang_base",
             "hidden": true,
             "inherits": "linux_base",
+            "toolchainFile": "${sourceDir}/cmake/toolchain_files/linux_clang.cmake",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "clang",
                 "CMAKE_CXX_COMPILER": "clang++"
@@ -325,19 +321,37 @@
             ]
         },
         {
-            "name": "win_clang_debug_build",
-            "configurePreset": "win_clang_debug",
-            "displayName": "Clang Debug Build",
+            "name": "win_clang_msvc_debug_build",
+            "configurePreset": "win_clang_msvc_debug",
+            "displayName": "Clang MSVC Debug Build",
             "description": "Build the Clang Debug target.",
             "inherits": [
                 "windows_build_base"
             ]
         },
         {
-            "name": "win_clang_release_build",
-            "configurePreset": "win_clang_release",
-            "displayName": "Clang Release Build",
+            "name": "win_clang_msvc_release_build",
+            "configurePreset": "win_clang_msvc_release",
+            "displayName": "Clang MSVC Release Build",
             "description": "Build the Clang Release target.",
+            "inherits": [
+                "windows_build_base"
+            ]
+        },
+        {
+            "name": "win_clang_mingw_debug_build",
+            "configurePreset": "win_clang_mingw_debug",
+            "displayName": "Clang MinGW Debug Build",
+            "description": "Build the Clang MinGW Debug target.",
+            "inherits": [
+                "windows_build_base"
+            ]
+        },
+        {
+            "name": "win_clang_mingw_release_build",
+            "configurePreset": "win_clang_mingw_release",
+            "displayName": "Clang MinGW Release Build",
+            "description": "Build the Clang MinGW Release target.",
             "inherits": [
                 "windows_build_base"
             ]
@@ -503,19 +517,37 @@
             ]
         },
         {
-            "name": "win_clang_debug_ctest",
-            "configurePreset": "win_clang_debug",
-            "displayName": "Clang Debug Ctest",
-            "description": "Test the Clang Debug target.",
+            "name": "win_clang_mingw_debug_ctest",
+            "configurePreset": "win_clang_mingw_debug",
+            "displayName": "Clang MinGW Debug Ctest",
+            "description": "Test the Clang MinGW Debug target.",
             "inherits": [
                 "windows_ctest_base"
             ]
         },
         {
-            "name": "win_clang_release_ctest",
-            "configurePreset": "win_clang_release",
-            "displayName": "Clang Release Ctest",
-            "description": "Test the Clang Release target.",
+            "name": "win_clang_mingw_release_ctest",
+            "configurePreset": "win_clang_mingw_release",
+            "displayName": "Clang MinGW Release Ctest",
+            "description": "Test the Clang MinGW Release target.",
+            "inherits": [
+                "windows_ctest_base"
+            ]
+        },
+        {
+            "name": "win_clang_msvc_debug_ctest",
+            "configurePreset": "win_clang_msvc_debug",
+            "displayName": "Clang MSVC Debug Ctest",
+            "description": "Test the Clang MSVC Debug target.",
+            "inherits": [
+                "windows_ctest_base"
+            ]
+        },
+        {
+            "name": "win_clang_msvc_release_ctest",
+            "configurePreset": "win_clang_msvc_release",
+            "displayName": "Clang MSVC Release Ctest",
+            "description": "Test the Clang MSVC Release target.",
             "inherits": [
                 "windows_ctest_base"
             ]
