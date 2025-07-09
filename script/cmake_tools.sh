@@ -83,8 +83,12 @@ function print_help() {
     echo "                                       List all problems:  --problem=list"
     echo ""
     echo "    -s, --preset[=<preset-name>]       CMake configure preset."
-    echo "                                       Windows: win_clang_debug(default), win_clang_release, win_mingw_debug, win_mingw_release"
-    echo "                                       Linux:   linux_clang_debug(default), linux_clang_releas, linux_gnu_debug, linux_gnu_release"
+    echo "                                       Windows: win_clang_msvc_debug(default), win_clang_msvc_release"
+    echo "                                                win_clang_mingw_debug,         win_clang_release"
+    echo "                                                win_mingw_debug,               win_mingw_release"
+    echo "                                                msvc_x64_debug,                msvc_x64_release"
+    echo "                                       Linux:   linux_clang_debug(default), linux_clang_releas"
+    echo "                                                linux_gnu_debug,            linux_gnu_release"
     echo "                                       Darwin:  darwin_clang_debug(default), darwin_clang_releas"
     echo ""
     echo "        --configure                    Run CMake configure by preset and problems."
@@ -170,8 +174,8 @@ function list_cmake_configure_param() {
 function init_cmake_preset() {
     case ${OS} in
     Windows)
-        cmake_preset="win_clang_debug"
-        preset_array=("win_mingw_debug" "win_mingw_release" "win_clang_debug" "win_clang_release")
+        cmake_preset="win_clang_msvc_debug"
+        preset_array=("win_mingw_debug" "win_mingw_release" "win_clang_msvc_debug" "win_clang_msvc_release")
         ;;
     Linux)
         cmake_preset="linux_clang_debug"
@@ -207,14 +211,24 @@ function init_cmake_configure_param() {
             cmake_generator="MinGW Makefiles"
             cmake_build_type="Release"
             ;;
-        win_clang_debug)
-            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_clang.cmake"
+        win_clang_msvc_debug)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_clang_msvc.cmake"
             cmake_generator="Ninja"
             cmake_build_type="Debug"
             ;;
-        win_clang_release)
-            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_clang.cmake"
+        win_clang_msvc_release)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_clang_msvc.cmake"
             cmake_generator="Ninja"
+            cmake_build_type="Release"
+            ;;
+        win_clang_mingw_debug)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_clang_mingw.cmake"
+            cmake_generator="MinGW Makefiles"
+            cmake_build_type="Debug"
+            ;;
+        win_clang_mingw_release)
+            cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_clang_mingw.cmake"
+            cmake_generator="MinGW Makefiles"
             cmake_build_type="Release"
             ;;
         msvc_x64_debug)
