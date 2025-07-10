@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/local/bin/bash
 SCRIPT_DIR="$(
     cd "$(dirname "$0")" || exit 1
     pwd
@@ -21,11 +21,13 @@ if [ -e "${PROBLEM_LIST_FILE}" ]; then
     rm "${PROBLEM_LIST_FILE}"
 fi
 
+printf "# Problem List\\n\\n" >> "${PROBLEM_LIST_FILE}"
+
 find "${LEETCODE_SRC_DIR}" -maxdepth 2 -type f -exec bash -c '
   for file do
     base=$(basename "${file}")
     echo "${base%.*}"  # 去除最后一个扩展名
   done
-' _ {} + | sort >"${PROBLEM_LIST_FILE}"
+' _ {} + | sort >> "${PROBLEM_LIST_FILE}"
 
 print_log "Refresh ${PROBLEM_LIST_FILE} success." info

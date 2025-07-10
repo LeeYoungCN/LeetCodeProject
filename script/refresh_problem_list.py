@@ -23,6 +23,7 @@ def refresh_problem_list() -> None:
     get_all_file_name(_LEETCODE_SRC_DIR, file_name_list)
     file_name_list.sort()
     with open(_PROBLEM_LIST_FILE, "w", encoding="utf-8") as file:
+        file.write("# Problem List\n\n")
         for file_name in file_name_list:
             file.write(f"{file_name}\n")
     return None
