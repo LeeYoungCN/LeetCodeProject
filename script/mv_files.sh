@@ -1,6 +1,7 @@
 #!/usr/local/bin/bash
 echo "Bash version: $BASH_VERSION"
 if [ -z "$BASHRC_LOADED" ]; then
+    # shellcheck disable=SC1091
     source "${HOME}/.bashrc"
 fi
 
@@ -13,21 +14,20 @@ ROOT_DIR="$(
     pwd
 )"
 
+readonly SCRIPT_DIR
+readonly ROOT_DIR
+
+# shellcheck disable=SC1091
+source "${SCRIPT_DIR}/common_func.sh"
+
+cd "${ROOT_DIR}" || exit 1
+
 CODE_DIR="${ROOT_DIR}/code"
 
 LEETCODE_DIR="${CODE_DIR}/leetcode"
 LEETCODE_SRC_DIR="${LEETCODE_DIR}/src"
 LEETCODE_INC_DIR="${LEETCODE_DIR}/inc"
 TEST_DIR="${CODE_DIR}/test"
-
-function replace_text() {
-    local old_str="$1"
-    local new_str="$2"
-    local file_path="$3"
-    if ! sed -i "s#${old_str}#${new_str}#g" "${file_path}"; then
-        print_log "Replace failed. ${old_str} -> ${new_str}  ${file_path}." error
-    fi
-}
 
 function mv_file()
 {

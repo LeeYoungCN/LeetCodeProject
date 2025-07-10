@@ -10,13 +10,13 @@ function print_log() {
 
     case ${log_level} in
     error)
-        echo -e "[$(date "+%Y-%m-%d %H:%M:%S")] ${RED}${log_str}${NC}"
+        printf "%s ${RED}%s${NC}\n" "[$(date "+%Y-%m-%d %H:%M:%S")]" "${log_str}"
         ;;
     info)
-        echo -e "[$(date "+%Y-%m-%d %H:%M:%S")] ${GREEN}${log_str}${NC}"
+        printf "%s ${GREEN}%s${NC}\n" "[$(date "+%Y-%m-%d %H:%M:%S")]" "${log_str}"
         ;;
     debug | *)
-        echo -e "[$(date "+%Y-%m-%d %H:%M:%S")] ${log_str}"
+        printf "%s %s\n" "[$(date "+%Y-%m-%d %H:%M:%S")]" "${log_str}"
         ;;
     esac
 }
@@ -25,8 +25,14 @@ function replace_text() {
     local old_str="$1"
     local new_str="$2"
     local file_path="$3"
-    if ! sed -i "s#${old_str}#${new_str}#g" "${file_path}"; then
-        print_log "Replace failed. ${old_str} -> ${new_str}  ${file_path}." error
+    if [ "$(uname -s)" == "Darwin" ]; then
+        if ! sed -i '' "s#${old_str}#${new_str}#g" "${file_path}"; then
+            print_log "Replace failed. ${old_str} -> ${new_str}  ${file_path}." error
+        fi
+    else
+        if ! sed -i "s#${old_str}#${new_str}#g" "${file_path}"; then
+            print_log "Replace failed. ${old_str} -> ${new_str}  ${file_path}." error
+        fi
     fi
 }
 
