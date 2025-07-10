@@ -9,12 +9,18 @@ _LEETCODE_SRC_DIR = _CODE_DIR + "/leetcode/src/"
 _PROBLEM_LIST_FILE = _CODE_DIR + "/problem_list.md"
 
 
-def refresh_problem_list() -> None:
-    file_name_list: list = []
-    with os.scandir(_LEETCODE_SRC_DIR) as entries:
+def get_all_file_name(src_dir: Path, file_name_list: list) -> None:
+    with os.scandir(src_dir) as entries:
         for entry in entries:
             if entry.is_file():
                 file_name_list.append(os.path.basename(entry.path).rsplit(".", 1)[0])
+            elif entry.is_dir():
+                get_all_file_name(entry, file_name_list)
+
+
+def refresh_problem_list() -> None:
+    file_name_list: list = []
+    get_all_file_name(_LEETCODE_SRC_DIR, file_name_list)
     file_name_list.sort()
     with open(_PROBLEM_LIST_FILE, "w", encoding="utf-8") as file:
         for file_name in file_name_list:

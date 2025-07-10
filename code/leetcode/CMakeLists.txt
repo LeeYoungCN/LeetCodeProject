@@ -5,9 +5,9 @@ set_target_properties(${LEETCODE_LIB_NAME} PROPERTIES
 )
 
 if (CMAKE_PROBLEM_PREFIX STREQUAL "all")
-    aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_LIST)
+    file(GLOB_RECURSE SRC_LIST "src/*.cpp")
 else()
-    file(GLOB SRC_LIST "src/${CMAKE_PROBLEM_PREFIX}*.cpp")
+    file(GLOB_RECURSE SRC_LIST "src/${CMAKE_PROBLEM_PREFIX}*.cpp")
 endif()
 
 target_sources(${LEETCODE_LIB_NAME} PRIVATE ${SRC_LIST})

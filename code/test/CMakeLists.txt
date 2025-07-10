@@ -6,9 +6,9 @@ set_target_properties(${TEST_RUNTIME_NAME} PROPERTIES
 )
 
 if (CMAKE_PROBLEM_PREFIX STREQUAL "all")
-    aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} SRC_LIST)
+    file(GLOB_RECURSE SRC_LIST "*.cpp")
 else()
-    file(GLOB SRC_LIST "test_${CMAKE_PROBLEM_PREFIX}*.cpp" main.cpp)
+    file(GLOB_RECURSE SRC_LIST "test_${CMAKE_PROBLEM_PREFIX}*.cpp" "main.cpp")
 endif()
 
 target_sources(${TEST_RUNTIME_NAME} PRIVATE ${SRC_LIST})
@@ -29,7 +29,7 @@ add_test(NAME TEST_ALL COMMAND ${TEST_RUNTIME_NAME})
 set_tests_properties(TEST_ALL PROPERTIES TIMEOUT 1)
 
 if (${CMAKE_PROBLEM_PREFIX} STREQUAL "all")
-    file(GLOB TEST_FILE_LIST "test_*.cpp")
+    file(GLOB_RECURSE TEST_FILE_LIST "test_*.cpp")
     foreach(FILE_PATH ${TEST_FILE_LIST})
         get_filename_component(FILE_NAME ${FILE_PATH} NAME)
         string(REGEX MATCH "^test_lc[0-9]+" _ "${FILE_NAME}")

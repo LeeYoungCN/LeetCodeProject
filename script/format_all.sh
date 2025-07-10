@@ -10,14 +10,4 @@ ROOT_DIR="$(
 
 CODE_DIR="${ROOT_DIR}/code"
 
-readonly FILES=(
-    "${CODE_DIR}/utils/inc/*.hpp"
-    "${CODE_DIR}/utils/src/*.cpp"
-    "${CODE_DIR}/leetcode/inc/*.h"
-    "${CODE_DIR}/leetcode/src/*.cpp"
-    "${CODE_DIR}/test/*.cpp"
-    )
-
-for ELEMENT in "${FILES[@]}"; do
-    clang-format -i ${ELEMENT}
-done
+find "${CODE_DIR}" -type f \( -name "*.cpp" -o -name "*.hpp" -o -name "*.h" \) -exec clang-format -i {} +
