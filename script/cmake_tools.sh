@@ -1,6 +1,7 @@
 #!/usr/local/bin/bash
 echo "Bash version: $BASH_VERSION"
 if [ -z "$BASHRC_LOADED" ]; then
+    # shellcheck disable=SC1091
     source "${HOME}/.bashrc"
 fi
 
