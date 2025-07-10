@@ -4,6 +4,8 @@
     "cmake.configureOnEdit": false,
     "cmake.configureOnOpen": false,
     "cmake.copyCompileCommands": "${workspaceFolder}/out/build/compile_commands.json",
+    "cmake.allowCommentsInPresetsFile": true,
+    "cmake.allowUnsupportedPresetsVersions": true,
     "workbench.editor.wrapTabs": true,
     "terminal.integrated.profiles.windows": {
         "git_bash": {
