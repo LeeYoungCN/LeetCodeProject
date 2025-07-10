@@ -14,10 +14,10 @@ char LC3307_FindTheKThCharacterInStringGameII::kthCharacter(long long k, std::ve
 {
     int32_t optCnt = 0;
 
-    for (size_t idx = operations.size() - 1; idx >= 0 && idx < operations.size(); idx--) {
+    for (size_t idx = operations.size(); idx > 0; idx--) {
         if (idx < 63 && k > (1LL << idx)) {
-            k -= (1LL << idx);
-            optCnt += operations[idx];
+            k -= (1LL << (idx - 1));
+            optCnt += operations[idx - 1];
         }
     }
 
