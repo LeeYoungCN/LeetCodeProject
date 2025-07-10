@@ -68,6 +68,7 @@ cmake_problem_prefix=""
 cmake_build_target=""
 cmake_install_component=""
 cmake_configure_param_cfg=""
+# shellcheck disable=SC2034
 ARCHITECTURE="x64"
 env_param_file=""
 
@@ -141,7 +142,9 @@ function clean_env() {
 }
 
 function list_cmake_configure_param_in_dir() {
+    # shellcheck disable=SC2034
     local RED='\033[0;31m'
+    # shellcheck disable=SC2034
     local GREEN='\033[32m'
     local BLUE='\033[34m'
     local NC='\033[0m'
