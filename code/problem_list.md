@@ -10,6 +10,7 @@ lc0046_permutations
 lc0047_permutations_ii
 lc0053_maximum_subarray
 lc0055_jump_game
+lc0056_merge_intervals
 lc0062_unique_paths
 lc0063_unique_paths_ii
 lc0072_edit_distance
