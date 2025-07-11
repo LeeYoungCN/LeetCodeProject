@@ -7,6 +7,7 @@
     "tasks": [
         {
             "label": "Clean",
+            "detail": "清理所有build和install文件。",
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
@@ -14,13 +15,11 @@
             "args": [
                 "--clean"
             ],
-            "detail": "根据makefile生成可执行文件和库文件",
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "problemMatcher": []
         },
         {
             "label": "CMake Configure",
+            "detail": "CMake: 配置项目",
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
@@ -29,13 +28,11 @@
                 "--configure",
                 "--problem=all"
             ],
-            "detail": "根据makefile生成可执行文件和库文件",
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "problemMatcher": []
         },
         {
             "label": "CMake Build",
+            "detail": "CMake: 构建项目",
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
@@ -43,13 +40,11 @@
             "args": [
                 "--build"
             ],
-            "detail": "根据makefile生成可执行文件和库文件",
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "problemMatcher": []
         },
         {
             "label": "Run gtest",
+            "detail": "运行gtest测试用例",
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
@@ -58,13 +53,13 @@
                 "--build",
                 "--gtest"
             ],
-            "detail": "根据makefile生成可执行文件和库文件",
             "problemMatcher": [
                 "$gcc"
             ]
         },
         {
             "label": "Run ctest",
+            "detail": "CMake: 测试",
             "options": {
                 "cwd": "${workspaceFolder}/script/"
             },
@@ -73,10 +68,17 @@
                 "--build",
                 "--ctest"
             ],
-            "detail": "根据makefile生成可执行文件和库文件",
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "problemMatcher": []
+        },
+        {
+            "label": "Format all files",
+            "detail": "使用clang-format格式化所有文件",
+            "options": {
+                "cwd": "${workspaceFolder}/script/"
+            },
+            "command": "./format_all.sh*",
+            "args": [],
+            "problemMatcher": []
         }
     ]
 }
