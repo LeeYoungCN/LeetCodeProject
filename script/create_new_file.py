@@ -15,9 +15,9 @@ _LEETCODE_SRC_DIR = _CODE_DIR + "/leetcode/src/"
 _LEETCODE_INC_DIR = _CODE_DIR + "/leetcode/inc/"
 _TEMPLATE_DIR = _SCRIPT_DIR + "/template/"
 
-_TEMPLATE_HEAD_FILE = _TEMPLATE_DIR + "leetcode_head_file.template"
-_TEMPLATE_SRC_FILE = _TEMPLATE_DIR + "leetcode_src_file.template"
-_TEMPLATE_TEST_FILE = _TEMPLATE_DIR + "leetcode_test_file.template"
+_TEMPLATE_HEAD_FILE = _TEMPLATE_DIR + "leetcode_head_file.h.in"
+_TEMPLATE_SRC_FILE = _TEMPLATE_DIR + "leetcode_src_file.cpp.in"
+_TEMPLATE_TEST_FILE = _TEMPLATE_DIR + "leetcode_test_file.cpp.in"
 
 
 class LeetcodeFile:
@@ -120,16 +120,16 @@ class LeetcodeFile:
 
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         replace_list: list[list[str]] = [
-            ["URL_STR", self.__url],
-            ["CLASS_NAME", self.__leetcode_class_name],
-            ["DEF_STR", self.__def_str],
-            ["HEAD_FILE_NAME", self.__leetcode_head_file],
-            ["TEST_CLASSNAME", self.__test_class_name],
-            ["FUNC_RET_TYPE", self.__func_ret_type],
-            ["FUNC_PARAM", self.__func_params],
-            ["CLASS_FUNC", self.__func_name],
-            ["TIME_STR", timestamp],
-            ["PARAM_NAMES", self.__param_names],
+            ["@URL_STR@", self.__url],
+            ["@CLASS_NAME@", self.__leetcode_class_name],
+            ["@DEF_STR@", self.__def_str],
+            ["@HEAD_FILE_NAME@", self.__leetcode_head_file],
+            ["@TEST_CLASSNAME@", self.__test_class_name],
+            ["@FUNC_RET_TYPE@", self.__func_ret_type],
+            ["@FUNC_PARAM@", self.__func_params],
+            ["@CLASS_FUNC@", self.__func_name],
+            ["@TIME_STR@", timestamp],
+            ["@PARAM_NAMES@", self.__param_names],
         ]
 
         with open(template_file, "r", encoding="utf-8") as infile:

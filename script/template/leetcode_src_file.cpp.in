@@ -1,8 +1,8 @@
 /*
- * Time : TIME_STR
- * URL  : URL_STR
+ * Time : @TIME_STR@
+ * URL  : @URL_STR@
  */
-#include "HEAD_FILE_NAME"
+#include "@HEAD_FILE_NAME@"
 
 #include <algorithm>
 #include <cmath>
@@ -21,7 +21,7 @@
 
 using namespace std;
 
-FUNC_RET_TYPE CLASS_NAME::CLASS_FUNC(FUNC_PARAM)
+@FUNC_RET_TYPE@ @CLASS_NAME@::@CLASS_FUNC@(@FUNC_PARAM@)
 {
     return 0;
 }

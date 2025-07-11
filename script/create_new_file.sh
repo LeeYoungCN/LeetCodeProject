@@ -19,9 +19,9 @@ readonly LEETCODE_SRC_DIR="${ROOT_DIR}/code/leetcode/src"
 readonly TEST_DIR="${ROOT_DIR}/code/test"
 
 readonly TEMPLATE_FILE_DIR="${ROOT_DIR}/script/template"
-readonly TEMPLATE_HEAD_FILE="${TEMPLATE_FILE_DIR}/leetcode_head_file.template"
-readonly TEMPLATE_SRC_FILE="${TEMPLATE_FILE_DIR}/leetcode_src_file.template"
-readonly TEMPLATE_TEST_FILE="${TEMPLATE_FILE_DIR}/leetcode_test_file.template"
+readonly TEMPLATE_HEAD_FILE="${TEMPLATE_FILE_DIR}/leetcode_head_file.h.in"
+readonly TEMPLATE_SRC_FILE="${TEMPLATE_FILE_DIR}/leetcode_src_file.cpp.in"
+readonly TEMPLATE_TEST_FILE="${TEMPLATE_FILE_DIR}/leetcode_test_file.cpp.in"
 
 ARG_PREFIX=""
 ARG_URL=""
@@ -127,16 +127,16 @@ function create_new_file_by_template() {
     fi
 
     cp "${template_file}" "${new_file}" || exit 1
-    replace_text "URL_STR" "${ARG_URL}" "${new_file}"
-    replace_text "CLASS_NAME" "${g_leetcode_class_name}" "${new_file}"
-    replace_text "DEF_STR" "${g_def_str}" "${new_file}"
-    replace_text "HEAD_FILE_NAME" "${g_leetcode_file_name}.h" "${new_file}"
-    replace_text "TEST_CLASSNAME" "${g_test_class_name}" "${new_file}"
-    replace_text "FUNC_RET_TYPE" "${g_func_ret_type}" "${new_file}"
-    replace_text "FUNC_PARAM" "${g_func_param}" "${new_file}"
-    replace_text "CLASS_FUNC" "${g_func_name}" "${new_file}"
-    replace_text "TIME_STR" "${time_str}" "${new_file}"
-    replace_text "PARAM_NAMES" "${g_param_names}" "${new_file}"
+    replace_text "@URL_STR@" "${ARG_URL}" "${new_file}"
+    replace_text "@CLASS_NAME@" "${g_leetcode_class_name}" "${new_file}"
+    replace_text "@DEF_STR@" "${g_def_str}" "${new_file}"
+    replace_text "@HEAD_FILE_NAME@" "${g_leetcode_file_name}.h" "${new_file}"
+    replace_text "@TEST_CLASSNAME@" "${g_test_class_name}" "${new_file}"
+    replace_text "@FUNC_RET_TYPE@" "${g_func_ret_type}" "${new_file}"
+    replace_text "@FUNC_PARAM@" "${g_func_param}" "${new_file}"
+    replace_text "@CLASS_FUNC@" "${g_func_name}" "${new_file}"
+    replace_text "@TIME_STR@" "${time_str}" "${new_file}"
+    replace_text "@PARAM_NAMES@" "${g_param_names}" "${new_file}"
     print_log "create [${new_file}] success." info
 }
 
