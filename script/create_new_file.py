@@ -36,8 +36,7 @@ _VECTOR_EXPEC_EQ = """ASSERT_EQ(result.size(), expect.size());
         sort(result.begin(), result.end());
         for (size_t i = 0; i < expect.size(); ++i) {
             EXPECT_EQ(expect[i], result[i]);
-        }
-"""
+        }"""
 
 _NORMAL_EXPEC_EQ = "EXPECT_EQ(expect, result);"
 
