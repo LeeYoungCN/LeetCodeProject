@@ -43,6 +43,7 @@ _NORMAL_EXPEC_EQ = "EXPECT_EQ(expect, result);"
 _TYPE_EXPEC_EQ_DICT = {
     "int": _NORMAL_EXPEC_EQ,
     "int32_t": _NORMAL_EXPEC_EQ,
+    "int64_t": _NORMAL_EXPEC_EQ,
     "long long": _NORMAL_EXPEC_EQ,
     "string": _NORMAL_EXPEC_EQ,
     "std::string": _NORMAL_EXPEC_EQ,
@@ -87,6 +88,18 @@ class LeetcodeFile:
 
     def __init_func_data(self):
         # long long func_name(vector<int>& x, string y)
+        """
+        long long func_name(vector<int>& x, string y) -> int64_t func_name(std::vector<int32_t>& x, std::string y)
+        """
+        type_trans_dict = {
+            "vector": "std::vector",
+            "string": "std::string",
+            "int": "int32_t",
+            "long long": "int64_t"
+        }
+
+        for old, new in type_trans_dict.items():
+            self.__funciton = self.__funciton.replace(old, new)
 
         """long long func_name"""
         func_name_with_ret = self.__funciton.split("(")[0]
