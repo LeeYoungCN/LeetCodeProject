@@ -55,7 +55,7 @@ void @TEST_CLASSNAME@::RunTest(@FUNC_PARAM@, @FUNC_RET_TYPE@& expect)
 
 TEST_F(@TEST_CLASSNAME@, case1)
 {
-    @FUNC_PARAM@;
+    @TEST_CASE_VAR@;
     @FUNC_RET_TYPE@ expect = 0;
     RunTest(@PARAM_NAMES@, expect);
 }

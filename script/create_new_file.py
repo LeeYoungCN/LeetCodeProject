@@ -79,6 +79,7 @@ class LeetcodeFile:
         self.__test_class_name = None
         self.__def_str = None
         self.__expect_eq_code = None
+        self.__test_case_var = None
 
         if self.__url is None:
             self.__url = ""
@@ -105,6 +106,11 @@ class LeetcodeFile:
         func_name_with_ret = self.__funciton.split("(")[0]
         """ vector<int>& x, string y """
         self.__func_params = self.__funciton.split("(")[1].split(")")[0]
+        """
+            vector<int> x;
+            string y
+        """
+        self.__test_case_var = self.__func_params.replace(", ", ";\n    ").replace("&", "")
         """ func_name """
         self.__func_name = func_name_with_ret.split(" ")[-1]
         """ long long """
@@ -184,7 +190,8 @@ class LeetcodeFile:
             ["@CLASS_FUNC@", self.__func_name],
             ["@TIME_STR@", timestamp],
             ["@PARAM_NAMES@", self.__param_names],
-            ["@EXPECT_EQ_CODE@", self.__expect_eq_code]
+            ["@EXPECT_EQ_CODE@", self.__expect_eq_code],
+            ["@TEST_CASE_VAR@", self.__test_case_var]
         ]
 
         with open(template_file, "r", encoding="utf-8") as infile:
