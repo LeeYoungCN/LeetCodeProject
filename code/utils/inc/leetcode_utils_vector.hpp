@@ -11,7 +11,7 @@
 #include "leetcode_utils_common.hpp"
 
 template <class T = int32_t>
-std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
+std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = false)
 {
     if (vec.empty()) {
         return "{}";
@@ -49,17 +49,17 @@ std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_
 }
 
 std::string Vector2String(const std::vector<std::string> &vec, uint32_t start = 0, uint32_t end = 0,
-                          bool hasIdx = true);
+                          bool hasIdx = false);
 
 template <class T>
-void PrintVector(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
+void PrintVector(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = false)
 {
     std::cout << Vector2String(vec, start, end, hasIdx) << std::endl;
 }
 
 template <class T = int32_t>
 std::string Matrix2String(const std::vector<std::vector<T>> &matrix, uint32_t start = 0, uint32_t end = 0,
-                          bool hasIdx = true)
+                          bool hasIdx = false)
 {
     if (matrix.empty()) {
         return "{}";
@@ -91,7 +91,7 @@ std::string Matrix2String(const std::vector<std::vector<T>> &matrix, uint32_t st
 }
 
 template <class T>
-void PrintMatrix(const std::vector<std::vector<T>> &matrix, uint32_t start = 0, uint32_t end = 0, bool hasIdx = true)
+void PrintMatrix(const std::vector<std::vector<T>> &matrix, uint32_t start = 0, uint32_t end = 0, bool hasIdx = false)
 {
     std::cout << Matrix2String(matrix, start, end, hasIdx) << std::endl;
 }
