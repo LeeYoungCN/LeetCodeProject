@@ -30,7 +30,7 @@ protected:
     void TearDown() override;
 
     vector<@CLASS_NAME@ *> m_testList;
-    void RunTest(@FUNC_PARAM@, const @FUNC_RET_TYPE@& expect);
+    void RunTest(@FUNC_PARAM@, @FUNC_RET_TYPE@& expect);
 };
 
 void @TEST_CLASSNAME@::SetUp()
@@ -45,17 +45,17 @@ void @TEST_CLASSNAME@::TearDown()
     }
 }
 
-void @TEST_CLASSNAME@::RunTest(@FUNC_PARAM@, const @FUNC_RET_TYPE@& expect)
+void @TEST_CLASSNAME@::RunTest(@FUNC_PARAM@, @FUNC_RET_TYPE@& expect)
 {
     for (@CLASS_NAME@ *inst : m_testList) {
         @FUNC_RET_TYPE@ result = inst->@CLASS_FUNC@(@PARAM_NAMES@);
-        EXPECT_EQ(expect, result);
+        @EXPECT_EQ_CODE@
     }
 }
 
 TEST_F(@TEST_CLASSNAME@, case1)
 {
     @FUNC_PARAM@;
-    const @FUNC_RET_TYPE@ expect = 0;
+    @FUNC_RET_TYPE@ expect = 0;
     RunTest(@PARAM_NAMES@, expect);
 }

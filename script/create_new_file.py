@@ -19,6 +19,46 @@ _TEMPLATE_HEAD_FILE = _TEMPLATE_DIR + "leetcode_head_file.h.in"
 _TEMPLATE_SRC_FILE = _TEMPLATE_DIR + "leetcode_src_file.cpp.in"
 _TEMPLATE_TEST_FILE = _TEMPLATE_DIR + "leetcode_test_file.cpp.in"
 
+_MATRIX_EXPECT_EQ ="""ASSERT_EQ(result.size(), expect.size());
+        sort(expect.begin(), expect.end());
+        sort(result.begin(), result.end());
+        for (size_t i = 0; i < expect.size(); ++i) {
+            ASSERT_EQ(expect[i].size(), expect[i].size());
+            sort(expect[i].begin(), expect[i].end());
+            sort(result[i].begin(), result[i].end());
+            for (size_t j = 0; j < expect[i].size(); ++j) {
+                EXPECT_EQ(expect[i][j], result[i][j]);
+            }
+        }"""
+
+_VECTOR_EXPEC_EQ = """ASSERT_EQ(result.size(), expect.size());
+        sort(expect.begin(), expect.end());
+        sort(result.begin(), result.end());
+        for (size_t i = 0; i < expect.size(); ++i) {
+            EXPECT_EQ(expect[i], result[i]);
+        }
+"""
+
+_NORMAL_EXPEC_EQ = "EXPECT_EQ(expect, result);"
+
+_TYPE_EXPEC_EQ_DICT = {
+    "int": _NORMAL_EXPEC_EQ,
+    "int32_t": _NORMAL_EXPEC_EQ,
+    "long long": _NORMAL_EXPEC_EQ,
+    "string": _NORMAL_EXPEC_EQ,
+    "std::string": _NORMAL_EXPEC_EQ,
+    "vector<int>": _VECTOR_EXPEC_EQ,
+    "std::vector<int>": _VECTOR_EXPEC_EQ,
+    "std::vector<int32_t>": _VECTOR_EXPEC_EQ,
+    "vector<string>": _VECTOR_EXPEC_EQ,
+    "std::vector<std::string>": _VECTOR_EXPEC_EQ,
+    "vector<vector<int>>": _MATRIX_EXPECT_EQ,
+    "std::vector<std::vector<int32_t>>": _MATRIX_EXPECT_EQ,
+    "std::vector<std::vector<int>>": _MATRIX_EXPECT_EQ,
+    "vector<vector<string>>": _MATRIX_EXPECT_EQ,
+    "std::vector<std::vector<std::string>>": _MATRIX_EXPECT_EQ,
+}
+
 
 class LeetcodeFile:
     def __init__(self, prefix: str, url: str, function: str, class_name: str = None):
@@ -38,6 +78,7 @@ class LeetcodeFile:
         self.__leetcode_class_name = None
         self.__test_class_name = None
         self.__def_str = None
+        self.__expect_eq_code = None
 
         if self.__url is None:
             self.__url = ""
@@ -56,6 +97,7 @@ class LeetcodeFile:
         self.__func_name = func_name_with_ret.split(" ")[-1]
         """ long long """
         self.__func_ret_type = func_name_with_ret.rsplit(" ", 1)[0]
+        self.__expect_eq_code = _TYPE_EXPEC_EQ_DICT[self.__func_ret_type]
         """ x, y """
         param_parts = self.__func_params.split(", ")
         self.__param_names = ""
@@ -130,6 +172,7 @@ class LeetcodeFile:
             ["@CLASS_FUNC@", self.__func_name],
             ["@TIME_STR@", timestamp],
             ["@PARAM_NAMES@", self.__param_names],
+            ["@EXPECT_EQ_CODE@", self.__expect_eq_code]
         ]
 
         with open(template_file, "r", encoding="utf-8") as infile:
