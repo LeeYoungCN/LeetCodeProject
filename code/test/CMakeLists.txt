@@ -21,7 +21,8 @@ target_include_directories(${TEST_RUNTIME_NAME} PRIVATE
 )
 
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${CMAKE_THIRD_PARTY_PATH}/googletest")
-find_package(GTest REQUIRED)
+
+find_package(GTest QUIET)
 
 if (NOT GTest_FOUND)
     include(${CMAKE_SOURCE_DIR}/cmake/fetch_content.cmake)
