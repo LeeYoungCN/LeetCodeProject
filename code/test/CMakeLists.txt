@@ -22,6 +22,11 @@ target_include_directories(${TEST_RUNTIME_NAME} PRIVATE
 
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${CMAKE_THIRD_PARTY_PATH}/googletest")
 find_package(GTest REQUIRED)
+
+if (NOT GTest_FOUND)
+    include(${CMAKE_SOURCE_DIR}/cmake/fetch_content.cmake)
+endif()
+
 target_link_libraries(${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME} ${UTILS_LIB_NAME} GTest::GTest)
 
 # 添加ctest测试
