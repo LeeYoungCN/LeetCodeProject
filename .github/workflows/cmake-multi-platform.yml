@@ -30,7 +30,7 @@ jobs:
           - os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
-            preset: msvc_x64_release
+            preset: win_clang_msvc_release
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
@@ -55,20 +55,23 @@ jobs:
       id: strings
       shell: bash
       run: |
-        echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+        echo "build-output-dir=${{ github.workspace }}/out/build/${{ matrix.preset }}" >> "$GITHUB_OUTPUT"
+        echo "build-install-dir=${{ github.workspace }}/out/install/${{ matrix.preset }}" >> "$GITHUB_OUTPUT"
 
     - name: Configure CMake
+      working-directory: ${{ github.workspace }}
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: >
         cmake --preset ${{ matrix.preset }}
 
-    - name: Build
+    - name: Build And Install
+      working-directory: ${{ github.workspace }}
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build --preset ${{ matrix.preset }}_build
 
     - name: Test
-      working-directory: ${{ steps.strings.outputs.build-output-dir }}
+      working-directory: ${{ github.workspace }}
       # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest --preset ${{ matrix.preset }}_ctest
