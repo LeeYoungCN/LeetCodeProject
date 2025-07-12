@@ -15,13 +15,12 @@ readonly ROOT_DIR
 source "${SCRIPT_DIR}/common_func.sh"
 
 readonly LEETCODE_SRC_DIR="${ROOT_DIR}/code//leetcode/src"
-readonly PROBLEM_LIST_FILE="${ROOT_DIR}/code/problem_list.md"
+readonly PROBLEM_LIST_FILE="${ROOT_DIR}/code/problem_list"
 
 if [ -e "${PROBLEM_LIST_FILE}" ]; then
     rm "${PROBLEM_LIST_FILE}"
 fi
 
-printf "# Problem List\\n\\n" >> "${PROBLEM_LIST_FILE}"
 
 find "${LEETCODE_SRC_DIR}" -maxdepth 2 -type f -exec bash -c '
   for file do

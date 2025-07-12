@@ -462,7 +462,7 @@ function run_ctest() {
 }
 
 function list_problem_prefix() {
-    local problem_list_file="${ROOT_DIR}/problem_list.md"
+    local problem_list_file="${ROOT_DIR}/problem_list"
     cat "${problem_list_file}"
 }
 
