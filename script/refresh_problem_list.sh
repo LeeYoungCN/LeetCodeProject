@@ -22,7 +22,7 @@ if [ -e "${PROBLEM_LIST_FILE}" ]; then
 fi
 
 
-find "${LEETCODE_SRC_DIR}" -maxdepth 2 -type f -exec bash -c '
+find "${LEETCODE_SRC_DIR}" -type f -exec bash -c '
   for file do
     base=$(basename "${file}")
     echo "${base%.*}"  # 去除最后一个扩展名

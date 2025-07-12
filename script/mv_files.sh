@@ -1,4 +1,5 @@
 #!/usr/local/bin/bash
+set -e
 echo "Bash version: $BASH_VERSION"
 if [ -z "$BASHRC_LOADED" ]; then
     # shellcheck disable=SC1091
@@ -37,8 +38,12 @@ function mv_file()
     local new_inc_str="${4}"
 
     if [ ! -e "${file}" ]; then
-        ehco "${file} not exit!"
-        return
+        echo "${file} not exit!"
+        return 0
+    fi
+
+    if [ -e "${dst_dir}/$(basename "${file}")" ]; then
+        return 0
     fi
 
     if [ ! -d "${dst_dir}" ]; then
@@ -49,21 +54,25 @@ function mv_file()
 }
 
 function mv_all_files() {
-    find "${LEETCODE_SRC_DIR}" -maxdepth 1 -type f -name 'lc*.cpp' -print0 |
+    find "${LEETCODE_SRC_DIR}" -type f -name 'lc*.cpp' -print0 |
         while IFS= read -r -d '' src_file; do
             local src_file_name
             src_file_name="$(basename "${src_file}")"
             local problem_name="${src_file_name%.cpp}"
-            local inc_file="${LEETCODE_INC_DIR}/${problem_name}.h"
-            local test_file="${TEST_DIR}/test_${problem_name}.cpp"
+            local inc_file
+            inc_file=$(find "${LEETCODE_INC_DIR}" -type f -name "${problem_name}.h")
+            local test_file
+            test_file=$(find "${TEST_DIR}" -type f -name "test_${problem_name}.cpp")
             local prefix=${problem_name%%_*}
-            local fold_name="${prefix%??}xx"
-            local inc_str="${problem_name}.h"
-            local new_inc_str="${fold_name}/${problem_name}.h"
+            local fold_name="${prefix%???}xxx/${prefix%??}xx/${prefix%?}x"
+            local inc_str
+            inc_str="$(grep "${problem_name}.h" "${src_file}")"
+
+            local new_inc_str="#include \"${fold_name}/${problem_name}.h\""
 
             mv_file "${src_file}" "${LEETCODE_SRC_DIR}/${fold_name}" "${inc_str}" "${new_inc_str}"
-            mv_file "${inc_file}" "${LEETCODE_INC_DIR}/${fold_name}" "${inc_str}" "${new_inc_str}"
             mv_file "${test_file}" "${TEST_DIR}/test_${fold_name}" "${inc_str}" "${new_inc_str}"
+            mv_file "${inc_file}" "${LEETCODE_INC_DIR}/${fold_name}" "${inc_str}" "${new_inc_str}"
         done
 }
 

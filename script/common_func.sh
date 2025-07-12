@@ -28,12 +28,15 @@ function replace_text() {
     if [ "$(uname -s)" == "Darwin" ]; then
         if ! sed -i '' "s#${old_str}#${new_str}#g" "${file_path}"; then
             print_log "Replace failed. ${old_str} -> ${new_str}  ${file_path}." error
+            return 1
         fi
     else
-        if ! sed -i "s#${old_str}#${new_str}#g" "${file_path}"; then
+        if ! sed -i "s|${old_str}|${new_str}|g" "${file_path}"; then
             print_log "Replace failed. ${old_str} -> ${new_str}  ${file_path}." error
+            return 1
         fi
     fi
+    return 0
 }
 
 function rm_dir() {
@@ -45,8 +48,10 @@ function rm_dir() {
 
     if ! rm -rf "${dir}"; then
         print_log "Remove [${dir}] failed." error
+        return 1
     else
         print_log "Remove [${dir}] success." info
+        return 0
     fi
 }
 
