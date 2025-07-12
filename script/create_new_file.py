@@ -19,7 +19,7 @@ _TEMPLATE_HEAD_FILE = _TEMPLATE_DIR + "leetcode_head_file.h.in"
 _TEMPLATE_SRC_FILE = _TEMPLATE_DIR + "leetcode_src_file.cpp.in"
 _TEMPLATE_TEST_FILE = _TEMPLATE_DIR + "leetcode_test_file.cpp.in"
 
-_MATRIX_EXPECT_EQ ="""ASSERT_EQ(result.size(), expect.size());
+_MATRIX_EXPECT_EQ = """ASSERT_EQ(result.size(), expect.size());
         sort(expect.begin(), expect.end());
         sort(result.begin(), result.end());
         for (size_t i = 0; i < expect.size(); ++i) {
@@ -96,7 +96,7 @@ class LeetcodeFile:
             "vector": "std::vector",
             "string": "std::string",
             "int": "int32_t",
-            "long long": "int64_t"
+            "long long": "int64_t",
         }
 
         for old, new in type_trans_dict.items():
@@ -110,7 +110,9 @@ class LeetcodeFile:
             vector<int> x;
             string y
         """
-        self.__test_case_var = self.__func_params.replace(", ", ";\n    ").replace("&", "")
+        self.__test_case_var = self.__func_params.replace(", ", ";\n    ").replace(
+            "&", ""
+        )
         """ func_name """
         self.__func_name = func_name_with_ret.split(" ")[-1]
         """ long long """
@@ -191,7 +193,7 @@ class LeetcodeFile:
             ["@TIME_STR@", timestamp],
             ["@PARAM_NAMES@", self.__param_names],
             ["@EXPECT_EQ_CODE@", self.__expect_eq_code],
-            ["@TEST_CASE_VAR@", self.__test_case_var]
+            ["@TEST_CASE_VAR@", self.__test_case_var],
         ]
 
         with open(template_file, "r", encoding="utf-8") as infile:
