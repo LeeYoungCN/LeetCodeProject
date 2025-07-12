@@ -13,10 +13,5 @@ FetchContent_Declare(
   GIT_TAG        release-1.12.1
 )
 
-# 设置Eigen的安装路径
-set(googletest_CMAKE_ARGS 
-  "-DCMAKE_INSTALL_PREFIX=${THIRD_PARTY_INSTALL_DIR}/googletest"
-  CACHE STRING "" FORCE
-)
-
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)

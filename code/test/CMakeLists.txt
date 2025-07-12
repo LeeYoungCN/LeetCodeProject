@@ -28,7 +28,7 @@ if (NOT GTest_FOUND)
     include(${CMAKE_SOURCE_DIR}/cmake/fetch_content.cmake)
 endif()
 
-target_link_libraries(${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME} ${UTILS_LIB_NAME} GTest::GTest)
+target_link_libraries(${TEST_RUNTIME_NAME} ${LEETCODE_LIB_NAME} ${UTILS_LIB_NAME} GTest::gtest)
 
 # 添加ctest测试
 add_test(NAME TEST_ALL COMMAND ${TEST_RUNTIME_NAME})
