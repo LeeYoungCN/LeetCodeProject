@@ -6,7 +6,7 @@
 bool isNumber(uint32_t idx, const std::string& str)
 {
     if (str[idx] == '-') {
-        if (idx < str.length() - 1) {
+        if (idx >= str.length() - 1) {
             return false;
         } else {
             idx++;
