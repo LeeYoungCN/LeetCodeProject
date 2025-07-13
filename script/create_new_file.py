@@ -161,14 +161,15 @@ class LeetcodeFile:
         self.__def_str = self.__leetcode_file_name.upper() + "_H"
 
     def print_data(self):
-        log(f"func_name:          {self.__func_name}")
-        log(f"func_ret_type:      {self.__func_ret_type}")
-        log(f"func_params:        {self.__func_params}")
-        log(f"param_names:        {self.__param_names}")
-        log(f"src_file_name:      {self.__leetcode_file_name}")
-        log(f"class_name:         {self.__leetcode_class_name}")
-        log(f"test_class_name:    {self.__test_class_name}")
-        log(f"def_str:            {self.__def_str}")
+        log(f"file_name:            {self.__leetcode_file_name}")
+        log(f"class_name:           {self.__leetcode_class_name}")
+        log(f"function:             {self.__funciton}")
+        log(f"func_ret_type:        {self.__func_ret_type}")
+        log(f"func_name:            {self.__func_name}")
+        log(f"func_params:          {self.__func_params}")
+        log(f"param_names:          {self.__param_names}")
+        log(f"test_class_name:      {self.__test_class_name}")
+        log(f"def_str:              {self.__def_str}")
 
     def __create_file_by_template(self, template_file, new_file):
         if os.path.exists(new_file):
