@@ -54,7 +54,7 @@ function mv_file()
 }
 
 function mv_all_files() {
-    find "${LEETCODE_SRC_DIR}" -type f -name 'lc*.cpp' -print0 |
+    find "${LEETCODE_SRC_DIR}" -type f -name "${1}*.cpp" -print0 |
         while IFS= read -r -d '' src_file; do
             local src_file_name
             src_file_name="$(basename "${src_file}")"
@@ -76,4 +76,4 @@ function mv_all_files() {
         done
 }
 
-mv_all_files
+mv_all_files "${1}"
