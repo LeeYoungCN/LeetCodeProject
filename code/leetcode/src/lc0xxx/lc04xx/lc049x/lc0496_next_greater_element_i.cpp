@@ -10,8 +10,6 @@
 #include <stack>
 #include <vector>
 
-#include "leetcode_utils_map.hpp"
-
 using namespace std;
 
 std::vector<int32_t> LC0496_NextGreaterElementI::nextGreaterElement(std::vector<int32_t>& nums1,
@@ -31,7 +29,7 @@ std::vector<int32_t> LC0496_NextGreaterElementI::nextGreaterElement(std::vector<
         nexMaxMap[idxStack.top()] = -1;
         idxStack.pop();
     }
-    PrintMap(nexMaxMap);
+
     std::vector<int32_t> ans;
     ans.reserve(nums1.size());
     for (int32_t i : nums1) {

@@ -7,7 +7,6 @@
 
 #include <cstdint>
 #include <vector>
-#include <string>
 
 class LC0496_NextGreaterElementI {
 public:
