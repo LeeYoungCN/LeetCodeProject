@@ -31,12 +31,9 @@ _MATRIX_EXPECT_EQ = """ASSERT_EQ(result.size(), expect.size());
             }
         }"""
 
-_VECTOR_EXPEC_EQ = """ASSERT_EQ(result.size(), expect.size());
-        sort(expect.begin(), expect.end());
+_VECTOR_EXPEC_EQ = """sort(expect.begin(), expect.end());
         sort(result.begin(), result.end());
-        for (size_t i = 0; i < expect.size(); ++i) {
-            EXPECT_EQ(expect[i], result[i]);
-        }"""
+        EXPECT_EQ(expect, result);"""
 
 _NORMAL_EXPEC_EQ = "EXPECT_EQ(expect, result);"
 
