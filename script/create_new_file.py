@@ -44,6 +44,7 @@ _TYPE_EXPEC_EQ_DICT = {
     "long long": _NORMAL_EXPEC_EQ,
     "string": _NORMAL_EXPEC_EQ,
     "std::string": _NORMAL_EXPEC_EQ,
+    "bool": _NORMAL_EXPEC_EQ,
     "vector<int>": _VECTOR_EXPEC_EQ,
     "std::vector<int>": _VECTOR_EXPEC_EQ,
     "std::vector<int32_t>": _VECTOR_EXPEC_EQ,
