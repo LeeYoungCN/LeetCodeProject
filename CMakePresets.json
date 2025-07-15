@@ -465,7 +465,7 @@
             "hidden": true,
             "output": {
                 "outputOnFailure": true,
-                "outputLogFile": "Testing/Test_ALL.log",
+                "outputLogFile": "${sourceDir}/out/Testing/${presetName}/Test_ALL.log",
                 "outputJUnitFile": "${sourceDir}/out/Testing/${presetName}/Test_ALL.xml"
             }
         },
@@ -638,6 +638,236 @@
             "configurePreset": "darwin_clang_release",
             "inherits": [
                 "darwin_ctest_base"
+            ]
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "win_clang_msvc_debug_workflow",
+            "description": "Clang MSVC Debug Workflow",
+            "displayName": "Clang MSVC Debug Workflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "win_clang_msvc_debug"
+                },
+                {
+                    "type": "build",
+                    "name": "win_clang_msvc_debug_build"
+                },
+                {
+                    "type": "test",
+                    "name": "win_clang_msvc_debug_ctest"
+                }
+            ]
+        },
+        {
+            "name": "win_clang_msvc_release_workflow",
+            "description": "Clang MSVC Release Workflow",
+            "displayName": "Clang MSVC Release Workflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "win_clang_msvc_release"
+                },
+                {
+                    "type": "build",
+                    "name": "win_clang_msvc_release_build"
+                },
+                {
+                    "type": "test",
+                    "name": "win_clang_msvc_release_ctest"
+                }
+            ]
+        },
+        {
+            "name": "win_clang_mingw_debug_workflow",
+            "description": "Clang MinGW Debug Workflow",
+            "displayName": "Clang MinGW Debug Workflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "win_clang_mingw_debug"
+                },
+                {
+                    "type": "build",
+                    "name": "win_clang_mingw_debug_build"
+                },
+                {
+                    "type": "test",
+                    "name": "win_clang_mingw_debug_ctest"
+                }
+            ]
+        },
+        {
+            "name": "win_clang_mingw_release_workflow",
+            "description": "Clang MinGW Release Workflow",
+            "displayName": "Clang MinGW Release Workflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "win_clang_mingw_release"
+                },
+                {
+                    "type": "build",
+                    "name": "win_clang_mingw_release_build"
+                },
+                {
+                    "type": "test",
+                    "name": "win_clang_mingw_release_ctest"
+                }
+            ]
+        },
+        {
+            "name": "msvc_x64_debug_workflow",
+            "description": "MSVC x64 Debug Workflow",
+            "displayName": "MSVC x64 Debug Workflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc_x64_debug"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc_x64_debug_build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc_x64_debug_ctest"
+                }
+            ]
+        },
+        {
+            "name": "msvc_x64_release_workflow",
+            "description": "MSVC x64 Release Workflow",
+            "displayName": "MSVC x64 Release Workflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc_x64_release"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc_x64_release_build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc_x64_release_ctest"
+                }
+            ]
+        },
+        {
+            "name": "msvc_x86_debug_workflow",
+            "description": "MSVC x86 Debug Workflow",
+            "displayName": "MSVC x86 Debug Workflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc_x86_debug"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc_x86_debug_build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc_x86_debug_ctest"
+                }
+            ]
+        },
+        {
+            "name": "msvc_x86_release_workflow",
+            "description": "MSVC x86 Release Workflow",
+            "displayName": "MSVC x86 Release Workflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc_x86_release"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc_x86_release_build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc_x86_release_ctest"
+                }
+            ]
+        },
+        {
+            "name": "linux_clang_debug_workflow",
+            "description": "Linux Clang Debug Workflow",
+            "displayName": "Linux Clang Debug Workflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "linux_clang_debug"
+                },
+                {
+                    "type": "build",
+                    "name": "linux_clang_debug_build"
+                },
+                {
+                    "type": "test",
+                    "name": "linux_clang_debug_ctest"
+                }
+            ]
+        },
+        {
+            "name": "linux_clang_release_workflow",
+            "description": "Linux Clang Release Workflow",
+            "displayName": "Linux Clang Release Workflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "linux_clang_release"
+                },
+                {
+                    "type": "build",
+                    "name": "linux_clang_release_build"
+                },
+                {
+                    "type": "test",
+                    "name": "linux_clang_release_ctest"
+                }
+            ]
+        },
+        {
+            "name": "linux_gnu_debug_workflow",
+            "description": "Linux GNU Debug Workflow",
+            "displayName": "Linux GNU Debug Workflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "linux_gnu_debug"
+                },
+                {
+                    "type": "build",
+                    "name": "linux_gnu_debug_build"
+                },
+                {
+                    "type": "test",
+                    "name": "linux_gnu_debug_ctest"
+                }
+            ]
+        },
+                {
+            "name": "linux_gnu_release_workflow",
+            "description": "Linux GNU Release Workflow",
+            "displayName": "Linux GNU Release Workflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "linux_gnu_release"
+                },
+                {
+                    "type": "build",
+                    "name": "linux_gnu_release_build"
+                },
+                {
+                    "type": "test",
+                    "name": "linux_gnu_release_ctest"
+                }
             ]
         }
     ]
