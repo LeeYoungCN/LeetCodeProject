@@ -17,7 +17,7 @@ _TEMPLATE_DIR = _SCRIPT_DIR + "/template/"
 
 _TEMPLATE_HEAD_FILE = _TEMPLATE_DIR + "leetcode_head_file.h.in"
 _TEMPLATE_SRC_FILE = _TEMPLATE_DIR + "leetcode_src_file.cpp.in"
-_TEMPLATE_TEST_FILE = _TEMPLATE_DIR + "leetcode_test_file.cpp.in"
+_TEMPLATE_TEST_FILE = _TEMPLATE_DIR + "leetcode_test_file_p.cpp.in"
 
 _MATRIX_EXPECT_EQ = """ASSERT_EQ(result.size(), expect.size());
         sort(expect.begin(), expect.end());
@@ -57,6 +57,19 @@ _TYPE_EXPEC_EQ_DICT = {
     "std::vector<std::vector<std::string>>": _MATRIX_EXPECT_EQ,
 }
 
+_TEST_CASE_INIT_PARAMS_DICT = {
+    "vector<int>": "const std::string",
+    "std::vector<int>": "const std::string",
+    "std::vector<int32_t>": "const std::string",
+    "vector<string>": "const std::string",
+    "std::vector<std::string>": "const std::string",
+    "vector<vector<int>>": "const std::string",
+    "std::vector<std::vector<int32_t>>": "const std::string",
+    "std::vector<std::vector<int>>": "const std::string",
+    "vector<vector<string>>": "const std::string",
+    "std::vector<std::vector<std::string>>": "const std::string",
+}
+
 
 class LeetcodeFile:
     def __init__(self, prefix: str, url: str, function: str, class_name: str = None):
@@ -68,7 +81,7 @@ class LeetcodeFile:
         self.__func_ret_type = None
         self.__func_name = None
         self.__func_params = None
-        self.__param_names = None
+        self.__param_names = ""
         self.__leetcode_file_name = None
         self.__leetcode_head_file = None
         self.__leetcode_src_file = None
@@ -120,9 +133,17 @@ class LeetcodeFile:
         param_parts = self.__func_params.split(", ")
         self.__param_names = ""
         for i in range(0, len(param_parts)):
-            self.__param_names += param_parts[i].rsplit(" ")[-1]
+            self.__param_names += "params." + param_parts[i].rsplit(" ")[-1]
             if i < len(param_parts) - 1:
                 self.__param_names += ", "
+
+        self.__test_case_init_params = (
+            self.__func_params + ", " + self.__func_ret_type + " expect"
+        )
+        for old in _TEST_CASE_INIT_PARAMS_DICT.keys():
+            self.__test_case_init_params = self.__test_case_init_params.replace(
+                old, "const std::string"
+            )
 
     def __init_class_data(self):
         if self.__class_name is None:
@@ -193,6 +214,7 @@ class LeetcodeFile:
             ["@PARAM_NAMES@", self.__param_names],
             ["@EXPECT_EQ_CODE@", self.__expect_eq_code],
             ["@TEST_CASE_VAR@", self.__test_case_var],
+            ["@TEST_CASE_INIT_PARAMS@", self.__test_case_init_params],
         ]
 
         with open(template_file, "r", encoding="utf-8") as infile:

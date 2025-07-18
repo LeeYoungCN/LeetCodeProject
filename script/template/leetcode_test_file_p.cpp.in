@@ -28,6 +28,7 @@ public:
     @TEST_CLASSNAME@_Params() = default;
     ~@TEST_CLASSNAME@_Params() = default;
     @TEST_CLASSNAME@_Params(@TEST_CASE_INIT_PARAMS@) {};
+
     friend std::ostream &operator<<(std::ostream &os, const @TEST_CLASSNAME@_Params &params)
     {
         os << "Print params";
@@ -39,7 +40,7 @@ public:
     @FUNC_RET_TYPE@ expect{};
 };
 
-class @TEST_CLASSNAME@ : public testing::Test {
+class @TEST_CLASSNAME@ : public ::testing::TestWithParam<@TEST_CLASSNAME@_Params> {
 protected:
     static void SetUpTestSuite() {}
     static void TearDownTestSuite() {}
@@ -47,7 +48,6 @@ protected:
     void TearDown() override;
 
     vector<@CLASS_NAME@ *> m_testList;
-    void RunTest(@TEST_CLASSNAME@_Params params);
 };
 
 void @TEST_CLASSNAME@::SetUp()
@@ -62,8 +62,9 @@ void @TEST_CLASSNAME@::TearDown()
     }
 }
 
-void @TEST_CLASSNAME@::RunTest(@TEST_CLASSNAME@_Params params)
+TEST_P(@TEST_CLASSNAME@, case)
 {
+    @TEST_CLASSNAME@_Params params = GetParam();
     @FUNC_RET_TYPE@ expect = params.expect;
     for (@CLASS_NAME@ *inst : m_testList) {
         @FUNC_RET_TYPE@ result = inst->@CLASS_FUNC@(@PARAM_NAMES@);
@@ -71,8 +72,4 @@ void @TEST_CLASSNAME@::RunTest(@TEST_CLASSNAME@_Params params)
     }
 }
 
-TEST_F(@TEST_CLASSNAME@, case1)
-{
-    @TEST_CLASSNAME@_Params params(@TEST_CASE_INIT_PARAMS@);
-    RunTest(params);
-}
+INSTANTIATE_TEST_SUITE_P(, @TEST_CLASSNAME@, ::testing::Values(@TEST_CLASSNAME@_Params(@TEST_CASE_INIT_PARAMS@)));
