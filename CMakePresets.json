@@ -8,7 +8,7 @@
             "installDir": "${sourceDir}/out/install/${presetName}",
             "description": "Project base config.",
             "cacheVariables": {
-                "CMAKE_PROBLEM_PREFIX": "all",
+                "CMAKE_PROBLEM_PREFIX": "lc1957_delete_characters_to_make_fancy_string",
                 "CMAKE_PRESET": "${presetName}",
                 "CMAKE_THIRD_PARTY_PATH": "${sourceDir}/third_lib/${presetName}"
             }
@@ -851,7 +851,7 @@
                 }
             ]
         },
-                {
+        {
             "name": "linux_gnu_release_workflow",
             "description": "Linux GNU Release Workflow",
             "displayName": "Linux GNU Release Workflow",

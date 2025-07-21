@@ -26,7 +26,7 @@
             "command": "./cmake_tools.sh",
             "args": [
                 "--configure",
-                "--problem=all"
+                "--problem=lc1957_delete_characters_to_make_fancy_string"
             ],
             "problemMatcher": []
         },
