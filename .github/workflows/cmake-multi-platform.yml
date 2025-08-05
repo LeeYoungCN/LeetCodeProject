@@ -52,6 +52,10 @@ jobs:
             c_compiler: clang
             cpp_compiler: clang++
             generator: "Unix Makefiles"
+          - os: macos-15
+            c_compiler: gcc
+            cpp_compiler: g++
+            generator: "Unix Makefiles"
         exclude:
           - os: windows-latest
             c_compiler: clang
@@ -59,8 +63,6 @@ jobs:
             c_compiler: cl
           - os: macos-15
             c_compiler: cl
-          - os: macos-15
-            c_compiler: gcc
 
     steps:
     - uses: actions/checkout@v4
@@ -106,6 +108,10 @@ jobs:
       working-directory: ${{ github.workspace }}
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+
+    - name: Install
+      working-directory: ${{ github.workspace }}
+      run: cmake --install ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
     - name: Test
       working-directory: ${{ github.workspace }}
