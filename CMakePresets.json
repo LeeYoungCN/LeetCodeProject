@@ -8,7 +8,7 @@
             "installDir": "${sourceDir}/out/install/${presetName}",
             "description": "Project base config.",
             "cacheVariables": {
-                "CMAKE_PROBLEM_PREFIX": "lc1957_delete_characters_to_make_fancy_string",
+                "CMAKE_PROBLEM_PREFIX": "all",
                 "CMAKE_PRESET": "${presetName}",
                 "CMAKE_THIRD_PARTY_PATH": "${sourceDir}/third_lib/${presetName}"
             }
@@ -466,7 +466,8 @@
             "output": {
                 "outputOnFailure": true,
                 "outputLogFile": "${sourceDir}/out/Testing/${presetName}/Test_ALL.log",
-                "outputJUnitFile": "${sourceDir}/out/Testing/${presetName}/Test_ALL.xml"
+                "outputJUnitFile": "${sourceDir}/out/Testing/${presetName}/Test_ALL.xml",
+                "verbosity": "verbose"
             }
         },
         {

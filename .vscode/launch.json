@@ -22,7 +22,9 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/out/build/linux_clang_debug/bin/leetcode_test",
-            "args": [],
+            "args": [
+                "--gtest_filter=*"
+            ],
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
@@ -41,13 +43,15 @@
             "name": "LLDB: Debug Executable",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/out/build/darwin_clang_debug/bin/leetcode_test",  // 可执行文件路径
-            "args": [],  // 程序参数
+            "program": "${workspaceFolder}/out/build/darwin_clang_debug/bin/leetcode_test", // 可执行文件路径
+            "args": [
+                "--gtest_filter=*"
+            ], // 程序参数
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb",  // 指定使用 LLDB
+            "MIMode": "lldb", // 指定使用 LLDB
         }
     ],
     "preLaunchTask": "CMake Build"

@@ -29,7 +29,7 @@ source "${SCRIPT_DIR}/common_func.sh"
 
 cd "${ROOT_DIR}" || exit 1
 
-readonly BUILDCACHE_ROOT_DIR="${ROOT_DIR}/out/build"
+readonly BUILD_CACHE_ROOT_DIR="${ROOT_DIR}/out/build"
 readonly INSTALL_ROOT_DIR="${ROOT_DIR}/out/install"
 readonly TOOLCHAIN_FILE_DIR="${ROOT_DIR}/cmake/toolchain_files"
 
@@ -80,7 +80,7 @@ function print_help() {
     echo "    -c, --clean[=<clean-type>]         Clean build cache. Default clean all."
     echo "                                       List all clean type: --clean=list"
     echo ""
-    echo "    -p, --problem[=<problem-pefix>]    Set problem to build. Default build all problems."
+    echo "    -p, --problem[=<problem-prefix>]   Set problem to build. Default build all problems."
     echo "                                       Build all problems: --problem(default) or --problem=all"
     echo "                                       List all problems:  --problem=list"
     echo ""
@@ -89,9 +89,9 @@ function print_help() {
     echo "                                                win_clang_mingw_debug,         win_clang_release"
     echo "                                                win_mingw_debug,               win_mingw_release"
     echo "                                                msvc_x64_debug,                msvc_x64_release"
-    echo "                                       Linux:   linux_clang_debug(default), linux_clang_releas"
+    echo "                                       Linux:   linux_clang_debug(default), linux_clang_release"
     echo "                                                linux_gnu_debug,            linux_gnu_release"
-    echo "                                       Darwin:  darwin_clang_debug(default), darwin_clang_releas"
+    echo "                                       Darwin:  darwin_clang_debug(default), darwin_clang_release"
     echo ""
     echo "        --configure                    Run CMake configure by preset and problems."
     echo ""
@@ -104,7 +104,7 @@ function print_help() {
     echo "                                       List all component: --install=list"
     echo ""
     echo "        --gtest[=<gtest-case>]         Run all gtest test case:      --gtest"
-    echo "                                       Run target gtest test case:   --gtestr=<gtest-case>."
+    echo "                                       Run target gtest test case:   --gtest=<gtest-case>."
     echo "                                       List all gtest case list:     --gtest=list."
     echo ""
     echo "        --ctest[=<ctest-case>]         Rerun ctest case TEST_ALL:    --ctest or --ctest=all"
@@ -118,7 +118,7 @@ function print_help() {
 }
 
 function clean_env() {
-    local build_dir="${BUILDCACHE_ROOT_DIR}/${arg_preset}"
+    local build_dir="${BUILD_CACHE_ROOT_DIR}/${arg_preset}"
     local install_dir="${INSTALL_ROOT_DIR}/${arg_preset}"
 
     case "${arg_clean_type}" in
@@ -168,7 +168,7 @@ function list_cmake_configure_param() {
     if [ -n "${arg_preset}" ]; then
         list_cmake_configure_param_in_dir "${cmake_binary_dir}"
     else
-        find "${BUILDCACHE_ROOT_DIR}" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -print0 |
+        find "${BUILD_CACHE_ROOT_DIR}" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -print0 |
             while IFS= read -r -d '' dir; do
                 list_cmake_configure_param_in_dir "${dir}"
             done
@@ -198,7 +198,7 @@ function init_cmake_preset() {
     if [ -n "${arg_preset}" ] && [ "${arg_preset}" != "all" ]; then
         cmake_preset="${arg_preset}"
     fi
-    cmake_binary_dir="${BUILDCACHE_ROOT_DIR}/${cmake_preset}"
+    cmake_binary_dir="${BUILD_CACHE_ROOT_DIR}/${cmake_preset}"
 }
 
 function init_cmake_configure_param() {
@@ -369,7 +369,7 @@ function cmake_configure() {
         -DENV_PARAM_FILE="${env_param_file}" \
         -DCMAKE_PROBLEM_PREFIX="${cmake_problem_prefix}"; then
         print_log "[${cmake_preset}] CMake configuration success." info
-        cp "${cmake_binary_dir}/compile_commands.json" "${BUILDCACHE_ROOT_DIR}/compile_commands.json"
+        cp "${cmake_binary_dir}/compile_commands.json" "${BUILD_CACHE_ROOT_DIR}/compile_commands.json"
     else
         print_log "[${cmake_preset}] CMake configuration failed." error
         exit 1
