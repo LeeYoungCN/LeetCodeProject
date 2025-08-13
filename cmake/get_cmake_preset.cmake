@@ -38,7 +38,7 @@ if (NOT CMAKE_PRESET)
             message(WARNNING "Unknown compiler: ${CMAKE_CXX_COMPILER_ID}")
         endif()
     else()
-        message(WARNNING "Unknown system: ${CMAKE_SYATEM_NAME}")
+        message(WARNNING "Unknown system: ${CMAKE_SYSTEM_NAME}")
     endif()
 
     string(TOLOWER ${RAW_CMAKE_PRESET} RAW_CMAKE_PRESET)
