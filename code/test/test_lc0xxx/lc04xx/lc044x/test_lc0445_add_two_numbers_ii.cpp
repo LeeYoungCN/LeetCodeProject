@@ -109,6 +109,7 @@ TEST_P(TEST_LC0445, case)
     for (LC0445_AddTwoNumbersII *inst : m_testList) {
         ListNode *result = inst->addTwoNumbers(params.l1, params.l2);
         EXPECT_EQ((*expect), (*result)) << *result;
+        FreeList(result);
     }
 }
 
