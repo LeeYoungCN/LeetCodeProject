@@ -14,9 +14,7 @@
         "pthread",
         "riscv",
         "STREQUAL",
-        "WARNNING",
-        "Wconversion",
-        "Wextra"
+        "WARNNING"
     ],
     "ignorePaths": [
         "out/**", // 忽略构建目录
@@ -30,6 +28,7 @@
         // cmake 选项
         "-D[A-Z_]+=.*",
         // 宏定义
-        "^#[a-z_]+.*"
+        "^#[a-z_]+.*",
+        "-W*"
     ]
 }
