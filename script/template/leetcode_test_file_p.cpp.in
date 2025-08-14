@@ -20,17 +20,53 @@
 #include "gtest/gtest.h"
 #include "@HEAD_FILE_NAME@"
 #include "leetcode_utils_vector.hpp"
+#include "leetcode_utils_list.hpp"
 
 using namespace std;
 
 class @TEST_CLASSNAME@_Params {
 public:
     @TEST_CLASSNAME@_Params() = default;
-    ~@TEST_CLASSNAME@_Params() = default;
-    @TEST_CLASSNAME@_Params(@TEST_CASE_INIT_PARAMS@) {};
+
+    @TEST_CLASSNAME@_Params(@TEST_CASE_INIT_PARAMS@){};
+
+    ~@TEST_CLASSNAME@_Params()
+    {
+        int32_t oldCnt = refCnt->fetch_sub(1, std::memory_order_relaxed);
+        if (oldCnt == 1) {
+            /* Free */
+            @TEST_CASE_INIT_PARAMS@
+        }
+    };
+
+    @TEST_CLASSNAME@_Params(const @TEST_CLASSNAME@_Params& other)
+    {
+        refCnt = other.refCnt;
+        refCnt->fetch_add(1, std::memory_order_relaxed);
+        @TEST_CASE_INIT_PARAMS@
+    }
+
+    @TEST_CLASSNAME@_Params &operator=(const @TEST_CLASSNAME@_Params &other)
+    {
+        if (this == &other) {
+            return *this;
+        }
+        int32_t oldCnt = refCnt->fetch_sub(1, std::memory_order_relaxed);
+        if (oldCnt == 1) {
+            /* Free */
+            @TEST_CASE_INIT_PARAMS@
+        }
+
+        refCnt = other.refCnt;
+        refCnt->fetch_add(1, std::memory_order_relaxed);
+        /* Copy */
+        @TEST_CASE_INIT_PARAMS@
+        return *this;
+    }
 
     friend std::ostream &operator<<(std::ostream &os, const @TEST_CLASSNAME@_Params &params)
     {
+        os << "refCnt: " << params.refCnt->load() << std::endl;
         os << "Print params";
         return os;
     };
@@ -38,6 +74,9 @@ public:
 public:
     @TEST_CASE_VAR@;
     @FUNC_RET_TYPE@ expect{};
+
+private:
+    std::atomic<int32_t> *refCnt = new std::atomic<int32_t>(1);
 };
 
 class @TEST_CLASSNAME@ : public ::testing::TestWithParam<@TEST_CLASSNAME@_Params> {

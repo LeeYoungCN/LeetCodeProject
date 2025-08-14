@@ -35,16 +35,16 @@ _VECTOR_EXPEC_EQ = """sort(expect.begin(), expect.end());
         sort(result.begin(), result.end());
         EXPECT_EQ(expect, result);"""
 
-_NORMAL_EXPEC_EQ = "EXPECT_EQ(expect, result);"
+_NORMAL_EXPECT_EQ = "EXPECT_EQ(expect, result);"
 
 _TYPE_EXPEC_EQ_DICT = {
-    "int": _NORMAL_EXPEC_EQ,
-    "int32_t": _NORMAL_EXPEC_EQ,
-    "int64_t": _NORMAL_EXPEC_EQ,
-    "long long": _NORMAL_EXPEC_EQ,
-    "string": _NORMAL_EXPEC_EQ,
-    "std::string": _NORMAL_EXPEC_EQ,
-    "bool": _NORMAL_EXPEC_EQ,
+    "int": _NORMAL_EXPECT_EQ,
+    "int32_t": _NORMAL_EXPECT_EQ,
+    "int64_t": _NORMAL_EXPECT_EQ,
+    "long long": _NORMAL_EXPECT_EQ,
+    "string": _NORMAL_EXPECT_EQ,
+    "std::string": _NORMAL_EXPECT_EQ,
+    "bool": _NORMAL_EXPECT_EQ,
     "vector<int>": _VECTOR_EXPEC_EQ,
     "std::vector<int>": _VECTOR_EXPEC_EQ,
     "std::vector<int32_t>": _VECTOR_EXPEC_EQ,
@@ -55,6 +55,7 @@ _TYPE_EXPEC_EQ_DICT = {
     "std::vector<std::vector<int>>": _MATRIX_EXPECT_EQ,
     "vector<vector<string>>": _MATRIX_EXPECT_EQ,
     "std::vector<std::vector<std::string>>": _MATRIX_EXPECT_EQ,
+    "ListNode*": _NORMAL_EXPECT_EQ
 }
 
 _TEST_CASE_INIT_PARAMS_DICT = {
@@ -68,6 +69,7 @@ _TEST_CASE_INIT_PARAMS_DICT = {
     "std::vector<std::vector<int>>": "const std::string",
     "vector<vector<string>>": "const std::string",
     "std::vector<std::vector<std::string>>": "const std::string",
+    "ListNode*": "const std::string"
 }
 
 
@@ -128,7 +130,10 @@ class LeetcodeFile:
         self.__func_name = func_name_with_ret.split(" ")[-1]
         """ long long """
         self.__func_ret_type = func_name_with_ret.rsplit(" ", 1)[0]
-        self.__expect_eq_code = _TYPE_EXPEC_EQ_DICT[self.__func_ret_type]
+        if self.__func_ret_type in _TYPE_EXPEC_EQ_DICT:
+            self.__expect_eq_code = _TYPE_EXPEC_EQ_DICT[self.__func_ret_type]
+        else:
+            self.__expect_eq_code = _NORMAL_EXPECT_EQ
         """ x, y """
         param_parts = self.__func_params.split(", ")
         self.__param_names = ""
