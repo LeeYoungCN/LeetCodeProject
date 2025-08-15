@@ -19,6 +19,12 @@ _TEMPLATE_HEAD_FILE = _TEMPLATE_DIR + "leetcode_head_file.h.in"
 _TEMPLATE_SRC_FILE = _TEMPLATE_DIR + "leetcode_src_file.cpp.in"
 _TEMPLATE_TEST_FILE = _TEMPLATE_DIR + "leetcode_test_file_p.cpp.in"
 
+__LIST_NODE_EXPECT_EQ = """if (expect != nullptr && result != nullptr) {
+            EXPECT_EQ(*expect, *result);
+        } else {
+            EXPECT_EQ(expect, result);
+        }"""
+
 _MATRIX_EXPECT_EQ = """ASSERT_EQ(result.size(), expect.size());
         sort(expect.begin(), expect.end());
         sort(result.begin(), result.end());
@@ -31,13 +37,13 @@ _MATRIX_EXPECT_EQ = """ASSERT_EQ(result.size(), expect.size());
             }
         }"""
 
-_VECTOR_EXPEC_EQ = """sort(expect.begin(), expect.end());
+_VECTOR_EXPECT_EQ = """sort(expect.begin(), expect.end());
         sort(result.begin(), result.end());
         EXPECT_EQ(expect, result);"""
 
 _NORMAL_EXPECT_EQ = "EXPECT_EQ(expect, result);"
 
-_TYPE_EXPEC_EQ_DICT = {
+_TYPE_EXPECT_EQ_DICT = {
     "int": _NORMAL_EXPECT_EQ,
     "int32_t": _NORMAL_EXPECT_EQ,
     "int64_t": _NORMAL_EXPECT_EQ,
@@ -45,31 +51,31 @@ _TYPE_EXPEC_EQ_DICT = {
     "string": _NORMAL_EXPECT_EQ,
     "std::string": _NORMAL_EXPECT_EQ,
     "bool": _NORMAL_EXPECT_EQ,
-    "vector<int>": _VECTOR_EXPEC_EQ,
-    "std::vector<int>": _VECTOR_EXPEC_EQ,
-    "std::vector<int32_t>": _VECTOR_EXPEC_EQ,
-    "vector<string>": _VECTOR_EXPEC_EQ,
-    "std::vector<std::string>": _VECTOR_EXPEC_EQ,
+    "vector<int>": _VECTOR_EXPECT_EQ,
+    "std::vector<int>": _VECTOR_EXPECT_EQ,
+    "std::vector<int32_t>": _VECTOR_EXPECT_EQ,
+    "vector<string>": _VECTOR_EXPECT_EQ,
+    "std::vector<std::string>": _VECTOR_EXPECT_EQ,
     "vector<vector<int>>": _MATRIX_EXPECT_EQ,
     "std::vector<std::vector<int32_t>>": _MATRIX_EXPECT_EQ,
     "std::vector<std::vector<int>>": _MATRIX_EXPECT_EQ,
     "vector<vector<string>>": _MATRIX_EXPECT_EQ,
     "std::vector<std::vector<std::string>>": _MATRIX_EXPECT_EQ,
-    "ListNode*": _NORMAL_EXPECT_EQ
+    "ListNode*": __LIST_NODE_EXPECT_EQ
 }
 
 _TEST_CASE_INIT_PARAMS_DICT = {
-    "vector<int>": "const std::string",
-    "std::vector<int>": "const std::string",
-    "std::vector<int32_t>": "const std::string",
-    "vector<string>": "const std::string",
-    "std::vector<std::string>": "const std::string",
-    "vector<vector<int>>": "const std::string",
-    "std::vector<std::vector<int32_t>>": "const std::string",
-    "std::vector<std::vector<int>>": "const std::string",
-    "vector<vector<string>>": "const std::string",
-    "std::vector<std::vector<std::string>>": "const std::string",
-    "ListNode*": "const std::string"
+    "vector<int>": "CreateIntVector",
+    "std::vector<int>": "CreateIntVector",
+    "std::vector<int32_t>": "CreateIntVector",
+    "vector<string>": "CreateStringVector",
+    "std::vector<std::string>": "CreateStringVector",
+    "vector<vector<int>>": "CreateIntMatrix",
+    "std::vector<std::vector<int32_t>>": "CreateIntMatrix",
+    "std::vector<std::vector<int>>": "CreateIntMatrix",
+    "vector<vector<string>>": "std::string&&",
+    "std::vector<std::vector<std::string>>": "std::string&&",
+    "ListNode*": "CreateList"
 }
 
 
@@ -77,7 +83,7 @@ class LeetcodeFile:
     def __init__(self, prefix: str, url: str, function: str, class_name: str = None):
         self.__problem_prefix = prefix
         self.__url = url
-        self.__funciton = function
+        self.__function = function
         self.__class_name = class_name
 
         self.__func_ret_type = None
@@ -113,12 +119,12 @@ class LeetcodeFile:
         }
 
         for old, new in type_trans_dict.items():
-            self.__funciton = self.__funciton.replace(old, new)
+            self.__function = self.__function.replace(old, new)
 
         """long long func_name"""
-        func_name_with_ret = self.__funciton.split("(")[0]
+        func_name_with_ret = self.__function.split("(")[0]
         """ vector<int>& x, string y """
-        self.__func_params = self.__funciton.split("(")[1].split(")")[0]
+        self.__func_params = self.__function.split("(")[1].split(")")[0]
         """
             vector<int> x;
             string y
@@ -130,8 +136,8 @@ class LeetcodeFile:
         self.__func_name = func_name_with_ret.split(" ")[-1]
         """ long long """
         self.__func_ret_type = func_name_with_ret.rsplit(" ", 1)[0]
-        if self.__func_ret_type in _TYPE_EXPEC_EQ_DICT:
-            self.__expect_eq_code = _TYPE_EXPEC_EQ_DICT[self.__func_ret_type]
+        if self.__func_ret_type in _TYPE_EXPECT_EQ_DICT:
+            self.__expect_eq_code = _TYPE_EXPECT_EQ_DICT[self.__func_ret_type]
         else:
             self.__expect_eq_code = _NORMAL_EXPECT_EQ
         """ x, y """
@@ -145,9 +151,9 @@ class LeetcodeFile:
         self.__test_case_init_params = (
             self.__func_params + ", " + self.__func_ret_type + " expect"
         )
-        for old in _TEST_CASE_INIT_PARAMS_DICT.keys():
+        for type_name, init_func in _TEST_CASE_INIT_PARAMS_DICT.items():
             self.__test_case_init_params = self.__test_case_init_params.replace(
-                old, "const std::string"
+                type_name, "std::string&&"
             )
 
     def __init_class_data(self):
@@ -187,7 +193,7 @@ class LeetcodeFile:
     def print_data(self):
         log(f"file_name:            {self.__leetcode_file_name}")
         log(f"class_name:           {self.__leetcode_class_name}")
-        log(f"function:             {self.__funciton}")
+        log(f"function:             {self.__function}")
         log(f"func_ret_type:        {self.__func_ret_type}")
         log(f"func_name:            {self.__func_name}")
         log(f"func_params:          {self.__func_params}")
