@@ -19,6 +19,7 @@ lc0074_search_a_2d_matrix
 lc0075_sort_colors
 lc0078_subsets
 lc0081_search_in_rotated_sorted_array_ii
+lc0082_remove_duplicates_from_sorted_list_ii
 lc0091_decode_ways
 lc0097_interleaving_string
 lc0112_path_sum
