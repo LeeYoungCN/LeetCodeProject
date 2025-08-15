@@ -70,16 +70,16 @@ private:
         int32_t oldCnt = refCnt->fetch_sub(1, std::memory_order_relaxed);
         if (oldCnt == 1) {
             /* Free */
-            std::cout << "refCnt: " << refCnt.load();
+            std::cout << "refCnt: " << refCnt->load();
         }
     }
 
-    void copyMemberParams_(const TEST_LC0082_Params &other)
+    void copyMemberParams_(const @TEST_CLASSNAME@_Params &other)
     {
         refCnt = other.refCnt;
         refCnt->fetch_add(1, std::memory_order_relaxed);
         /* Copy */
-        std::cout << "refCnt: " << refCnt.load();
+        std::cout << "refCnt: " << refCnt->load();
     }
 };
 
