@@ -1,5 +1,7 @@
 #include "leetcode_utils_list.hpp"
 
+#include <string>
+
 #include "leetcode_utils_vector.hpp"
 
 bool operator==(const ListNode &lhs, const ListNode &rhs)
@@ -46,4 +48,18 @@ void FreeList(ListNode *node)
     FreeList(node->next);
     node->next = nullptr;
     delete node;
+}
+
+std::string ToString(const ListNode *node)
+{
+    std::string str = "{";
+    while (node != nullptr) {
+        str += std::to_string(node->val);
+        if (node->next) {
+            str += " -> ";
+        };
+        node = node->next;
+    }
+    str += "}";
+    return str;
 }
