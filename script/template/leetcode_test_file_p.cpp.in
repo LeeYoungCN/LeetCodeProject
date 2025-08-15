@@ -32,18 +32,12 @@ public:
 
     ~@TEST_CLASSNAME@_Params()
     {
-        int32_t oldCnt = refCnt->fetch_sub(1, std::memory_order_relaxed);
-        if (oldCnt == 1) {
-            /* Free */
-            @TEST_CASE_INIT_PARAMS@
-        }
+        freeMemberParams_();
     };
 
     @TEST_CLASSNAME@_Params(const @TEST_CLASSNAME@_Params& other)
     {
-        refCnt = other.refCnt;
-        refCnt->fetch_add(1, std::memory_order_relaxed);
-        @TEST_CASE_INIT_PARAMS@
+        copyMemberParams_(other);
     }
 
     @TEST_CLASSNAME@_Params &operator=(const @TEST_CLASSNAME@_Params &other)
@@ -51,16 +45,8 @@ public:
         if (this == &other) {
             return *this;
         }
-        int32_t oldCnt = refCnt->fetch_sub(1, std::memory_order_relaxed);
-        if (oldCnt == 1) {
-            /* Free */
-            @TEST_CASE_INIT_PARAMS@
-        }
-
-        refCnt = other.refCnt;
-        refCnt->fetch_add(1, std::memory_order_relaxed);
-        /* Copy */
-        @TEST_CASE_INIT_PARAMS@
+        freeMemberParams_();
+        copyMemberParams_(other);
         return *this;
     }
 
@@ -77,6 +63,24 @@ public:
 
 private:
     std::atomic<int32_t> *refCnt = new std::atomic<int32_t>(1);
+
+private:
+    void freeMemberParams_()
+    {
+        int32_t oldCnt = refCnt->fetch_sub(1, std::memory_order_relaxed);
+        if (oldCnt == 1) {
+            /* Free */
+            std::cout << "refCnt: " << refCnt.load();
+        }
+    }
+
+    void copyMemberParams_(const TEST_LC0082_Params &other)
+    {
+        refCnt = other.refCnt;
+        refCnt->fetch_add(1, std::memory_order_relaxed);
+        /* Copy */
+        std::cout << "refCnt: " << refCnt.load();
+    }
 };
 
 class @TEST_CLASSNAME@ : public ::testing::TestWithParam<@TEST_CLASSNAME@_Params> {
