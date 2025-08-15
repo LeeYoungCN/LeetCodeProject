@@ -47,35 +47,35 @@ void TEST_LC1353::RunTest(std::vector<std::vector<int32_t>>& events, const int32
 
 TEST_F(TEST_LC1353, case1)
 {
-    std::vector<std::vector<int32_t>> events = String2MatrixInt("[[1,2],[2,3],[3,4]]");
+    std::vector<std::vector<int32_t>> events = CreateIntMatrix("[[1,2],[2,3],[3,4]]");
     const int32_t expect = 3;
     RunTest(events, expect);
 }
 
 TEST_F(TEST_LC1353, case2)
 {
-    std::vector<std::vector<int32_t>> events = String2MatrixInt("[[1,2],[2,3],[3,4],[1,2]]");
+    std::vector<std::vector<int32_t>> events = CreateIntMatrix("[[1,2],[2,3],[3,4],[1,2]]");
     const int32_t expect = 4;
     RunTest(events, expect);
 }
 
 TEST_F(TEST_LC1353, case3)
 {
-    std::vector<std::vector<int32_t>> events = String2MatrixInt("[[1,2],[2,3],[3,4],[1,2],[1,5]]");
+    std::vector<std::vector<int32_t>> events = CreateIntMatrix("[[1,2],[2,3],[3,4],[1,2],[1,5]]");
     const int32_t expect = 5;
     RunTest(events, expect);
 }
 
 TEST_F(TEST_LC1353, case4)
 {
-    std::vector<std::vector<int32_t>> events = String2MatrixInt("[[1,2],[2,3],[3,4],[1,2],[1,2]]");
+    std::vector<std::vector<int32_t>> events = CreateIntMatrix("[[1,2],[2,3],[3,4],[1,2],[1,2]]");
     const int32_t expect = 4;
     RunTest(events, expect);
 }
 
 TEST_F(TEST_LC1353, case5)
 {
-    std::vector<std::vector<int32_t>> events = String2MatrixInt("[[1,2],[2,2],[3,3],[3,4],[3,4]]");
+    std::vector<std::vector<int32_t>> events = CreateIntMatrix("[[1,2],[2,2],[3,3],[3,4],[3,4]]");
     const int32_t expect = 4;
     RunTest(events, expect);
 }

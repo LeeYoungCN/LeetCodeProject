@@ -50,8 +50,8 @@ void TEST_LC3440::RunTest(int32_t eventTime, std::vector<int32_t>& startTime, st
 TEST_F(TEST_LC3440, case1)
 {
     int32_t eventTime = 5;
-    std::vector<int32_t> startTime = String2VecInt("[1,3]");
-    std::vector<int32_t> endTime = String2VecInt("[2,5]");
+    std::vector<int32_t> startTime = CreateIntVector("[1,3]");
+    std::vector<int32_t> endTime = CreateIntVector("[2,5]");
     const int32_t expect = 2;
     RunTest(eventTime, startTime, endTime, expect);
 }
@@ -59,8 +59,8 @@ TEST_F(TEST_LC3440, case1)
 TEST_F(TEST_LC3440, case2)
 {
     int32_t eventTime = 10;
-    std::vector<int32_t> startTime = String2VecInt("[0,7,9]");
-    std::vector<int32_t> endTime = String2VecInt("[1,8,10]");
+    std::vector<int32_t> startTime = CreateIntVector("[0,7,9]");
+    std::vector<int32_t> endTime = CreateIntVector("[1,8,10]");
     const int32_t expect = 7;
     RunTest(eventTime, startTime, endTime, expect);
 }
@@ -68,8 +68,8 @@ TEST_F(TEST_LC3440, case2)
 TEST_F(TEST_LC3440, case3)
 {
     int32_t eventTime = 10;
-    std::vector<int32_t> startTime = String2VecInt("[0,3,7,9]");
-    std::vector<int32_t> endTime = String2VecInt("[1,4,8,10]");
+    std::vector<int32_t> startTime = CreateIntVector("[0,3,7,9]");
+    std::vector<int32_t> endTime = CreateIntVector("[1,4,8,10]");
     const int32_t expect = 6;
     RunTest(eventTime, startTime, endTime, expect);
 }
@@ -77,8 +77,8 @@ TEST_F(TEST_LC3440, case3)
 TEST_F(TEST_LC3440, case4)
 {
     int32_t eventTime = 34;
-    std::vector<int32_t> startTime = String2VecInt("[0,17]");
-    std::vector<int32_t> endTime = String2VecInt("[14,19]");
+    std::vector<int32_t> startTime = CreateIntVector("[0,17]");
+    std::vector<int32_t> endTime = CreateIntVector("[14,19]");
     const int32_t expect = 18;
     RunTest(eventTime, startTime, endTime, expect);
 }

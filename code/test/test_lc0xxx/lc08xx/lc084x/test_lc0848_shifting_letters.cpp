@@ -47,7 +47,7 @@ void TEST_LC0848::RunTest(std::string s, std::vector<int32_t>& shifts, const std
 TEST_F(TEST_LC0848, case1)
 {
     std::string s = "abc";
-    std::vector<int32_t> shifts = String2VecInt("[3,5,9]");
+    std::vector<int32_t> shifts = CreateIntVector("[3,5,9]");
     const std::string expect = "rpl";
     RunTest(s, shifts, expect);
 }
@@ -55,7 +55,7 @@ TEST_F(TEST_LC0848, case1)
 TEST_F(TEST_LC0848, case2)
 {
     std::string s = "aaa";
-    std::vector<int32_t> shifts = String2VecInt("[1,2,3]");
+    std::vector<int32_t> shifts = CreateIntVector("[1,2,3]");
     const std::string expect = "gfd";
     RunTest(s, shifts, expect);
 }

@@ -47,49 +47,49 @@ void TEST_LC0045::RunTest(std::vector<int32_t>& height, int32_t& expect)
 
 TEST_F(TEST_LC0045, case1)
 {
-    std::vector<int32_t> height = String2VecInt("[2,1,3]");
+    std::vector<int32_t> height = CreateIntVector("[2,1,3]");
     int32_t expect = 1;
     RunTest(height, expect);
 }
 
 TEST_F(TEST_LC0045, case2)
 {
-    std::vector<int32_t> height = String2VecInt("[1,0,0,3]");
+    std::vector<int32_t> height = CreateIntVector("[1,0,0,3]");
     int32_t expect = 2;
     RunTest(height, expect);
 }
 
 TEST_F(TEST_LC0045, case3)
 {
-    std::vector<int32_t> height = String2VecInt("[1,0,0]");
+    std::vector<int32_t> height = CreateIntVector("[1,0,0]");
     int32_t expect = 0;
     RunTest(height, expect);
 }
 
 TEST_F(TEST_LC0045, case4)
 {
-    std::vector<int32_t> height = String2VecInt("[1,2,3]");
+    std::vector<int32_t> height = CreateIntVector("[1,2,3]");
     int32_t expect = 0;
     RunTest(height, expect);
 }
 
 TEST_F(TEST_LC0045, case5)
 {
-    std::vector<int32_t> height = String2VecInt("[4,2,0,3,2,5]");
+    std::vector<int32_t> height = CreateIntVector("[4,2,0,3,2,5]");
     int32_t expect = 9;
     RunTest(height, expect);
 }
 
 TEST_F(TEST_LC0045, case6)
 {
-    std::vector<int32_t> height = String2VecInt("[0,1,0,2,1,0,1,3,2,1,2,1]");
+    std::vector<int32_t> height = CreateIntVector("[0,1,0,2,1,0,1,3,2,1,2,1]");
     int32_t expect = 6;
     RunTest(height, expect);
 }
 
 TEST_F(TEST_LC0045, case7)
 {
-    std::vector<int32_t> height = String2VecInt("[4,2,3]");
+    std::vector<int32_t> height = CreateIntVector("[4,2,3]");
     int32_t expect = 1;
     RunTest(height, expect);
 }

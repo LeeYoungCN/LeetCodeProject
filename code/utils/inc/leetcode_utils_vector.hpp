@@ -96,8 +96,8 @@ void PrintMatrix(const std::vector<std::vector<T>> &matrix, uint32_t start = 0, 
     std::cout << Matrix2String(matrix, start, end, hasIdx) << std::endl;
 }
 
-std::vector<std::string> String2VecStr(const std::string &str);
-std::vector<int32_t> String2VecInt(const std::string &str);
-std::vector<std::vector<int32_t>> String2MatrixInt(const std::string &str);
+std::vector<std::string> CreateStringVector(const std::string &str);
+std::vector<int32_t> CreateIntVector(const std::string &str);
+std::vector<std::vector<int32_t>> CreateIntMatrix(const std::string &str);
 
 #endif  // LEETCODE_UTILS_VECTOR_HPP

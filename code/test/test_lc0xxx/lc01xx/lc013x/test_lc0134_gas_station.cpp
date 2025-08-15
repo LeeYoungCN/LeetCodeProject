@@ -46,32 +46,32 @@ void TEST_LC0134::RunTest(std::vector<int32_t>& gas, std::vector<int32_t>& cost,
 
 TEST_F(TEST_LC0134, case1)
 {
-    std::vector<int32_t> gas = String2VecInt("[1,2,3,4,5]");
-    std::vector<int32_t> cost = String2VecInt("[3,4,5,1,2]");
+    std::vector<int32_t> gas = CreateIntVector("[1,2,3,4,5]");
+    std::vector<int32_t> cost = CreateIntVector("[3,4,5,1,2]");
     const int32_t expect = 3;
     RunTest(gas, cost, expect);
 }
 
 TEST_F(TEST_LC0134, case2)
 {
-    std::vector<int32_t> gas = String2VecInt("[2,3,4]");
-    std::vector<int32_t> cost = String2VecInt("[3,4,3]");
+    std::vector<int32_t> gas = CreateIntVector("[2,3,4]");
+    std::vector<int32_t> cost = CreateIntVector("[3,4,3]");
     const int32_t expect = -1;
     RunTest(gas, cost, expect);
 }
 
 TEST_F(TEST_LC0134, case3)
 {
-    std::vector<int32_t> gas = String2VecInt("[5,1,2,3,4]");
-    std::vector<int32_t> cost = String2VecInt("[4,4,1,5,1]");
+    std::vector<int32_t> gas = CreateIntVector("[5,1,2,3,4]");
+    std::vector<int32_t> cost = CreateIntVector("[4,4,1,5,1]");
     const int32_t expect = 4;
     RunTest(gas, cost, expect);
 }
 
 TEST_F(TEST_LC0134, case4)
 {
-    std::vector<int32_t> gas = String2VecInt("[2]");
-    std::vector<int32_t> cost = String2VecInt("[2]");
+    std::vector<int32_t> gas = CreateIntVector("[2]");
+    std::vector<int32_t> cost = CreateIntVector("[2]");
     const int32_t expect = 0;
     RunTest(gas, cost, expect);
 }

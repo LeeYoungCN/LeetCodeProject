@@ -48,7 +48,7 @@ void TEST_LC3307::RunTest(long long k, vector<int>& operations, const char& expe
 TEST_F(TEST_LC3307, case1)
 {
     long long k = 5;
-    vector<int> operations = String2VecInt("[0,0,0]");
+    vector<int> operations = CreateIntVector("[0,0,0]");
     const char expect = 'a';
     RunTest(k, operations, expect);
 }
@@ -56,7 +56,7 @@ TEST_F(TEST_LC3307, case1)
 TEST_F(TEST_LC3307, case2)
 {
     long long k = 10;
-    vector<int> operations = String2VecInt("[0,1,0,1]");
+    vector<int> operations = CreateIntVector("[0,1,0,1]");
     const char expect = 'b';
     RunTest(k, operations, expect);
 }
@@ -64,7 +64,7 @@ TEST_F(TEST_LC3307, case2)
 TEST_F(TEST_LC3307, case3)
 {
     long long k = 10;
-    vector<int> operations = String2VecInt("[1,0,0,1]");
+    vector<int> operations = CreateIntVector("[1,0,0,1]");
     const char expect = 'c';
     RunTest(k, operations, expect);
 }
@@ -72,7 +72,7 @@ TEST_F(TEST_LC3307, case3)
 TEST_F(TEST_LC3307, case4)
 {
     long long k = 12145134613;
-    vector<int> operations = String2VecInt("[0,0,0,0,1,0,0,0,1,1,1,1,1,0,1,0,0,0,1,0,0,0,0,0,1,1,0,1,0,0,1,1,1,1,1]");
+    vector<int> operations = CreateIntVector("[0,0,0,0,1,0,0,0,1,1,1,1,1,0,1,0,0,0,1,0,0,0,0,0,1,1,0,1,0,0,1,1,1,1,1]");
 
     const char expect = 'i';
     RunTest(k, operations, expect);
@@ -81,7 +81,7 @@ TEST_F(TEST_LC3307, case4)
 TEST_F(TEST_LC3307, case5)
 {
     long long k = 1;
-    vector<int> operations = String2VecInt("[1,0]");
+    vector<int> operations = CreateIntVector("[1,0]");
     const char expect = 'a';
     RunTest(k, operations, expect);
 }
@@ -89,7 +89,7 @@ TEST_F(TEST_LC3307, case5)
 TEST_F(TEST_LC3307, case6)
 {
     long long k = 4;
-    vector<int> operations = String2VecInt("[1,0]");
+    vector<int> operations = CreateIntVector("[1,0]");
     const char expect = 'b';
     RunTest(k, operations, expect);
 }

@@ -47,21 +47,21 @@ void TEST_LC3201::RunTest(std::vector<int32_t>& nums, int32_t& expect)
 
 TEST_F(TEST_LC3201, case1)
 {
-    std::vector<int32_t> nums = String2VecInt("[1,2,3,4]");
+    std::vector<int32_t> nums = CreateIntVector("[1,2,3,4]");
     int32_t expect = 4;
     RunTest(nums, expect);
 }
 
 TEST_F(TEST_LC3201, case2)
 {
-    std::vector<int32_t> nums = String2VecInt("[1,2,1,1,2,1,2]");
+    std::vector<int32_t> nums = CreateIntVector("[1,2,1,1,2,1,2]");
     int32_t expect = 6;
     RunTest(nums, expect);
 }
 
 TEST_F(TEST_LC3201, case3)
 {
-    std::vector<int32_t> nums = String2VecInt("[1,3]");
+    std::vector<int32_t> nums = CreateIntVector("[1,3]");
     int32_t expect = 2;
     RunTest(nums, expect);
 }

@@ -47,7 +47,7 @@ void TEST_LC3169::RunTest(int32_t days, std::vector<std::vector<int32_t>>& meeti
 TEST_F(TEST_LC3169, case1)
 {
     int32_t days = 10;
-    std::vector<std::vector<int32_t>> meetings = String2MatrixInt("[[5,7],[1,3],[9,10]]");
+    std::vector<std::vector<int32_t>> meetings = CreateIntMatrix("[[5,7],[1,3],[9,10]]");
     const int32_t expect = 2;
     RunTest(days, meetings, expect);
 }
@@ -55,7 +55,7 @@ TEST_F(TEST_LC3169, case1)
 TEST_F(TEST_LC3169, case2)
 {
     int32_t days = 5;
-    std::vector<std::vector<int32_t>> meetings = String2MatrixInt("[[2,4],[1,3]]");
+    std::vector<std::vector<int32_t>> meetings = CreateIntMatrix("[[2,4],[1,3]]");
     const int32_t expect = 1;
     RunTest(days, meetings, expect);
 }
@@ -63,7 +63,7 @@ TEST_F(TEST_LC3169, case2)
 TEST_F(TEST_LC3169, case3)
 {
     int32_t days = 6;
-    std::vector<std::vector<int32_t>> meetings = String2MatrixInt("[[1,6]]");
+    std::vector<std::vector<int32_t>> meetings = CreateIntMatrix("[[1,6]]");
     const int32_t expect = 0;
     RunTest(days, meetings, expect);
 }
@@ -72,7 +72,7 @@ TEST_F(TEST_LC3169, case4)
 {
     int32_t days = 57;
     std::vector<std::vector<int32_t>> meetings =
-        String2MatrixInt("[[3,49],[23,44],[21,56],[26,55],[23,52],[2,9],[1,48],[3,31]]");
+        CreateIntMatrix("[[3,49],[23,44],[21,56],[26,55],[23,52],[2,9],[1,48],[3,31]]");
     const int32_t expect = 1;
     RunTest(days, meetings, expect);
 }
@@ -80,7 +80,7 @@ TEST_F(TEST_LC3169, case4)
 TEST_F(TEST_LC3169, case5)
 {
     int32_t days = 7;
-    std::vector<std::vector<int32_t>> meetings = String2MatrixInt("[[1,6],[2,3],[3,4]]");
+    std::vector<std::vector<int32_t>> meetings = CreateIntMatrix("[[1,6],[2,3],[3,4]]");
     const int32_t expect = 1;
     RunTest(days, meetings, expect);
 }

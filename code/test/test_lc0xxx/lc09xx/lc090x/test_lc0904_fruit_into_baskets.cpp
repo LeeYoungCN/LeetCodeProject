@@ -17,7 +17,7 @@ class TEST_LC0904_Params {
 public:
     TEST_LC0904_Params() = default;
     ~TEST_LC0904_Params() = default;
-    TEST_LC0904_Params(const std::string &fruits, int32_t expect) : fruits(String2VecInt(fruits)), expect(expect) {};
+    TEST_LC0904_Params(const std::string &fruits, int32_t expect) : fruits(CreateIntVector(fruits)), expect(expect) {};
 
     friend std::ostream &operator<<(std::ostream &os, const TEST_LC0904_Params &params)
     {

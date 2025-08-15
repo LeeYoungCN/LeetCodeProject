@@ -57,10 +57,10 @@ void TEST_LC1865::RunTest(vector<vector<int32_t>>& nums, const vector<string>& o
 
 TEST_F(TEST_LC1865, case1)
 {
-    vector<vector<int32_t>> nums = String2MatrixInt("[[1, 1, 2, 2, 2, 3], [1, 4, 5, 2, 5, 4]]");
+    vector<vector<int32_t>> nums = CreateIntMatrix("[[1, 1, 2, 2, 2, 3], [1, 4, 5, 2, 5, 4]]");
     vector<string> operation = {"count", "add", "count", "count", "add", "add", "count"};
-    vector<vector<int32_t>> params = String2MatrixInt("[[7], [3, 2], [8], [4], [0, 1], [1, 1], [7]]");
-    vector<string> expect = String2VecStr("[8, null, 2, 1, null, null, 11]");
+    vector<vector<int32_t>> params = CreateIntMatrix("[[7], [3, 2], [8], [4], [0, 1], [1, 1], [7]]");
+    vector<string> expect = CreateStringVector("[8, null, 2, 1, null, null, 11]");
 
     RunTest(nums, operation, params, expect);
 }

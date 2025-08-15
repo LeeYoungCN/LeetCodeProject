@@ -46,42 +46,42 @@ void TEST_LC0540::RunTest(std::vector<int32_t>& nums, int32_t& expect)
 
 TEST_F(TEST_LC0540, case1)
 {
-    std::vector<int32_t> nums = String2VecInt("[1,1,2,3,3,4,4,8,8]");
+    std::vector<int32_t> nums = CreateIntVector("[1,1,2,3,3,4,4,8,8]");
     int32_t expect = 2;
     RunTest(nums, expect);
 }
 
 TEST_F(TEST_LC0540, case2)
 {
-    std::vector<int32_t> nums = String2VecInt("[3,3,7,7,10,11,11]");
+    std::vector<int32_t> nums = CreateIntVector("[3,3,7,7,10,11,11]");
     int32_t expect = 10;
     RunTest(nums, expect);
 }
 
 TEST_F(TEST_LC0540, case3)
 {
-    std::vector<int32_t> nums = String2VecInt("[1,2,2,3,3]");
+    std::vector<int32_t> nums = CreateIntVector("[1,2,2,3,3]");
     int32_t expect = 1;
     RunTest(nums, expect);
 }
 
 TEST_F(TEST_LC0540, case4)
 {
-    std::vector<int32_t> nums = String2VecInt("[1,1,2,2,3]");
+    std::vector<int32_t> nums = CreateIntVector("[1,1,2,2,3]");
     int32_t expect = 3;
     RunTest(nums, expect);
 }
 
 TEST_F(TEST_LC0540, case5)
 {
-    std::vector<int32_t> nums = String2VecInt("[3]");
+    std::vector<int32_t> nums = CreateIntVector("[3]");
     int32_t expect = 3;
     RunTest(nums, expect);
 }
 
 TEST_F(TEST_LC0540, case6)
 {
-    std::vector<int32_t> nums = String2VecInt("[1,1,2,3,3]");
+    std::vector<int32_t> nums = CreateIntVector("[1,1,2,3,3]");
     int32_t expect = 2;
     RunTest(nums, expect);
 }

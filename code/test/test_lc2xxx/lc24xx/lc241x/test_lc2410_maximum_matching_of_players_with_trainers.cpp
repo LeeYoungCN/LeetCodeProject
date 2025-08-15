@@ -47,24 +47,24 @@ void TEST_LC2410::RunTest(std::vector<int32_t>& players, std::vector<int32_t>& t
 
 TEST_F(TEST_LC2410, case1)
 {
-    std::vector<int32_t> players = String2VecInt("[4,7,9]");
-    std::vector<int32_t> trainers = String2VecInt("[8,2,5,8]");
+    std::vector<int32_t> players = CreateIntVector("[4,7,9]");
+    std::vector<int32_t> trainers = CreateIntVector("[8,2,5,8]");
     int32_t expect = 2;
     RunTest(players, trainers, expect);
 }
 
 TEST_F(TEST_LC2410, case2)
 {
-    std::vector<int32_t> players = String2VecInt("[1,1,1]");
-    std::vector<int32_t> trainers = String2VecInt("[10]");
+    std::vector<int32_t> players = CreateIntVector("[1,1,1]");
+    std::vector<int32_t> trainers = CreateIntVector("[10]");
     int32_t expect = 1;
     RunTest(players, trainers, expect);
 }
 
 TEST_F(TEST_LC2410, case3)
 {
-    std::vector<int32_t> players = String2VecInt("[1]");
-    std::vector<int32_t> trainers = String2VecInt("[1]");
+    std::vector<int32_t> players = CreateIntVector("[1]");
+    std::vector<int32_t> trainers = CreateIntVector("[1]");
     int32_t expect = 1;
     RunTest(players, trainers, expect);
 }

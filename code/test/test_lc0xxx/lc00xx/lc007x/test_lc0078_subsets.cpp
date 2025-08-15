@@ -54,14 +54,14 @@ void TEST_LC0078::RunTest(std::vector<int32_t>& nums, std::vector<std::vector<in
 
 TEST_F(TEST_LC0078, case1)
 {
-    std::vector<int32_t> nums = String2VecInt("[1,2,3]");
-    std::vector<std::vector<int32_t>> expect = String2MatrixInt("[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]");
+    std::vector<int32_t> nums = CreateIntVector("[1,2,3]");
+    std::vector<std::vector<int32_t>> expect = CreateIntMatrix("[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]");
     RunTest(nums, expect);
 }
 
 TEST_F(TEST_LC0078, case2)
 {
-    std::vector<int32_t> nums = String2VecInt("[0]");
-    std::vector<std::vector<int32_t>> expect = String2MatrixInt("[[],[0]]");
+    std::vector<int32_t> nums = CreateIntVector("[0]");
+    std::vector<std::vector<int32_t>> expect = CreateIntMatrix("[[],[0]]");
     RunTest(nums, expect);
 }

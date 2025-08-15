@@ -38,7 +38,7 @@ std::string Vector2String(const std::vector<std::string>& vec, uint32_t start, u
     return str;
 }
 
-std::vector<std::string> String2VecStr(const std::string& str)
+std::vector<std::string> CreateStringVector(const std::string& str)
 {
     std::vector<std::string> ans;
     uint32_t start = 0;
@@ -57,7 +57,7 @@ std::vector<std::string> String2VecStr(const std::string& str)
     return ans;
 }
 
-std::vector<int32_t> String2VecInt(const std::string& str)
+std::vector<int32_t> CreateIntVector(const std::string& str)
 {
     std::vector<int32_t> ans;
     uint32_t start = 0;
@@ -76,7 +76,7 @@ std::vector<int32_t> String2VecInt(const std::string& str)
     return ans;
 }
 
-std::vector<std::vector<int32_t>> String2MatrixInt(const std::string& str)
+std::vector<std::vector<int32_t>> CreateIntMatrix(const std::string& str)
 {
     std::vector<std::vector<int32_t>> ans;
     std::vector<size_t> bracketStack;
@@ -86,7 +86,7 @@ std::vector<std::vector<int32_t>> String2MatrixInt(const std::string& str)
         } else if (str[i] == ']' && !bracketStack.empty()) {
             size_t start = bracketStack.back();
             bracketStack.pop_back();
-            ans.emplace_back(String2VecInt(str.substr(start, i - start)));
+            ans.emplace_back(CreateIntVector(str.substr(start, i - start)));
         }
     }
     return ans;

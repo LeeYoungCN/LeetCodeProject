@@ -47,35 +47,35 @@ void TEST_LC1394::RunTest(std::vector<int32_t>& arr, const int32_t& expect)
 
 TEST_F(TEST_LC1394, case1)
 {
-    std::vector<int32_t> arr = String2VecInt("[2,2,3,4]");
+    std::vector<int32_t> arr = CreateIntVector("[2,2,3,4]");
     const int32_t expect = 2;
     RunTest(arr, expect);
 }
 
 TEST_F(TEST_LC1394, case2)
 {
-    std::vector<int32_t> arr = String2VecInt("[1,2,2,3,3,3]");
+    std::vector<int32_t> arr = CreateIntVector("[1,2,2,3,3,3]");
     const int32_t expect = 3;
     RunTest(arr, expect);
 }
 
 TEST_F(TEST_LC1394, case3)
 {
-    std::vector<int32_t> arr = String2VecInt("[2,2,2,3,3]");
+    std::vector<int32_t> arr = CreateIntVector("[2,2,2,3,3]");
     const int32_t expect = -1;
     RunTest(arr, expect);
 }
 
 TEST_F(TEST_LC1394, case4)
 {
-    std::vector<int32_t> arr = String2VecInt("[5]");
+    std::vector<int32_t> arr = CreateIntVector("[5]");
     const int32_t expect = -1;
     RunTest(arr, expect);
 }
 
 TEST_F(TEST_LC1394, case5)
 {
-    std::vector<int32_t> arr = String2VecInt("[7,7,7,7,7,7,7]");
+    std::vector<int32_t> arr = CreateIntVector("[7,7,7,7,7,7,7]");
     const int32_t expect = 7;
     RunTest(arr, expect);
 }

@@ -8,7 +8,7 @@
 
 TreeNode *String2TreeNode(const std::string &nodeValStr)
 {
-    return NodeVal2TreeNode(String2VecStr(nodeValStr));
+    return NodeVal2TreeNode(CreateStringVector(nodeValStr));
 }
 
 TreeNode *NodeVal2TreeNode(const std::vector<std::string> &nodeValList, uint32_t index)

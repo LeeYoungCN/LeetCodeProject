@@ -20,7 +20,7 @@ public:
     TEST_LC3477_Params() = default;
     ~TEST_LC3477_Params() = default;
     TEST_LC3477_Params(const std::string &fruits, const std::string &baskets, int32_t expect)
-        : fruits(String2VecInt(fruits)), baskets(String2VecInt(baskets)), expect(expect) {};
+        : fruits(CreateIntVector(fruits)), baskets(CreateIntVector(baskets)), expect(expect) {};
 
     friend std::ostream &operator<<(std::ostream &os, const TEST_LC3477_Params &params)
     {

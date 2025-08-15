@@ -46,21 +46,21 @@ void TEST_LC0503::RunTest(std::vector<int32_t>& nums, std::vector<int32_t>& expe
 
 TEST_F(TEST_LC0503, case1)
 {
-    std::vector<int32_t> nums = String2VecInt("[1,2,1]");
-    std::vector<int32_t> expect = String2VecInt("[2,-1,2]");
+    std::vector<int32_t> nums = CreateIntVector("[1,2,1]");
+    std::vector<int32_t> expect = CreateIntVector("[2,-1,2]");
     RunTest(nums, expect);
 }
 
 TEST_F(TEST_LC0503, case2)
 {
-    std::vector<int32_t> nums = String2VecInt("[1,2,3,4,3]");
-    std::vector<int32_t> expect = String2VecInt("[2,3,4,-1,4]");
+    std::vector<int32_t> nums = CreateIntVector("[1,2,3,4,3]");
+    std::vector<int32_t> expect = CreateIntVector("[2,3,4,-1,4]");
     RunTest(nums, expect);
 }
 
 TEST_F(TEST_LC0503, case3)
 {
-    std::vector<int32_t> nums = String2VecInt("[5,4,3,2,1]");
-    std::vector<int32_t> expect = String2VecInt("[-1,5,5,5,5]");
+    std::vector<int32_t> nums = CreateIntVector("[5,4,3,2,1]");
+    std::vector<int32_t> expect = CreateIntVector("[-1,5,5,5,5]");
     RunTest(nums, expect);
 }

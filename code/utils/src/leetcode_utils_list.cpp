@@ -24,7 +24,7 @@ bool operator!=(const ListNode &lhs, const ListNode &rhs)
 
 ListNode *CreateList(const std::string &valStr)
 {
-    return CreateList(String2VecInt(valStr));
+    return CreateList(CreateIntVector(valStr));
 }
 
 ListNode *CreateList(const std::vector<int32_t> &valList)

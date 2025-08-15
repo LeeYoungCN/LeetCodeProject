@@ -47,16 +47,16 @@ void TEST_LC0496::RunTest(std::vector<int32_t>& nums1, std::vector<int32_t>& num
 
 TEST_F(TEST_LC0496, case1)
 {
-    std::vector<int32_t> nums1 = String2VecInt("[4,1,2]");
-    std::vector<int32_t> nums2 = String2VecInt("[1,3,4,2]");
-    std::vector<int32_t> expect = String2VecInt("[-1,3,-1]");
+    std::vector<int32_t> nums1 = CreateIntVector("[4,1,2]");
+    std::vector<int32_t> nums2 = CreateIntVector("[1,3,4,2]");
+    std::vector<int32_t> expect = CreateIntVector("[-1,3,-1]");
     RunTest(nums1, nums2, expect);
 }
 
 TEST_F(TEST_LC0496, case2)
 {
-    std::vector<int32_t> nums1 = String2VecInt("[2,4]");
-    std::vector<int32_t> nums2 = String2VecInt("[1,2,3,4]");
-    std::vector<int32_t> expect = String2VecInt("[3,-1]");
+    std::vector<int32_t> nums1 = CreateIntVector("[2,4]");
+    std::vector<int32_t> nums2 = CreateIntVector("[1,2,3,4]");
+    std::vector<int32_t> expect = CreateIntVector("[3,-1]");
     RunTest(nums1, nums2, expect);
 }

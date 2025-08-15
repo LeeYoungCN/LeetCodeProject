@@ -56,14 +56,14 @@ void TEST_LC0056::RunTest(std::vector<std::vector<int32_t>>& intervals, std::vec
 
 TEST_F(TEST_LC0056, case1)
 {
-    std::vector<std::vector<int32_t>> intervals = String2MatrixInt("[[1,3],[2,6],[8,10],[15,18]]");
-    std::vector<std::vector<int32_t>> expect = String2MatrixInt("[[1,6],[8,10],[15,18]]");
+    std::vector<std::vector<int32_t>> intervals = CreateIntMatrix("[[1,3],[2,6],[8,10],[15,18]]");
+    std::vector<std::vector<int32_t>> expect = CreateIntMatrix("[[1,6],[8,10],[15,18]]");
     RunTest(intervals, expect);
 }
 
 TEST_F(TEST_LC0056, case2)
 {
-    std::vector<std::vector<int32_t>> intervals = String2MatrixInt("[[1,4],[4,5]]");
-    std::vector<std::vector<int32_t>> expect = String2MatrixInt("[[1,5]]");
+    std::vector<std::vector<int32_t>> intervals = CreateIntMatrix("[[1,4],[4,5]]");
+    std::vector<std::vector<int32_t>> expect = CreateIntMatrix("[[1,5]]");
     RunTest(intervals, expect);
 }

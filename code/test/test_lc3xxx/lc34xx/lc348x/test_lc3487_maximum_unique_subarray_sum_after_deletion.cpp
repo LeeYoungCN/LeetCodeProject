@@ -18,7 +18,7 @@ class TEST_LC3487_Params {
 public:
     TEST_LC3487_Params() = default;
     ~TEST_LC3487_Params() = default;
-    TEST_LC3487_Params(const std::string &nums, int32_t expect) : nums(String2VecInt(nums)), expect(expect) {};
+    TEST_LC3487_Params(const std::string &nums, int32_t expect) : nums(CreateIntVector(nums)), expect(expect) {};
 
     friend std::ostream &operator<<(std::ostream &os, const TEST_LC3487_Params &params)
     {

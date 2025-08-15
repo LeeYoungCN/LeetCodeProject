@@ -56,16 +56,16 @@ void TEST_LC0040::RunTest(std::vector<int32_t>& candidates, int32_t target, std:
 
 TEST_F(TEST_LC0040, case1)
 {
-    std::vector<int32_t> candidates = String2VecInt("[10,1,2,7,6,1,5]");
+    std::vector<int32_t> candidates = CreateIntVector("[10,1,2,7,6,1,5]");
     int32_t target = 8;
-    std::vector<std::vector<int32_t>> expect = String2MatrixInt("[[1,1,6],[1,2,5],[1,7],[2,6]]");
+    std::vector<std::vector<int32_t>> expect = CreateIntMatrix("[[1,1,6],[1,2,5],[1,7],[2,6]]");
     RunTest(candidates, target, expect);
 }
 
 TEST_F(TEST_LC0040, case2)
 {
-    std::vector<int32_t> candidates = String2VecInt("[2,5,2,1,2]");
+    std::vector<int32_t> candidates = CreateIntVector("[2,5,2,1,2]");
     int32_t target = 5;
-    std::vector<std::vector<int32_t>> expect = String2MatrixInt("[[1,2,2],[5]]");
+    std::vector<std::vector<int32_t>> expect = CreateIntMatrix("[[1,2,2],[5]]");
     RunTest(candidates, target, expect);
 }
