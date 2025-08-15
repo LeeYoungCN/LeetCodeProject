@@ -1,6 +1,7 @@
 lc0002_add_two_numbers
 lc0012_integer_to_roman
 lc0017_letter_combinations_of_a_phone_number
+lc0019_remove_nth_node_from_end_of_list
 lc0022_generate_parentheses
 lc0024_swap_nodes_in_pairs
 lc0033_search_in_rotated_sorted_array
