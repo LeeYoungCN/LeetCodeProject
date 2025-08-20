@@ -9,7 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "lc1xxx/lc18xx/lc186x/lc1865_finding_pairs_with_a_certain_sum.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

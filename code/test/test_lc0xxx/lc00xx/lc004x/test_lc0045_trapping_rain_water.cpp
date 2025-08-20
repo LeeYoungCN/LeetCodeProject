@@ -9,7 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0xxx/lc00xx/lc004x/lc0045_trapping_rain_water.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

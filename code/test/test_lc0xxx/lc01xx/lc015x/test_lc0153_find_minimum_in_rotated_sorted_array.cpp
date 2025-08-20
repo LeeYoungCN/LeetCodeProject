@@ -8,7 +8,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0xxx/lc01xx/lc015x/lc0153_find_minimum_in_rotated_sorted_array.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

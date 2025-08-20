@@ -9,7 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "lc3xxx/lc34xx/lc343x/lc3439_reschedule_meetings_for_maximum_free_time_i.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

@@ -9,7 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0xxx/lc00xx/lc000x/lc0002_add_two_numbers.h"
-#include "leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_list.hpp"
 
 using namespace std;
 
@@ -19,7 +19,6 @@ public:
     ~TEST_LC0002_Params()
     {
         int oldCnt = refCnt->fetch_sub(1, std::memory_order_acq_rel);
-        std::cerr << "Delete oldCnt: " << oldCnt << ", refCnt:" << refCnt->load() << std::endl;
         if (oldCnt == 1) {
             FreeList(l1);
             l1 = nullptr;
@@ -31,10 +30,7 @@ public:
     };
 
     TEST_LC0002_Params(const std::string &l1, const std::string &l2, const std::string &expect)
-        : l1(CreateList(l1)), l2(CreateList(l2)), expect(CreateList(expect))
-    {
-        std::cerr << "Create refCnt:" << refCnt->load() << std::endl;
-    };
+        : l1(CreateList(l1)), l2(CreateList(l2)), expect(CreateList(expect)) {};
 
     friend std::ostream &operator<<(std::ostream &os, const TEST_LC0002_Params &params)
     {
@@ -50,7 +46,6 @@ public:
         l1 = other.l1;
         l2 = other.l2;
         expect = other.expect;
-        std::cerr << "Copy refCnt:" << refCnt->load() << std::endl;
     }
 
     TEST_LC0002_Params &operator=(const TEST_LC0002_Params &other)

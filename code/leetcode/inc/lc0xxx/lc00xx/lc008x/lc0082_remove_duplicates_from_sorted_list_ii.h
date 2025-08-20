@@ -5,7 +5,7 @@
 #ifndef LC0082_REMOVE_DUPLICATES_FROM_SORTED_LIST_II_H
 #define LC0082_REMOVE_DUPLICATES_FROM_SORTED_LIST_II_H
 
-#include "leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_list.hpp"
 
 class LC0082_RemoveDuplicatesFromSortedListII {
 public:

@@ -5,7 +5,7 @@
 #ifndef LC0112_PATH_SUM_H
 #define LC0112_PATH_SUM_H
 
-#include "leetcode_utils_tree_node.hpp"
+#include "leetcode_utils/leetcode_utils_tree_node.hpp"
 
 class LC0112_PathSum {
 public:

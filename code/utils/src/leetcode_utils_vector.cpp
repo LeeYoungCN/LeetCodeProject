@@ -1,10 +1,10 @@
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 #include <cstdint>
 #include <string>
 #include <vector>
 
-#include "leetcode_utils_common.hpp"
+#include "leetcode_utils/leetcode_utils_common.hpp"
 
 std::string Vector2String(const std::vector<std::string>& vec, uint32_t start, uint32_t end, bool hasIdx)
 {

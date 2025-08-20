@@ -7,7 +7,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0xxx/lc01xx/lc012x/lc0123_best_time_to_buy_and_sell_stock_iii.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

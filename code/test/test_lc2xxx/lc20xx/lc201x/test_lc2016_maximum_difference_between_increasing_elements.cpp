@@ -7,7 +7,7 @@
 
 #include "gtest/gtest.h"
 #include "lc2xxx/lc20xx/lc201x/lc2016_maximum_difference_between_increasing_elements.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

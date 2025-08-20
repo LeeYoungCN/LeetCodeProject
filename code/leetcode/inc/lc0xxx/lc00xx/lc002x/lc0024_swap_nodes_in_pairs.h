@@ -5,7 +5,7 @@
 #ifndef LC0024_SWAP_NODES_IN_PAIRS_H
 #define LC0024_SWAP_NODES_IN_PAIRS_H
 
-#include "leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_list.hpp"
 
 class LC0024_SwapNodesInPairs {
 public:

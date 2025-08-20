@@ -10,7 +10,7 @@
 
 #include "gtest/gtest.h"
 #include "lc3xxx/lc34xx/lc348x/lc3487_maximum_unique_subarray_sum_after_deletion.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

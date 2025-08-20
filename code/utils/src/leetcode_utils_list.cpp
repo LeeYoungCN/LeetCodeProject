@@ -1,8 +1,8 @@
-#include "leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_list.hpp"
 
 #include <string>
 
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 bool operator==(const ListNode &lhs, const ListNode &rhs)
 {

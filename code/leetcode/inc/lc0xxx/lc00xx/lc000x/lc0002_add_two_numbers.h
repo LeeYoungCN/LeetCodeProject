@@ -5,7 +5,7 @@
 #ifndef LC0002_ADD_TWO_NUMBERS_H
 #define LC0002_ADD_TWO_NUMBERS_H
 
-#include "leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_list.hpp"
 
 class LC0002_AddTwoNumbers {
 public:

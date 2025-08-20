@@ -9,7 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "lc3xxx/lc31xx/lc316x/lc3169_count_days_without_meetings.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

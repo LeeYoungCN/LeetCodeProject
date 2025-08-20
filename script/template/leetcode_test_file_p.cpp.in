@@ -19,8 +19,8 @@
 
 #include "gtest/gtest.h"
 #include "@HEAD_FILE_NAME@"
-#include "leetcode_utils_vector.hpp"
-#include "leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_list.hpp"
 
 using namespace std;
 

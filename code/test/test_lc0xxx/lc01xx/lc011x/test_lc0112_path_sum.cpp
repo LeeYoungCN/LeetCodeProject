@@ -9,7 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0xxx/lc01xx/lc011x/lc0112_path_sum.h"
-#include "leetcode_utils_tree_node.hpp"
+#include "leetcode_utils/leetcode_utils_tree_node.hpp"
 
 using namespace std;
 

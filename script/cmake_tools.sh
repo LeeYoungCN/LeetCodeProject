@@ -352,6 +352,7 @@ function init_cmake_env() {
         # shellcheck disable=SC1090
         source "${env_param_file}"
     fi
+    cp "${cmake_binary_dir}/compile_commands.json" "${BUILD_CACHE_ROOT_DIR}/compile_commands.json"
 }
 
 function cmake_configure() {

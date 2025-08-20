@@ -7,7 +7,7 @@
 #include <cstdint>
 #include <stack>
 
-#include "leetcode_utils_tree_node.hpp"
+#include "leetcode_utils/leetcode_utils_tree_node.hpp"
 
 using namespace std;
 

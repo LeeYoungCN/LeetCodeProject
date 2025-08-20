@@ -9,7 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0xxx/lc05xx/lc050x/lc0503_next_greater_element_ii.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

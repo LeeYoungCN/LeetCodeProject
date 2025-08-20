@@ -10,7 +10,7 @@
 
 #include "gtest/gtest.h"
 #include "lc1xxx/lc13xx/lc139x/lc1394_find_lucky_integer_in_an_array.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

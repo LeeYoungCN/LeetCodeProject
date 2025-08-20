@@ -2,25 +2,14 @@
  * Time : 2025-08-15 19:22:46
  * URL  : https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/
  */
-#include <algorithm>
-#include <cmath>
+
 #include <cstdint>
-#include <cstdio>
-#include <deque>
-#include <functional>
-#include <map>
-#include <queue>
-#include <set>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 #include "gtest/gtest.h"
-#include "lc0019_remove_nth_node_from_end_of_list.h"
-#include "leetcode_utils_list.hpp"
-#include "leetcode_utils_vector.hpp"
+#include "lc0xxx/lc00xx/lc001x/lc0019_remove_nth_node_from_end_of_list.h"
+#include "leetcode_utils/leetcode_utils_list.hpp"
 
 using namespace std;
 
@@ -31,7 +20,11 @@ public:
     TEST_LC0019_Params(std::string &&head, int32_t n, std::string &&expect)
         : head(CreateList(head)), n(n), expect(CreateList(expect))
     {
+#if defined(__clang__) || defined(__GNUC__)
         std::cout << __PRETTY_FUNCTION__ << " refCnt: " << refCnt->load() << std::endl;
+#else
+        std::cout << __FUNCSIG__ << " refCnt: " << refCnt->load() << std::endl;
+#endif
     };
 
     ~TEST_LC0019_Params() { freeMemberParams_(); };
@@ -67,7 +60,12 @@ private:
     void freeMemberParams_()
     {
         int32_t oldCnt = refCnt->fetch_sub(1, std::memory_order_relaxed);
+
+#if defined(__clang__) || defined(__GNUC__)
         std::cout << __PRETTY_FUNCTION__ << " refCnt: " << refCnt->load() << std::endl;
+#else
+        std::cout << __FUNCSIG__ << " refCnt: " << refCnt->load() << std::endl;
+#endif
         if (oldCnt == 1) {
             /* Free */
             FreeList(head);
@@ -80,7 +78,11 @@ private:
         refCnt = other.refCnt;
         refCnt->fetch_add(1, std::memory_order_relaxed);
         /* Copy */
+#if defined(_MSC_VER) && !defined(__clang__) && !defined(__GNUC__)
+        std::cout << __FUNCSIG__ << " refCnt: " << refCnt->load() << std::endl;
+#else
         std::cout << __PRETTY_FUNCTION__ << " refCnt: " << refCnt->load() << std::endl;
+#endif
         head = other.head;
         expect = other.expect;
         n = other.n;

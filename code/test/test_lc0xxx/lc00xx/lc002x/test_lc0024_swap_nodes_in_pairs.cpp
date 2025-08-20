@@ -9,7 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0xxx/lc00xx/lc002x/lc0024_swap_nodes_in_pairs.h"
-#include "leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_list.hpp"
 
 using namespace std;
 

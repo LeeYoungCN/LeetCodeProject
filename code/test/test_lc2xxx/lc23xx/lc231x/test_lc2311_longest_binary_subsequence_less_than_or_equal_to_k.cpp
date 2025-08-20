@@ -16,7 +16,7 @@
 
 #include "gtest/gtest.h"
 #include "lc2xxx/lc23xx/lc231x/lc2311_longest_binary_subsequence_less_than_or_equal_to_k.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

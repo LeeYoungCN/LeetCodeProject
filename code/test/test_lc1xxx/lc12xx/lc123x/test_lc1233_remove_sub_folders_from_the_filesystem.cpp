@@ -9,7 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "lc1xxx/lc12xx/lc123x/lc1233_remove_sub_folders_from_the_filesystem.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

@@ -6,7 +6,7 @@
 #define LC0019_REMOVE_NTH_NODE_FROM_END_OF_LIST_H
 
 #include <cstdint>
-#include "leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_list.hpp"
 
 class LC0019_RemoveNthNodeFromEndOfList {
 public:

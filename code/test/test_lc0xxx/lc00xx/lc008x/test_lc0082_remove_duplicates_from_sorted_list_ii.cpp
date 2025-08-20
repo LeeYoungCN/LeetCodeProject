@@ -10,7 +10,7 @@
 
 #include "gtest/gtest.h"
 #include "lc0xxx/lc00xx/lc008x/lc0082_remove_duplicates_from_sorted_list_ii.h"
-#include "leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_list.hpp"
 
 using namespace std;
 

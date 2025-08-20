@@ -10,7 +10,7 @@
 
 #include "gtest/gtest.h"
 #include "lc2xxx/lc24xx/lc241x/lc2410_maximum_matching_of_players_with_trainers.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

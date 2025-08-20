@@ -10,7 +10,7 @@
 
 #include "gtest/gtest.h"
 #include "lc3xxx/lc33xx/lc330x/lc3307_find_the_k_th_character_in_string_game_ii.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

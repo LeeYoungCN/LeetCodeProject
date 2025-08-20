@@ -10,7 +10,7 @@
 
 #include "gtest/gtest.h"
 #include "lc3xxx/lc32xx/lc320x/lc3202_find_the_maximum_length_of_valid_subsequence_ii.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

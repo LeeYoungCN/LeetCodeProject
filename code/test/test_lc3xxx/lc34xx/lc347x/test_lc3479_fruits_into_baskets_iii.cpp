@@ -9,7 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "lc3xxx/lc34xx/lc347x/lc3479_fruits_into_baskets_iii.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

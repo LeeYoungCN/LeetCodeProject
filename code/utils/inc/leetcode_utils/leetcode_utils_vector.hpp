@@ -8,7 +8,7 @@
 #include <type_traits>
 #include <vector>
 
-#include "leetcode_utils_common.hpp"
+#include "leetcode_utils/leetcode_utils_common.hpp"
 
 template <class T = int32_t>
 std::string Vector2String(const std::vector<T> &vec, uint32_t start = 0, uint32_t end = 0, bool hasIdx = false)

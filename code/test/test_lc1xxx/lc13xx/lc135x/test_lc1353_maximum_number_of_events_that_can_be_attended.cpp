@@ -10,7 +10,7 @@
 
 #include "gtest/gtest.h"
 #include "lc1xxx/lc13xx/lc135x/lc1353_maximum_number_of_events_that_can_be_attended.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

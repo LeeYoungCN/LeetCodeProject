@@ -2,11 +2,11 @@
  * Time : 2025-08-15 19:22:46
  * URL  : https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/
  */
-#include "lc0019_remove_nth_node_from_end_of_list.h"
+#include "lc0xxx/lc00xx/lc001x/lc0019_remove_nth_node_from_end_of_list.h"
 
 #include <cstdint>
 
-#include "leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_list.hpp"
 
 using namespace std;
 

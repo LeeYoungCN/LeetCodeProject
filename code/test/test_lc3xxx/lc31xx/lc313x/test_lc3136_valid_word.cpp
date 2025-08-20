@@ -8,7 +8,7 @@
 
 #include "gtest/gtest.h"
 #include "lc3xxx/lc31xx/lc313x/lc3136_valid_word.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

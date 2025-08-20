@@ -7,7 +7,7 @@
 
 #include "gtest/gtest.h"
 #include "lc2xxx/lc26xx/lc261x/lc2616_minimize_the_maximum_difference_of_pairs.h"
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 using namespace std;
 

@@ -1,10 +1,10 @@
-#include "leetcode_utils_tree_node.hpp"
+#include "leetcode_utils/leetcode_utils_tree_node.hpp"
 
 #include <cstdint>
 #include <string>
 #include <vector>
 
-#include "leetcode_utils_vector.hpp"
+#include "leetcode_utils/leetcode_utils_vector.hpp"
 
 TreeNode *String2TreeNode(const std::string &nodeValStr)
 {
