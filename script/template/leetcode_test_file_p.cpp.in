@@ -71,6 +71,8 @@ private:
         if (oldCnt == 1) {
             /* Free */
             std::cout << "refCnt: " << refCnt->load();
+            delete refCnt;
+            refCnt = nullptr;
         }
     }
 

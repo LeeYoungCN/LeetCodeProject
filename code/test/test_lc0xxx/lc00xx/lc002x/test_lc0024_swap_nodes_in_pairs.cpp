@@ -55,6 +55,8 @@ private:
         if (oldCnt == 1) {
             FreeList(expect);
             FreeList(head);
+            delete refCnt;
+            refCnt = nullptr;
         }
     }
 

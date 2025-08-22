@@ -26,6 +26,8 @@ public:
             l2 = nullptr;
             FreeList(expect);
             expect = nullptr;
+            delete refCnt;
+            refCnt = nullptr;
         }
     };
 

@@ -70,6 +70,8 @@ private:
             /* Free */
             FreeList(head);
             FreeList(expect);
+            delete refCnt;
+            refCnt = nullptr;
         }
     }
 
