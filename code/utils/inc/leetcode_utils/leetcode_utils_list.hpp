@@ -33,6 +33,7 @@ bool operator!=(const ListNode &lhs, const ListNode &rhs);
 ListNode *CreateList(const std::string &valStr);
 ListNode *CreateList(const std::vector<int32_t> &valList);
 void FreeList(ListNode *node);
-std::string ToString(const ListNode* node);
+std::string ToString(const ListNode *node);
+void RegisterList(ListNode *node);
 
 #endif  // LEETCODE_UTILS_LIST_HPP

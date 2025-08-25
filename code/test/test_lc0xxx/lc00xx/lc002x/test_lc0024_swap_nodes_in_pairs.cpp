@@ -10,15 +10,19 @@
 #include "gtest/gtest.h"
 #include "lc0xxx/lc00xx/lc002x/lc0024_swap_nodes_in_pairs.h"
 #include "leetcode_utils/leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_logging.hpp"
 
 using namespace std;
 
 class TEST_LC0024_Params {
 public:
-    TEST_LC0024_Params() = default;
+    TEST_LC0024_Params() = delete;
 
-    TEST_LC0024_Params(std::string &&head, std::string &&expect)
-        : head(CreateList(head)), expect(CreateList(expect)) {};
+    TEST_LC0024_Params(std::string &&head, std::string &&expect) : head(CreateList(head)), expect(CreateList(expect))
+    {
+        refCnt = new std::atomic<int32_t>(1);
+        DEBUG_LOG_DBG("refCnt: {}.", refCnt->load());
+    };
 
     ~TEST_LC0024_Params() { freeMemberParams_(); };
 
@@ -46,12 +50,13 @@ public:
     ListNode *expect{nullptr};
 
 private:
-    std::atomic<int32_t> *refCnt = new std::atomic<int32_t>(1);
+    std::atomic<int32_t> *refCnt{nullptr};
 
 private:
     void freeMemberParams_()
     {
         int32_t oldCnt = refCnt->fetch_sub(1, std::memory_order_relaxed);
+        DEBUG_LOG_DBG("refCnt: {}.", refCnt->load());
         if (oldCnt == 1) {
             FreeList(expect);
             FreeList(head);
@@ -66,6 +71,7 @@ private:
         refCnt->fetch_add(1, std::memory_order_relaxed);
         expect = other.expect;
         head = other.head;
+        DEBUG_LOG_DBG("refCnt: {}.", refCnt->load());
     }
 };
 

@@ -10,6 +10,7 @@
 #include "gtest/gtest.h"
 #include "lc0xxx/lc00xx/lc001x/lc0019_remove_nth_node_from_end_of_list.h"
 #include "leetcode_utils/leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_logging.hpp"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ public:
         : head(CreateList(head)), n(n), expect(CreateList(expect))
     {
         refCnt = new std::atomic<int32_t>(1);
+        DEBUG_LOG_DBG("refCnt: {}.", refCnt->load());
     };
 
     ~TEST_LC0019_Params() { freeMemberParams_(); };
@@ -55,12 +57,7 @@ private:
     void freeMemberParams_()
     {
         int32_t oldCnt = refCnt->fetch_sub(1, std::memory_order_relaxed);
-
-#if defined(__clang__) || defined(__GNUC__)
-        std::cout << __PRETTY_FUNCTION__ << " refCnt: " << refCnt->load() << std::endl;
-#else
-        std::cout << __FUNCSIG__ << " refCnt: " << refCnt->load() << std::endl;
-#endif
+        DEBUG_LOG_DBG("refCnt: {}.", refCnt->load());
         if (oldCnt == 1) {
             /* Free */
             FreeList(head);
@@ -74,12 +71,7 @@ private:
     {
         refCnt = other.refCnt;
         refCnt->fetch_add(1, std::memory_order_relaxed);
-        /* Copy */
-#if defined(_MSC_VER) && !defined(__clang__) && !defined(__GNUC__)
-        std::cout << __FUNCSIG__ << " refCnt: " << refCnt->load() << std::endl;
-#else
-        std::cout << __PRETTY_FUNCTION__ << " refCnt: " << refCnt->load() << std::endl;
-#endif
+        DEBUG_LOG_DBG("refCnt: {}.", refCnt->load());
         head = other.head;
         expect = other.expect;
         n = other.n;

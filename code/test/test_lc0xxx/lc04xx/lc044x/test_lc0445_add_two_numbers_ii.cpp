@@ -11,15 +11,17 @@
 #include "gtest/gtest.h"
 #include "lc0xxx/lc04xx/lc044x/lc0445_add_two_numbers_ii.h"
 #include "leetcode_utils/leetcode_utils_list.hpp"
+#include "leetcode_utils/leetcode_utils_logging.hpp"
 
 using namespace std;
 
 class TEST_LC0445_Params {
 public:
-    TEST_LC0445_Params() = default;
+    TEST_LC0445_Params() = delete;
     ~TEST_LC0445_Params()
     {
         int oldCnt = refCnt->fetch_sub(1, std::memory_order_acq_rel);
+        DEBUG_LOG_DBG("refCnt: {}.", refCnt->load());
         if (oldCnt == 1) {
             FreeList(l1);
             l1 = nullptr;
@@ -32,7 +34,11 @@ public:
     };
 
     TEST_LC0445_Params(const std::string &l1, const std::string &l2, const std::string &expect)
-        : l1(CreateList(l1)), l2(CreateList(l2)), expect(CreateList(expect)) {};
+        : l1(CreateList(l1)), l2(CreateList(l2)), expect(CreateList(expect))
+    {
+        refCnt = new std::atomic<int32_t>(1);
+        DEBUG_LOG_DBG("refCnt: {}.", refCnt->load());
+    };
 
     friend std::ostream &operator<<(std::ostream &os, const TEST_LC0445_Params &params)
     {
@@ -48,6 +54,7 @@ public:
         expect = other.expect;
         refCnt = other.refCnt;
         refCnt->fetch_add(1, std::memory_order_relaxed);
+        DEBUG_LOG_DBG("refCnt: {}.", refCnt->load());
     }
 
     TEST_LC0445_Params &operator=(const TEST_LC0445_Params &other)
@@ -70,6 +77,7 @@ public:
         expect = other.expect;
         refCnt = other.refCnt;
         refCnt->fetch_add(1, std::memory_order_relaxed);
+        DEBUG_LOG_DBG("refCnt: {}.", refCnt->load());
         return *this;
     }
 
@@ -79,7 +87,7 @@ public:
     ListNode *expect{nullptr};
 
 protected:
-    std::atomic<int32_t> *refCnt = new std::atomic<int32_t>(1);
+    std::atomic<int32_t> *refCnt{nullptr};
 };
 
 class TEST_LC0445 : public ::testing::TestWithParam<TEST_LC0445_Params> {
@@ -111,7 +119,7 @@ TEST_P(TEST_LC0445, case)
     for (LC0445_AddTwoNumbersII *inst : m_testList) {
         ListNode *result = inst->addTwoNumbers(params.l1, params.l2);
         EXPECT_EQ((*expect), (*result)) << *result;
-        FreeList(result);
+        RegisterList(result);
     }
 }
 

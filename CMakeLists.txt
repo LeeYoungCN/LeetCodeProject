@@ -27,6 +27,7 @@ if (MINGW OR CMAKE_COMPILER_IS_GNUCXX OR
 endif()
 
 # 启用 ASan 内存检测
+set(ENABLE_ASAN          ON)
 if (ENABLE_ASAN)
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address -fno-omit-frame-pointer")
     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fsanitize=address -fno-omit-frame-pointer")

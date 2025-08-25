@@ -65,6 +65,7 @@ void TEST_LC0337::FreeTreeNode(TreeNode *root)
     root->left = nullptr;
     FreeTreeNode(root->right);
     root->right = nullptr;
+    free(root);
 }
 
 void TEST_LC0337::RunTest(const vector<string> &nodeValList, int32_t expect)

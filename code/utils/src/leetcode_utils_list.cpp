@@ -1,8 +1,16 @@
 #include "leetcode_utils/leetcode_utils_list.hpp"
 
+#include <cstdint>
 #include <string>
+#include <vector>
 
+#include "internal/leetcode_utils_list_internal.hpp"
 #include "leetcode_utils/leetcode_utils_vector.hpp"
+
+namespace detail {
+internal::ListNodeContainer g_container;
+
+}  // namespace detail
 
 bool operator==(const ListNode &lhs, const ListNode &rhs)
 {
@@ -34,7 +42,7 @@ ListNode *CreateList(const std::vector<int32_t> &valList)
     ListNode root{};
     ListNode *node = &root;
     for (const auto &value : valList) {
-        node->next = new ListNode(value);
+        node->next = detail::g_container.NewListNode(value);
         node = node->next;
     }
     return root.next;
@@ -47,7 +55,11 @@ void FreeList(ListNode *node)
     }
     FreeList(node->next);
     node->next = nullptr;
-    delete node;
+    if (detail::g_container.IsRegister(node)) {
+        detail::g_container.DeleteListNode(node);
+    } else {
+        delete node;
+    }
 }
 
 std::string ToString(const ListNode *node)
@@ -62,4 +74,9 @@ std::string ToString(const ListNode *node)
     }
     str += "}";
     return str;
+}
+
+void RegisterList(ListNode *node)
+{
+    detail::g_container.RegisterList(node);
 }
