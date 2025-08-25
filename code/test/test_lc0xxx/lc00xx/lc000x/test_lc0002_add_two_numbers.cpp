@@ -15,7 +15,7 @@ using namespace std;
 
 class TEST_LC0002_Params {
 public:
-    TEST_LC0002_Params() = default;
+    TEST_LC0002_Params() = delete;
     ~TEST_LC0002_Params()
     {
         int oldCnt = refCnt->fetch_sub(1, std::memory_order_acq_rel);
@@ -32,11 +32,12 @@ public:
     };
 
     TEST_LC0002_Params(const std::string &l1, const std::string &l2, const std::string &expect)
-        : l1(CreateList(l1)), l2(CreateList(l2)), expect(CreateList(expect)) {};
+        : l1(CreateList(l1)), l2(CreateList(l2)), expect(CreateList(expect)) {
+            refCnt = new std::atomic<int32_t>(1);
+        };
 
     friend std::ostream &operator<<(std::ostream &os, const TEST_LC0002_Params &params)
     {
-        os << std::endl << "refCnt: " << params.refCnt->load() << std::endl;
         os << "l1: " << *params.l1 << ", l2: " << *params.l2;
         return os;
     };
@@ -78,7 +79,7 @@ public:
     ListNode *expect{nullptr};
 
 protected:
-    std::atomic<int32_t> *refCnt = new std::atomic<int32_t>(1);
+    std::atomic<int32_t> *refCnt{nullptr};
 };
 
 class TEST_LC0002 : public ::testing::TestWithParam<TEST_LC0002_Params> {
@@ -106,7 +107,7 @@ void TEST_LC0002::TearDown()
 TEST_P(TEST_LC0002, case)
 {
     const auto &params = GetParam();
-    TEST_LC0002_Params x{};
+
     ListNode *expect = params.expect;
     for (LC0002_AddTwoNumbers *inst : m_testList) {
         ListNode *result = inst->addTwoNumbers(params.l1, params.l2);

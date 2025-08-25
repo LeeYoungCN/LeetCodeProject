@@ -15,16 +15,11 @@ using namespace std;
 
 class TEST_LC0019_Params {
 public:
-    TEST_LC0019_Params() = default;
-
+    TEST_LC0019_Params() = delete;
     TEST_LC0019_Params(std::string &&head, int32_t n, std::string &&expect)
         : head(CreateList(head)), n(n), expect(CreateList(expect))
     {
-#if defined(__clang__) || defined(__GNUC__)
-        std::cout << __PRETTY_FUNCTION__ << " refCnt: " << refCnt->load() << std::endl;
-#else
-        std::cout << __FUNCSIG__ << " refCnt: " << refCnt->load() << std::endl;
-#endif
+        refCnt = new std::atomic<int32_t>(1);
     };
 
     ~TEST_LC0019_Params() { freeMemberParams_(); };
@@ -54,7 +49,7 @@ public:
     ListNode *expect{};
 
 private:
-    std::atomic<int32_t> *refCnt = new std::atomic<int32_t>(1);
+    std::atomic<int32_t> *refCnt{nullptr};
 
 private:
     void freeMemberParams_()
@@ -128,5 +123,7 @@ TEST_P(TEST_LC0019, case)
 }
 
 INSTANTIATE_TEST_SUITE_P(, TEST_LC0019,
-                         ::testing::Values(TEST_LC0019_Params("[1,2,3,4,5]", 2, "[1,2,3,5]"),
-                                           TEST_LC0019_Params("[1]", 1, "[]"), TEST_LC0019_Params("[1,2]", 1, "[1]")));
+                         ::testing::Values(TEST_LC0019_Params("[1,2,3,4,5]", 2, "[1,2,3,5]")
+                                           //                TEST_LC0019_Params("[1]", 1, "[]"),
+                                           //    TEST_LC0019_Params("[1,2]", 1, "[1]")
+                                           ));

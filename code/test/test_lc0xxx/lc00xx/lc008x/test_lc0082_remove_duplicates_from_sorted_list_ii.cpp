@@ -16,10 +16,12 @@ using namespace std;
 
 class TEST_LC0082_Params {
 public:
-    TEST_LC0082_Params() = default;
+    TEST_LC0082_Params() = delete;
 
-    TEST_LC0082_Params(std::string &&head, std::string &&expect)
-        : head(CreateList(head)), expect(CreateList(expect)) {};
+    TEST_LC0082_Params(std::string &&head, std::string &&expect) : head(CreateList(head)), expect(CreateList(expect))
+    {
+        refCnt = new std::atomic<int32_t>(1);
+    };
 
     ~TEST_LC0082_Params() { freeMemberParams_(); };
 
@@ -54,7 +56,7 @@ public:
     ListNode *expect{nullptr};
 
 private:
-    std::atomic<int32_t> *refCnt = new std::atomic<int32_t>(1);
+    std::atomic<int32_t> *refCnt{nullptr};
 
 private:
     void freeMemberParams_()
@@ -63,6 +65,7 @@ private:
         if (oldCnt == 1) {
             FreeList(head);
             FreeList(expect);
+            delete refCnt;
         }
     }
 
