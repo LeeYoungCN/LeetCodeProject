@@ -26,9 +26,12 @@ using namespace std;
 
 class @TEST_CLASSNAME@_Params {
 public:
-    @TEST_CLASSNAME@_Params() = default;
+    @TEST_CLASSNAME@_Params() = delete;
 
-    @TEST_CLASSNAME@_Params(@TEST_CASE_INIT_PARAMS@){};
+    @TEST_CLASSNAME@_Params(@TEST_CASE_INIT_PARAMS@)
+    {
+        refCnt = new std::atomic<int32_t>(1);
+    };
 
     ~@TEST_CLASSNAME@_Params()
     {
@@ -62,7 +65,7 @@ public:
     @FUNC_RET_TYPE@ expect{};
 
 private:
-    std::atomic<int32_t> *refCnt = new std::atomic<int32_t>(1);
+    std::atomic<int32_t> *refCnt{nullptr};
 
 private:
     void freeMemberParams_()
