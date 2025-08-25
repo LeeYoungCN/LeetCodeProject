@@ -13,7 +13,7 @@ if (MSVC)
     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} /MD")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
-    add_compile_options(/WX /permissive- /utf-8)
+    add_compile_options(/WX /permissive- /utf-8 /Zc:preprocessor)
 endif()
 
 if (MINGW OR CMAKE_COMPILER_IS_GNUCXX OR
@@ -28,6 +28,9 @@ endif()
 
 # 启用 ASan 内存检测
 set(ENABLE_ASAN          ON)
+if (MINGW) 
+    set(ENABLE_ASAN          OFF)
+endif()
 if (ENABLE_ASAN)
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address -fno-omit-frame-pointer")
     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fsanitize=address -fno-omit-frame-pointer")
