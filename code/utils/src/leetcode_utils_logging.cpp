@@ -95,8 +95,6 @@ void LogInternal(LogLevel level, const char* file, int line, const char* func, c
     if (level < g_logLevel) {
         return;
     }
-    static std::mutex mtx;
-    std::unique_lock<std::mutex> lock(mtx);
 
     std::string logStr = formatLog(level, file, line, func, message);
     std::cout << logStr << std::endl;
