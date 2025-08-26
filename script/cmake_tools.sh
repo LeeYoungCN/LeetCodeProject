@@ -260,6 +260,7 @@ function init_cmake_configure_param() {
             cmake_toolchain_file="${TOOLCHAIN_FILE_DIR}/win_msvc.cmake"
             cmake_generator="Ninja"
             cmake_build_type="Release"
+            # shellcheck disable=SC2034
             ARCHITECTURE="x86"
             env_param_file="${SCRIPT_DIR}/load_msvc_env.sh"
             ;;
