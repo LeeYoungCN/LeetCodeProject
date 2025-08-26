@@ -2,6 +2,7 @@
     "version": "0.2",
     "words": [
         "appender",
+        "ASAN",
         "constexpr",
         "ctest",
         "getopt",
@@ -18,7 +19,8 @@
     ],
     "ignorePaths": [
         "out/**", // 忽略构建目录
-        "third_lib/**"
+        "third_lib/**",
+        ".github"
     ],
     "ignoreRegExpList": [
         // 忽略以 - 或 -- 开头的命令行参数（如 -Wall、--config）
