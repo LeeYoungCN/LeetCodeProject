@@ -6,7 +6,8 @@ set(CMAKE_C_STANDARD 99)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS   ON)
 set(CMAKE_VERBOSE_MAKEFILE          OFF)
-
+option(ENABLE_ASAN                  OFF)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 if (MSVC)
     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} /MDd")
@@ -26,11 +27,6 @@ if (MINGW OR CMAKE_COMPILER_IS_GNUCXX OR
     add_compile_options("-Wall" "-Wconversion" "-Wextra" "-pedantic")
 endif()
 
-# 启用 ASan 内存检测
-set(ENABLE_ASAN          ON)
-if (MINGW) 
-    set(ENABLE_ASAN          OFF)
-endif()
 if (ENABLE_ASAN)
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address -fno-omit-frame-pointer")
     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fsanitize=address -fno-omit-frame-pointer")

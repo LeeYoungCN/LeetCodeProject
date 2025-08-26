@@ -54,6 +54,8 @@ arg_ctest_case="all"
 
 arg_enable_list_param=1
 
+arg_enable_asan="OFF"
+
 preset_array=("")
 
 cmake_source_dir="${ROOT_DIR}"
@@ -368,6 +370,7 @@ function cmake_configure() {
         -DCMAKE_INSTALL_PREFIX="${cmake_install_prefix}" \
         -DCMAKE_PRESET="${cmake_preset}" \
         -DENV_PARAM_FILE="${env_param_file}" \
+        -DENABLE_ASAN="${arg_enable_asan}" \
         -DCMAKE_PROBLEM_PREFIX="${cmake_problem_prefix}"; then
         print_log "[${cmake_preset}] CMake configuration success." info
         cp "${cmake_binary_dir}/compile_commands.json" "${BUILD_CACHE_ROOT_DIR}/compile_commands.json"
@@ -484,7 +487,7 @@ function list_problem_prefix() {
 function main() {
     if ! ARGS=$(
         getopt -o c::p:s: \
-            --long clean::,install::,preset:,problem:,configure,build::,gtest::,ctest::,help,list \
+            --long asan,clean::,install::,preset:,problem:,configure,build::,gtest::,ctest::,help,list \
             -n "$0" -- "$@"
     ); then
         print_log "getopt failed." error
@@ -495,6 +498,10 @@ function main() {
 
     while true; do
         case "$1" in
+        --asan)
+            arg_enable_asan="ON"
+            shift
+            ;;
         -c | --clean)
             arg_enable_clean=0
             if [ -n "${2}" ]; then
