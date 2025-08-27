@@ -2,8 +2,10 @@ import argparse
 import os
 import json
 from pathlib import Path
-from common_func import log, is_roman_num_str
+from common_func import is_roman_num_str, ColoredFormatter
 from refresh_problem_list import refresh_problem_list
+import logging
+import sys
 
 _CURRENT_FILE_PATH = Path(__file__).resolve()
 _SCRIPT_DIR = os.path.dirname(_CURRENT_FILE_PATH)
@@ -61,7 +63,7 @@ _TYPE_EXPECT_EQ_DICT = {
     "std::vector<std::vector<int>>": _MATRIX_EXPECT_EQ,
     "vector<vector<string>>": _MATRIX_EXPECT_EQ,
     "std::vector<std::vector<std::string>>": _MATRIX_EXPECT_EQ,
-    "ListNode*": __LIST_NODE_EXPECT_EQ
+    "ListNode*": __LIST_NODE_EXPECT_EQ,
 }
 
 _TEST_CASE_INIT_PARAMS_DICT = {
@@ -75,7 +77,7 @@ _TEST_CASE_INIT_PARAMS_DICT = {
     "std::vector<std::vector<int>>": "CreateIntMatrix",
     "vector<vector<string>>": "std::string&&",
     "std::vector<std::vector<std::string>>": "std::string&&",
-    "ListNode*": "CreateList"
+    "ListNode*": "CreateList",
 }
 
 
@@ -99,7 +101,7 @@ class LeetcodeFile:
         self.__def_str = None
         self.__expect_eq_code = None
         self.__test_case_var = None
-
+        self.__logger = logging.getLogger(self.__class_name)
         if self.__url is None:
             self.__url = ""
 
@@ -191,23 +193,23 @@ class LeetcodeFile:
         self.__def_str = self.__leetcode_file_name.upper() + "_H"
 
     def print_data(self):
-        log(f"file_name:            {self.__leetcode_file_name}")
-        log(f"class_name:           {self.__leetcode_class_name}")
-        log(f"function:             {self.__function}")
-        log(f"func_ret_type:        {self.__func_ret_type}")
-        log(f"func_name:            {self.__func_name}")
-        log(f"func_params:          {self.__func_params}")
-        log(f"param_names:          {self.__param_names}")
-        log(f"test_class_name:      {self.__test_class_name}")
-        log(f"def_str:              {self.__def_str}")
+        self.__logger.info(f"file_name:            {self.__leetcode_file_name}")
+        self.__logger.info(f"class_name:           {self.__leetcode_class_name}")
+        self.__logger.info(f"function:             {self.__function}")
+        self.__logger.info(f"func_ret_type:        {self.__func_ret_type}")
+        self.__logger.info(f"func_name:            {self.__func_name}")
+        self.__logger.info(f"func_params:          {self.__func_params}")
+        self.__logger.info(f"param_names:          {self.__param_names}")
+        self.__logger.info(f"test_class_name:      {self.__test_class_name}")
+        self.__logger.info(f"def_str:              {self.__def_str}")
 
     def __create_file_by_template(self, template_file, new_file):
         if os.path.exists(new_file):
-            log(f"{new_file} already exist.", "ERROR")
+            self.__logger.error(f"{new_file} already exist.")
             return
 
         if not os.path.exists(template_file):
-            log(f"{new_file} not exist!", "ERROR")
+            self.__logger.error(f"{new_file} not exist!")
 
         from datetime import datetime
 
@@ -228,8 +230,8 @@ class LeetcodeFile:
             ["@TEST_CASE_INIT_PARAMS@", self.__test_case_init_params],
         ]
 
-        with open(template_file, "r", encoding="utf-8") as infile:
-            lines = infile.readlines()
+        with open(template_file, "r", encoding="utf-8") as file:
+            lines = file.readlines()
 
         with open(new_file, "w", encoding="utf-8") as outfile:
             for line in lines:
@@ -237,7 +239,7 @@ class LeetcodeFile:
                     line = line.replace(replace_pair[0], replace_pair[1])
                 outfile.write(line)
 
-        log(f"Create [{new_file}] success.")
+        self.__logger.info(f"Create [{new_file}] success.")
 
     def create_files(self):
         head_file_path = _LEETCODE_INC_DIR + self.__leetcode_head_file
@@ -291,7 +293,25 @@ def is_valid_arg(arg: str) -> bool:
     return not (arg is None or arg == "")
 
 
+def init_logging(
+    log_level=logging.INFO,
+    log_format="%(asctime)s - %(name)s -%(levelname)s - %(filename)s:%(lineno)d: %(message)s",
+):
+    # 配置basicConfig，使用自定义流处理器
+    logging.basicConfig(level=log_level, handlers=[logging.StreamHandler(sys.stdout)])
+
+    # 创建带颜色的格式化器
+    formatter = ColoredFormatter(log_format)
+    # 为basicConfig创建的处理器设置自定义格式化器
+    logging.getLogger().handlers[0].setFormatter(formatter)
+
+
 def main():
+    init_logging(
+        logging.DEBUG,
+        "[%(asctime)s] [%(name)s] [%(levelname)s] [%(filename)s:%(lineno)d]: %(message)s",
+    )
+
     parser = argparse.ArgumentParser(description="创建leetcode文件.")
     parser.add_argument("-p", "--prefix", help="Problem prefix.")
     parser.add_argument("-u", "--url", help="Problem URL.")
@@ -300,15 +320,15 @@ def main():
     args = parser.parse_args()
 
     if not is_valid_arg(args.prefix):
-        log(f"Prefix invalid {args.prefix}.", "ERROR")
+        logging.error(f"Prefix invalid {args.prefix}.")
         return
 
     if not is_valid_arg(args.url) and not is_valid_arg(args.class_name):
-        log(f"Url or class_name invalid.", "ERROR")
+        logging.error(f"Url or class_name invalid.")
         return
 
     if not is_valid_arg(args.function):
-        log(f"function invalid {args.function}.", "ERROR")
+        logging.error(f"function invalid {args.function}.")
         return
 
     obj = LeetcodeFile(args.prefix, args.url, args.function, args.class_name)

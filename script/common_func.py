@@ -1,20 +1,5 @@
-def log(message, level="INFO"):
-    """带颜色的日志输出"""
-    from datetime import datetime
-
-    COLORS = {
-        "DEBUG": "\033[94m",  # 蓝色
-        "INFO": "\033[92m",  # 绿色
-        "WARNING": "\033[93m",  # 黄色
-        "ERROR": "\033[91m",  # 红色
-        "CRITICAL": "\033[1;91m",  # 加粗红色
-    }
-    RESET = "\033[0m"
-
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    colored_level = f"{COLORS.get(level, '')}{level}{RESET}"
-    print(f"[{timestamp}] [{colored_level}] {message}")
-
+import logging
+import sys
 
 def is_roman_num_str(num_str: str) -> bool:
     """
@@ -71,3 +56,39 @@ def is_roman_num_str(num_str: str) -> bool:
 
     # 所有检查都通过，认为是有效罗马数字
     return True
+
+class Colors:
+    RESET = '\033[0m'
+    DEBUG = '\033[94m'    # 蓝色
+    INFO = '\033[92m'     # 绿色
+    WARNING = '\033[93m'  # 黄色
+    ERROR = '\033[91m'    # 红色
+    CRITICAL = '\033[41m' # 红色背景
+
+class ColoredFormatter(logging.Formatter):
+    """自定义带颜色的日志格式化器，不依赖第三方库"""
+
+    # 定义不同日志级别的颜色
+    LOG_LEVEL_COLORS = {
+        logging.DEBUG: Colors.DEBUG,
+        logging.INFO: Colors.INFO,
+        logging.WARNING: Colors.WARNING,
+        logging.ERROR: Colors.ERROR,
+        logging.CRITICAL: Colors.CRITICAL
+    }
+
+    def format(self, record):
+        # 保存原始的日志级别名称
+        original_levelname = record.levelname
+
+        # 为日志级别名称添加颜色
+        color = self.LOG_LEVEL_COLORS.get(record.levelno, '')
+        record.levelname = f"{color}{original_levelname}{Colors.RESET}"
+
+        # 格式化日志信息
+        formatted_message = super().format(record)
+
+        # 恢复原始的日志级别名称
+        record.levelname = original_levelname
+
+        return formatted_message

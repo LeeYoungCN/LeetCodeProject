@@ -9,6 +9,7 @@
         "GNUCXX",
         "gtest",
         "leetcode",
+        "levelname",
         "Makefiles",
         "MSVC",
         "NDEBUG",
