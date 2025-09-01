@@ -34,12 +34,12 @@ void ListNodeContainer::DeleteListNode(ListNode *node)
     std::unique_lock<std::mutex> lock(m_mtx);
     auto it = m_nodeSet.find(node);
     if (it == m_nodeSet.end()) {
-        DEBUG_LOG_ERR("[Failed] node not register: {:x}", reinterpret_cast<uintptr_t>(node));
+        DEBUG_LOG_ERR("[Failed] node not register: {:#x}", reinterpret_cast<uintptr_t>(node));
         return;
     }
     delete *it;
     m_nodeSet.erase(it);
-    DEBUG_LOG_DBG("Delete node : {:x}, count: {}", reinterpret_cast<uintptr_t>(node), m_nodeSet.size());
+    DEBUG_LOG_DBG("Delete node : {:#x}, count: {}", reinterpret_cast<uintptr_t>(node), m_nodeSet.size());
 }
 
 void ListNodeContainer::RegisterList(ListNode *node)
@@ -52,7 +52,7 @@ void ListNodeContainer::RegisterList_(ListNode *node)
 {
     while (node) {
         m_nodeSet.insert(node);
-        DEBUG_LOG_DBG("Register node : {:x}, count: {}", reinterpret_cast<uintptr_t>(node), m_nodeSet.size());
+        DEBUG_LOG_DBG("Register node : {:#x}, count: {}", reinterpret_cast<uintptr_t>(node), m_nodeSet.size());
         node = node->next;
     }
 }
